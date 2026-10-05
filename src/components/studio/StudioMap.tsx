@@ -54,9 +54,7 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
           container: container.current,
           style,
           bounds: ITALY,
-          fitBoundsOptions: {
-            padding: { top: 70, bottom: 30, left: insetRef.current.left + 30, right: 30 },
-          },
+          fitBoundsOptions: { padding: initialPadding(container.current) },
           attributionControl: { compact: true },
           maxPitch: 0,
           dragRotate: false,
@@ -213,6 +211,13 @@ function clearAnalysis(map: MapLibreMap) {
   for (const id of Object.keys(map.getStyle().sources)) {
     if (id.startsWith(ANALYSIS)) map.removeSource(id);
   }
+}
+
+/** Frame Italy beside the side panel on desktop, above the bottom sheet on phones. */
+function initialPadding(el: HTMLElement) {
+  const { clientWidth: w, clientHeight: h } = el;
+  if (w <= 820) return { top: 80, bottom: Math.round(h * 0.46) + 16, left: 16, right: 16 };
+  return { top: 70, bottom: 30, left: 384 + 40, right: 30 };
 }
 
 function escapeHtml(text: string) {

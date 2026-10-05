@@ -2,6 +2,10 @@ import styles from "./Audiences.module.css";
 
 const AUDIENCES = [
   {
+    who: "Sviluppatori di impianti fotovoltaici",
+    what: "Per ogni terreno candidato: distanza dalla rete ad alta tensione, pendenza, irraggiamento e vincoli, poi il confronto fianco a fianco.",
+  },
+  {
     who: "Sviluppatori immobiliari",
     what: "Scarta in pochi minuti i lotti che non reggono e confronta quelli che restano sugli stessi criteri.",
   },
@@ -12,6 +16,10 @@ const AUDIENCES = [
   {
     who: "Banche e periti",
     what: "Allega alla valutazione una scheda con rischi e destinazione urbanistica, sempre datata e riproducibile.",
+  },
+  {
+    who: "Agenti immobiliari",
+    what: "Rispondi con dati ufficiali alle domande su un terreno in vendita e condividi la scheda con l'acquirente.",
   },
   {
     who: "Chi compra o eredita un terreno",

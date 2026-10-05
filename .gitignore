@@ -51,3 +51,6 @@ next-env.d.ts
 # raw research evidence stays local; only the manifest is versioned
 docs/research/evidence/*/*
 !docs/research/evidence/*/manifest.json
+
+# Generated live verification
+/tests/live-results.json

@@ -22,6 +22,9 @@ export const Provenance = z.object({
   license: z.string(),
   url: z.url(),
   method: z.enum(["api", "wms", "wfs", "snapshot", "computed"]),
+  isOfficial: z.boolean(),
+  /** The exact request we made, without secrets, so anyone can repeat it. */
+  requestUrl: z.string().nullable().optional(),
   retrievedAt: z.iso.datetime(),
   /** Reference date of the data itself, when the publisher declares it. */
   referenceDate: z.string().nullable().optional(),
@@ -130,7 +133,13 @@ export const LayerResult = z.object({
   layer: LayerId,
   group: LayerGroup,
   title: z.string(),
-  status: z.enum(["ok", "partial", "unavailable", "error"]),
+  /**
+   * ok: answered. empty: the source answered and has nothing here (not the same as "safe").
+   * outside_coverage: the source does not cover this place. unavailable: the source failed.
+   */
+  status: z.enum(["ok", "empty", "partial", "outside_coverage", "unavailable", "error"]),
+  /** What the value describes, so a municipality figure is never read as a plot figure. */
+  scope: z.enum(["parcel", "point", "buffer", "grid_cell", "municipality", "zone"]),
   /** One plain-Italian sentence a non-expert can act on. */
   headline: z.string(),
   severity: Severity,

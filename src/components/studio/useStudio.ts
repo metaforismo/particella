@@ -55,7 +55,12 @@ function describe(error: unknown) {
   if (error instanceof ApiRequestError) {
     switch (error.code) {
       case "not_found":
-        return "Qui non troviamo una particella catastale. Prova a toccare un punto all'interno di un lotto.";
+      case "bad_request":
+        // The server explains the specific case (road, water, boundary between parcels).
+        return (
+          error.message ||
+          "Qui non troviamo una particella catastale. Prova un punto all'interno di un lotto."
+        );
       case "upstream_unavailable":
         return "Il servizio catastale non risponde in questo momento. Riprova tra qualche minuto.";
       case "network":

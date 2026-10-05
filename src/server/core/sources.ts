@@ -2,13 +2,18 @@ import type { SourceCatalogEntry } from "../../lib/contracts/index.ts";
 import type { HostPolicy } from "./http.ts";
 import { countrySources } from "../countries/sources.ts";
 
+export interface SourceVerification {
+  state: "verified" | "partial";
+  date: string;
+  note: string;
+}
 export interface SourceDefinition extends SourceCatalogEntry {
   isOfficial: boolean;
   licenseUrl: string;
   protocol: "REST" | "WMS" | "WFS" | "snapshot";
   endpoint: string;
   hostPolicy: HostPolicy;
-  verification: { state: "verified" | "partial"; date: string; note: string };
+  verification: SourceVerification;
   referenceDate?: string;
 }
 export const sources: readonly SourceDefinition[] = countrySources;

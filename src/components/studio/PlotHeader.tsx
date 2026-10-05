@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Check, FileText, LinkSimple, X } from "@phosphor-icons/react";
+import { Check, DownloadSimple, FileText, LinkSimple, X } from "@phosphor-icons/react";
+import { download, plotGeoJson, plotKml } from "@/lib/export";
 import type { Plot } from "@/lib/contracts";
 import { formatArea, formatLength } from "@/lib/format";
 import { reportHref } from "@/lib/routes";
@@ -64,6 +65,22 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
           {copied ? <Check size={16} aria-hidden="true" /> : <LinkSimple size={16} aria-hidden="true" />}
           {copied ? "Link copiato" : "Copia link"}
         </button>
+        {plot.geometry ? (
+          <details className={styles.menu}>
+            <summary className={styles.secondary} aria-label="Scarica il confine del lotto">
+              <DownloadSimple size={16} aria-hidden="true" />
+            </summary>
+            <div className={styles.menuPanel}>
+              <p>Scarica il confine</p>
+              <button type="button" onClick={() => download(plotGeoJson(plot))}>
+                GeoJSON <span>per QGIS e software GIS</span>
+              </button>
+              <button type="button" onClick={() => download(plotKml(plot))}>
+                KML <span>per Google Earth</span>
+              </button>
+            </div>
+          </details>
+        ) : null}
       </div>
     </header>
   );

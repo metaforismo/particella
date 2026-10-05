@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "id": "", "geometry": null, "properties": { "GRAY_INDEX": 119.29900360107422 } }
+  ],
+  "totalFeatures": "unknown",
+  "numberReturned": 1,
+  "timeStamp": "2026-10-05T21:38:52.502Z",
+  "crs": null
+}

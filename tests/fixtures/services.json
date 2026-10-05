@@ -1,0 +1,123 @@
+{
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-05T22:17:19Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 661556413,
+      "lat": 45.4626069,
+      "lon": 9.1882702,
+      "tags": {
+        "addr:city": "Milano",
+        "addr:country": "IT",
+        "addr:housenumber": "12",
+        "addr:postcode": "20123",
+        "addr:street": "Via Giuseppe Mazzini",
+        "amenity": "pharmacy",
+        "check_date": "2025-09-04",
+        "dispensing": "yes",
+        "email": "info@farmaciacarloalberto.it",
+        "healthcare": "pharmacy",
+        "name": "Farmacia Carlo Alberto",
+        "opening_hours": "Mo-Fr 08:00-19:00",
+        "operator": "Dr. Raitero Marco Sergio",
+        "phone": "+39 02 86462067",
+        "ref:msal": "2634",
+        "ref:vatin": "IT06660150969",
+        "source": "Ministero della Salute",
+        "website": "http://www.farmaciacarloalberto.it/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 715904515,
+      "lat": 45.4648556,
+      "lon": 9.1893457,
+      "tags": {
+        "addr:city": "Milano",
+        "addr:country": "IT",
+        "addr:housenumber": "21",
+        "addr:postcode": "20121",
+        "addr:street": "Piazza del Duomo",
+        "amenity": "pharmacy",
+        "check_date": "2026-09-09",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Farmacia Carlo Erba",
+        "opening_hours": "Mo-Th 08:00-21:00; Fr 08:00-22:00; Sa 09:00-22:00; Su 09:00-21:00",
+        "operator": "Boots",
+        "ref:msal": "2681",
+        "ref:vatin": "IT02489000998",
+        "source": "Ministero della Salute"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1529839225,
+      "lat": 45.4625017,
+      "lon": 9.1935439,
+      "tags": {
+        "addr:city": "Milano",
+        "addr:country": "IT",
+        "addr:housenumber": "6",
+        "addr:postcode": "20122",
+        "addr:street": "Via Larga",
+        "amenity": "pharmacy",
+        "contact:phone": "+39 02 878650",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Farmacia Del Duomo s.r.l.",
+        "operator": "Farmacia Del Duomo s.r.l.",
+        "ref:msal": "2626",
+        "ref:vatin": "IT08052330969",
+        "source": "Ministero della Salute"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1678582986,
+      "lat": 45.4627011,
+      "lon": 9.1865727,
+      "tags": {
+        "addr:city": "Milano",
+        "addr:housenumber": "1",
+        "addr:postcode": "20123",
+        "addr:street": "Piazza Santa Maria Beltrade",
+        "amenity": "pharmacy",
+        "contact:phone": "+39 02 86463513",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Farmacia Beltrade",
+        "operator": "Farmacia Beltrade S.R.L.",
+        "ref:msal": "2861",
+        "ref:vatin": "IT10564470960",
+        "source": "Ministero della Salute",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1678583006,
+      "lat": 45.463781,
+      "lon": 9.1867044,
+      "tags": {
+        "addr:city": "Milano",
+        "addr:housenumber": "13n05",
+        "addr:postcode": "20123",
+        "addr:street": "Via Spadari",
+        "amenity": "pharmacy",
+        "check_date": "2025-09-17",
+        "dispensing": "yes",
+        "healthcare": "pharmacy",
+        "name": "Farmacia Centrale",
+        "opening_hours": "Mo-Fr 08:30-19:30; Sa 09:30-13:30",
+        "operator": "Dott.ssa Maria Cristina Lugli",
+        "ref:msal": "2992",
+        "ref:vatin": "IT13261480159",
+        "source": "Ministero della Salute"
+      }
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "executedAt": "2026-10-05T22:32:15.752Z",
+  "mode": "next start, single local Node process, production",
+  "results": [
+    {
+      "path": "/health",
+      "status": 200,
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/catalog/layers",
+      "status": 200,
+      "cacheControl": "public, max-age=86400, s-maxage=86400"
+    },
+    {
+      "path": "/catalog/sources",
+      "status": 200,
+      "cacheControl": "public, max-age=86400, s-maxage=86400"
+    },
+    {
+      "path": "/geocode?q=Piazza%20Duomo%20Milano",
+      "status": 200,
+      "cacheControl": "public, max-age=3600, s-maxage=3600"
+    },
+    {
+      "path": "/plots/at?lat=45.4642&lon=9.19",
+      "status": 404,
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/plots/at?lat=43.7&lon=11.32",
+      "status": 200,
+      "cacheControl": "public, max-age=3600, s-maxage=3600"
+    },
+    {
+      "path": "/plots/it:A564:_:60:110",
+      "status": 200,
+      "cacheControl": "public, max-age=3600, s-maxage=3600"
+    },
+    {
+      "path": "/plots/it:A564:_:60:110/layers/seismic",
+      "status": 200,
+      "cacheControl": "public, max-age=3600, s-maxage=3600"
+    },
+    {
+      "path": "/plots/it:A564:_:60:110/report",
+      "status": 200,
+      "cacheControl": "no-store"
+    },
+    {
+      "reportStatuses": [
+        {
+          "layer": "flood",
+          "status": "empty"
+        },
+        {
+          "layer": "landslide",
+          "status": "ok"
+        },
+        {
+          "layer": "seismic",
+          "status": "ok"
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty"
+        },
+        {
+          "layer": "terrain",
+          "status": "ok"
+        },
+        {
+          "layer": "solar",
+          "status": "ok"
+        },
+        {
+          "layer": "services",
+          "status": "unavailable"
+        },
+        {
+          "layer": "demographics",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "overlay": "cadastre",
+      "status": 200,
+      "bytes": 2922
+    },
+    {
+      "overlay": "flood",
+      "status": 200,
+      "bytes": 1918
+    },
+    {
+      "overlay": "landslide",
+      "status": 200,
+      "bytes": 8474
+    }
+  ]
+}

@@ -201,3 +201,11 @@ export const ApiError = z.object({
   }),
 });
 export type ApiError = z.infer<typeof ApiError>;
+
+/** Liveness only: does not assert availability of external datasets. */
+export const Health = z.object({
+  status: z.literal("ok"),
+  version: z.literal("0.1"),
+  timestamp: z.iso.datetime(),
+});
+export type Health = z.infer<typeof Health>;

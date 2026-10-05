@@ -5,10 +5,11 @@ import { StatusPill } from "@/components/studio/StatusPill";
 import { resultLabel } from "@/components/studio/status";
 import { GROUP_LABEL, LAYER_BY_ID, LAYERS } from "@/content/layers";
 import type { LayerGroup, LayerResult, PlotReport, Provenance } from "@/lib/contracts";
-import { formatArea, formatDate, formatLength, formatMetric } from "@/lib/format";
+import { formatArea, formatDate, formatLength, formatMetric, formatPlace } from "@/lib/format";
 import { uniqueSources } from "@/lib/provenance";
 import { formatAt } from "@/lib/routes";
 import { PrintButton } from "./PrintButton";
+import { ReportPersonalization } from "./ReportPersonalization";
 import { ReportMap } from "./ReportMap";
 import styles from "./ReportView.module.css";
 
@@ -34,7 +35,6 @@ export function ReportView({ report }: { report: PlotReport }) {
       (l.status === "ok" || l.status === "partial") && (l.severity === "high" || l.severity === "medium"),
   );
   const missing = layers.filter((l) => ["unavailable", "error", "outside_coverage"].includes(l.status));
-  const place = [plot.municipality?.name, plot.municipality?.province].filter(Boolean).join(", ");
 
   return (
     <article className={styles.page}>
@@ -56,9 +56,11 @@ export function ReportView({ report }: { report: PlotReport }) {
         </div>
       </header>
 
+      <ReportPersonalization plotId={plot.id} />
+
       <section className={styles.identity}>
         <div>
-          <p className={styles.place}>{place || "Comune non identificato"}</p>
+          <p className={styles.place}>{formatPlace(plot.municipality)}</p>
           <h1 className={styles.title}>
             Foglio <span className="num">{plot.cadastral.sheet}</span>, particella{" "}
             <span className="num">{plot.cadastral.parcel}</span>

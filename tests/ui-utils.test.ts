@@ -147,3 +147,10 @@ test("repeated readings of the same source are listed once, latest first", async
   assert.equal(list.length, 2);
   assert.equal(list[0].retrievedAt, "2026-10-06T00:00:05.000Z");
 });
+
+test("place line never repeats the comune and only shows a real sigla", async () => {
+  const { formatPlace } = await import("../src/lib/format.ts");
+  assert.equal(formatPlace(plot.municipality), "Bagno a Ripoli (FI), Toscana");
+  assert.equal(formatPlace({ name: "Firenze", provinceCode: "048", region: "Toscana" }), "Firenze, Toscana");
+  assert.equal(formatPlace(null), "Comune non identificato");
+});

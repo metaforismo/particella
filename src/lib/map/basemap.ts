@@ -34,8 +34,15 @@ const PLACE_LABEL = { "text-color": "#17201d", "text-halo-color": "#edefec" };
 
 let cached: Promise<StyleSpecification> | null = null;
 
-/** Positron recoloured to the Particella palette. Fetched once per page. */
-export function loadBasemapStyle(): Promise<StyleSpecification> {
+/**
+ * Positron recoloured to the Particella palette. Fetched once per page; every map gets its own
+ * copy because MapLibre mutates the style object it is given.
+ */
+export async function loadBasemapStyle(): Promise<StyleSpecification> {
+  return structuredClone(await fetchBasemapStyle());
+}
+
+function fetchBasemapStyle(): Promise<StyleSpecification> {
   cached ??= fetch(BASE_STYLE_URL)
     .then((res) => {
       if (!res.ok) throw new Error(`Basemap style ${res.status}`);

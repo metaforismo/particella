@@ -11,23 +11,6 @@
   font-size: var(--fs-sm);
 }
 
-.count {
-  font-weight: 560;
-}
-
-.count[data-tone="medium"] {
-  color: var(--sev-medium);
-}
-.count[data-tone="low"] {
-  color: var(--sev-low);
-}
-.count[data-tone="none"] {
-  color: var(--sev-none);
-}
-.count[data-tone="unknown"] {
-  color: var(--sev-unknown);
-}
-
 .progress {
   height: 2px;
   margin: var(--s-3) var(--s-5) 0;
@@ -56,6 +39,7 @@
 
 .row {
   border-top: 1px solid var(--rule);
+  scroll-margin-top: var(--s-2);
 }
 
 .row:last-child {

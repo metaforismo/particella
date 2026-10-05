@@ -5,6 +5,7 @@ import { LegendSwatch } from "@/components/legend/LegendSwatch";
 import { GROUP_LABEL, LAYERS, type LayerMeta } from "@/content/layers";
 import type { LayerGroup, LayerId } from "@/lib/contracts";
 import { LayerDetail } from "./LayerDetail";
+import { PlotSummary } from "./PlotSummary";
 import { StatusPill } from "./StatusPill";
 import { stateLabel, summarize } from "./status";
 import type { LayerState } from "./useStudio";
@@ -24,26 +25,29 @@ export function LayerList({ layers, active, onToggle, onRetry }: Props) {
 
   return (
     <div className={styles.wrap}>
-      <p className={styles.summary} aria-live="polite">
-        {counts.pending > 0 ? (
+      {counts.pending > 0 ? (
+        <p className={styles.summary} aria-live="polite">
           <span>
             Fonti lette: <span className="num">{LAYERS.length - counts.pending}</span> di{" "}
             <span className="num">{LAYERS.length}</span>
           </span>
-        ) : (
-          <>
-            <Count n={counts.attention} one="da approfondire" many="da approfondire" tone="medium" />
-            <Count n={counts.notable} one="da notare" many="da notare" tone="low" />
-            <Count n={counts.clear} one="senza rilievi" many="senza rilievi" tone="none" />
-            <Count n={counts.missing} one="non disponibile" many="non disponibili" tone="unknown" />
-          </>
-        )}
-      </p>
+        </p>
+      ) : null}
       {counts.pending > 0 ? (
         <div className={styles.progress} aria-hidden="true">
           <span style={{ width: `${((LAYERS.length - counts.pending) / LAYERS.length) * 100}%` }} />
         </div>
-      ) : null}
+      ) : (
+        <PlotSummary
+          layers={layers}
+          onOpen={(id) => {
+            onToggle(id);
+            requestAnimationFrame(() =>
+              document.getElementById(`row-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }),
+            );
+          }}
+        />
+      )}
 
       {GROUPS.map((group) => (
         <section key={group} className={styles.group} aria-labelledby={`group-${group}`}>
@@ -65,15 +69,6 @@ export function LayerList({ layers, active, onToggle, onRetry }: Props) {
         </section>
       ))}
     </div>
-  );
-}
-
-function Count({ n, one, many, tone }: { n: number; one: string; many: string; tone: string }) {
-  if (n === 0) return null;
-  return (
-    <span className={styles.count} data-tone={tone}>
-      <span className="num">{n}</span> {n === 1 ? one : many}
-    </span>
   );
 }
 
@@ -104,7 +99,12 @@ function LayerRow({
     (state?.status === "done" && (state.result.status === "unavailable" || state.result.status === "error"));
 
   return (
-    <li className={styles.row} data-open={open || undefined} data-loading={loading || undefined}>
+    <li
+      id={`row-${meta.id}`}
+      className={styles.row}
+      data-open={open || undefined}
+      data-loading={loading || undefined}
+    >
       <button
         type="button"
         className={styles.rowButton}

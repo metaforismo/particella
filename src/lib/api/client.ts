@@ -1,6 +1,14 @@
 import { z } from "zod";
 import { plotApiPath } from "@/lib/routes";
-import { ApiError, LayerCatalogEntry, LayerResult, Plot, type LatLon, type LayerId } from "@/lib/contracts";
+import {
+  ApiError,
+  LayerCatalogEntry,
+  LayerResult,
+  Plot,
+  PlotReport,
+  type LatLon,
+  type LayerId,
+} from "@/lib/contracts";
 
 /** Error thrown by the client; `code` mirrors the API envelope so the UI can phrase it. */
 export class ApiRequestError extends Error {
@@ -42,6 +50,9 @@ export const api = {
 
   layer: (plotId: string, layer: LayerId, at: LatLon | undefined, signal?: AbortSignal) =>
     getJson(plotApiPath(plotId, `/layers/${layer}`, at), LayerResult, signal),
+
+  report: (plotId: string, at: LatLon | undefined, signal?: AbortSignal) =>
+    getJson(plotApiPath(plotId, "/report", at), PlotReport, signal),
 
   layerCatalog: (signal?: AbortSignal) =>
     getJson("/api/v1/catalog/layers", z.array(LayerCatalogEntry), signal),

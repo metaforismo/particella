@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowClockwise, ChatCircleText, ClockCounterClockwise, Stack } from "@phosphor-icons/react";
+import {
+  ArrowClockwise,
+  ChatCircleText,
+  Columns,
+  CircleNotch,
+  ClockCounterClockwise,
+  Crosshair,
+  Stack,
+  X,
+} from "@phosphor-icons/react";
 import { formatArea } from "@/lib/format";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
@@ -11,7 +20,10 @@ import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
+import { compareList } from "@/components/compare/compare-list";
+import { compareHref } from "@/lib/compare";
 import { forgetRecentPlots, useRecentPlots } from "./recent";
+import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
 import styles from "./Studio.module.css";
 
@@ -28,11 +40,13 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   const { selection, layers, activeLayer, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear } =
     studio;
   const recent = useRecentPlots();
+  const compared = compareList.useList();
   const searchRef = useRef<HTMLInputElement>(null);
   const [showCadastre, setShowCadastre] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [narrow, setNarrow] = useState(false);
   const [askOpen, setAskOpen] = useState(false);
+  const sheetDrag = useSheetDrag(sheetOpen, setSheetOpen);
   /** Phones show one view at a time inside the bottom sheet. */
   const [sheetTab, setSheetTab] = useState<"terreno" | "chiedi">("terreno");
 
@@ -99,6 +113,38 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     [selectPoint],
   );
 
+  const [locating, setLocating] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+
+  const locateMe = useCallback(() => {
+    if (!("geolocation" in navigator)) {
+      setNotice("Questo browser non permette di leggere la posizione.");
+      return;
+    }
+    setLocating(true);
+    setNotice(null);
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        setLocating(false);
+        if (coords.accuracy > 60) {
+          setNotice(
+            `La posizione è approssimata (circa ${Math.round(coords.accuracy)} m): controlla che il lotto sia quello giusto.`,
+          );
+        }
+        pick({ lat: coords.latitude, lon: coords.longitude });
+      },
+      (error) => {
+        setLocating(false);
+        setNotice(
+          error.code === error.PERMISSION_DENIED
+            ? "Permesso negato: abilita la posizione per questo sito nelle impostazioni del browser."
+            : "Posizione non disponibile in questo momento. Riprova all'aperto o cerca l'indirizzo.",
+        );
+      },
+      { enableHighAccuracy: true, timeout: 12_000, maximumAge: 30_000 },
+    );
+  }, [pick]);
+
   const onSearch = useCallback(
     (place: GeocodeResult | { query: string }) => {
       if ("center" in place) pick(place.center);
@@ -140,9 +186,31 @@ export function Studio({ initial }: { initial: StudioInitial }) {
             submitLabel="Cerca"
             defaultValue={initial.query}
             inputRef={searchRef}
+            shortcut="/"
             onSelect={onSearch}
           />
         </div>
+        {compared.length ? (
+          <Link href={compareHref(compared)} className={styles.compare}>
+            <Columns size={16} aria-hidden="true" />
+            <span>Confronto</span>
+            <span className={styles.badge}>{compared.length}</span>
+          </Link>
+        ) : null}
+        <button
+          type="button"
+          className={styles.locate}
+          onClick={locateMe}
+          disabled={locating}
+          aria-label="Usa la mia posizione"
+          title="Usa la mia posizione"
+        >
+          {locating ? (
+            <CircleNotch size={16} className={styles.spin} aria-hidden="true" />
+          ) : (
+            <Crosshair size={16} aria-hidden="true" />
+          )}
+        </button>
         <button
           type="button"
           className={styles.toggle}
@@ -167,6 +235,15 @@ export function Studio({ initial }: { initial: StudioInitial }) {
         ) : null}
       </header>
 
+      {notice ? (
+        <div className={styles.notice} role="status">
+          <p>{notice}</p>
+          <button type="button" onClick={() => setNotice(null)} aria-label="Chiudi l'avviso">
+            <X size={14} />
+          </button>
+        </div>
+      ) : null}
+
       {askVisible && plot ? (
         <aside className={styles.askPanel}>
           <AskPanel key={plot.id} plot={plot} onClose={() => setAskOpen(false)} />
@@ -179,7 +256,11 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           className={styles.handle}
           aria-label={sheetOpen ? "Riduci il pannello" : "Espandi il pannello"}
           aria-expanded={sheetOpen}
-          onClick={() => setSheetOpen((v) => !v)}
+          onClick={(e) => {
+            // Pointer taps are handled by the drag hook; this keeps keyboard activation working.
+            if (e.detail === 0) setSheetOpen((v) => !v);
+          }}
+          {...sheetDrag}
         >
           <span />
         </button>
@@ -217,9 +298,6 @@ export function Studio({ initial }: { initial: StudioInitial }) {
         <div className={styles.scroll} hidden={narrow && Boolean(plot) && sheetTab === "chiedi"}>
           {selection.status === "idle" ? (
             <div className={styles.empty}>
-              <p className={styles.shortcut}>
-                Premi <kbd>/</kbd> per cercare
-              </p>
               <h1>Scegli un terreno</h1>
               <p>
                 Cerca un indirizzo qui sopra oppure tocca un punto sulla mappa. Più ti avvicini, più è facile

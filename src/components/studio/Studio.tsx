@@ -140,6 +140,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
             submitLabel="Cerca"
             defaultValue={initial.query}
             inputRef={searchRef}
+            shortcut="/"
             onSelect={onSearch}
           />
         </div>
@@ -217,9 +218,6 @@ export function Studio({ initial }: { initial: StudioInitial }) {
         <div className={styles.scroll} hidden={narrow && Boolean(plot) && sheetTab === "chiedi"}>
           {selection.status === "idle" ? (
             <div className={styles.empty}>
-              <p className={styles.shortcut}>
-                Premi <kbd>/</kbd> per cercare
-              </p>
               <h1>Scegli un terreno</h1>
               <p>
                 Cerca un indirizzo qui sopra oppure tocca un punto sulla mappa. Più ti avvicini, più è facile

@@ -14,6 +14,8 @@ type Props = {
   autoFocus?: boolean;
   defaultValue?: string;
   inputRef?: Ref<HTMLInputElement>;
+  /** Key that focuses the field, shown as a hint while it is empty. */
+  shortcut?: string;
 };
 
 export function PlaceSearch({
@@ -23,6 +25,7 @@ export function PlaceSearch({
   autoFocus,
   defaultValue = "",
   inputRef,
+  shortcut,
 }: Props) {
   const [query, setQuery] = useState(defaultValue);
   const [open, setOpen] = useState(false);
@@ -84,6 +87,7 @@ export function PlaceSearch({
             setActive(-1);
             setOpen(true);
           }}
+          aria-keyshortcuts={shortcut}
           onFocus={() => setOpen(true)}
           onKeyDown={(event) => {
             if (!results.length) return;
@@ -99,6 +103,11 @@ export function PlaceSearch({
             }
           }}
         />
+        {shortcut && !query ? (
+          <kbd className={styles.kbd} aria-hidden="true">
+            {shortcut}
+          </kbd>
+        ) : null}
         {loading ? <CircleNotch className={styles.spinner} size={16} aria-label="Ricerca in corso" /> : null}
       </label>
 

@@ -1,8 +1,8 @@
-import { route, jsonResponse } from "../../../../server/http/responses.ts";
+import { route, jsonResponse, query } from "#server/http/responses.ts";
 import { z } from "zod";
-import { GeocodeResult } from "../../../../lib/contracts/index.ts";
-import { getCountry } from "../../../../server/countries/index.ts";
-import { query } from "../../../../server/http/responses.ts";
+import { GeocodeResult } from "#contracts";
+import { getCountry } from "#server/countries/index.ts";
+
 export async function GET(request: Request) {
   return route(async () => {
     const input = query(
@@ -12,5 +12,7 @@ export async function GET(request: Request) {
     return jsonResponse(z.array(GeocodeResult), await getCountry(input.country).geocode(input.q), 3600);
   });
 }
+
 export const runtime = "nodejs";
+
 export const maxDuration = 60;

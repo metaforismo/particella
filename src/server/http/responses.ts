@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { ApiError } from "../../lib/contracts/index.ts";
-import { apiError, BackendError, BadRequest } from "../core/errors.ts";
+import { ApiError } from "#contracts";
+import { apiError, BackendError, BadRequest, RateLimited } from "#server/core/errors.ts";
 
 export function validated<T>(schema: z.ZodType<T>, value: unknown): T {
   try {
@@ -13,6 +13,7 @@ export function validated<T>(schema: z.ZodType<T>, value: unknown): T {
   console.error("Particella: response_schema_invalid");
   throw new BackendError("internal", "Errore interno nella risposta.", 500);
 }
+
 export function jsonResponse<T>(schema: z.ZodType<T>, value: unknown, maxAge = 0): Response {
   return Response.json(validated(schema, value), {
     headers: {
@@ -21,6 +22,7 @@ export function jsonResponse<T>(schema: z.ZodType<T>, value: unknown, maxAge = 0
     },
   });
 }
+
 export function errorResponse(error: unknown): Response {
   const { body, status } = apiError(error);
   if (status === 500) console.error("Particella: internal_error");
@@ -29,10 +31,13 @@ export function errorResponse(error: unknown): Response {
     headers: {
       "Cache-Control": "no-store",
       "X-Content-Type-Options": "nosniff",
-      ...(status === 429 ? { "Retry-After": "30" } : {}),
+      ...(status === 429
+        ? { "Retry-After": String(error instanceof RateLimited ? error.retryAfterSeconds : 30) }
+        : {}),
     },
   });
 }
+
 export async function route(action: () => Promise<Response> | Response): Promise<Response> {
   try {
     return await action();
@@ -40,12 +45,14 @@ export async function route(action: () => Promise<Response> | Response): Promise
     return errorResponse(error);
   }
 }
+
 export function query<T>(request: Request, schema: z.ZodType<T>): T {
   const params = new URL(request.url).searchParams;
   for (const key of params.keys())
     if (params.getAll(key).length !== 1) throw new BadRequest("Parametri duplicati non ammessi.");
   return schema.parse(Object.fromEntries(params));
 }
+
 export function coordinateQuery() {
   const number = z
     .string()

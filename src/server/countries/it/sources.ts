@@ -1,8 +1,11 @@
-import type { SourceDefinition } from "../../core/sources.ts";
+import type { SourceDefinition } from "#server/core/sources.ts";
 
 const by = "https://creativecommons.org/licenses/by/4.0/";
+
 const share = "https://creativecommons.org/licenses/by-sa/4.0/";
+
 const osm = "https://www.openstreetmap.org/copyright";
+
 function define(
   id: string,
   name: string,
@@ -34,6 +37,7 @@ function define(
     ...extras,
   };
 }
+
 export const italianSources: SourceDefinition[] = [
   define(
     "nominatim",
@@ -135,7 +139,7 @@ export const italianSources: SourceDefinition[] = [
   ),
   define(
     "ingv-pga",
-    "MPS04 PGA 50° percentile, 10% in 50 anni",
+    "Pericolosità sismica — MPS04",
     "INGV",
     "https://mps04-ws.pi.ingv.it/wfs_mps04_pga",
     "WFS",
@@ -159,15 +163,15 @@ export const italianSources: SourceDefinition[] = [
   ),
   define(
     "tinitaly",
-    "TINITALY 1.1 DTM 10 m",
-    "INGV - Tarquini et al. (2023), DOI 10.13127/tinitaly/1.1",
+    "Quote del terreno — TINITALY",
+    "INGV",
     "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
     "WMS",
     { referenceDate: "2023-01", hostPolicy: { concurrency: 2, requestsPerSecond: 4 } },
   ),
   define(
     "opentopodata",
-    "EU-DEM 1.1, 25 m",
+    "Quote del terreno — EU-DEM",
     "Copernicus / EEA, hosting OpenTopoData",
     process.env.OPENTOPODATA_URL ?? "https://api.opentopodata.org/v1/eudem25m",
     "REST",
@@ -226,6 +230,107 @@ export const italianSources: SourceDefinition[] = [
       referenceDate: "2026-01-01",
       coverage: "Comuni nelle province importate; snapshot Milano e Firenze",
       updateCadence: "Annuale con revisioni",
+    },
+  ),
+  define(
+    "istat-provinces",
+    "Province — nomi e sigle",
+    "ISTAT",
+    "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+    "snapshot",
+    { referenceDate: "2026-01-01" },
+  ),
+  define(
+    "sitap",
+    "Vincoli paesaggistici — SITAP",
+    "Ministero della Cultura",
+    "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms",
+    "WMS",
+    {
+      license: "Licenza di riuso non accertata",
+      licenseUrl: "https://cultura.gov.it/sitap-sistema-informativo-territoriale-ambientale-e-paesaggistico",
+      url: "https://sitap.cultura.gov.it/",
+      hostPolicy: { concurrency: 1, requestsPerSecond: 2 },
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Identify art.136 verificato; inventario ricognitivo, categorie art.142 e licenza da qualificare.",
+      },
+    },
+  ),
+  define(
+    "planning-firenze",
+    "Piano Operativo — ambiti vigenti",
+    "Comune di Firenze",
+    "https://tms.comune.fi.it/tiles/service/wms",
+    "WMS",
+    {
+      coverage: "Comune di Firenze",
+      url: "https://opendata.comune.fi.it/page_dataset_show?id=po_subsistemi_e_ambiti-stato_vigente",
+    },
+  ),
+  define(
+    "planning-milano",
+    "PGT — Tavola delle Previsioni",
+    "Regione Lombardia / Comune di Milano",
+    "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer",
+    "REST",
+    {
+      coverage: "Comune di Milano (adapter)",
+      license: "Licenza del dataset non accertata",
+      licenseUrl: "https://www.geoportale.regione.lombardia.it/",
+      url: "https://www.geoportale.regione.lombardia.it/",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Sintesi regionale non conformativa; vigenza e licenza da verificare sul piano comunale.",
+      },
+    },
+  ),
+  define(
+    "corine",
+    "Copertura del suolo — CORINE 2018",
+    "EEA / Copernicus",
+    "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2018_WM/MapServer/0/query",
+    "REST",
+    {
+      coverage: "Europa",
+      referenceDate: "2018",
+      license: "Copernicus: accesso libero, completo e aperto; citare fonte ed elaborazioni",
+      licenseUrl: "https://land.copernicus.eu/en/data-policy",
+      url: "https://land.copernicus.eu/en/products/corine-land-cover",
+    },
+  ),
+  define(
+    "valhalla",
+    "Isocrone — rete OpenStreetMap",
+    "OpenStreetMap contributors / FOSSGIS",
+    process.env.VALHALLA_URL ?? "https://valhalla1.openstreetmap.de/isochrone",
+    "REST",
+    {
+      isOfficial: false,
+      coverage: "Copertura grafo del provider",
+      license: "ODbL 1.0 (dati); MIT (software)",
+      licenseUrl: osm,
+      url: "https://valhalla.openstreetmap.de/",
+      hostPolicy: { concurrency: 1, requestsPerSecond: 1 },
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Demo fair use; X-Client-Id identificativo. Hosting proprio/accordo necessario per produzione distribuita.",
+      },
+    },
+  ),
+  define(
+    "omi",
+    "Zone e quotazioni immobiliari — OMI",
+    "Agenzia delle Entrate",
+    "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php",
+    "REST",
+    {
+      url: "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+      updateCadence: "Semestrale",
+      hostPolicy: { concurrency: 1, requestsPerSecond: 2 },
     },
   ),
 ];

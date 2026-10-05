@@ -13,12 +13,12 @@
     "test:live": "node --experimental-strip-types scripts/live-smoke.ts",
     "snapshots:refresh": "node --experimental-strip-types scripts/snapshots/refresh.ts",
     "format": "prettier --write src tests scripts",
-    "format:check": "prettier --check src tests scripts"
+    "format:check": "prettier --check src tests scripts",
+    "content:hero": "node --experimental-strip-types scripts/content/hero.ts"
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.131",
     "@phosphor-icons/react": "^2.1.10",
-    "ai": "^7.0.128",
     "@turf/area": "^7.4.0",
     "@turf/bbox": "^7.4.0",
     "@turf/boolean-contains": "^7.4.0",
@@ -30,6 +30,8 @@
     "@turf/point-on-feature": "^7.4.0",
     "@turf/point-to-line-distance": "^7.4.0",
     "@turf/polygon-to-line": "^7.4.0",
+    "@vercel/oidc": "^3.2.0",
+    "ai": "^7.0.128",
     "csv-parse": "^7.0.3",
     "fast-xml-parser": "^5.11.2",
     "fflate": "^0.8.3",
@@ -55,5 +57,9 @@
   "engines": {
     "node": ">=22.19.0"
   },
-  "type": "module"
+  "type": "module",
+  "imports": {
+    "#server/*": "./src/server/*",
+    "#contracts": "./src/lib/contracts/index.ts"
+  }
 }

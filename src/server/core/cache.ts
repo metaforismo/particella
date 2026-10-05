@@ -22,16 +22,22 @@ export function canonicalKey(namespace: string, value: unknown): string {
 
 export class MemoryCache implements Cache {
   private entries = new Map<string, { value: unknown; expires: number; size: number }>();
+
   private bytes = 0;
+
   private readonly maxBytes: number;
+
   private readonly capacity: number;
+
   private readonly now: () => number;
-  constructor(capacity = 512, now: () => number = Date.now, maxBytes = 32 * 1024 * 1024) {
+
+  constructor(capacity = 512, now: () => number = Date.now, maxBytes = 64 * 1024 * 1024) {
     this.capacity = capacity;
     this.now = now;
     this.maxBytes = maxBytes;
     if (capacity < 1 || maxBytes < 1) throw new Error("Cache limits must be positive");
   }
+
   async get<T>(key: string): Promise<T | undefined> {
     const entry = this.entries.get(key);
     if (!entry) return undefined;
@@ -43,16 +49,19 @@ export class MemoryCache implements Cache {
     this.entries.set(key, entry);
     return structuredClone(entry.value) as T;
   }
+
   async set<T>(key: string, value: T, ttlMs: number): Promise<void> {
+    for (const [entryKey, entry] of this.entries) if (entry.expires <= this.now()) this.remove(entryKey);
     this.remove(key);
     if (ttlMs <= 0) return;
     const size = serialize(value).byteLength + key.length * 2;
-    if (size > this.maxBytes) return;
+    if (size > this.maxBytes / 4) return;
     this.entries.set(key, { value: structuredClone(value), expires: this.now() + ttlMs, size });
     this.bytes += size;
     while (this.entries.size > this.capacity || this.bytes > this.maxBytes)
       this.remove(this.entries.keys().next().value!);
   }
+
   private remove(key: string): void {
     const entry = this.entries.get(key);
     if (entry) this.bytes -= entry.size;
@@ -60,5 +69,11 @@ export class MemoryCache implements Cache {
   }
 }
 
-export const cache: Cache = new MemoryCache();
+const configuredBytes = Number(process.env.PARTICELLA_CACHE_MAX_BYTES ?? 64 * 1024 * 1024);
+
+if (!Number.isSafeInteger(configuredBytes) || configuredBytes < 1)
+  throw new Error("PARTICELLA_CACHE_MAX_BYTES must be a positive integer");
+
+export const cache: Cache = new MemoryCache(512, Date.now, configuredBytes);
+
 export const NEGATIVE_TTL_MS = 30_000;

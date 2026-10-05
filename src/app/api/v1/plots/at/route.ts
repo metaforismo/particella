@@ -1,12 +1,15 @@
-import { route, jsonResponse } from "../../../../../server/http/responses.ts";
-import { Plot } from "../../../../../lib/contracts/index.ts";
-import { getCountry } from "../../../../../server/countries/index.ts";
-import { query, coordinateQuery } from "../../../../../server/http/responses.ts";
+import { route, jsonResponse } from "#server/http/responses.ts";
+import { Plot } from "#contracts";
+import { getCountry } from "#server/countries/index.ts";
+import { query, coordinateQuery } from "#server/http/responses.ts";
+
 export async function GET(request: Request) {
   return route(async () => {
     const { lat, lon, country } = query(request, coordinateQuery());
     return jsonResponse(Plot, await getCountry(country).plotAt(lat, lon), 3600);
   });
 }
+
 export const runtime = "nodejs";
+
 export const maxDuration = 60;

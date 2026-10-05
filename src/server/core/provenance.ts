@@ -1,6 +1,6 @@
-import type { Provenance } from "../../lib/contracts/index.ts";
-import { source } from "./sources.ts";
-import type { HttpPayload } from "./http.ts";
+import type { Provenance } from "#contracts";
+import { source } from "#server/core/sources.ts";
+import type { HttpPayload } from "#server/core/http.ts";
 
 export function safeRequestUrl(input: string | null): string | null {
   if (!input) return null;
@@ -13,6 +13,7 @@ export function safeRequestUrl(input: string | null): string | null {
   }
   return url.toString();
 }
+
 export function provenance(
   id: string,
   payload?: Pick<HttpPayload, "requestUrl" | "retrievedAt">,

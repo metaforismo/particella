@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { Plot as PlotSchema, type Plot, type LatLon } from "../../../lib/contracts/index.ts";
-import { BadRequest, NotFound, UpstreamError } from "../../core/errors.ts";
-import { cache, canonicalKey, NEGATIVE_TTL_MS } from "../../core/cache.ts";
-import { textBody } from "../../core/http.ts";
-import { provenance } from "../../core/provenance.ts";
-import { source } from "../../core/sources.ts";
+import { Plot as PlotSchema, type Plot } from "#contracts";
+import { BadRequest, NotFound, UpstreamError } from "#server/core/errors.ts";
+import { cache, canonicalKey, NEGATIVE_TTL_MS } from "#server/core/cache.ts";
+import { textBody } from "#server/core/http.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { source } from "#server/core/sources.ts";
 import {
   coversPoint,
   measurements,
@@ -12,12 +12,13 @@ import {
   latLonBox,
   toCadastre,
   type PlotGeometry,
-} from "../../geo/index.ts";
-import { wfsMembers, gmlGeometry } from "../../geo/gml.ts";
-import { fetchSource, queryUrl } from "./queries.ts";
-import { municipalityAt } from "./municipality.ts";
+} from "#server/geo/index.ts";
+import { wfsMembers, gmlGeometry } from "#server/geo/gml.ts";
+import { fetchSource, queryUrl } from "#server/countries/it/queries.ts";
+import { municipalityAt } from "#server/countries/it/municipality.ts";
 
 export const PlotId = z.string().regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}:[0-9]{1,8}[A-Z]?$/);
+
 export function parsePlotId(id: string) {
   const parsed = PlotId.safeParse(id);
   if (!parsed.success)
@@ -27,11 +28,13 @@ export function parsePlotId(id: string) {
   const [, municipalityCode, section, sheet, parcel] = id.split(":");
   return { municipalityCode, section: section === "_" ? null : section, sheet, parcel };
 }
+
 const ParcelAttributes = z.object({
   ADMINISTRATIVEUNIT: z.string().regex(/^[A-Z][0-9]{3}$/),
   LABEL: z.string(),
   NATIONALCADASTRALREFERENCE: z.string(),
 });
+
 export interface Parcel {
   belfiore: string;
   parcel: string;
@@ -40,6 +43,7 @@ export interface Parcel {
   geometry: PlotGeometry;
   special: boolean;
 }
+
 export function parseParcels(text: string, requireConfirmedEmpty = false): Parcel[] {
   return wfsMembers(text, requireConfirmedEmpty).map((node) => {
     const parsed = ParcelAttributes.safeParse(node);
@@ -57,39 +61,40 @@ export function parseParcels(text: string, requireConfirmedEmpty = false): Parce
     };
   });
 }
+
 export interface Zoning {
   reference: string;
   sheet: string;
   belfiore: string;
   section: string | null;
 }
+
 export function parseZoning(text: string, requireConfirmedEmpty = false): Zoning[] {
   return wfsMembers(text, requireConfirmedEmpty).map((n) => {
-    const sheet = String(n.LABEL ?? ""),
-      reference = String(n.NATIONALCADASTRALZONINGREFERENCE ?? "");
+    const sheet = String(n.LABEL ?? "");
+    const reference = String(n.NATIONALCADASTRALZONINGREFERENCE ?? "");
     const code = reference.match(/^([A-Z]\d{3})([A-Z0-9]{0,3})_[A-Z0-9]+$/);
     if (!code || !/^\d{1,5}$/.test(sheet))
       throw new UpstreamError("Foglio o sezione della mappa non riconosciuti.");
     return { reference, sheet, belfiore: code[1], section: code[2] || null };
   });
 }
+
 function wfs(type: string, params: Record<string, string | number>) {
   // AdE zoning rejects COUNT=100 with an HTTP-200 OGC exception; 10 is verified live.
   return { SERVICE: "WFS", VERSION: "2.0.0", REQUEST: "GetFeature", TYPENAMES: type, COUNT: 10, ...params };
 }
-const datumNote =
-  "EPSG:6706 → WGS84: assi normalizzati con proj4, approssimazione di datum nulla; senza trasformazione di epoca/griglia, precisione sub-metrica non garantita. Area e perimetro geodetici Turf, non superficie censuaria.";
+
 async function toPlot(
   parcel: Parcel,
   zoning: Zoning,
   payloads: { requestUrl: string; retrievedAt: string }[],
-  p: LatLon,
-  signal?: AbortSignal,
+  municipalityLookup: Awaited<ReturnType<typeof municipalityAt>>,
 ): Promise<Plot> {
   if (parcel.special)
     throw new NotFound("Il punto ricade su una strada o un'acqua catastale: non è un lotto.");
   const id = `it:${parcel.belfiore}:${zoning.section ?? "_"}:${zoning.sheet}:${parcel.parcel}`;
-  const municipality = await municipalityAt(p, parcel.belfiore, signal);
+  const municipality = municipalityLookup;
   const result = PlotSchema.parse({
     id,
     country: "it",
@@ -100,28 +105,30 @@ async function toPlot(
       parcel: parcel.parcel,
       label: `Foglio ${zoning.sheet} · Particella ${parcel.parcel}`,
     },
-    municipality: municipality.municipality,
+    municipality: { ...municipality.municipality, cadastralCode: parcel.belfiore },
     address: null,
     centroid: representativePoint(parcel.geometry),
     geometry: parcel.geometry,
     ...measurements(parcel.geometry),
     provenance: [
       provenance("ade-cadastre", payloads[0], {
-        dataset: `CP:CadastralParcel ${parcel.reference}; ${datumNote}`,
+        dataset: "Cartografia catastale — particelle",
       }),
       provenance("ade-cadastre", payloads[1], {
-        dataset: `CP:CadastralZoning ${zoning.reference}, foglio ufficiale ${zoning.sheet}`,
+        dataset: "Mappe catastali — fogli",
       }),
       municipality.provenance,
+      municipality.provinceProvenance,
     ],
   });
   await cache.set(canonicalKey("plot:v1", id), result, 86_400_000);
   return result;
 }
+
 export async function plotAt(lat: number, lon: number, signal?: AbortSignal): Promise<Plot> {
-  const p = { lat, lon },
-    native = toCadastre(p);
-  await municipalityAt(p, null, signal);
+  const p = { lat, lon };
+  const native = toCadastre(p);
+  const municipality = await municipalityAt(p, null, signal);
   const parcelPayload = await fetchSource(
     "ade-cadastre",
     wfs("CP:CadastralParcel", { BBOX: `${latLonBox(native)},urn:ogc:def:crs:EPSG::6706` }),
@@ -144,8 +151,9 @@ export async function plotAt(lat: number, lon: number, signal?: AbortSignal): Pr
     throw new UpstreamError(
       "La fonte non fornisce la mappa del lotto; il foglio non viene dedotto dal riferimento.",
     );
-  return toPlot(parcels[0], zoning, [parcelPayload, zoningPayload], p, signal);
+  return toPlot(parcels[0], zoning, [parcelPayload, zoningPayload], municipality);
 }
+
 function filter(property: string, value: string, sheet?: string): string {
   const equal = (key: string, literal: string) =>
     `<fes:PropertyIsEqualTo><fes:ValueReference>${key}</fes:ValueReference><fes:Literal>${literal}</fes:Literal></fes:PropertyIsEqualTo>`;
@@ -154,9 +162,10 @@ function filter(property: string, value: string, sheet?: string): string {
     : equal(property, value);
   return `<fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:CP="http://mapserver.gis.umn.edu/mapserver">${expression}</fes:Filter>`;
 }
+
 export async function plotById(id: string, signal?: AbortSignal): Promise<Plot> {
-  const parts = parsePlotId(id),
-    key = canonicalKey("plot:v1", id);
+  const parts = parsePlotId(id);
+  const key = canonicalKey("plot:v1", id);
   const cached = await cache.get<Plot | { missing: true }>(key);
   if (cached) {
     if ("missing" in cached) throw new NotFound();
@@ -198,10 +207,10 @@ export async function plotById(id: string, signal?: AbortSignal): Promise<Plot> 
     parcel,
     maps[0],
     [parcelPayload, zoningPayload],
-    representativePoint(parcel.geometry),
-    signal,
+    await municipalityAt(representativePoint(parcel.geometry), parcel.belfiore, signal),
   );
 }
+
 export const cadastreRequestExample = queryUrl(
   source("ade-cadastre").endpoint,
   wfs("CP:CadastralParcel", { BBOX: "43.6999,11.3199,43.7001,11.3201,urn:ogc:def:crs:EPSG::6706" }),

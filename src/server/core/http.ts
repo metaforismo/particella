@@ -1,14 +1,16 @@
 import { createHash } from "node:crypto";
 import { setTimeout as delay } from "node:timers/promises";
-import { canonicalKey, cache, NEGATIVE_TTL_MS, type Cache } from "./cache.ts";
-import { RateLimited, UpstreamError } from "./errors.ts";
+import { canonicalKey, cache, NEGATIVE_TTL_MS, type Cache } from "#server/core/cache.ts";
+import { RateLimited, UpstreamError } from "#server/core/errors.ts";
 
 export const USER_AGENT = "Particella/0.1 (+https://github.com/metaforismo/particella)";
+
 export interface HostPolicy {
   concurrency: number;
   requestsPerSecond: number;
   requestsPerDay?: number;
 }
+
 export interface HostLimiter {
   acquire(host: string, policy: HostPolicy, signal: AbortSignal): Promise<() => void>;
   defer?(host: string, durationMs: number): void;
@@ -16,10 +18,12 @@ export interface HostLimiter {
 
 export class MemoryHostLimiter implements HostLimiter {
   private hosts = new Map<string, { active: number; next: number; day: string; count: number }>();
+
   defer(host: string, durationMs: number): void {
     const state = this.hosts.get(host);
     if (state) state.next = Math.max(state.next, Date.now() + durationMs);
   }
+
   async acquire(host: string, policy: HostPolicy, signal: AbortSignal): Promise<() => void> {
     if (!(policy.concurrency >= 1 && policy.requestsPerSecond > 0)) throw new Error("Invalid host policy");
     const state = this.hosts.get(host) ?? { active: 0, next: 0, day: "", count: 0 };
@@ -52,6 +56,7 @@ export interface HttpPayload {
   retrievedAt: string;
   requestUrl: string;
 }
+
 export interface HttpOptions {
   timeoutMs?: number;
   ttlMs?: number;
@@ -61,25 +66,35 @@ export interface HttpOptions {
   body?: string;
   headers?: Record<string, string>;
   policy?: HostPolicy;
+  /** Source-specific validator; also allows HTML when the source expects it. */
+  validate?: (payload: HttpPayload) => void;
 }
+
 export function retryAfterMs(value: string | null, now = Date.now()): number | null {
   if (value === null) return null;
   if (/^\d+(\.\d+)?$/.test(value)) return Number(value) * 1000;
   const date = Date.parse(value);
   return Number.isFinite(date) ? Math.max(0, date - now) : null;
 }
+
 export function canonicalUrl(input: string): string {
   const url = new URL(input);
   url.hash = "";
-  url.searchParams.sort();
+  // Some official legacy APIs use an opaque positional query (OMI: ?code/zone/...).
+  // URLSearchParams would rewrite that to one encoded key followed by =.
+  if (url.search.includes("=")) url.searchParams.sort();
   return url.toString();
 }
 
 export class HttpClient {
   private inFlight = new Map<string, Promise<HttpPayload>>();
+
   private readonly storage: Cache;
+
   private readonly limiter: HostLimiter;
+
   private readonly fetcher: typeof fetch;
+
   constructor(
     storage: Cache = cache,
     limiter: HostLimiter = new MemoryHostLimiter(),
@@ -89,6 +104,7 @@ export class HttpClient {
     this.limiter = limiter;
     this.fetcher = fetcher;
   }
+
   async request(input: string, options: HttpOptions = {}): Promise<HttpPayload> {
     const url = canonicalUrl(input);
     const key = canonicalKey("http:v1", {
@@ -100,11 +116,16 @@ export class HttpClient {
     const cached = await this.storage.get<HttpPayload | { failure: true; rateLimited: boolean }>(key);
     if (cached) {
       if ("failure" in cached) throw cached.rateLimited ? new RateLimited() : new UpstreamError();
+      options.validate?.(cached);
       return cached;
     }
     if (options.signal?.aborted) throw new UpstreamError("Richiesta interrotta.");
     const existing = this.inFlight.get(key);
-    if (existing) return waitForCaller(existing, options.signal);
+    if (existing) {
+      const result = await waitForCaller(existing, options.signal);
+      options.validate?.(result);
+      return result;
+    }
     const task = this.execute(url, { ...options, signal: undefined })
       .then(async (result) => {
         await this.storage.set(key, result, options.ttlMs ?? 86_400_000);
@@ -124,6 +145,7 @@ export class HttpClient {
     this.inFlight.set(key, task);
     return waitForCaller(task, options.signal);
   }
+
   private async execute(url: string, options: HttpOptions): Promise<HttpPayload> {
     const timeoutMs = options.timeoutMs ?? 15_000;
     const expiresAt = Date.now() + timeoutMs;
@@ -160,13 +182,15 @@ export class HttpClient {
           if (response.status === 429 && Date.now() + wait >= expiresAt) throw new RateLimited();
         } else {
           const bytes = await readLimited(response, signal);
-          checkProtocol(bytes, response.headers.get("content-type") ?? "");
-          return {
+          checkProtocol(bytes, response.headers.get("content-type") ?? "", !!options.validate);
+          const result = {
             bytes,
             contentType: response.headers.get("content-type") ?? "",
             retrievedAt: new Date().toISOString(),
             requestUrl: url,
           };
+          options.validate?.(result);
+          return result;
         }
       } catch (error) {
         if (error instanceof UpstreamError || error instanceof RateLimited) throw error;
@@ -182,6 +206,7 @@ export class HttpClient {
     }
   }
 }
+
 function waitForCaller<T>(task: Promise<T>, signal?: AbortSignal): Promise<T> {
   if (!signal) return task;
   return new Promise((resolve, reject) => {
@@ -191,31 +216,24 @@ function waitForCaller<T>(task: Promise<T>, signal?: AbortSignal): Promise<T> {
     if (signal.aborted) abort();
   });
 }
-function checkProtocol(bytes: Uint8Array, contentType: string): void {
+
+function checkProtocol(bytes: Uint8Array, contentType: string, customValidator: boolean): void {
   if (/image\/|application\/zip|octet-stream/.test(contentType)) return;
   const text = new TextDecoder().decode(bytes);
   if (
     /<(?:[\w-]+:)?(?:ExceptionReport|ServiceExceptionReport)\b/.test(text) ||
-    /<!doctype html|<html\b/i.test(text)
+    (!customValidator && /<!doctype html|<html\b/i.test(text))
   )
     throw new UpstreamError("Errore di protocollo della fonte.");
   if (contentType.includes("json")) {
-    let value: unknown;
     try {
-      value = JSON.parse(text);
+      JSON.parse(text);
     } catch {
       throw new UpstreamError("JSON della fonte non valido.");
     }
-    if (
-      value &&
-      typeof value === "object" &&
-      ("error" in value ||
-        "remark" in value ||
-        ("status" in value && (value as { status: string }).status !== "OK"))
-    )
-      throw new UpstreamError("La fonte ha restituito un errore applicativo.");
   }
 }
+
 async function readLimited(response: Response, signal: AbortSignal): Promise<Uint8Array> {
   const reader = response.body?.getReader();
   if (!reader) throw new UpstreamError("Risposta vuota della fonte.");
@@ -250,8 +268,11 @@ async function readLimited(response: Response, signal: AbortSignal): Promise<Uin
   }
   return result;
 }
+
 export const http = new HttpClient();
+
 export const textBody = (payload: HttpPayload): string => new TextDecoder().decode(payload.bytes);
+
 export function jsonBody(payload: HttpPayload): unknown {
   try {
     return JSON.parse(textBody(payload));
@@ -259,5 +280,6 @@ export function jsonBody(payload: HttpPayload): unknown {
     throw new UpstreamError("Formato inatteso dalla fonte.");
   }
 }
+
 export const hash = (value: unknown): string =>
   createHash("sha256").update(JSON.stringify(value)).digest("hex");

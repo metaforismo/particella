@@ -1,0 +1,141 @@
+.wrap {
+  padding-bottom: var(--s-6);
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-3);
+  padding: var(--s-4) var(--s-5) 0;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.count {
+  font-weight: 560;
+}
+
+.count[data-tone="medium"] {
+  color: var(--sev-medium);
+}
+.count[data-tone="low"] {
+  color: var(--sev-low);
+}
+.count[data-tone="none"] {
+  color: var(--sev-none);
+}
+.count[data-tone="unknown"] {
+  color: var(--sev-unknown);
+}
+
+.progress {
+  height: 2px;
+  margin: var(--s-3) var(--s-5) 0;
+  background: var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  transition: width var(--dur) var(--ease-out);
+}
+
+.group {
+  margin-top: var(--s-5);
+}
+
+.groupTitle {
+  padding: 0 var(--s-5) var(--s-2);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  font-weight: 560;
+}
+
+.row {
+  border-top: 1px solid var(--rule);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.rowButton {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--s-3);
+  align-items: start;
+  width: 100%;
+  padding: var(--s-3) var(--s-5);
+  border: 0;
+  background: transparent;
+  text-align: left;
+  transition: background var(--dur-fast);
+}
+
+.rowButton > span:first-child {
+  margin-top: 0.15rem;
+}
+
+.rowButton:not(:disabled):hover {
+  background: var(--paper-sunk);
+}
+
+.rowButton:disabled {
+  cursor: progress;
+}
+
+.row[data-open] .rowButton {
+  background: var(--paper-sunk);
+}
+
+.rowText {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.rowHeadline {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+}
+
+.row[data-open] .rowHeadline {
+  -webkit-line-clamp: unset;
+}
+
+.row[data-loading] .rowHeadline {
+  color: var(--ink-3);
+}
+
+.rowEnd {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+
+.caret {
+  color: var(--ink-3);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.row[data-open] .caret {
+  transform: rotate(180deg);
+}
+
+.detail {
+  padding: 0 var(--s-5) var(--s-5);
+  background: var(--paper-sunk);
+}

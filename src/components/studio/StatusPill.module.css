@@ -1,0 +1,59 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex: none;
+  height: 1.375rem;
+  padding: 0 0.5rem;
+  border-radius: var(--radius-xs);
+  font-size: var(--fs-2xs);
+  font-weight: 560;
+  font-stretch: var(--stretch-condensed);
+  white-space: nowrap;
+  color: var(--c);
+  background: var(--bg);
+}
+
+.pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pill[data-tone="none"] {
+  --c: var(--sev-none);
+  --bg: var(--sev-none-bg);
+}
+.pill[data-tone="low"] {
+  --c: var(--sev-low);
+  --bg: var(--sev-low-bg);
+}
+.pill[data-tone="medium"] {
+  --c: var(--sev-medium);
+  --bg: var(--sev-medium-bg);
+}
+.pill[data-tone="high"] {
+  --c: var(--sev-high);
+  --bg: var(--sev-high-bg);
+}
+.pill[data-tone="unknown"] {
+  --c: var(--sev-unknown);
+  --bg: var(--sev-unknown-bg);
+}
+.pill[data-tone="pending"] {
+  --c: var(--ink-3);
+  --bg: transparent;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.pill[data-tone="pending"]::before {
+  animation: blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 0.25;
+  }
+}

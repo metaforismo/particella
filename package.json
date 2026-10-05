@@ -6,14 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --max-warnings=0",
+    "lint": "eslint . --max-warnings=0",
+    "postinstall": "node scripts/copy-maplibre-worker.mjs",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:live": "node --experimental-strip-types scripts/live-smoke.ts",
-    "snapshots:refresh": "node --experimental-strip-types scripts/snapshots/refresh.ts"
+    "snapshots:refresh": "node --experimental-strip-types scripts/snapshots/refresh.ts",
+    "format": "prettier --write src tests scripts",
+    "format:check": "prettier --check src tests scripts"
   },
   "dependencies": {
+    "@ai-sdk/react": "^4.0.131",
     "@phosphor-icons/react": "^2.1.10",
+    "ai": "^7.0.128",
     "@turf/area": "^7.4.0",
     "@turf/bbox": "^7.4.0",
     "@turf/boolean-contains": "^7.4.0",
@@ -34,6 +39,7 @@
     "proj4": "^2.22.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "react-markdown": "^10.1.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -45,6 +51,9 @@
     "eslint-config-next": "16.3.8",
     "prettier": "3.9.9",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22.19.0"
   },
   "type": "module"
 }

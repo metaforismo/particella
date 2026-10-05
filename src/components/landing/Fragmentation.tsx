@@ -7,7 +7,7 @@ const PORTALS = [
   { name: "Norme tecniche", owner: "PDF del Comune" },
   { name: "Frane e alluvioni", owner: "ISPRA IdroGEO" },
   { name: "Zone sismiche", owner: "Protezione Civile" },
-  { name: "Natura 2000", owner: "Ministero dell'Ambiente" },
+  { name: "Natura 2000", owner: "Agenzia europea dell'ambiente" },
   { name: "Vincoli paesaggistici", owner: "Ministero della Cultura" },
   { name: "Popolazione", owner: "ISTAT" },
 ];

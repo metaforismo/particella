@@ -1,0 +1,48 @@
+.band {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+/* Faint contour lines, like the relief on a topographic sheet. */
+.band::before {
+  content: "";
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 46rem;
+  height: 46rem;
+  background: repeating-radial-gradient(
+    ellipse at 60% 40%,
+    transparent 0 22px,
+    rgb(241 243 239 / 0.07) 22px 23px
+  );
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: var(--s-9) var(--gutter);
+}
+
+.title {
+  max-width: 16ch;
+  font-size: var(--fs-2xl);
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.inner p {
+  max-width: 44ch;
+  margin-top: var(--s-4);
+  color: var(--on-ink-2);
+}
+
+.search {
+  max-width: 38rem;
+  margin-top: var(--s-6);
+  color: var(--ink);
+}

@@ -1,0 +1,22 @@
+.frame {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--rule) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px) 0 0 / 32px 32px,
+    var(--paper);
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+}
+
+.frame[data-failed] .map {
+  display: none;
+}
+
+.map :global(.maplibregl-ctrl-attrib) {
+  font-size: 10px;
+  background: rgb(249 250 248 / 0.85);
+}

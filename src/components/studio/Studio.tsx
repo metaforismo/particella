@@ -35,7 +35,6 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   const [askOpen, setAskOpen] = useState(false);
   /** Phones show one view at a time inside the bottom sheet. */
   const [sheetTab, setSheetTab] = useState<"terreno" | "chiedi">("terreno");
-  const started = useRef(false);
 
   useEffect(() => {
     const query = window.matchMedia("(max-width: 820px)");
@@ -69,22 +68,27 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [setActiveLayer]);
 
-  // Deep links: /studio?plot=… or /studio?lat=…&lon=…
+  // Deep links: /studio?plot=… or /studio?lat=…&lon=…. Safe to run twice (StrictMode): every
+  // start aborts the previous request, and the cleanup aborts the free-text lookup.
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
-    if (initial.plotId) selectPlotId(initial.plotId);
-    else if (initial.point) selectPoint(initial.point);
-    else if (initial.query) {
-      // Free text from the landing page: take the best geocoder match, if any.
-      fetch(`/api/v1/geocode?q=${encodeURIComponent(initial.query)}`)
-        .then((res) => (res.ok ? (res.json() as Promise<{ results: GeocodeResult[] }>) : null))
-        .then((body) => {
-          const best = body?.results[0];
-          if (best) selectPoint(best.center);
-        })
-        .catch(() => {});
+    if (initial.plotId) {
+      selectPlotId(initial.plotId, initial.point);
+      return;
     }
+    if (initial.point) {
+      selectPoint(initial.point);
+      return;
+    }
+    if (!initial.query) return;
+    const controller = new AbortController();
+    fetch(`/api/v1/geocode?q=${encodeURIComponent(initial.query)}`, { signal: controller.signal })
+      .then((res) => (res.ok ? (res.json() as Promise<{ results: GeocodeResult[] }>) : null))
+      .then((body) => {
+        const best = body?.results[0];
+        if (best) selectPoint(best.center);
+      })
+      .catch(() => {});
+    return () => controller.abort();
   }, [initial, selectPlotId, selectPoint]);
 
   const pick = useCallback(
@@ -234,7 +238,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
                   <ul className={styles.examples}>
                     {recent.map((r) => (
                       <li key={r.id}>
-                        <button type="button" onClick={() => selectPlotId(r.id)}>
+                        <button type="button" onClick={() => selectPlotId(r.id, r.at)}>
                           <strong>{r.label}</strong>
                           <span>
                             {[r.place, r.areaM2 != null ? formatArea(r.areaM2) : null]

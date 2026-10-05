@@ -77,7 +77,7 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
             type: "raster",
             source: "cadastre",
             minzoom: CADASTRE_MIN_ZOOM,
-            paint: { "raster-opacity": 0.75 },
+            paint: { "raster-opacity": 0.6, "raster-saturation": -0.6, "raster-contrast": 0.15 },
           });
           setPlot(map, null);
           setReady(true);

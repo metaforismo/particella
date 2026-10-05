@@ -3,7 +3,13 @@
 import { useSyncExternalStore } from "react";
 import type { Plot } from "@/lib/contracts";
 
-export type RecentPlot = { id: string; label: string; place: string | null; areaM2: number | null };
+export type RecentPlot = {
+  id: string;
+  label: string;
+  place: string | null;
+  areaM2: number | null;
+  at?: { lat: number; lon: number };
+};
 
 const KEY = "particella:recent-plots";
 const LIMIT = 6;
@@ -32,6 +38,7 @@ export function rememberPlot(plot: Plot) {
     label: plot.cadastral.label,
     place: plot.municipality?.name ?? null,
     areaM2: plot.areaM2,
+    at: plot.centroid,
   };
   const next = [entry, ...read().filter((p) => p.id !== plot.id)].slice(0, LIMIT);
   try {

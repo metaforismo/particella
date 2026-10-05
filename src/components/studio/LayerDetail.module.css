@@ -116,3 +116,18 @@
   color: var(--ink-3);
   font-size: var(--fs-2xs);
 }
+
+.method summary {
+  width: fit-content;
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  font-weight: 560;
+  cursor: pointer;
+}
+
+.method p {
+  margin-top: var(--s-2);
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  line-height: 1.5;
+}

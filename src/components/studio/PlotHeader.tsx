@@ -11,7 +11,10 @@ import styles from "./PlotHeader.module.css";
 
 export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void }) {
   const [copied, setCopied] = useState(false);
-  const place = [plot.municipality?.name, plot.municipality?.provinceCode].filter(Boolean).join(" ");
+  const m = plot.municipality;
+  // provinceCode may be the ISTAT number; only a two-letter sigla reads naturally after the name.
+  const sigla = m?.provinceCode && /^[A-Z]{2}$/.test(m.provinceCode) ? `(${m.provinceCode})` : null;
+  const place = [m?.name, sigla ?? m?.region].filter(Boolean).join(sigla ? " " : ", ");
 
   const copyLink = async () => {
     try {
@@ -33,9 +36,13 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
       </div>
 
       <h1 className={styles.title} translate="no">
-        Foglio <span className="num">{plot.cadastral.sheet}</span>
+        <span>
+          Foglio <span className="num">{plot.cadastral.sheet}</span>
+        </span>
         <span className={styles.sep} aria-hidden="true" />
-        Particella <span className="num">{plot.cadastral.parcel}</span>
+        <span>
+          Particella <span className="num">{plot.cadastral.parcel}</span>
+        </span>
       </h1>
       {plot.address ? <p className={styles.address}>{plot.address}</p> : null}
 
@@ -58,7 +65,7 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
       </p>
 
       <div className={styles.actions}>
-        <Link href={reportHref(plot.id)} className={styles.primary}>
+        <Link href={reportHref(plot.id, plot.centroid)} className={styles.primary}>
           <FileText size={16} aria-hidden="true" /> Apri la scheda
         </Link>
         <button type="button" className={styles.secondary} onClick={copyLink} aria-live="polite">

@@ -26,10 +26,10 @@ export function LayerList({ layers, active, onToggle, onRetry }: Props) {
     <div className={styles.wrap}>
       <p className={styles.summary} aria-live="polite">
         {counts.pending > 0 ? (
-          <>
+          <span>
             Fonti lette: <span className="num">{LAYERS.length - counts.pending}</span> di{" "}
             <span className="num">{LAYERS.length}</span>
-          </>
+          </span>
         ) : (
           <>
             <Count n={counts.attention} one="da approfondire" many="da approfondire" tone="medium" />

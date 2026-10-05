@@ -34,11 +34,7 @@
   --cantiere: #f5c518;
   --cantiere-ink: #6b5200;
   --cantiere-soft: #fbedb4;
-  --hatch: repeating-linear-gradient(
-    135deg,
-    var(--cantiere) 0 2px,
-    transparent 2px 7px
-  );
+  --hatch: repeating-linear-gradient(135deg, var(--cantiere) 0 2px, transparent 2px 7px);
 
   /* Severity — reads as a ramp, never louder than the number next to it */
   --sev-none: #5c7a5a;

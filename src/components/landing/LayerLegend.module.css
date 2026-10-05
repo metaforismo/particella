@@ -33,7 +33,9 @@
   background: var(--paper-raised);
   border: 1.5px solid var(--ink);
   border-radius: var(--radius-xs);
-  box-shadow: 0 0 0 5px var(--paper-raised), 0 0 0 6px var(--rule-strong);
+  box-shadow:
+    0 0 0 5px var(--paper-raised),
+    0 0 0 6px var(--rule-strong);
 }
 
 .sheetTitle {

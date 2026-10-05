@@ -1,0 +1,241 @@
+.studio {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Top bar floats over the map, aligned with the panel column. */
+.bar {
+  position: absolute;
+  top: var(--s-3);
+  left: var(--s-3);
+  right: var(--s-3);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  pointer-events: none;
+}
+
+.bar > * {
+  pointer-events: auto;
+}
+
+.home {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  box-shadow: var(--lift);
+  color: var(--ink);
+}
+
+.search {
+  width: calc(384px - 3rem - var(--s-2));
+}
+
+.search form {
+  box-shadow: var(--lift);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.5rem;
+  margin-left: auto;
+  padding: 0 var(--s-3);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--lift);
+  font-size: var(--fs-sm);
+  font-weight: 540;
+  color: var(--ink-3);
+}
+
+.toggle[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: var(--sepia);
+  box-shadow:
+    var(--lift),
+    inset 0 -2px 0 var(--sepia);
+}
+
+.panel {
+  position: absolute;
+  z-index: 5;
+  top: calc(var(--s-3) + 3rem + var(--s-2));
+  left: var(--s-3);
+  width: 384px;
+  max-height: calc(100% - 3rem - var(--s-2) - var(--s-3) * 2);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--lift-strong);
+  overflow: hidden;
+}
+
+.handle {
+  display: none;
+}
+
+.scroll {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.empty,
+.error,
+.locating {
+  padding: var(--s-5);
+}
+
+.empty h1,
+.error h1 {
+  font-size: var(--fs-lg);
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.015em;
+}
+
+.empty p,
+.error p {
+  margin-top: var(--s-2);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.examplesTitle {
+  margin-top: var(--s-6) !important;
+  color: var(--ink-3) !important;
+  font-size: var(--fs-xs) !important;
+}
+
+.examples {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+
+.examples button {
+  display: grid;
+  width: 100%;
+  padding: var(--s-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  text-align: left;
+  transition: border-color var(--dur-fast);
+}
+
+.examples button:hover {
+  border-color: var(--ink);
+}
+
+.examples strong {
+  font-size: var(--fs-sm);
+}
+
+.examples span {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+.error button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: var(--s-4);
+  height: 2.25rem;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper-raised);
+  font-size: var(--fs-sm);
+  font-weight: 560;
+}
+
+.locating {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.locating p {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.skeleton {
+  display: block;
+  height: 0.9rem;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(90deg, var(--paper-sunk) 0%, var(--rule) 50%, var(--paper-sunk) 100%) 0 0 / 200%
+    100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.disclaimer {
+  padding: 0 var(--s-5) var(--s-5);
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  line-height: 1.45;
+}
+
+/* Phones: the panel becomes a bottom sheet with a peek height. */
+@media (max-width: 820px) {
+  .search {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+
+  .toggle span {
+    display: none;
+  }
+
+  .panel {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 46vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: 0;
+    transition: height var(--dur) var(--ease-out);
+  }
+
+  .panel[data-open] {
+    height: calc(100dvh - 5rem);
+  }
+
+  .handle {
+    display: grid;
+    place-items: center;
+    flex: none;
+    height: 1.5rem;
+    border: 0;
+    background: transparent;
+  }
+
+  .handle span {
+    width: 2.5rem;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--rule-strong);
+  }
+}

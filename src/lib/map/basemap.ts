@@ -43,6 +43,18 @@ export function loadBasemapStyle(): Promise<StyleSpecification> {
     })
     .then((style) => {
       for (const layer of style.layers) {
+        if (
+          layer.type === "symbol" &&
+          layer.layout &&
+          JSON.stringify(layer.layout["text-field"] ?? "").includes("name")
+        ) {
+          layer.layout["text-field"] = [
+            "coalesce",
+            ["get", "name:it"],
+            ["get", "name:latin"],
+            ["get", "name"],
+          ];
+        }
         const paint = PAINT[layer.id] ?? (layer.id.startsWith("label_") ? PLACE_LABEL : null);
         if (paint && "paint" in layer) {
           layer.paint = { ...(layer.paint as object), ...paint } as typeof layer.paint;

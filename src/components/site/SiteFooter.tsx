@@ -9,8 +9,8 @@ export function SiteFooter() {
         <div className={styles.brand}>
           <Logo />
           <p>
-            Dati pubblici ufficiali, letti per chi deve decidere su un terreno. Ogni valore porta con sé
-            la sua fonte e la data in cui l&apos;abbiamo letto.
+            Dati pubblici ufficiali, letti per chi deve decidere su un terreno. Ogni valore porta con sé la
+            sua fonte e la data in cui l&apos;abbiamo letto.
           </p>
         </div>
 

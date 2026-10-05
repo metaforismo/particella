@@ -25,7 +25,9 @@ export function Products() {
         <h2 id="products-title" className={styles.title}>
           Tre modi per usare gli stessi dati.
         </h2>
-        <p>Dall&apos;esplorazione libera al documento da allegare, fino all&apos;integrazione nel tuo software.</p>
+        <p>
+          Dall&apos;esplorazione libera al documento da allegare, fino all&apos;integrazione nel tuo software.
+        </p>
       </header>
 
       <article className={styles.studio}>
@@ -33,8 +35,9 @@ export function Products() {
           <h3>Studio</h3>
           <p className={styles.claim}>Chiedi al terreno.</p>
           <p>
-            Mappa, livelli e documenti di piano nello stesso spazio. Fai una domanda in italiano: l&apos;assistente
-            risponde solo con quello che trova nelle fonti e ti porta all&apos;articolo esatto delle norme.
+            Mappa, livelli e documenti di piano nello stesso spazio. Fai una domanda in italiano:
+            l&apos;assistente risponde solo con quello che trova nelle fonti e ti porta all&apos;articolo
+            esatto delle norme.
           </p>
           <Link href="/studio" className={styles.link}>
             Apri lo Studio <ArrowUpRight size={16} aria-hidden="true" />
@@ -45,12 +48,12 @@ export function Products() {
           <p className={styles.ask}>Posso costruire una bifamiliare su questo lotto?</p>
           <div className={styles.answer}>
             <p>
-              Il lotto ricade in zona residenziale di completamento. Le norme ammettono nuove abitazioni con un
-              indice fondiario massimo e un&apos;altezza limite, che trovi all&apos;articolo citato.
+              Il lotto ricade in zona residenziale di completamento. Le norme ammettono nuove abitazioni con
+              un indice fondiario massimo e un&apos;altezza limite, che trovi all&apos;articolo citato.
             </p>
             <p>
-              Una parte del confine sud tocca un&apos;area a pericolosità idraulica bassa: non vieta di costruire,
-              ma può richiedere accorgimenti progettuali.
+              Una parte del confine sud tocca un&apos;area a pericolosità idraulica bassa: non vieta di
+              costruire, ma può richiedere accorgimenti progettuali.
             </p>
             <ul className={styles.cites}>
               <li>

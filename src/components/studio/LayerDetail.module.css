@@ -1,0 +1,118 @@
+.detail {
+  display: grid;
+  gap: var(--s-4);
+  padding-left: calc(16px + var(--s-3));
+}
+
+.scope {
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+}
+
+.metrics div {
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.metrics div:nth-child(odd) {
+  border-right: 1px solid var(--rule);
+}
+
+.metrics div:nth-last-child(-n + 2):nth-child(odd),
+.metrics div:last-child {
+  border-bottom: 0;
+}
+
+.metrics div[title] dt {
+  text-decoration: underline dotted var(--rule-strong);
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+.metrics dt {
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  line-height: 1.3;
+}
+
+.metrics dd {
+  margin-top: 0.1rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-stretch: var(--stretch-condensed);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.chip {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgb(23 32 29 / 0.25);
+}
+
+.notes {
+  display: grid;
+  gap: var(--s-2);
+  padding-left: var(--s-3);
+  border-left: 2px solid var(--sepia);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+}
+
+.sourcesTitle {
+  margin-bottom: var(--s-2);
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  font-weight: 560;
+}
+
+.sources ul {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.sourceLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-size: var(--fs-xs);
+  text-decoration: none;
+}
+
+.sourceLink:hover span {
+  text-decoration: underline;
+}
+
+.sourceLink svg {
+  flex: none;
+  color: var(--ink-3);
+  transform: translateY(1px);
+}
+
+.sourceMeta {
+  display: block;
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+}

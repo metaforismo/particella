@@ -43,7 +43,12 @@ export function Fragmentation() {
           ))}
         </ul>
 
-        <svg className={styles.wires} viewBox={`0 0 100 ${HEIGHT}`} preserveAspectRatio="none" style={{ height: HEIGHT }}>
+        <svg
+          className={styles.wires}
+          viewBox={`0 0 100 ${HEIGHT}`}
+          preserveAspectRatio="none"
+          style={{ height: HEIGHT }}
+        >
           {PORTALS.map((p, i) => {
             const y = i * ROW + ROW / 2;
             const mid = HEIGHT / 2;

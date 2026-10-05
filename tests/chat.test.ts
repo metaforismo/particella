@@ -196,3 +196,22 @@ test("AI SDK 7 streams the real UI protocol with a mock model and executes the s
   assert.equal(mock.doStreamCalls[0].toolChoice?.type, "tool");
   assert.ok(mock.doStreamCalls[1].prompt.some((m) => m.role === "tool"));
 });
+
+test("rate limit keys on the platform address, not on a client-supplied forwarded-for", async () => {
+  const { clientAddress } = await import("#server/chat/rate-limit.ts");
+  const spoofed = new Request("http://x", { headers: { "x-forwarded-for": "6.6.6.6, 10.0.0.1" } });
+  assert.equal(clientAddress(spoofed), "10.0.0.1");
+  const vercel = new Request("http://x", {
+    headers: { "x-real-ip": "1.2.3.4", "x-forwarded-for": "6.6.6.6" },
+  });
+  assert.equal(clientAddress(vercel), "1.2.3.4");
+  assert.equal(clientAddress(new Request("http://x")), "local");
+});
+
+test("a global cap stops rotating addresses from bypassing the per-client limit", () => {
+  const now = 0;
+  const limiter = new ChatRateLimiter(8, 60_000, () => now, 3);
+  for (let i = 0; i < 3; i++)
+    limiter.consume(new Request("http://x", { headers: { "x-real-ip": `1.1.1.${i}` } }));
+  assert.throws(() => limiter.consume(new Request("http://x", { headers: { "x-real-ip": "9.9.9.9" } })));
+});

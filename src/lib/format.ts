@@ -4,7 +4,7 @@ const dateTime = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "shor
 export function formatNumber(value: number, digits = 1) {
   let format = numberFormats.get(digits);
   if (!format) {
-    format = new Intl.NumberFormat("it-IT", { maximumFractionDigits: digits });
+    format = new Intl.NumberFormat("it-IT", { maximumFractionDigits: digits, useGrouping: "always" });
     numberFormats.set(digits, format);
   }
   return format.format(value);

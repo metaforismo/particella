@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowClockwise, ChatCircleText, ClockCounterClockwise, Stack } from "@phosphor-icons/react";
+import {
+  ArrowClockwise,
+  ChatCircleText,
+  CircleNotch,
+  ClockCounterClockwise,
+  Crosshair,
+  Stack,
+  X,
+} from "@phosphor-icons/react";
 import { formatArea } from "@/lib/format";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
@@ -99,6 +107,38 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     [selectPoint],
   );
 
+  const [locating, setLocating] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+
+  const locateMe = useCallback(() => {
+    if (!("geolocation" in navigator)) {
+      setNotice("Questo browser non permette di leggere la posizione.");
+      return;
+    }
+    setLocating(true);
+    setNotice(null);
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        setLocating(false);
+        if (coords.accuracy > 60) {
+          setNotice(
+            `La posizione è approssimata (circa ${Math.round(coords.accuracy)} m): controlla che il lotto sia quello giusto.`,
+          );
+        }
+        pick({ lat: coords.latitude, lon: coords.longitude });
+      },
+      (error) => {
+        setLocating(false);
+        setNotice(
+          error.code === error.PERMISSION_DENIED
+            ? "Permesso negato: abilita la posizione per questo sito nelle impostazioni del browser."
+            : "Posizione non disponibile in questo momento. Riprova all'aperto o cerca l'indirizzo.",
+        );
+      },
+      { enableHighAccuracy: true, timeout: 12_000, maximumAge: 30_000 },
+    );
+  }, [pick]);
+
   const onSearch = useCallback(
     (place: GeocodeResult | { query: string }) => {
       if ("center" in place) pick(place.center);
@@ -146,6 +186,20 @@ export function Studio({ initial }: { initial: StudioInitial }) {
         </div>
         <button
           type="button"
+          className={styles.locate}
+          onClick={locateMe}
+          disabled={locating}
+          aria-label="Usa la mia posizione"
+          title="Usa la mia posizione"
+        >
+          {locating ? (
+            <CircleNotch size={16} className={styles.spin} aria-hidden="true" />
+          ) : (
+            <Crosshair size={16} aria-hidden="true" />
+          )}
+        </button>
+        <button
+          type="button"
           className={styles.toggle}
           aria-pressed={showCadastre}
           onClick={() => setShowCadastre((v) => !v)}
@@ -167,6 +221,15 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           </button>
         ) : null}
       </header>
+
+      {notice ? (
+        <div className={styles.notice} role="status">
+          <p>{notice}</p>
+          <button type="button" onClick={() => setNotice(null)} aria-label="Chiudi l'avviso">
+            <X size={14} />
+          </button>
+        </div>
+      ) : null}
 
       {askVisible && plot ? (
         <aside className={styles.askPanel}>

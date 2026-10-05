@@ -42,12 +42,76 @@
   box-shadow: var(--lift);
 }
 
+.locate {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: auto;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--lift);
+  color: var(--ink);
+}
+
+.locate:hover {
+  border-color: var(--ink);
+}
+
+.locate:disabled {
+  cursor: progress;
+}
+
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.notice {
+  position: absolute;
+  z-index: 12;
+  left: 50%;
+  bottom: calc(var(--s-6) + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  width: min(30rem, calc(100% - 2rem));
+  padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
+  background: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--lift-strong);
+  font-size: var(--fs-sm);
+  transform: translateX(-50%);
+}
+
+.notice p {
+  flex: 1;
+}
+
+.notice button {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--on-ink-2);
+}
+
 .toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   height: 2.5rem;
-  margin-left: auto;
   padding: 0 var(--s-3);
   background: var(--paper-raised);
   border: 1px solid var(--rule);
@@ -269,6 +333,10 @@
 
 /* Phones: the panel becomes a bottom sheet with a peek height. */
 @media (max-width: 820px) {
+  .notice {
+    bottom: calc(46vh + var(--s-3));
+  }
+
   .search {
     flex: 1;
     width: auto;

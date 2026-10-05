@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 463529462,
+        "osm_key": "place",
+        "osm_value": "square",
+        "type": "locality",
+        "name": "Piazza del Duomo",
+        "district": "Municipio 1",
+        "city": "Milano",
+        "county": "Milano",
+        "state": "Lombardia",
+        "country": "Italia",
+        "countrycode": "IT",
+        "extent": [9.1883468, 45.4647918, 9.192982, 45.4629966]
+      },
+      "geometry": { "type": "Point", "coordinates": [9.1906398, 45.4639102] }
+    }
+  ]
+}

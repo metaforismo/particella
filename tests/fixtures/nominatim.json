@@ -1,0 +1,32 @@
+[
+  {
+    "place_id": 76579242,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "way",
+    "osm_id": 463529462,
+    "lat": "45.4639102",
+    "lon": "9.1906398",
+    "category": "place",
+    "type": "square",
+    "place_rank": 25,
+    "importance": 0.45987298670095283,
+    "addresstype": "square",
+    "name": "Piazza del Duomo",
+    "display_name": "Piazza del Duomo, Duomo, Cerchia dei Navigli, Municipio 1, Milano, Rodano, Milano, Lombardia, Italia",
+    "address": {
+      "square": "Piazza del Duomo",
+      "census": "Duomo",
+      "subdivision": "Cerchia dei Navigli",
+      "suburb": "Municipio 1",
+      "city": "Milano",
+      "municipality": "Rodano",
+      "county": "Milano",
+      "ISO3166-2-lvl6": "IT-MI",
+      "state": "Lombardia",
+      "ISO3166-2-lvl4": "IT-25",
+      "country": "Italia",
+      "country_code": "it"
+    },
+    "boundingbox": ["45.4629966", "45.4647918", "9.1883468", "9.1929820"]
+  }
+]

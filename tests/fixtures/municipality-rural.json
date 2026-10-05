@@ -1,0 +1,23 @@
+{
+  "displayFieldName": "PRO_COM_T",
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 4209,
+        "Shape_Length": 61439.76119012343,
+        "Shape_Area": 141446703.16908985,
+        "COD_RIP": 3,
+        "COD_REG": 9,
+        "COD_PROV": 48,
+        "COD_CM": 248,
+        "COD_UTS": 248,
+        "PRO_COM": 48001,
+        "PRO_COM_T": "048001",
+        "COMUNE": "Bagno a Ripoli",
+        "COMUNE_A": " ",
+        "CC_UTS": 0,
+        "Shape_Leng": 44381.1742002
+      }
+    }
+  ]
+}

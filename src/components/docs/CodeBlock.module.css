@@ -1,0 +1,41 @@
+.block {
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--radius-md);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-2) var(--s-3) var(--s-2) var(--s-4);
+  border-bottom: 1px solid rgb(241 243 239 / 0.12);
+  color: var(--on-ink-2);
+  font-size: var(--fs-xs);
+}
+
+.bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgb(241 243 239 / 0.2);
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--on-ink);
+  font-size: var(--fs-2xs);
+}
+
+.bar button:hover {
+  background: rgb(241 243 239 / 0.1);
+}
+
+.block pre {
+  max-height: 32rem;
+  margin: 0;
+  overflow: auto;
+  padding: var(--s-4);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+}

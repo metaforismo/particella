@@ -29,8 +29,28 @@ import styles from "./Studio.module.css";
 
 export type StudioInitial = { plotId?: string; point?: LatLon; query?: string; layer?: LayerId };
 
+// Real parcels verified against the live sources, chosen to show different kinds of answers.
 const EXAMPLES: { label: string; detail: string; point: LatLon }[] = [
-  { label: "Campagna a Bagno a Ripoli", detail: "Firenze", point: { lat: 43.7, lon: 11.32 } },
+  {
+    label: "Lotto residenziale a Firenze",
+    detail: "Zona B del Piano Operativo · 1.046 m²",
+    point: { lat: 43.737, lon: 11.233 },
+  },
+  {
+    label: "Collina coltivata a Firenze",
+    detail: "Sub-sistema agricolo · 5,3 ha",
+    point: { lat: 43.793, lon: 11.26 },
+  },
+  {
+    label: "Campagna a Bagno a Ripoli",
+    detail: "Pericolosità da frana segnalata · 1,9 ha",
+    point: { lat: 43.7, lon: 11.32 },
+  },
+  {
+    label: "Area urbana a Milano",
+    detail: "Zona Tortona · PGT di Milano",
+    point: { lat: 45.4515, lon: 9.166 },
+  },
 ];
 
 const PANEL_WIDTH = 384;

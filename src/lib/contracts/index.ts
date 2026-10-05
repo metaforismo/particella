@@ -96,10 +96,14 @@ export const LayerId = z.enum([
   "accessibility",
   "demographics",
   "market",
+  "regional-land-cover",
+  "power-grid",
+  "infrastructure-distances",
+  "industrial-sites",
 ]);
 export type LayerId = z.infer<typeof LayerId>;
 
-export const LayerGroup = z.enum(["urbanistica", "rischi", "ambiente", "contesto"]);
+export const LayerGroup = z.enum(["urbanistica", "rischi", "ambiente", "contesto", "energia"]);
 export type LayerGroup = z.infer<typeof LayerGroup>;
 
 /** How much a layer should worry the reader. `unknown` means data was missing, not zero. */

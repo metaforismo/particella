@@ -17,6 +17,7 @@ export const GROUP_LABEL: Record<LayerGroup, string> = {
   rischi: "Rischi naturali",
   ambiente: "Ambiente e terreno",
   contesto: "Contesto",
+  energia: "Energia",
 };
 
 export const LAYERS: LayerMeta[] = [
@@ -46,6 +47,24 @@ export const LAYERS: LayerMeta[] = [
     authority: "ISPRA, Copernicus",
     symbol: "grid",
     tone: "verde",
+  },
+  {
+    id: "regional-land-cover",
+    group: "urbanistica",
+    title: "Uso del suolo regionale",
+    question: "Che copertura indica la carta regionale sul terreno?",
+    authority: "Regione Toscana, Regione Lombardia",
+    symbol: "grid",
+    tone: "verde",
+  },
+  {
+    id: "infrastructure-distances",
+    group: "urbanistica",
+    title: "Distanze dalle infrastrutture",
+    question: "Quanto distano strade, ferrovie, cimiteri e pozzi censiti?",
+    authority: "OpenStreetMap",
+    symbol: "line",
+    tone: "ink",
   },
   {
     id: "flood",
@@ -134,6 +153,24 @@ export const LAYERS: LayerMeta[] = [
     title: "Valori immobiliari",
     question: "Quanto vale al metro quadro nella zona?",
     authority: "Agenzia delle Entrate, OMI",
+    symbol: "fill",
+    tone: "sepia",
+  },
+  {
+    id: "power-grid",
+    group: "energia",
+    title: "Rete elettrica vicina",
+    question: "Quanto distano le linee ad alta tensione e le stazioni censite?",
+    authority: "OpenStreetMap",
+    symbol: "line",
+    tone: "ink",
+  },
+  {
+    id: "industrial-sites",
+    group: "energia",
+    title: "Aree industriali, cave e discariche",
+    question: "Quali aree industriali, cave e discariche sono censite vicino?",
+    authority: "OpenStreetMap",
     symbol: "fill",
     tone: "sepia",
   },

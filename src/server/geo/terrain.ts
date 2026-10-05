@@ -6,7 +6,7 @@ export interface HeightSample {
 }
 
 // Fit z=a*x+b*y+c in a local metric tangent plane. Singular/small samples have no slope.
-export function estimateSlope(samples: HeightSample[]): number | null {
+export function estimateGradient(samples: HeightSample[]): { east: number; north: number } | null {
   if (samples.length < 3) return null;
   const origin = samples[0].center;
   const radians = Math.PI / 180;
@@ -36,5 +36,17 @@ export function estimateSlope(samples: HeightSample[]): number | null {
   }
   const determinant = xx * yy - xy * xy;
   if (determinant < 1 || xx < 100 || yy < 100) return null;
-  return 100 * Math.hypot((xz * yy - yz * xy) / determinant, (yz * xx - xz * xy) / determinant);
+  return { east: (xz * yy - yz * xy) / determinant, north: (yz * xx - xz * xy) / determinant };
+}
+
+export function estimateSlope(samples: HeightSample[]): number | null {
+  const gradient = estimateGradient(samples);
+  return gradient ? 100 * Math.hypot(gradient.east, gradient.north) : null;
+}
+
+/** Downslope azimuth clockwise from north. Nearly flat samples have no meaningful aspect. */
+export function estimateAspect(samples: HeightSample[]): number | null {
+  const gradient = estimateGradient(samples);
+  if (!gradient || Math.hypot(gradient.east, gradient.north) < 0.005) return null;
+  return ((Math.atan2(-gradient.east, -gradient.north) * 180) / Math.PI + 360) % 360;
 }

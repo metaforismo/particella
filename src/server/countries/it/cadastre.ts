@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Plot as PlotSchema, type Plot } from "#contracts";
-import { BadRequest, NotFound, UpstreamError } from "#server/core/errors.ts";
+import { BadRequest, NotFound, ProtocolError, UpstreamError } from "#server/core/errors.ts";
 import { cache, canonicalKey, NEGATIVE_TTL_MS } from "#server/core/cache.ts";
 import { textBody } from "#server/core/http.ts";
 import { provenance } from "#server/core/provenance.ts";
@@ -17,7 +17,9 @@ import { wfsMembers, gmlGeometry } from "#server/geo/gml.ts";
 import { fetchSource, queryUrl } from "#server/countries/it/queries.ts";
 import { municipalityAt } from "#server/countries/it/municipality.ts";
 
-export const PlotId = z.string().regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}[A-Z]?:[0-9]{1,8}[A-Z]?$/);
+export const PlotId = z
+  .string()
+  .regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}[A-Z]?:[0-9]{1,8}[A-Z]?$/);
 
 export function parsePlotId(id: string) {
   const parsed = PlotId.safeParse(id);
@@ -133,11 +135,7 @@ export async function plotAt(lat: number, lon: number, signal?: AbortSignal): Pr
   const p = { lat, lon };
   const native = toCadastre(p);
   const municipality = await municipalityAt(p, null, signal);
-  const parcelPayload = await fetchSource(
-    "ade-cadastre",
-    wfs("CP:CadastralParcel", { BBOX: `${latLonBox(native)},urn:ogc:def:crs:EPSG::6706` }),
-    { signal },
-  );
+  const parcelPayload = await spatialCadastre("CP:CadastralParcel", native, signal);
   const parcels = parseParcels(textBody(parcelPayload)).filter((parcel) => coversPoint(parcel.geometry, p));
   if (!parcels.length)
     throw new NotFound("Nessuna particella contiene questo punto; non viene scelto il lotto più vicino.");
@@ -145,17 +143,38 @@ export async function plotAt(lat: number, lon: number, signal?: AbortSignal): Pr
     throw new BadRequest("Il punto è su un confine o su particelle sovrapposte: scegliere un punto interno.");
   if (parcels[0].special)
     throw new NotFound("Il punto ricade su una strada o un'acqua catastale: non è un lotto.");
-  const zoningPayload = await fetchSource(
-    "ade-cadastre",
-    wfs("CP:CadastralZoning", { BBOX: `${latLonBox(native)},urn:ogc:def:crs:EPSG::6706` }),
-    { signal },
-  );
+  const zoningPayload = await spatialCadastre("CP:CadastralZoning", native, signal);
   const zoning = parseZoning(textBody(zoningPayload)).find((z) => z.reference === parcels[0].mapReference);
   if (!zoning)
     throw new UpstreamError(
       "La fonte non fornisce la mappa del lotto; il foglio non viene dedotto dal riferimento.",
     );
   return toPlot(parcels[0], zoning, [parcelPayload, zoningPayload], municipality);
+}
+
+async function spatialCadastre(
+  type: "CP:CadastralParcel" | "CP:CadastralZoning",
+  native: { lat: number; lon: number },
+  signal?: AbortSignal,
+) {
+  // AdE can reject one spatial window with HTTP 200 / InvalidFormat while a smaller
+  // window at the same point works. The selected parcel and map reference still must match.
+  for (const delta of [0.0001, 0.00002]) {
+    try {
+      return await fetchSource(
+        "ade-cadastre",
+        wfs(type, { BBOX: `${latLonBox(native, delta)},urn:ogc:def:crs:EPSG::6706` }),
+        { signal, timeoutMs: 8000 },
+      );
+    } catch (error) {
+      if (!(error instanceof ProtocolError) || signal?.aborted) throw error;
+      if (delta === 0.00002)
+        throw new UpstreamError(
+          "Il servizio catastale non riesce a leggere la mappa in questo punto. Riprovare più tardi o scegliere un altro punto interno allo stesso terreno.",
+        );
+    }
+  }
+  throw new UpstreamError();
 }
 
 function filter(property: string, value: string, sheet?: string): string {

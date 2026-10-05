@@ -96,3 +96,16 @@ Snapshot piccoli: DPC, popolazione importata Milano/Firenze, province 2026, inve
 Per aggiungere un layer: registrare fonte/condizioni, provider LayerResult e classKey, catalogo, adapter del paese, fixture, test offline/live, limiti e metodo. Per un paese: nuovo CountryAdapter in `countries/<code>`, registry/fonti e ampliamento additivo CountryCode/query. Il core resta agnostico. PostGIS può sostituire ricerca/geometria dietro l’adapter; Redis Cache/HostLimiter. Redis Cache da solo non rende globale la deduplicazione.
 
 OMI può pubblicare quotazioni residenziali senza dichiarare una tipologia prevalente: in quel caso il livello è `partial` e mostra tutte le tipologie disponibili, senza attribuire una prevalenza. Se non pubblica prezzi residenziali, lo stato è `empty`, mantenendo la zona e il semestre. La fixture reale rurale registra questo caso.
+
+
+## Espansione terreni, sessione C
+
+`countries/it/layers/osm-land.ts` contiene query condivisa, parsing validato e tre provider: rete elettrica, distanze infrastrutturali, aree industriali/cave/discariche. Bbox conservative estese all'ingombro del lotto, geometrie complete di nodi/way, filtro geodetico finale entro 10 km/2 km. Terreni con ingombro oltre 2 km dal punto rappresentativo non interrogati. La distanza minima è fra geometria OSM e lotto, zero se intersecano; su un punto è la distanza alla geometria. Relazioni OSM escluse e nessun bbox-center spacciato per geometria. Le tensioni non interpretabili restano sconosciute.
+
+`regional-land-cover.ts` adatta WMS text/plain Toscana e ArcGIS REST Lombardia: verifica formato, layer, attributi e troncamenti, restituisce classe sul punto. Identificazione non riuscita non diventa assenza. Le classi reali UCS e DUSAF hanno provenienza distinta e non si trasformano in percentuali impermeabilizzate o zone legali.
+
+`geo/terrain.ts` espone il gradiente del piano medio, riusato per pendenza e orientamento. Nessuna chiamata DEM aggiuntiva per aspect. Aspetti quasi piani (<0,5%) o non stimabili restano null; la quota areale a sud resta null.
+
+L'HTTP client conta i chiamanti di una richiesta deduplicata: abort di uno non ferma gli altri, abort dell'ultimo annulla upstream/coda e rilascia lo slot. Cancellazioni dei chiamanti non generano cache negative. Le cache negative di errori di protocollo preservano il tipo, affinché il retry catastale funzioni anche con un'eccezione già in cache. Timeout e Retry-After restano nel budget totale della request. Il limite layer 25 s isola ciascun provider, anche se ignora il signal.
+
+Ricerca e motivi di esclusione: `docs/research/land-data-2.md`. Misure riproducibili con `scripts/land-live.ts` in processi separati, fredde poi calde; `npm run test:live` esegue anche questi controlli. Cache, limiter e dedupe sono locali al processo, non globali fra istanze serverless.

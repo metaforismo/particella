@@ -54,3 +54,5 @@ docs/research/evidence/*/*
 
 # Generated live verification
 /tests/live-results.json
+
+/tests/land-live-results.json

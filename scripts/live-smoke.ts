@@ -1,4 +1,5 @@
 import { writeFile } from "node:fs/promises";
+import { runLandLive } from "./land-live.ts";
 import { z } from "zod";
 import {
   Plot,
@@ -190,7 +191,7 @@ if (florence) {
         }),
       ),
     );
-    if (value.layers.length !== 13) throw Error("Incomplete report catalog");
+    if (value.layers.length !== 17) throw Error("Incomplete report catalog");
     value.layers.forEach((result) => recordLayer("Firenze", result));
     return {
       id: value.plot.id,
@@ -300,4 +301,5 @@ console.log(
   `Live summary: ${results.filter((r) => r.state === "PASS").length} PASS, ${results.filter((r) => r.state === "PARTIAL").length} PARTIAL, ${failed} FAIL.`,
 );
 
-process.exitCode = failed ? 1 : 0;
+const landFailures = await runLandLive();
+process.exitCode = failed || landFailures ? 1 : 0;

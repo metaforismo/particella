@@ -248,3 +248,92 @@ test("opaque positional OMI query is not encoded into a parameter key", () => {
     "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?D612/FI00001135/20252/R/B5/11.2558/43.7696";
   assert.equal(canonicalUrl(input), input);
 });
+
+test("cancelling one deduplicated caller keeps the source alive for the remaining caller", async () => {
+  let calls = 0;
+  let upstreamAborted = false;
+  let finish: (r: Response) => void = () => {};
+  let started: () => void = () => {};
+  const ready = new Promise<void>((r) => {
+    started = r;
+  });
+  const client = new HttpClient(new MemoryCache(), immediate, async (_url, init) => {
+    calls++;
+    init?.signal?.addEventListener("abort", () => {
+      upstreamAborted = true;
+    });
+    started();
+    return new Promise<Response>((r) => {
+      finish = r;
+    });
+  });
+  const controller = new AbortController();
+  const first = client.request("https://example.test/shared-cancel", { signal: controller.signal });
+  const firstRejected = assert.rejects(first, UpstreamError);
+  const second = client.request("https://example.test/shared-cancel");
+  await ready;
+  await new Promise((r) => setTimeout(r, 5));
+  controller.abort();
+  await firstRejected;
+  assert.equal(upstreamAborted, false);
+  finish(new Response("real response"));
+  assert.equal(new TextDecoder().decode((await second).bytes), "real response");
+  assert.equal(calls, 1);
+});
+
+test("a caller deadline cancels a queued host request before it consumes the next slot", async () => {
+  let calls = 0;
+  let finish: (r: Response) => void = () => {};
+  const limiter = new MemoryHostLimiter();
+  const client = new HttpClient(new MemoryCache(), limiter, async (url) => {
+    calls++;
+    return String(url).endsWith("held")
+      ? new Promise<Response>((r) => {
+          finish = r;
+        })
+      : new Response("ok");
+  });
+  const policy = { concurrency: 1, requestsPerSecond: 1000 };
+  const held = client.request("https://same-host.test/held", { policy });
+  await new Promise((r) => setTimeout(r, 5));
+  const controller = new AbortController();
+  const queued = client.request("https://same-host.test/queued", { policy, signal: controller.signal });
+  const rejected = assert.rejects(queued, UpstreamError);
+  controller.abort();
+  await rejected;
+  finish(new Response("first"));
+  await held;
+  await client.request("https://same-host.test/healthy", { policy });
+  assert.equal(calls, 2);
+});
+
+test("last caller cancellation aborts a source and immediately releases its host slot", async () => {
+  let aborted = false;
+  let started: () => void = () => {};
+  const ready = new Promise<void>((r) => {
+    started = r;
+  });
+  const client = new HttpClient(new MemoryCache(), new MemoryHostLimiter(), async (url, init) => {
+    if (String(url).endsWith("healthy")) return new Response("ok");
+    started();
+    return new Promise<Response>((_resolve, reject) => {
+      init?.signal?.addEventListener("abort", () => {
+        aborted = true;
+        reject(new Error("cancelled"));
+      });
+    });
+  });
+  const controller = new AbortController();
+  const policy = { concurrency: 1, requestsPerSecond: 1000 };
+  const pending = client.request("https://cancel-host.test/slow", {
+    policy,
+    signal: controller.signal,
+    timeoutMs: 5000,
+  });
+  const rejected = assert.rejects(pending, UpstreamError);
+  await ready;
+  controller.abort();
+  await rejected;
+  await client.request("https://cancel-host.test/healthy", { policy, timeoutMs: 100 });
+  assert.equal(aborted, true);
+});

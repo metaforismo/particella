@@ -264,5 +264,123 @@
     "retrievalDate": "2026-10-06",
     "timezone": "Europe/Rome",
     "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "ucs-firenze.txt",
+    "original": "land-data-2/ucs-valid-firenze.txt",
+    "originalSha256": "eff9dc358407435939fe47478ff19e29ceb9c26b6dee6b1c276d3c39b317186d",
+    "requestUrl": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt.full&query_layers=rt_ucs.iducs.10k.2019.rt.full&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256490000000001%2C43.769259999999996%2C11.25651%2C43.76928&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+    "retrievedAt": "2026-10-05T23:29:07.472Z",
+    "reduction": "Original attributes and geometries unchanged; leading indentation tabs expanded to spaces, trailing whitespace and blank EOF lines removed.",
+    "fixtureSha256": "fdb022dccecde8350b88176d70dbeb3ba485357b02a2761fd497c57bd9cdb76c"
+  },
+  {
+    "fixture": "ucs-bagno.txt",
+    "original": "land-data-2/ucs-valid-bagno.txt",
+    "originalSha256": "03f724089c2c378a1d655fb9dade59b936b07a0634963d664034d6a581df01f9",
+    "requestUrl": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt.full&query_layers=rt_ucs.iducs.10k.2019.rt.full&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31999%2C43.69999%2C11.32001%2C43.700010000000006&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+    "retrievedAt": "2026-10-05T23:29:07.736Z",
+    "reduction": "Original attributes and geometries unchanged; leading indentation tabs expanded to spaces, trailing whitespace and blank EOF lines removed.",
+    "fixtureSha256": "c69aa9c5fc0075de8269211f617dd47227a51df321259ab2503bd34dee81bd3e"
+  },
+  {
+    "fixture": "ucs-missing.txt",
+    "original": "land-data-2/ucs-valid-vallombrosa.txt",
+    "originalSha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da",
+    "requestUrl": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt.full&query_layers=rt_ucs.iducs.10k.2019.rt.full&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.55599%2C43.732989999999994%2C11.556009999999999%2C43.73301&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+    "retrievedAt": "2026-10-05T23:29:08.260Z",
+    "reduction": "Original response; whitespace unchanged.",
+    "fixtureSha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+  },
+  {
+    "fixture": "dusaf-milano.json",
+    "original": "land-data-2/dusaf-milano.txt",
+    "originalSha256": "21c3382551732e4ead4badd434a975cd6875f4d9561a5a609d06ae72905d9f66",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query?f=json&geometry=9.191%2C45.4648&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false",
+    "retrievedAt": "2026-10-05T23:28:00.339Z",
+    "reduction": "Original response; whitespace unchanged.",
+    "fixtureSha256": "21c3382551732e4ead4badd434a975cd6875f4d9561a5a609d06ae72905d9f66"
+  },
+  {
+    "fixture": "dusaf-lodi.json",
+    "original": "land-data-2/dusaf-lodi.txt",
+    "originalSha256": "ee274f3757421bcba789a7acec1ff829c7daa49570e27bbd165c0de6fbb3e8e1",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query?f=json&geometry=9.329%2C45.307&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false",
+    "retrievedAt": "2026-10-05T23:28:00.437Z",
+    "reduction": "Original response; whitespace unchanged.",
+    "fixtureSha256": "ee274f3757421bcba789a7acec1ff829c7daa49570e27bbd165c0de6fbb3e8e1"
+  },
+  {
+    "fixture": "dusaf-valsassina.json",
+    "original": "land-data-2/dusaf-valsassina.txt",
+    "originalSha256": "8acbe204cd423e174ad77a9237d2c44c7a6ad1e1366c908c7b14cd6a51a46d6b",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query?f=json&geometry=9.445%2C45.929&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false",
+    "retrievedAt": "2026-10-05T23:28:00.632Z",
+    "reduction": "Original response; whitespace unchanged.",
+    "fixtureSha256": "8acbe204cd423e174ad77a9237d2c44c7a6ad1e1366c908c7b14cd6a51a46d6b"
+  },
+  {
+    "fixture": "osm-land-milano.json",
+    "original": "land-data-2/osm-bbox-milano.txt",
+    "originalSha256": "1c9ef386fc391b3d245c634f0334664f9a000e89501d029b2b4a02a6f4767922",
+    "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2845.374710%2C9.062547%2C45.554890%2C9.319453%29%5Bpower%3Dline%5D%3Bnw%2845.374710%2C9.062547%2C45.554890%2C9.319453%29%5Bpower%3Dsubstation%5D%3Bway%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Brailway%3Drail%5D%3Bnw%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+    "retrievedAt": "2026-10-05T23:31:52.376Z",
+    "reduction": "Up to three original complete elements per tag group; metadata and geometries unchanged. This fixture is not an exhaustive query response.",
+    "fixtureSha256": "130d8986ac2230a10f8840e202db562eb1117f0afcd577144eb9732f367dd568"
+  },
+  {
+    "fixture": "osm-land-rural.json",
+    "original": "land-data-2/osm-bbox-bagno.txt",
+    "originalSha256": "8e13b0415745b86b6b372ccf60e95673c8ef2c39a05b9b2dcc989df1633bcd98",
+    "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2843.609910%2C11.195388%2C43.790090%2C11.444612%29%5Bpower%3Dline%5D%3Bnw%2843.609910%2C11.195388%2C43.790090%2C11.444612%29%5Bpower%3Dsubstation%5D%3Bway%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Brailway%3Drail%5D%3Bnw%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+    "retrievedAt": "2026-10-05T23:32:03.371Z",
+    "reduction": "Up to three original complete elements per tag group; metadata and geometries unchanged. This fixture is not an exhaustive query response.",
+    "fixtureSha256": "c96951074d290c30f73d982ef5c888dda233f73fddd25851ed384d0959dc73b2"
+  },
+  {
+    "fixture": "osm-land-mountain.json",
+    "original": "land-data-2/osm-bbox-vallombrosa.txt",
+    "originalSha256": "ced0bfdf366d0414039fd151612c1455c480d52012eb557a8c43ca53084a852a",
+    "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2843.642910%2C11.431388%2C43.823090%2C11.680612%29%5Bpower%3Dline%5D%3Bnw%2843.642910%2C11.431388%2C43.823090%2C11.680612%29%5Bpower%3Dsubstation%5D%3Bway%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Brailway%3Drail%5D%3Bnw%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+    "retrievedAt": "2026-10-05T23:34:23.833Z",
+    "reduction": "Up to three original complete elements per tag group; metadata and geometries unchanged. This fixture is not an exhaustive query response.",
+    "fixtureSha256": "5ffc67417a2bd84bb383df9668c54204bf36f50b54e0335d74257883eaa0badc"
+  },
+  {
+    "fixture": "ade-debug-zoning.xml",
+    "original": "land-data-2/ade-zoning-0.00002.txt",
+    "originalSha256": "9284360aa0703ce83baea0e918041986f29cb75d8965d32e606a66c27fba409d",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&BBOX=43.78648000%2C11.20098000%2C43.78652000%2C11.20102000%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+    "retrievedAt": "2026-10-05T23:29:07.993Z",
+    "reduction": "Original attributes and geometries unchanged; leading indentation tabs expanded to spaces, trailing whitespace and blank EOF lines removed.",
+    "fixtureSha256": "38789d4d5ec8d0082c7ec9f3e156ed3cb13ad47240baf7a7a21e5fb4df999d4e"
+  },
+  {
+    "fixture": "ade-debug-parcel.xml",
+    "original": "land-data-2/ade-debug.txt",
+    "originalSha256": "4b48e3a77d344c06608ac4f5dae897bf673b756eaab6b50237b0d07471d466cd",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&BBOX=43.7864%2C11.2009%2C43.7866%2C11.2011%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+    "retrievedAt": "2026-10-05T23:26:32.179Z",
+    "reduction": "Original attributes and geometries unchanged; leading indentation tabs expanded to spaces, trailing whitespace and blank EOF lines removed.",
+    "fixtureSha256": "57318e41f0b35c3641469d27bf1dc3e6307fff450de59fce2b27933b0930a399"
+  },
+  {
+    "fixture": "ade-debug-exception.xml",
+    "original": "land-data-2/ade-exception.xml",
+    "originalSha256": "d151a8241a154a26dee525732d1bbd73bb3995c76e7a7875b29c101a05d409f9",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&BBOX=43.7864%2C11.2009%2C43.7866%2C11.2011%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+    "retrievedAt": "2026-10-05T23:35:31.407924+00:00",
+    "reduction": "Original HTTP-200 InvalidFormat exception; captured during plotAt debug.",
+    "timestampMethod": "Recorded file modification time at capture completion; UTC.",
+    "fixtureSha256": "d151a8241a154a26dee525732d1bbd73bb3995c76e7a7875b29c101a05d409f9"
+  },
+  {
+    "fixture": "municipality-firenze.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.201%2C43.7865&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-05T23:36:32.008569+00:00",
+    "reduction": "Original response; no attribute changes.",
+    "timestampMethod": "Recorded file modification time at capture completion; UTC.",
+    "originalSha256": "875d7f028fa5bc49fe4d738140d5a2ed53653d6f79e6cb549482157e8706ae87",
+    "fixtureSha256": "875d7f028fa5bc49fe4d738140d5a2ed53653d6f79e6cb549482157e8706ae87"
   }
 ]

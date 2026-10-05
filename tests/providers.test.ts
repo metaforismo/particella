@@ -60,8 +60,17 @@ const context = () => ({ signal: new AbortController().signal });
 
 test("all eight real providers normalize offline fixtures with source attribution and stable class keys", async () => {
   const country = getCountry("it");
-  for (const [id, provider] of Object.entries(country.layers).filter(
-    ([id]) => !["landscape", "planning", "land-cover", "accessibility", "market"].includes(id),
+  for (const [id, provider] of Object.entries(country.layers).filter(([id]) =>
+    [
+      "flood",
+      "landslide",
+      "seismic",
+      "protected-areas",
+      "terrain",
+      "solar",
+      "services",
+      "demographics",
+    ].includes(id),
   )) {
     const p =
       id === "services"

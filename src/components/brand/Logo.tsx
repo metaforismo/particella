@@ -18,7 +18,13 @@ export function LogoMark({ size = 22 }: { size?: number }) {
       className={styles.mark}
     >
       <defs>
-        <pattern id="particella-hatch" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <pattern
+          id="particella-hatch"
+          width="3.2"
+          height="3.2"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
           <rect width="1.3" height="3.2" fill="var(--cantiere)" />
         </pattern>
       </defs>
@@ -38,7 +44,11 @@ export function Logo({ compact = false, className }: Props) {
   return (
     <span className={[styles.logo, className].filter(Boolean).join(" ")}>
       <LogoMark />
-      {compact ? <span className="visually-hidden">Particella</span> : <span className={styles.word}>Particella</span>}
+      {compact ? (
+        <span className="visually-hidden">Particella</span>
+      ) : (
+        <span className={styles.word}>Particella</span>
+      )}
     </span>
   );
 }

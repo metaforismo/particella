@@ -1,0 +1,132 @@
+.header {
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.place {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: calc(var(--s-2) * -1);
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--ink-3);
+}
+
+.close:hover {
+  background: var(--paper-sunk);
+  color: var(--ink);
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.55rem;
+  margin-top: var(--s-1);
+  font-size: 1.625rem;
+  font-weight: 620;
+  font-stretch: var(--stretch-condensed);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.sep {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cantiere);
+  box-shadow: 0 0 0 1.5px var(--ink);
+}
+
+.address {
+  margin-top: var(--s-1);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.measures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.measures div {
+  padding: var(--s-2) 0;
+}
+
+.measures div + div {
+  padding-left: var(--s-3);
+  border-left: 1px solid var(--rule);
+}
+
+.measures dt {
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+}
+
+.measures dd {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  font-stretch: var(--stretch-condensed);
+}
+
+.measureNote {
+  margin-top: var(--s-2);
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.25rem;
+  padding: 0 var(--s-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 560;
+  text-decoration: none;
+  transition: background var(--dur-fast);
+}
+
+.primary {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.primary:hover {
+  background: #26322e;
+}
+
+.secondary {
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-raised);
+}
+
+.secondary:hover {
+  background: var(--paper-sunk);
+}

@@ -5,6 +5,9 @@
  */
 import { z } from "zod";
 
+/** Only web links ever reach an href: blocks `javascript:` and friends coming from upstream data. */
+const WebUrl = z.url({ protocol: /^https?$/ });
+
 export const CountryCode = z.enum(["it"]);
 export type CountryCode = z.infer<typeof CountryCode>;
 
@@ -20,7 +23,7 @@ export const Provenance = z.object({
   dataset: z.string(),
   authority: z.string(),
   license: z.string(),
-  url: z.url(),
+  url: WebUrl,
   method: z.enum(["api", "wms", "wfs", "snapshot", "computed"]),
   isOfficial: z.boolean(),
   /** The exact request we made, without secrets, so anyone can repeat it. */
@@ -116,7 +119,8 @@ export type Metric = z.infer<typeof Metric>;
 export const MapOverlay = z.object({
   id: z.string(),
   kind: z.literal("raster"),
-  tileUrl: z.string(),
+  /** Must point at our own tile proxy; third-party tile hosts are never passed through. */
+  tileUrl: z.string().startsWith("/api/v1/tiles/"),
   opacity: z.number().min(0).max(1),
   attribution: z.string(),
 });
@@ -170,7 +174,7 @@ export const SourceCatalogEntry = z.object({
   name: z.string(),
   authority: z.string(),
   license: z.string(),
-  url: z.url(),
+  url: WebUrl,
   coverage: z.string(),
   updateCadence: z.string().nullable(),
 });

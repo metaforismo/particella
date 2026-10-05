@@ -18,7 +18,9 @@ body {
   font-family: var(--font-sans);
   font-size: var(--fs-base);
   line-height: var(--lh-body);
-  font-feature-settings: "ss01", "tnum" 0;
+  font-feature-settings:
+    "ss01",
+    "tnum" 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -118,5 +120,11 @@ pre {
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
   }
 }

@@ -13,8 +13,8 @@ export function LayerLegend() {
           Cosa leggiamo per ogni terreno.
         </h2>
         <p>
-          {LAYERS.length} livelli da enti pubblici e dataset aperti. La copertura dei piani urbanistici dipende
-          dalla Regione: quando un dato manca lo diciamo, non lo stimiamo.
+          {LAYERS.length} livelli da enti pubblici e dataset aperti. La copertura dei piani urbanistici
+          dipende dalla Regione: quando un dato manca lo diciamo, non lo stimiamo.
         </p>
       </div>
 

@@ -79,7 +79,5 @@ export function HeroMap({ geometry, onArrive }: Props) {
 /** Keep the plot clear of the readout card, which sits bottom-left on wide screens. */
 function paddingFor(el: HTMLElement | null) {
   const wide = (el?.clientWidth ?? 0) > 560;
-  return wide
-    ? { top: 80, right: 60, bottom: 80, left: 380 }
-    : { top: 40, right: 40, bottom: 220, left: 40 };
+  return wide ? { top: 80, right: 60, bottom: 80, left: 380 } : { top: 40, right: 40, bottom: 230, left: 40 };
 }

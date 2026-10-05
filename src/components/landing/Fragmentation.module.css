@@ -92,7 +92,6 @@
   line-height: 1.3;
 }
 
-
 @media (max-width: 960px) {
   .section {
     grid-template-columns: 1fr;

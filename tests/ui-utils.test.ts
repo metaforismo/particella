@@ -117,7 +117,8 @@ test("status labels never turn missing data into reassurance", () => {
   assert.equal(resultLabel(layer({ status: "outside_coverage" })).tone, "unknown");
   assert.equal(resultLabel(layer({ status: "unavailable", severity: "none" })).tone, "unknown");
   assert.equal(resultLabel(layer({ severity: "high" })).label, "Rilevante");
-  assert.equal(resultLabel(layer({ severity: "unknown" })).label, "Dato incompleto");
+  assert.equal(resultLabel(layer({ severity: "unknown" })).label, "Informativo");
+  assert.equal(resultLabel(layer({ status: "partial", severity: "unknown" })).label, "Dato incompleto");
   assert.equal(stateLabel(undefined).tone, "pending");
   assert.equal(stateLabel({ status: "failed", message: "x" }).tone, "unknown");
 });

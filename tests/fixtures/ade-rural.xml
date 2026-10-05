@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding="UTF-8" ?>
+<wfs:FeatureCollection
+   xmlns:CP="http://mapserver.gis.umn.edu/mapserver"
+   xmlns:gml="http://www.opengis.net/gml/3.2"
+   xmlns:wfs="http://www.opengis.net/wfs/2.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralParcel&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"
+   timeStamp="2026-10-05T23:37:55" numberMatched="2" numberReturned="2">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+      		<gml:lowerCorner>43.699390 11.318328</gml:lowerCorner>
+      		<gml:upperCorner>43.701300 11.320599</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <CP:CadastralParcel gml:id="CadastralParcel.IT.AGE.PLA.A564_006000.109">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+        		<gml:lowerCorner>43.699390 11.318796</gml:lowerCorner>
+        		<gml:upperCorner>43.700043 11.320599</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <CP:msGeometry>
+          <gml:Polygon gml:id="CadastralParcel.IT.AGE.PLA.A564_006000.109.1" srsName="urn:ogc:def:crs:EPSG::6706">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">43.69974450 11.32044272 43.69975313 11.32047559 43.69976863 11.32052952 43.69978077 11.32058444 43.69978294 11.32059852 43.69978380 11.32059814 43.70004290 11.32048395 43.69992702 11.32008652 43.69975468 11.31947834 43.69957289 11.31884660 43.69940017 11.31879591 43.69939108 11.31912383 43.69939041 11.31915578 43.69946371 11.31948077 43.69952521 11.31968953 43.69954229 11.31974011 43.69958103 11.31987485 43.69962506 11.32002115 43.69966954 11.32018930 43.69971357 11.32034398 43.69974450 11.32044272 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </CP:msGeometry>
+        <CP:INSPIREID_LOCALID>IT.AGE.PLA.A564_006000.109</CP:INSPIREID_LOCALID>
+        <CP:INSPIREID_NAMESPACE>IT.AGE.PLA.</CP:INSPIREID_NAMESPACE>
+        <CP:LABEL>109</CP:LABEL>
+        <CP:NATIONALCADASTRALREFERENCE>A564_006000.109</CP:NATIONALCADASTRALREFERENCE>
+        <CP:ADMINISTRATIVEUNIT>A564</CP:ADMINISTRATIVEUNIT>
+      </CP:CadastralParcel>
+    </wfs:member>
+    <wfs:member>
+      <CP:CadastralParcel gml:id="CadastralParcel.IT.AGE.PLA.A564_006000.110">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+        		<gml:lowerCorner>43.699573 11.318328</gml:lowerCorner>
+        		<gml:upperCorner>43.701300 11.320484</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <CP:msGeometry>
+          <gml:Polygon gml:id="CadastralParcel.IT.AGE.PLA.A564_006000.110.1" srsName="urn:ogc:def:crs:EPSG::6706">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">43.69957289 11.31884660 43.69975468 11.31947834 43.69992702 11.32008652 43.70004290 11.32048395 43.70060456 11.32020855 43.70106534 11.31998129 43.70089136 11.31923143 43.70122816 11.31935106 43.70130020 11.31902726 43.70097609 11.31883270 43.70051731 11.31855408 43.70043451 11.31850249 43.70027924 11.31842091 43.70010382 11.31832792 43.69991913 11.31891138 43.69957289 11.31884660 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </CP:msGeometry>
+        <CP:INSPIREID_LOCALID>IT.AGE.PLA.A564_006000.110</CP:INSPIREID_LOCALID>
+        <CP:INSPIREID_NAMESPACE>IT.AGE.PLA.</CP:INSPIREID_NAMESPACE>
+        <CP:LABEL>110</CP:LABEL>
+        <CP:NATIONALCADASTRALREFERENCE>A564_006000.110</CP:NATIONALCADASTRALREFERENCE>
+        <CP:ADMINISTRATIVEUNIT>A564</CP:ADMINISTRATIVEUNIT>
+      </CP:CadastralParcel>
+    </wfs:member>
+</wfs:FeatureCollection>
+
+

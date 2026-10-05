@@ -1,0 +1,90 @@
+[
+  {
+    "fixture": "ade-rural.xml",
+    "original": "core/ade-wfs-rural.body",
+    "originalSha256": "9bd920da4a2a6afd6544eeecad62f54c2acb090e56c2417f303d89687e805c51",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&BBOX=43.6999%2C11.3199%2C43.700100000000006%2C11.3201%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+    "retrievedAt": "2026-10-05T21:37:55.897628+00:00",
+    "reduction": "Original XML; no geometric changes."
+  },
+  {
+    "fixture": "ade-street.xml",
+    "original": "core/ade-wfs-mi.body",
+    "originalSha256": "e0580c4c976e437f591035700187fc3ed0d6a013d4bc65d25d8a841196040117",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&BBOX=45.464099999999995%2C9.1899%2C45.4643%2C9.1901%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+    "retrievedAt": "2026-10-05T21:37:49.932833+00:00",
+    "reduction": "Original XML; no geometric changes."
+  },
+  {
+    "fixture": "pga-firenze.xml",
+    "original": "environment/mps_firenze.body",
+    "originalSha256": "98e8f2bafc84c289a3a7e9450aa1bd273f1cd2432867a8e30f13807896a6e733",
+    "requestUrl": "https://mps04-ws.pi.ingv.it/wfs_mps04_pga?service=WFS&version=2.0.0&request=GetFeature&typeNames=ms%3AshkValsPoeCost_PGA_50oPerc_10poe_&srsName=EPSG%3A4326&count=4&bbox=43.7196%2C11.2058%2C43.819599999999994%2C11.305800000000001%2CEPSG%3A4326",
+    "retrievedAt": "2026-10-05T21:37:52.148648+00:00",
+    "reduction": "Original XML; no geometric changes."
+  },
+  {
+    "fixture": "municipality-rural.json",
+    "original": "core/istat-commune-rural.body",
+    "originalSha256": "abee0822f20047e5c0d11dc17ad741b6462cfbff1ca94b9f7f7a95d69a599b40",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=pjson&geometry=11.32%2C43.7&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+    "retrievedAt": "2026-10-05T21:40:55.520485+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "grid-rural.json",
+    "original": "core/istat-grid-rural.body",
+    "originalSha256": "ba53628740b2e3f616dfc1e00bc8eab378061d731a66e0f840c24f4a42813a2f",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query?f=pjson&geometry=11.32%2C43.7&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+    "retrievedAt": "2026-10-05T21:40:58.320972+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "nominatim.json",
+    "original": "core/nominatim-forward.body",
+    "originalSha256": "dfc71efe9e217a2420c1fc0922c4222a1bb2d51d4e1e959cff8dbb04359ede4e",
+    "requestUrl": "https://nominatim.openstreetmap.org/search?q=Piazza%20Duomo%2C%20Milano&format=jsonv2&limit=1&addressdetails=1",
+    "retrievedAt": "2026-10-05T21:37:09.338001+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "photon.json",
+    "original": "core/photon-forward-default.body",
+    "originalSha256": "859dc3743761ec7608ece51c602f5983fa83485ff3ef138edb5f396350ddb3e3",
+    "requestUrl": "https://photon.komoot.io/api/?q=Piazza%20Duomo%20Milano&limit=1",
+    "retrievedAt": "2026-10-05T21:37:50.179279+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "terrain.json",
+    "original": "services/tinitaly_dem_milano.body",
+    "originalSha256": "dfbf769e534af98744490b61b9a457909e16805f9b9757f653790cbdaab059b1",
+    "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=tinitaly_dem&query_layers=tinitaly_dem&styles=&srs=EPSG%3A4326&bbox=9.189%2C45.4632%2C9.190999999999999%2C45.465199999999996&width=101&height=101&x=50&y=50&format=image%2Fpng&info_format=application%2Fjson",
+    "retrievedAt": "2026-10-05T21:38:51.846657+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "solar.json",
+    "original": "services/pvgis_milano.body",
+    "originalSha256": "8cd1875050a12f6319cd6f208d351d9f2d1eaf6cc8e643aaf6f9e9bcf196f4b0",
+    "requestUrl": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.4642&lon=9.1900&peakpower=1&loss=14&outputformat=json",
+    "retrievedAt": "2026-10-05T21:36:47.015814+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "flood-positive.json",
+    "original": "environment/idrowms_pericolosita_idraulica_p2_firenze.body",
+    "originalSha256": "32297db0dbdb3f1671de7d834fad986cf62286deb9fb58adec73deae57b68f55",
+    "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=idrogeo%3Apericolosita_idraulica_p2&query_layers=idrogeo%3Apericolosita_idraulica_p2&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=11.254800000000001%2C43.7686%2C11.2568%2C43.770599999999995&width=101&height=101&x=50&y=50&feature_count=5",
+    "retrievedAt": "2026-10-05T21:38:04.228935+00:00",
+    "reduction": "Geometries omitted; real IDs and attributes retained."
+  },
+  {
+    "fixture": "landslide-empty.json",
+    "original": "environment/idrowms_pericolosita_frane_milano.body",
+    "originalSha256": "6e9cb760844736f2eef45ab82841b4670364dba352d2ee343160f494363131ca",
+    "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=9.189%2C45.4632%2C9.190999999999999%2C45.465199999999996&width=101&height=101&x=50&y=50&feature_count=5",
+    "retrievedAt": "2026-10-05T21:37:49.290531+00:00",
+    "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  }
+]

@@ -6,22 +6,44 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint --max-warnings=0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:live": "node --experimental-strip-types scripts/live-smoke.ts",
+    "snapshots:refresh": "node --experimental-strip-types scripts/snapshots/refresh.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@turf/area": "^7.4.0",
+    "@turf/bbox": "^7.4.0",
+    "@turf/boolean-contains": "^7.4.0",
+    "@turf/boolean-intersects": "^7.4.0",
+    "@turf/boolean-point-in-polygon": "^7.4.0",
+    "@turf/distance": "^7.4.0",
+    "@turf/helpers": "^7.4.0",
+    "@turf/length": "^7.4.0",
+    "@turf/point-on-feature": "^7.4.0",
+    "@turf/point-to-line-distance": "^7.4.0",
+    "@turf/polygon-to-line": "^7.4.0",
+    "csv-parse": "^7.0.3",
+    "fast-xml-parser": "^5.11.2",
+    "fflate": "^0.8.3",
     "maplibre-gl": "^6.12.0",
     "next": "16.3.8",
+    "pngjs": "^7.0.0",
+    "proj4": "^2.22.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/node": "^24.19.1",
+    "@types/pngjs": "^6.0.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "typescript": "^5"
-  }
+  },
+  "type": "module"
 }

@@ -113,14 +113,14 @@
     "originalSha256": "85086a179fa4e2c4fc75abf48d99cb341686601ff7bb3e6bde5bfb281b98e68d",
     "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p3&query_layers=idrogeo%3Apericolosita_idraulica_p3&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
     "retrievedAt": "2026-10-05T22:28:51.886Z",
-    "reduction": "Whitespace compacted; full real geometry and attributes retained."
+    "reduction": "Whitespace normalized by Prettier; full real geometry and attributes retained."
   },
   {
     "fixture": "protected-positive.json",
     "originalSha256": "c5a66c05244fcb9fac986c16ff70185adbe7a4767eb98d524556c878fa2b4c1c",
     "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/0/query?f=geojson&geometry=9.097%2C45.635&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=10&returnGeometry=true&spatialRel=esriSpatialRelIntersects",
     "retrievedAt": "2026-10-05T22:28:52.322Z",
-    "reduction": "Whitespace compacted; full real geometry and attributes retained."
+    "reduction": "Whitespace normalized by Prettier; full real geometry and attributes retained."
   },
   {
     "fixture": "ade-zoning-filter-empty.xml",

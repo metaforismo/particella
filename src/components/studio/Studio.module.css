@@ -7,9 +7,9 @@
 /* Top bar floats over the map, aligned with the panel column. */
 .bar {
   position: absolute;
-  top: var(--s-3);
-  left: var(--s-3);
-  right: var(--s-3);
+  top: calc(var(--s-3) + env(safe-area-inset-top));
+  left: calc(var(--s-3) + env(safe-area-inset-left));
+  right: calc(var(--s-3) + env(safe-area-inset-right));
   z-index: 10;
   display: flex;
   align-items: center;
@@ -310,6 +310,10 @@
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     border-bottom: 0;
     transition: height var(--dur) var(--ease-out);
+  }
+
+  .scroll {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   .panel[data-open] {

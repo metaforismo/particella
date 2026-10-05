@@ -143,7 +143,13 @@ export function useStudio() {
     [plotId, loadLayer],
   );
 
-  const setActiveLayer = useCallback((id: LayerId | null) => dispatch({ type: "activate", id }), []);
+  const setActiveLayer = useCallback(
+    (id: LayerId | null) => {
+      dispatch({ type: "activate", id });
+      if (plotId) syncUrl(plotId, id);
+    },
+    [plotId],
+  );
 
   const clear = useCallback(() => {
     inflight.current?.abort();
@@ -157,8 +163,11 @@ export function useStudio() {
 }
 
 /** Keep the address bar shareable without triggering a navigation. */
-function syncUrl(plotId: string | null) {
+function syncUrl(plotId: string | null, layer: LayerId | null = null) {
   const url = new URL(window.location.href);
-  url.search = plotId ? `?plot=${encodeURIComponent(plotId)}` : "";
+  const params = new URLSearchParams();
+  if (plotId) params.set("plot", plotId);
+  if (plotId && layer) params.set("layer", layer);
+  url.search = params.size ? `?${params}` : "";
   window.history.replaceState(null, "", url);
 }

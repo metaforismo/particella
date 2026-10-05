@@ -31,7 +31,7 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
         </button>
       </div>
 
-      <h1 className={styles.title}>
+      <h1 className={styles.title} translate="no">
         Foglio <span className="num">{plot.cadastral.sheet}</span>
         <span className={styles.sep} aria-hidden="true" />
         Particella <span className="num">{plot.cadastral.parcel}</span>

@@ -67,11 +67,12 @@ export function PlaceSearch({
           ref={inputRef}
           className={styles.input}
           type="text"
+          name="q"
           inputMode="search"
           autoComplete="off"
           spellCheck={false}
           autoFocus={autoFocus}
-          placeholder="Indirizzo, comune o foglio e particella"
+          placeholder="Indirizzo, comune o foglio e particella…"
           value={query}
           role="combobox"
           aria-expanded={Boolean(showList)}
@@ -110,7 +111,7 @@ export function PlaceSearch({
           {error && !results.length ? (
             <li className={styles.status}>La ricerca degli indirizzi non risponde. Riprova tra poco.</li>
           ) : null}
-          {loading && !results.length ? <li className={styles.status}>Cerco…</li> : null}
+          {loading && !results.length ? <li className={styles.status}>Ricerca…</li> : null}
           {results.map((place, index) => (
             <li
               key={place.id}

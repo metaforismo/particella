@@ -47,7 +47,9 @@ export function Logo({ compact = false, className }: Props) {
       {compact ? (
         <span className="visually-hidden">Particella</span>
       ) : (
-        <span className={styles.word}>Particella</span>
+        <span className={styles.word} translate="no">
+          Particella
+        </span>
       )}
     </span>
   );

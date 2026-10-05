@@ -6,7 +6,7 @@ import { ArrowClockwise, ChatCircleText, ClockCounterClockwise, Stack } from "@p
 import { formatArea } from "@/lib/format";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
-import type { GeocodeResult, LatLon } from "@/lib/contracts";
+import type { GeocodeResult, LatLon, LayerId } from "@/lib/contracts";
 import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
@@ -15,7 +15,7 @@ import { forgetRecentPlots, useRecentPlots } from "./recent";
 import { useStudio } from "./useStudio";
 import styles from "./Studio.module.css";
 
-export type StudioInitial = { plotId?: string; point?: LatLon; query?: string };
+export type StudioInitial = { plotId?: string; point?: LatLon; query?: string; layer?: LayerId };
 
 const EXAMPLES: { label: string; detail: string; point: LatLon }[] = [
   { label: "Campagna a Bagno a Ripoli", detail: "Firenze", point: { lat: 43.7, lon: 11.32 } },
@@ -44,6 +44,14 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     query.addEventListener("change", update);
     return () => query.removeEventListener("change", update);
   }, []);
+
+  // A shared link may point at a layer: open it once the plot it belongs to is ready.
+  const pendingLayer = useRef(initial.layer ?? null);
+  useEffect(() => {
+    if (selection.status !== "ready" || !pendingLayer.current) return;
+    setActiveLayer(pendingLayer.current);
+    pendingLayer.current = null;
+  }, [selection.status, setActiveLayer]);
 
   // "/" jumps to search, Escape closes the open layer detail.
   useEffect(() => {
@@ -255,7 +263,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
 
           {selection.status === "locating" ? (
             <div className={styles.locating} aria-live="polite">
-              <p>Cerco la particella catastale in questo punto…</p>
+              <p>Ricerca della particella catastale in questo punto…</p>
               <span className={styles.skeleton} style={{ width: "40%" }} />
               <span className={styles.skeleton} style={{ width: "75%", height: "1.6rem" }} />
               <span className={styles.skeleton} style={{ width: "100%", height: "3rem" }} />

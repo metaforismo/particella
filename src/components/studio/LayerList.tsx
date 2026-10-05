@@ -27,7 +27,7 @@ export function LayerList({ layers, active, onToggle, onRetry }: Props) {
       <p className={styles.summary} aria-live="polite">
         {counts.pending > 0 ? (
           <>
-            Sto leggendo le fonti: <span className="num">{LAYERS.length - counts.pending}</span> di{" "}
+            Fonti lette: <span className="num">{LAYERS.length - counts.pending}</span> di{" "}
             <span className="num">{LAYERS.length}</span>
           </>
         ) : (
@@ -97,7 +97,7 @@ function LayerRow({
       ? state.result.headline
       : state?.status === "failed"
         ? state.message
-        : `Interrogo ${meta.authority}…`;
+        : `Lettura da ${meta.authority}…`;
   const panelId = `layer-${meta.id}`;
   const retriable =
     state?.status === "failed" ||

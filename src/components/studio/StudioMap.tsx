@@ -13,6 +13,8 @@ import styles from "./StudioMap.module.css";
 
 const ITALY: [number, number, number, number] = [6.6, 36.6, 18.6, 47.1];
 const CADASTRE_MIN_ZOOM = 15;
+/** Below this zoom a click lands on an arbitrary parcel, so it zooms in instead of selecting. */
+const PICK_MIN_ZOOM = 14;
 const ANALYSIS = "analysis";
 
 const isType = (...types: string[]) =>
@@ -62,8 +64,19 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
         map.touchZoomRotate.disableRotation();
         map.addControl(new maplibre.NavigationControl({ showCompass: false }), "bottom-right");
         map.addControl(new maplibre.ScaleControl({ unit: "metric", maxWidth: 110 }), "bottom-right");
-        map.on("click", (e) => pick.current({ lat: e.lngLat.lat, lon: e.lngLat.lng }));
-        map.on("zoomend", () => setZoom(map.getZoom()));
+        map.on("click", (e) => {
+          if (map.getZoom() < PICK_MIN_ZOOM) {
+            map.flyTo({ center: e.lngLat, zoom: 16.5, speed: 1.6 });
+            return;
+          }
+          pick.current({ lat: e.lngLat.lat, lon: e.lngLat.lng });
+        });
+        const syncZoom = () => {
+          setZoom(map.getZoom());
+          map.getCanvas().style.cursor = map.getZoom() < PICK_MIN_ZOOM ? "zoom-in" : "";
+        };
+        map.on("zoomend", syncZoom);
+        map.once("idle", syncZoom);
         map.once("load", () => {
           map.addSource("cadastre", {
             type: "raster",
@@ -187,14 +200,20 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
     }
   }, [activeResult, ready]);
 
-  const cadastreHint = showCadastre && ready && zoom >= 11 && zoom < CADASTRE_MIN_ZOOM - 0.5;
+  const hint = !ready
+    ? null
+    : zoom < PICK_MIN_ZOOM
+      ? "Tocca la mappa per avvicinarti, poi scegli il lotto"
+      : showCadastre && zoom < CADASTRE_MIN_ZOOM - 0.5
+        ? "Avvicinati ancora per vedere i confini delle particelle"
+        : null;
 
   return (
     <div className={styles.frame}>
       <div ref={container} className={styles.map} />
-      {cadastreHint ? (
+      {hint && !plot ? (
         <p className={styles.hint} style={{ left: `calc(50% + ${(inset.left - inset.right) / 2}px)` }}>
-          Avvicinati per vedere i confini delle particelle
+          {hint}
         </p>
       ) : null}
       {failed ? (

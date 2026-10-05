@@ -38,7 +38,7 @@
 
 .hint {
   position: absolute;
-  top: var(--s-4);
+  top: calc(var(--s-3) * 2 + 3rem + env(safe-area-inset-top));
   transform: translateX(-50%);
   padding: var(--s-1) var(--s-3);
   background: var(--ink);
@@ -47,6 +47,14 @@
   font-size: var(--fs-xs);
   pointer-events: none;
   white-space: nowrap;
+  animation: hint-in var(--dur) var(--ease-out);
+}
+
+@keyframes hint-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -4px);
+  }
 }
 
 .failed {

@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
 import { LegendSwatch } from "@/components/legend/LegendSwatch";
+import { EXAMPLES } from "@/content/examples";
 import { LAYER_BY_ID } from "@/content/layers";
 import type { HeroExample } from "@/content/hero-example";
 import { studioHref } from "@/lib/routes";
@@ -27,7 +29,16 @@ export function Hero({ example }: { example: HeroExample }) {
         <div className={styles.search}>
           <PlaceSearch onSelect={(place) => router.push(studioHref(place))} />
         </div>
-        <p className={styles.note}>Gratis durante la beta, senza registrazione.</p>
+        <p className={styles.note}>
+          Prova con{" "}
+          {EXAMPLES.slice(0, 3).map((ex, i) => (
+            <span key={ex.short}>
+              <Link href={`/studio?lat=${ex.point.lat}&lon=${ex.point.lon}`}>{ex.short}</Link>
+              {i < 2 ? ", " : ". "}
+            </span>
+          ))}
+          Gratis durante la beta, senza registrazione.
+        </p>
       </div>
 
       <figure className={styles.stage}>

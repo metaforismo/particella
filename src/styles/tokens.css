@@ -65,7 +65,7 @@
   --fs-lg: 1.5rem;
   --fs-xl: 2rem;
   --fs-2xl: clamp(2.25rem, 4vw, 2.875rem);
-  --fs-display: clamp(2.6rem, 5.4vw, 4.75rem);
+  --fs-display: clamp(2.6rem, 4.8vw, 4.25rem);
 
   --lh-tight: 1.04;
   --lh-snug: 1.22;

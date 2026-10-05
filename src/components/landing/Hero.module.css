@@ -97,17 +97,35 @@
   grid-template-columns: auto 1fr;
   column-gap: var(--s-2);
   align-items: center;
-  opacity: 0;
-  transform: translateY(4px);
+}
+
+/* Labels are there from the start; each value shimmers until the map lands, then reveals in sequence. */
+.rowValue,
+.rowSource {
   transition:
-    opacity 420ms var(--ease-out),
-    transform 420ms var(--ease-out);
+    color 420ms var(--ease-out),
+    background-color 420ms var(--ease-out),
+    opacity 420ms var(--ease-out);
   transition-delay: calc(var(--i) * 140ms);
 }
 
-.card[data-arrived] .row {
-  opacity: 1;
-  transform: none;
+.card:not([data-arrived]) .rowValue {
+  width: fit-content;
+  border-radius: var(--radius-xs);
+  color: transparent;
+  background: linear-gradient(90deg, var(--paper-sunk) 0%, var(--rule) 50%, var(--paper-sunk) 100%) 0 0 / 200%
+    100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.card:not([data-arrived]) .rowSource {
+  opacity: 0;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
 }
 
 .rowLabel {

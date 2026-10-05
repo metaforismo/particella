@@ -7,6 +7,7 @@ import {
   tileBbox,
   spatialRelation,
   representativePoint,
+  esriRings,
 } from "../src/server/geo/index.ts";
 import { estimateSlope } from "../src/server/geo/terrain.ts";
 import { gmlGeometry, xmlDocument, wfsMembers } from "../src/server/geo/gml.ts";
@@ -74,6 +75,11 @@ test("covers includes boundary and excludes holes; representative point is insid
   assert.equal(coversPoint(withHole, { lat: 0.0005, lon: 0.0005 }), false);
   assert.equal(coversPoint(withHole, { lat: 0.0002, lon: 0.0005 }), true);
   assert.ok(coversPoint(withHole, representativePoint(withHole)));
+  const signedArea = (ring: number[][]) =>
+    ring.slice(1).reduce((sum, p, i) => sum + ring[i][0] * p[1] - p[0] * ring[i][1], 0);
+  const rings = esriRings(withHole);
+  assert.ok(signedArea(rings[0]) < 0);
+  assert.ok(signedArea(rings[1]) > 0);
   const multi: PlotGeometry = {
     type: "MultiPolygon",
     coordinates: [
@@ -92,6 +98,11 @@ test("covers includes boundary and excludes holes; representative point is insid
   assert.equal(coversPoint(multi, { lat: 1.0005, lon: 1.0005 }), true);
 });
 test("GML supports holes/multipolygons and rejects truncation, unknown CRS and OGC exception", () => {
+  assert.throws(
+    () =>
+      wfsMembers('<wfs:FeatureCollection xmlns:wfs="wfs" numberMatched="unknown" numberReturned="0"/>', true),
+    UpstreamError,
+  );
   const polygon = {
     Polygon: {
       "@_srsName": "urn:ogc:def:crs:EPSG::6706",

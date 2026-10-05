@@ -100,5 +100,33 @@
     "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.3199%2C43.6999%2C11.3201%2C43.700100000000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
     "retrievedAt": "2026-10-05T22:21:30.995Z",
     "reduction": "Original GeoJSON, no geometric changes."
+  },
+  {
+    "fixture": "ade-zoning-rural.xml",
+    "originalSha256": "cc0614ad51929be60efb23d6d285eebae5a751aee207570b7a9ae7e3db232fc5",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.69990000%2C11.31990000%2C43.70010000%2C11.32010000%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralZoning&VERSION=2.0.0",
+    "retrievedAt": "2026-10-05T22:28:50.610Z",
+    "reduction": "Original XML; no geometric changes."
+  },
+  {
+    "fixture": "flood-empty.json",
+    "originalSha256": "85086a179fa4e2c4fc75abf48d99cb341686601ff7bb3e6bde5bfb281b98e68d",
+    "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p3&query_layers=idrogeo%3Apericolosita_idraulica_p3&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+    "retrievedAt": "2026-10-05T22:28:51.886Z",
+    "reduction": "Whitespace compacted; full real geometry and attributes retained."
+  },
+  {
+    "fixture": "protected-positive.json",
+    "originalSha256": "c5a66c05244fcb9fac986c16ff70185adbe7a4767eb98d524556c878fa2b4c1c",
+    "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/0/query?f=geojson&geometry=9.097%2C45.635&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=10&returnGeometry=true&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-05T22:28:52.322Z",
+    "reduction": "Whitespace compacted; full real geometry and attributes retained."
+  },
+  {
+    "fixture": "ade-zoning-filter-empty.xml",
+    "originalSha256": "8d1ce5ba57016c0559f536cd00168a6053d03b444ac12154f8c77785ade2201f",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22+xmlns%3ACP%3D%22http%3A%2F%2Fmapserver.gis.umn.edu%2Fmapserver%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ECP%3AADMINISTRATIVEUNIT%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3EA564%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ECP%3ALABEL%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E60%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AAnd%3E%3C%2Ffes%3AFilter%3E&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralZoning&VERSION=2.0.0",
+    "retrievedAt": "2026-10-05T22:30:25.648Z",
+    "reduction": "Original response for the known sheet. numberMatched=unknown, numberReturned=0; not evidence that the sheet does not exist."
   }
 ]

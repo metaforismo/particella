@@ -40,8 +40,8 @@ export interface Parcel {
   geometry: PlotGeometry;
   special: boolean;
 }
-export function parseParcels(text: string): Parcel[] {
-  return wfsMembers(text).map((node) => {
+export function parseParcels(text: string, requireConfirmedEmpty = false): Parcel[] {
+  return wfsMembers(text, requireConfirmedEmpty).map((node) => {
     const parsed = ParcelAttributes.safeParse(node);
     if (!parsed.success) throw new UpstreamError("Identificativi WFS catastali non validi.");
     const a = parsed.data;
@@ -63,8 +63,8 @@ export interface Zoning {
   belfiore: string;
   section: string | null;
 }
-export function parseZoning(text: string): Zoning[] {
-  return wfsMembers(text).map((n) => {
+export function parseZoning(text: string, requireConfirmedEmpty = false): Zoning[] {
+  return wfsMembers(text, requireConfirmedEmpty).map((n) => {
     const sheet = String(n.LABEL ?? ""),
       reference = String(n.NATIONALCADASTRALZONINGREFERENCE ?? "");
     const code = reference.match(/^([A-Z]\d{3})([A-Z0-9]{0,3})_[A-Z0-9]+$/);
@@ -152,7 +152,7 @@ function filter(property: string, value: string, sheet?: string): string {
   const expression = sheet
     ? `<fes:And>${equal(property, value)}${equal("CP:LABEL", sheet)}</fes:And>`
     : equal(property, value);
-  return `<fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">${expression}</fes:Filter>`;
+  return `<fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:CP="http://mapserver.gis.umn.edu/mapserver">${expression}</fes:Filter>`;
 }
 export async function plotById(id: string, signal?: AbortSignal): Promise<Plot> {
   const parts = parsePlotId(id),
@@ -168,9 +168,9 @@ export async function plotById(id: string, signal?: AbortSignal): Promise<Plot> 
     wfs("CP:CadastralZoning", {
       FILTER: filter("CP:ADMINISTRATIVEUNIT", parts.municipalityCode, parts.sheet),
     }),
-    { signal },
+    { signal, ttlMs: NEGATIVE_TTL_MS },
   );
-  const maps = parseZoning(textBody(zoningPayload)).filter(
+  const maps = parseZoning(textBody(zoningPayload), true).filter(
     (z) =>
       z.belfiore === parts.municipalityCode &&
       z.section === parts.section &&
@@ -186,9 +186,9 @@ export async function plotById(id: string, signal?: AbortSignal): Promise<Plot> 
     wfs("CP:CadastralParcel", {
       FILTER: filter("CP:NATIONALCADASTRALREFERENCE", `${maps[0].reference}.${parts.parcel}`),
     }),
-    { signal },
+    { signal, ttlMs: NEGATIVE_TTL_MS },
   );
-  const parcels = parseParcels(textBody(parcelPayload));
+  const parcels = parseParcels(textBody(parcelPayload), true);
   const parcel = parcels.find((p) => p.reference === `${maps[0].reference}.${parts.parcel}`);
   if (!parcel) {
     await cache.set(key, { missing: true }, NEGATIVE_TTL_MS);

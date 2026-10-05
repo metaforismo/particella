@@ -23,10 +23,14 @@ export function xmlDocument(text: string): XmlNode {
     throw new UpstreamError("La fonte ha restituito un'eccezione OGC.");
   return document;
 }
-export function wfsMembers(text: string): XmlNode[] {
+export function wfsMembers(text: string, requireConfirmedEmpty = false): XmlNode[] {
   const root = object(xmlDocument(text).FeatureCollection);
   if (!Object.keys(root).length) throw new UpstreamError("FeatureCollection WFS mancante.");
   const members = list(root.member ?? root.featureMember).map(object);
+  if (requireConfirmedEmpty && !members.length && root["@_numberMatched"] === "unknown")
+    throw new UpstreamError(
+      "La fonte WFS non conferma la ricerca catastale da ID; selezionare il lotto sulla mappa.",
+    );
   const matched = Number(root["@_numberMatched"]),
     returned = Number(root["@_numberReturned"]);
   if (

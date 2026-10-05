@@ -34,6 +34,7 @@ import { fixtureText } from "./helpers.ts";
 
 const request = (path: string) => new Request(`http://localhost/api/v1/${path}`);
 const originalFetch = globalThis.fetch;
+let unconfirmedColdLookup = false;
 globalThis.fetch = async (input) => {
   const url = new URL(String(input));
   let fixture: string;
@@ -43,6 +44,7 @@ globalThis.fetch = async (input) => {
     assert.equal(url.searchParams.get("COUNT"), "10");
     fixture =
       url.searchParams.get("TYPENAMES") === "CP:CadastralZoning" ? "ade-zoning-rural.xml" : "ade-rural.xml";
+    if (unconfirmedColdLookup && url.searchParams.has("FILTER")) fixture = "ade-zoning-filter-empty.xml";
   } else throw new Error(`Offline test blocked unexpected host ${url.host}`);
   return new Response(fixtureText(fixture), {
     headers: { "Content-Type": fixture.endsWith("xml") ? "application/xml" : "application/json" },
@@ -91,6 +93,17 @@ test("real fixture plotAt and cold reversible plotById agree", async () => {
   const cold = await byId(request(`plots/${plot.id}`), { params: Promise.resolve({ id: plot.id }) });
   assert.equal(cold.status, 200);
   assert.equal(Plot.parse(await cold.json()).id, plot.id);
+});
+test("unconfirmed live WFS empty never becomes a false cadastral not_found", async () => {
+  unconfirmedColdLookup = true;
+  try {
+    const id = "it:A564:_:9999:110";
+    const response = await byId(request(`plots/${id}`), { params: Promise.resolve({ id }) });
+    assert.equal(response.status, 502);
+    assert.equal(ApiError.parse(await response.json()).error.code, "upstream_unavailable");
+  } finally {
+    unconfirmedColdLookup = false;
+  }
 });
 test("unknown layers fail validation; report isolates provider failures", async () => {
   const id = "it:A564:_:60:110";

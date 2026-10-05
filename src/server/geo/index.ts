@@ -13,6 +13,18 @@ import type { Polygon, MultiPolygon, Position } from "geojson";
 import type { LatLon } from "../../lib/contracts/index.ts";
 
 export type PlotGeometry = Polygon | MultiPolygon;
+export function esriRings(geometry: PlotGeometry): Position[][] {
+  const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+  return polygons.flatMap((rings) =>
+    rings.map((ring, index) => {
+      const signedArea = ring.slice(1).reduce((sum, p, i) => sum + ring[i][0] * p[1] - p[0] * ring[i][1], 0);
+      // ArcGIS exteriors are clockwise; holes are counterclockwise.
+      return signedArea < 0 === (index === 0)
+        ? ring.map((p) => [...p])
+        : [...ring].reverse().map((p) => [...p]);
+    }),
+  );
+}
 proj4.defs("EPSG:6706", "+proj=longlat +ellps=GRS80 +no_defs +type=crs");
 proj4.defs(
   "EPSG:3857",

@@ -1,6 +1,6 @@
 import type { SourceCatalogEntry } from "../../lib/contracts/index.ts";
 import type { HostPolicy } from "./http.ts";
-import { italianSources } from "../countries/it/sources.ts";
+import { countrySources } from "../countries/sources.ts";
 
 export interface SourceDefinition extends SourceCatalogEntry {
   isOfficial: boolean;
@@ -11,7 +11,7 @@ export interface SourceDefinition extends SourceCatalogEntry {
   verification: { state: "verified" | "partial"; date: string; note: string };
   referenceDate?: string;
 }
-export const sources: readonly SourceDefinition[] = italianSources;
+export const sources: readonly SourceDefinition[] = countrySources;
 export function source(id: string): SourceDefinition {
   const found = sources.find((s) => s.id === id);
   if (!found) throw new Error(`Unknown source ${id}`);

@@ -3,7 +3,8 @@ import { layerResult } from "../../../core/layers.ts";
 import { provenance } from "../../../core/provenance.ts";
 import { http } from "../../../core/http.ts";
 import { source } from "../../../core/sources.ts";
-import { spatialRelation, type PlotGeometry } from "../../../geo/index.ts";
+import { UpstreamError } from "../../../core/errors.ts";
+import { spatialRelation, esriRings, type PlotGeometry } from "../../../geo/index.ts";
 import { arcPointParams, parseGeo, queryUrl } from "../queries.ts";
 
 const radiusM = 1000;
@@ -18,7 +19,7 @@ export const protectedAreas: LayerProvider = async (plot, { signal }) => {
   const geometryParams: Record<string, string> = polygon
     ? {
         geometry: JSON.stringify({
-          rings: (polygon.type === "Polygon" ? [polygon.coordinates] : polygon.coordinates).flat(),
+          rings: esriRings(polygon),
           spatialReference: { wkid: 4326 },
         }),
         geometryType: "esriGeometryPolygon",
@@ -39,7 +40,8 @@ export const protectedAreas: LayerProvider = async (plot, { signal }) => {
       const payload = await http.request(url, { signal, policy: source(sourceId).hostPolicy });
       const collection = parseGeo(payload);
       const features = collection.features.flatMap((f) => {
-        if (f.geometry?.type !== "Polygon" && f.geometry?.type !== "MultiPolygon") return [];
+        if (f.geometry?.type !== "Polygon" && f.geometry?.type !== "MultiPolygon")
+          throw new UpstreamError("Geometria di area protetta mancante o non valida.");
         const relation = spatialRelation(f.geometry, polygon, plot.centroid);
         if (relation.distanceM > radiusM) return [];
         return [

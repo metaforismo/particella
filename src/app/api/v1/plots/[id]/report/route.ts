@@ -6,7 +6,7 @@ export async function GET(_request: Request, context: RouteContext<"/api/v1/plot
   return route(async () => {
     const { id } = await context.params,
       country = getCountry("it");
-    const plot = await country.plotById(id);
+    const plot = await country.plotById(id, AbortSignal.timeout(25_000));
     const layers = await Promise.all(
       layerCatalog.map(({ id: layer }) => runLayer(layer as LayerId, plot, country.layers[layer])),
     );

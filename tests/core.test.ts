@@ -15,6 +15,15 @@ import { runLayer, layerResult } from "../src/server/core/layers.ts";
 import type { Plot } from "../src/lib/contracts/index.ts";
 
 const immediate: HostLimiter = { acquire: async () => () => {} };
+test("cache evicts by byte budget and oversized payloads are not retained", async () => {
+  const storage = new MemoryCache(100, Date.now, 400);
+  await storage.set("first", new Uint8Array(200), 1000);
+  await storage.set("second", new Uint8Array(200), 1000);
+  assert.equal(await storage.get("first"), undefined);
+  assert.ok(await storage.get("second"));
+  await storage.set("oversized", new Uint8Array(500), 1000);
+  assert.equal(await storage.get("oversized"), undefined);
+});
 test("429 retries respect Retry-After when the deadline allows another attempt", async () => {
   let calls = 0;
   const start = Date.now();

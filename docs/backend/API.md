@@ -151,3 +151,32 @@ Envelope `{ "error": { "code": "…", "message": "…" } }`. Errori e risultati 
 `npm run test:live` esegue route e provider reali su Firenze, Duomo Milano e Bagno a Ripoli; scrive `tests/live-results.json` generato. Il risultato locale dei controlli e quello di rete sono distinti. Leggere anche `verification/SESSION-B.md` per esiti e limiti.
 
 OMI può pubblicare quotazioni residenziali senza dichiarare una tipologia prevalente: in quel caso il livello è `partial` e mostra tutte le tipologie disponibili, senza attribuire una prevalenza. Se non pubblica prezzi residenziali, lo stato è `empty`, mantenendo la zona e il semestre. La fixture reale rurale registra questo caso.
+
+
+## Sessione C: dati dei terreni
+
+Il catalogo e il report includono 17 layer. Nuovi identificativi additivi:
+
+| Layer | Gruppo | Scope | Fonte |
+|---|---|---|---|
+| `power-grid` | `energia` | `buffer` | OSM: geometrie di linee con `voltage` ≥132000 V e stazioni entro 10 km |
+| `industrial-sites` | `energia` | `buffer` | OSM: aree industriali, cave e discariche entro 2 km |
+| `infrastructure-distances` | `urbanistica` | `buffer` | OSM: strade principali, ferrovie, cimiteri e pozzi entro 2 km |
+| `regional-land-cover` | `ambiente` | `point` | UCS Toscana 2019 / DUSAF Lombardia 7.0 (2021) |
+
+Esempi su un vero lotto urbano milanese, con `at` necessario a cache fredda:
+
+```sh
+curl 'http://localhost:3000/api/v1/plots/it:F205:_:390:61/layers/power-grid?at=45.464800,9.191000'
+curl 'http://localhost:3000/api/v1/plots/it:F205:_:390:61/layers/regional-land-cover?at=45.464800,9.191000'
+curl 'http://localhost:3000/api/v1/plots/it:F205:_:390:61/report?at=45.464800,9.191000'
+curl 'http://localhost:3000/api/v1/plots/at?lat=43.7865&lon=11.2010'
+```
+
+Le distanze OSM si riferiscono al confine catastale quando disponibile, altrimenti al punto rappresentativo: non sono percorsi o fasce legali. `grid-line-nearest`, `substation-nearest`, `hv-substation-nearest` sono distanze degli elementi censiti; `null` non significa zero né distanza illimitata. Nessun dato di capacità o connessione. `partial` segnala tensioni non interpretabili o geometrie mancanti; un errore Overpass non diventa `empty`. I tre layer condividono una query, una sola cache HTTP e il limiter della fonte. I server pubblici Overpass restano esclusi in produzione commerciale.
+
+Il layer regionale non estende CORINE né ne modifica la semantica: è separato, con scope `point`, anno e codice della propria carta. Altri territori: `outside_coverage`. Nessuna percentuale impermeabilizzata dal codice di uso del suolo.
+
+`terrain.metrics` aggiunge `aspect_estimate` (azimut medio stimato di discesa, gradi in senso orario da nord) e `south_facing_share` (`null`, percentuale areale non calcolabile con il metodo attuale). Aspect `null` sotto 0,5% di pendenza o con geometria/campioni insufficienti. Nessuna modifica dei valori preesistenti.
+
+Il punto di regressione AdE ora restituisce `it:D612:_:50:1102`: in caso di ExceptionReport/HTML la query spaziale tenta una sola bbox più piccola sullo stesso punto, verificando comunque geometria e foglio reali. Se entrambi i tentativi falliscono, 502 `upstream_unavailable` con messaggio comprensibile.

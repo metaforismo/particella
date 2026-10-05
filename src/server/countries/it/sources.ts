@@ -40,6 +40,46 @@ function define(
 
 export const italianSources: SourceDefinition[] = [
   define(
+    "toscana-ucs",
+    "Uso del suolo — UCS 2019",
+    "Regione Toscana",
+    "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs",
+    "WMS",
+    {
+      coverage: "Toscana",
+      referenceDate: "2019",
+      license: "CC BY (versione non indicata nei metadati)",
+      licenseUrl:
+        "https://www502.regione.toscana.it/geonetwork/srv/ita/catalog.search#/metadata/r_toscan:0d4d6640-9a1c-47a4-9a5d-a85cdb36927c",
+      url: "https://www502.regione.toscana.it/geoscopio/servizi/wms/USO_E_COPERTURA_DEL_SUOLO.htm",
+      hostPolicy: { concurrency: 2, requestsPerSecond: 2 },
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "Identify reale urbano/agricolo/montano; CC BY nei metadati UCS, versione non specificata.",
+      },
+    },
+  ),
+  define(
+    "lombardia-dusaf",
+    "Uso del suolo — DUSAF 7.0",
+    "Regione Lombardia",
+    "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query",
+    "REST",
+    {
+      coverage: "Lombardia",
+      referenceDate: "2021",
+      updateCadence: "Aggiornamenti a discrezione dell’ente",
+      licenseUrl:
+        "https://www.geoportale.regione.lombardia.it/metadati?_detailSheetMetadata_WAR_gptmetadataportlet_identifier=r_lombar%3A7cd05e9f-b693-4d7e-a8de-71b40b45f54e&p_p_id=detailSheetMetadata_WAR_gptmetadataportlet",
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "Identify reale Milano, risaia nel Lodigiano e bosco in Valsassina; CC BY 4.0 nel metadato.",
+      },
+    },
+  ),
+  define(
     "nominatim",
     "Geocoding OpenStreetMap",
     "OpenStreetMap contributors / OSMF",
@@ -199,7 +239,7 @@ export const italianSources: SourceDefinition[] = [
   ),
   define(
     "overpass",
-    "Servizi OpenStreetMap",
+    "Servizi e infrastrutture — OpenStreetMap",
     "OpenStreetMap contributors",
     process.env.OVERPASS_URL ?? "https://overpass-api.de/api/interpreter",
     "REST",
@@ -210,6 +250,11 @@ export const italianSources: SourceDefinition[] = [
       coverage: "Globale, completezza variabile",
       url: "https://dev.overpass-api.de/overpass-doc/en/",
       hostPolicy: { concurrency: 1, requestsPerSecond: 0.2 },
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "Nodi/way con geometrie per rete, infrastrutture e usi del suolo; Milano, Bagno a Ripoli e Vallombrosa. Timeout/504 osservati: nessun dato di riempimento. ODbL; hosting dedicato richiesto per produzione.",
+      },
     },
   ),
   define(

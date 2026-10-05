@@ -1,0 +1,1 @@
+{"displayFieldName":"LIV_1","fieldAliases":{"OBJECTID":"OBJECTID","DESCR":"DESCR"},"fields":[{"name":"OBJECTID","type":"esriFieldTypeOID","alias":"OBJECTID"},{"name":"DESCR","type":"esriFieldTypeString","alias":"DESCR","length":150}],"features":[{"attributes":{"OBJECTID":291465,"DESCR":"31111 – boschi di latifoglie a densità media e alta governati a ceduo"}}]}

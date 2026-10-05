@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { setTimeout as delay } from "node:timers/promises";
 import { canonicalKey, cache, NEGATIVE_TTL_MS, type Cache } from "#server/core/cache.ts";
-import { RateLimited, UpstreamError } from "#server/core/errors.ts";
+import { ProtocolError, RateLimited, UpstreamError } from "#server/core/errors.ts";
 
 export const USER_AGENT = "Particella/0.1 (+https://github.com/metaforismo/particella)";
 
@@ -70,6 +70,13 @@ export interface HttpOptions {
   validate?: (payload: HttpPayload) => void;
 }
 
+interface PendingRequest {
+  task: Promise<HttpPayload>;
+  controller: AbortController;
+  callers: number;
+  settled: boolean;
+}
+
 export function retryAfterMs(value: string | null, now = Date.now()): number | null {
   if (value === null) return null;
   if (/^\d+(\.\d+)?$/.test(value)) return Number(value) * 1000;
@@ -87,7 +94,7 @@ export function canonicalUrl(input: string): string {
 }
 
 export class HttpClient {
-  private inFlight = new Map<string, Promise<HttpPayload>>();
+  private inFlight = new Map<string, PendingRequest>();
 
   private readonly storage: Cache;
 
@@ -106,6 +113,7 @@ export class HttpClient {
   }
 
   async request(input: string, options: HttpOptions = {}): Promise<HttpPayload> {
+    if (options.signal?.aborted) throw new UpstreamError("Richiesta interrotta.");
     const url = canonicalUrl(input);
     const key = canonicalKey("http:v1", {
       url,
@@ -113,37 +121,74 @@ export class HttpClient {
       body: options.body,
       headers: options.headers,
     });
-    const cached = await this.storage.get<HttpPayload | { failure: true; rateLimited: boolean }>(key);
+    const cached = await this.storage.get<
+      | HttpPayload
+      | {
+          failure: true;
+          rateLimited: boolean;
+          protocolKind?: ProtocolError["kind"];
+          message: string;
+        }
+    >(key);
     if (cached) {
-      if ("failure" in cached) throw cached.rateLimited ? new RateLimited() : new UpstreamError();
+      if ("failure" in cached)
+        throw cached.rateLimited
+          ? new RateLimited()
+          : cached.protocolKind
+            ? new ProtocolError(cached.protocolKind, cached.message)
+            : new UpstreamError(cached.message);
       options.validate?.(cached);
       return cached;
     }
     if (options.signal?.aborted) throw new UpstreamError("Richiesta interrotta.");
     const existing = this.inFlight.get(key);
-    if (existing) {
-      const result = await waitForCaller(existing, options.signal);
+    if (existing && !existing.controller.signal.aborted) {
+      const result = await this.join(existing, options.signal);
       options.validate?.(result);
       return result;
     }
-    const task = this.execute(url, { ...options, signal: undefined })
-      .then(async (result) => {
-        await this.storage.set(key, result, options.ttlMs ?? 86_400_000);
-        return result;
-      })
-      .catch(async (error: unknown) => {
-        await this.storage.set(
-          key,
-          { failure: true, rateLimited: error instanceof RateLimited },
-          NEGATIVE_TTL_MS,
-        );
-        throw error;
-      })
-      .finally(() => {
-        this.inFlight.delete(key);
-      });
-    this.inFlight.set(key, task);
-    return waitForCaller(task, options.signal);
+    const controller = new AbortController();
+    const entry: PendingRequest = {
+      controller,
+      callers: 0,
+      settled: false,
+      task: this.execute(url, { ...options, signal: controller.signal })
+        .then(async (result) => {
+          await this.storage.set(key, result, options.ttlMs ?? 86_400_000);
+          return result;
+        })
+        .catch(async (error: unknown) => {
+          // Caller cancellation must not poison another request with a negative cache entry.
+          if (!entry.controller.signal.aborted)
+            await this.storage.set(
+              key,
+              {
+                failure: true,
+                rateLimited: error instanceof RateLimited,
+                protocolKind: error instanceof ProtocolError ? error.kind : undefined,
+                message: error instanceof UpstreamError ? error.message : "La fonte non è disponibile.",
+              },
+              NEGATIVE_TTL_MS,
+            );
+          throw error;
+        })
+        .finally(() => {
+          entry.settled = true;
+          if (this.inFlight.get(key) === entry) this.inFlight.delete(key);
+        }),
+    };
+    this.inFlight.set(key, entry);
+    return this.join(entry, options.signal);
+  }
+
+  private async join(entry: PendingRequest, signal?: AbortSignal): Promise<HttpPayload> {
+    entry.callers++;
+    try {
+      return await waitForCaller(entry.task, signal);
+    } finally {
+      entry.callers--;
+      if (!entry.callers && !entry.settled) entry.controller.abort();
+    }
   }
 
   private async execute(url: string, options: HttpOptions): Promise<HttpPayload> {
@@ -212,7 +257,17 @@ function waitForCaller<T>(task: Promise<T>, signal?: AbortSignal): Promise<T> {
   return new Promise((resolve, reject) => {
     const abort = () => reject(new UpstreamError("Richiesta interrotta."));
     signal.addEventListener("abort", abort, { once: true });
-    task.then(resolve, reject).finally(() => signal.removeEventListener("abort", abort));
+    const cleanup = () => signal.removeEventListener("abort", abort);
+    task.then(
+      (value) => {
+        cleanup();
+        resolve(value);
+      },
+      (error: unknown) => {
+        cleanup();
+        reject(error);
+      },
+    );
     if (signal.aborted) abort();
   });
 }
@@ -220,11 +275,9 @@ function waitForCaller<T>(task: Promise<T>, signal?: AbortSignal): Promise<T> {
 function checkProtocol(bytes: Uint8Array, contentType: string, customValidator: boolean): void {
   if (/image\/|application\/zip|octet-stream/.test(contentType)) return;
   const text = new TextDecoder().decode(bytes);
-  if (
-    /<(?:[\w-]+:)?(?:ExceptionReport|ServiceExceptionReport)\b/.test(text) ||
-    (!customValidator && /<!doctype html|<html\b/i.test(text))
-  )
-    throw new UpstreamError("Errore di protocollo della fonte.");
+  if (/<(?:[\w-]+:)?(?:ExceptionReport|ServiceExceptionReport)\b/.test(text))
+    throw new ProtocolError("ogc_exception");
+  if (!customValidator && /<!doctype html|<html\b/i.test(text)) throw new ProtocolError("html");
   if (contentType.includes("json")) {
     try {
       JSON.parse(text);

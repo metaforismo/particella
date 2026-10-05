@@ -145,7 +145,7 @@ test("tools close over the selected plot and compact fake provider output withou
   assert.equal("features" in result, false);
   const layers = await tools.listLayers.execute!({}, options);
   assert.ok(Array.isArray(layers));
-  assert.equal(layers.length, 13);
+  assert.equal(layers.length, 17);
 });
 
 test("AI SDK 7 streams the real UI protocol with a mock model and executes the server tool first", async () => {

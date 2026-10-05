@@ -18,6 +18,34 @@ export type LayerProvider = (plot: Plot, context: LayerContext) => Promise<Layer
 
 export const layerCatalog: LayerCatalogEntry[] = [
   {
+    id: "power-grid",
+    group: "energia",
+    title: "Rete elettrica vicina",
+    description: "Distanze geometriche da linee ≥132 kV e stazioni OSM entro 10 km",
+    sourceIds: ["overpass"],
+  },
+  {
+    id: "infrastructure-distances",
+    group: "urbanistica",
+    title: "Distanze dalle infrastrutture",
+    description: "Distanze da strade principali, ferrovie, cimiteri e pozzi OSM entro 2 km",
+    sourceIds: ["overpass"],
+  },
+  {
+    id: "industrial-sites",
+    group: "energia",
+    title: "Aree industriali, cave e discariche",
+    description: "Aree censite in OpenStreetMap entro 2 km, senza classificazione legale",
+    sourceIds: ["overpass"],
+  },
+  {
+    id: "regional-land-cover",
+    group: "ambiente",
+    title: "Uso del suolo regionale",
+    description: "Classe UCS Toscana 2019 o DUSAF Lombardia 2021 sul punto",
+    sourceIds: ["toscana-ucs", "lombardia-dusaf"],
+  },
+  {
     id: "flood",
     group: "rischi",
     title: "Alluvioni",

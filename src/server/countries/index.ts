@@ -17,6 +17,8 @@ import { planning } from "#server/countries/it/layers/planning.ts";
 import { landCover } from "#server/countries/it/layers/land-cover.ts";
 import { accessibility } from "#server/countries/it/layers/accessibility.ts";
 import { market } from "#server/countries/it/layers/market.ts";
+import { regionalLandCover } from "#server/countries/it/layers/regional-land-cover.ts";
+import { powerGrid, infrastructureDistances, industrialSites } from "#server/countries/it/layers/osm-land.ts";
 
 const countries: Record<string, CountryAdapter> = {
   it: {
@@ -38,6 +40,10 @@ const countries: Record<string, CountryAdapter> = {
       "land-cover": landCover,
       accessibility,
       market,
+      "regional-land-cover": regionalLandCover,
+      "power-grid": powerGrid,
+      "infrastructure-distances": infrastructureDistances,
+      "industrial-sites": industrialSites,
     },
     overlays: [
       overlay("cadastre", "Agenzia delle Entrate · CC BY 4.0"),

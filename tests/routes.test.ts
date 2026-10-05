@@ -130,7 +130,7 @@ test("unknown layers fail validation; report isolates provider failures", async 
     const response = await report(request(`plots/${id}/report`), { params: Promise.resolve({ id }) });
     assert.equal(response.status, 200);
     const parsed = PlotReport.parse(await response.json());
-    assert.equal(parsed.layers.length, 13);
+    assert.equal(parsed.layers.length, 17);
     assert.equal(parsed.layers.find((l) => l.layer === "solar")?.status, "unavailable");
     assert.equal(parsed.layers.find((l) => l.layer === "flood")?.status, "empty");
     assert.equal(response.headers.get("Cache-Control"), "no-store");

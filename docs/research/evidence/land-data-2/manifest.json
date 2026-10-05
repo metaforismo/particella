@@ -1,0 +1,796 @@
+{
+  "executedOn": "2026-10-06 Europe/Rome",
+  "entries": [
+    {
+      "id": "effis-page",
+      "url": "https://forest-fire.emergency.copernicus.eu/applications/data-and-services",
+      "status": 200,
+      "ms": 1624,
+      "bytes": 39671,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:31.006Z",
+      "sha256": "8a2647a948fee852b4a252a13010adefa09df0d62e7b147c20e75a9435171bbe"
+    },
+    {
+      "id": "lombardia-catalog",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio?f=pjson",
+      "status": 200,
+      "ms": 1758,
+      "bytes": 7556,
+      "cors": "https://particella.app",
+      "retrievedAt": "2026-10-05T23:26:31.136Z",
+      "sha256": "62763085ce09708ac01125d83c647bdfbe1d63c72b8591a7f4cc4379cfc16269"
+    },
+    {
+      "id": "toscana-idro",
+      "url": "https://www502.regione.toscana.it/ows_idrogeologico/com.rt.wms.RTmap/wms?map=owsidrogeologico&service=WMS&request=GetCapabilities",
+      "status": 200,
+      "ms": 2333,
+      "bytes": 22002,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:31.136Z",
+      "sha256": "00effd0791327fb02a73a4a7f3066d12f9d2754c35962b19cf0f35fa25864e21"
+    },
+    {
+      "id": "toscana-pedo",
+      "url": "https://www502.regione.toscana.it/ows2/com.rt.wms.RTmap/wms?map=owspedologia&service=WMS&request=GetCapabilities",
+      "status": 200,
+      "ms": 410,
+      "bytes": 56536,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:31.547Z",
+      "sha256": "92edda32c59543ccbbc7e4f4a6ef6f5aa6575efefeda018bcc0cb76838898377"
+    },
+    {
+      "id": "ade-debug",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&BBOX=43.7864%2C11.2009%2C43.7866%2C11.2011%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+      "status": 200,
+      "ms": 2800,
+      "bytes": 5232,
+      "cors": null,
+      "retrievedAt": "2026-10-05T23:26:32.179Z",
+      "sha256": "4b48e3a77d344c06608ac4f5dae897bf673b756eaab6b50237b0d07471d466cd"
+    },
+    {
+      "id": "toscana-ucs",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&request=GetCapabilities",
+      "status": 200,
+      "ms": 4340,
+      "bytes": 965293,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:35.887Z",
+      "sha256": "34c5532e805c9a00fc160db6b09cddf7b61dd84ea690781947212b6976bbabbc"
+    },
+    {
+      "id": "toscana-incendi-page",
+      "url": "https://www502.regione.toscana.it/geoscopio/servizi/wms/INCENDI.htm",
+      "status": 200,
+      "ms": 355,
+      "bytes": 59263,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:36.242Z",
+      "sha256": "e42db50f807f628a8f167f06103f35c7fb39054ecc912c9e7834f813384a3703"
+    },
+    {
+      "id": "toscana-cave-page",
+      "url": "https://www502.regione.toscana.it/geoscopio/servizi/wms/PIANO_REGIONALE_CAVE.htm",
+      "status": 200,
+      "ms": 163,
+      "bytes": 8971,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:36.406Z",
+      "sha256": "e349b0d76c8fb9058b4b26dc62702c99238fda5b6d204930194f05f96753c672"
+    },
+    {
+      "id": "toscana-fer-page",
+      "url": "https://www502.regione.toscana.it/geoscopio/servizi/wms/FONTI_RINNOVABILI.htm",
+      "status": 200,
+      "ms": 380,
+      "bytes": 9213,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:26:36.787Z",
+      "sha256": "f09bfc33f6f8327dc96308c8ed6f643d3e27a1605389b13afcd45b7e1ac2bc6b"
+    },
+    {
+      "id": "sinacloud-root",
+      "url": "https://sinacloud.isprambiente.it/arcgisina/rest/services?f=pjson",
+      "status": 200,
+      "ms": 222,
+      "cors": "https://particella.app",
+      "bytes": 1622,
+      "retrievedAt": "2026-10-05T23:27:15.028Z",
+      "sha256": "973d57fec81dd154e54b8a17d183d9f6c36883166bd72bd42d749234e5199ed2"
+    },
+    {
+      "id": "effis-license",
+      "url": "https://forest-fire.emergency.copernicus.eu/about-effis/data-license",
+      "status": 200,
+      "ms": 233,
+      "cors": "*",
+      "bytes": 13433,
+      "retrievedAt": "2026-10-05T23:27:15.036Z",
+      "sha256": "45ada44c9887dd982d7b5a4b526ab99ea9a838624e82647cd516c34a0c10c062"
+    },
+    {
+      "id": "lombardia-root",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services?f=pjson",
+      "status": 200,
+      "ms": 282,
+      "cors": "https://particella.app",
+      "bytes": 155,
+      "retrievedAt": "2026-10-05T23:27:15.087Z",
+      "sha256": "eb9cdc72a3e787082b95ac8915948a4e1ebcaa7b50bbfe0dafc5c191f6f6e29c"
+    },
+    {
+      "id": "dusaf7-cap",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer?f=pjson",
+      "status": 200,
+      "ms": 77,
+      "cors": "https://particella.app",
+      "bytes": 2835,
+      "retrievedAt": "2026-10-05T23:27:15.164Z",
+      "sha256": "2756107390f3be68675e026284c81bb48209c29f2c114a8453fe74637a8699c9"
+    },
+    {
+      "id": "piemonte-idro-meta",
+      "url": "https://webgis.arpa.piemonte.it/agportal/sharing/rest/content/items/10ebe344516b4c2ba79be1a457082e77?f=pjson",
+      "status": 200,
+      "ms": 434,
+      "cors": "https://particella.app",
+      "bytes": 6025,
+      "retrievedAt": "2026-10-05T23:27:15.240Z",
+      "sha256": "74acec569153dcdf0097f6db4572d4a4edb12603b33bc94114eb6c01e15c04f1"
+    },
+    {
+      "id": "effis-cap",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&request=GetCapabilities",
+      "status": 200,
+      "ms": 828,
+      "cors": "*",
+      "bytes": 98597,
+      "retrievedAt": "2026-10-05T23:27:15.537Z",
+      "sha256": "5a5ebc3ff9e7661c13b4c74900307ccfd6bd322291398690812d54aaa5f007ec"
+    },
+    {
+      "id": "sinacloud-soil",
+      "url": "https://sinacloud.isprambiente.it/arcgisina/rest/services/sina_consumo_suolo?f=pjson",
+      "status": 200,
+      "ms": 217,
+      "cors": "https://particella.app",
+      "bytes": 2447,
+      "retrievedAt": "2026-10-05T23:28:00.223Z",
+      "sha256": "e789a654154127c073d07fea43bda24a6ddd58cc1230d916882f8ff9b6c4adb8"
+    },
+    {
+      "id": "idro-firenze",
+      "url": "https://www502.regione.toscana.it/ows_idrogeologico/com.rt.wms.RTmap/wms?map=owsidrogeologico&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_idrogeol.idrd32671923.rt.poly&query_layers=rt_idrogeol.idrd32671923.rt.poly&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256450000000001%2C43.76922%2C11.25655%2C43.76932&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 269,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:00.274Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "dusaf-milano",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query?f=json&geometry=9.191%2C45.4648&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false",
+      "status": 200,
+      "ms": 333,
+      "cors": "https://particella.app",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:00.339Z",
+      "sha256": "21c3382551732e4ead4badd434a975cd6875f4d9561a5a609d06ae72905d9f66"
+    },
+    {
+      "id": "effis-firenze",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=11.256450000000001%2C43.76922%2C11.25655%2C43.76932&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 409,
+      "cors": "*",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:00.412Z",
+      "sha256": "35e8b720473025001c0617c81fc4c96781bcb8fee0fba4f1471deccfa99ecfe5"
+    },
+    {
+      "id": "dusaf-lodi",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query?f=json&geometry=9.329%2C45.307&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false",
+      "status": 200,
+      "ms": 98,
+      "cors": "https://particella.app",
+      "bytes": 305,
+      "retrievedAt": "2026-10-05T23:28:00.437Z",
+      "sha256": "ee274f3757421bcba789a7acec1ff829c7daa49570e27bbd165c0de6fbb3e8e1"
+    },
+    {
+      "id": "effis-bagno",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=11.31995%2C43.69995%2C11.32005%2C43.700050000000005&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 127,
+      "cors": "*",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:00.540Z",
+      "sha256": "35e8b720473025001c0617c81fc4c96781bcb8fee0fba4f1471deccfa99ecfe5"
+    },
+    {
+      "id": "dusaf-valsassina",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query?f=json&geometry=9.445%2C45.929&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false",
+      "status": 200,
+      "ms": 194,
+      "cors": "https://particella.app",
+      "bytes": 362,
+      "retrievedAt": "2026-10-05T23:28:00.632Z",
+      "sha256": "8acbe204cd423e174ad77a9237d2c44c7a6ad1e1366c908c7b14cd6a51a46d6b"
+    },
+    {
+      "id": "lombardia-ambiente",
+      "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/ambiente?f=pjson",
+      "status": 200,
+      "ms": 84,
+      "cors": "https://particella.app",
+      "bytes": 61,
+      "retrievedAt": "2026-10-05T23:28:00.715Z",
+      "sha256": "5ec88ab475c7e13011385b8d8b007e4a3a84671bf7f53a2c6bb14e63549942c0"
+    },
+    {
+      "id": "pedo-firenze",
+      "url": "https://www502.regione.toscana.it/ows2/com.rt.wms.RTmap/wms?map=owspedologia&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=capacita_di_uso_e_fertilita_dei_suoli&query_layers=capacita_di_uso_e_fertilita_dei_suoli&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256450000000001%2C43.76922%2C11.25655%2C43.76932&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 475,
+      "cors": "*",
+      "bytes": 697,
+      "retrievedAt": "2026-10-05T23:28:00.749Z",
+      "sha256": "ba380d71ff0643c4c3aa9401e4ba1f618b3a8045a328596a9a430b779915e8ba"
+    },
+    {
+      "id": "effis-vallombrosa",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=11.55595%2C43.732949999999995%2C11.556049999999999%2C43.73305&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 211,
+      "cors": "*",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:00.751Z",
+      "sha256": "35e8b720473025001c0617c81fc4c96781bcb8fee0fba4f1471deccfa99ecfe5"
+    },
+    {
+      "id": "effis-milano",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=9.19095%2C45.464749999999995%2C9.19105%2C45.46485&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 109,
+      "cors": "*",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:00.860Z",
+      "sha256": "35e8b720473025001c0617c81fc4c96781bcb8fee0fba4f1471deccfa99ecfe5"
+    },
+    {
+      "id": "ucs-firenze",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt&query_layers=rt_ucs.iducs.10k.2019.rt&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256450000000001%2C43.76922%2C11.25655%2C43.76932&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 186,
+      "cors": "*",
+      "bytes": 459,
+      "retrievedAt": "2026-10-05T23:28:00.935Z",
+      "sha256": "96a4408fb490451bd6f2401001380472a93a329dc01936298d47cdeb581646a3"
+    },
+    {
+      "id": "effis-lodi",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=9.32895%2C45.30695%2C9.32905%2C45.307050000000004&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 112,
+      "cors": "*",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:00.972Z",
+      "sha256": "35e8b720473025001c0617c81fc4c96781bcb8fee0fba4f1471deccfa99ecfe5"
+    },
+    {
+      "id": "effis-valsassina",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=9.44495%2C45.92895%2C9.44505%2C45.929050000000004&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 176,
+      "cors": "*",
+      "bytes": 350,
+      "retrievedAt": "2026-10-05T23:28:01.149Z",
+      "sha256": "35e8b720473025001c0617c81fc4c96781bcb8fee0fba4f1471deccfa99ecfe5"
+    },
+    {
+      "id": "idro-bagno",
+      "url": "https://www502.regione.toscana.it/ows_idrogeologico/com.rt.wms.RTmap/wms?map=owsidrogeologico&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_idrogeol.idrd32671923.rt.poly&query_layers=rt_idrogeol.idrd32671923.rt.poly&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31995%2C43.69995%2C11.32005%2C43.700050000000005&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 215,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:01.150Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "pedo-bagno",
+      "url": "https://www502.regione.toscana.it/ows2/com.rt.wms.RTmap/wms?map=owspedologia&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=capacita_di_uso_e_fertilita_dei_suoli&query_layers=capacita_di_uso_e_fertilita_dei_suoli&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31995%2C43.69995%2C11.32005%2C43.700050000000005&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 673,
+      "cors": "*",
+      "bytes": 1432,
+      "retrievedAt": "2026-10-05T23:28:01.823Z",
+      "sha256": "de2a92196edb170665426a6d308e5674eee32ce8f549b66eda897b9a3620e5a0"
+    },
+    {
+      "id": "ucs-bagno",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt&query_layers=rt_ucs.iducs.10k.2019.rt&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31995%2C43.69995%2C11.32005%2C43.700050000000005&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 2524,
+      "cors": "*",
+      "bytes": 459,
+      "retrievedAt": "2026-10-05T23:28:04.347Z",
+      "sha256": "96a4408fb490451bd6f2401001380472a93a329dc01936298d47cdeb581646a3"
+    },
+    {
+      "id": "idro-vallombrosa",
+      "url": "https://www502.regione.toscana.it/ows_idrogeologico/com.rt.wms.RTmap/wms?map=owsidrogeologico&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_idrogeol.idrd32671923.rt.poly&query_layers=rt_idrogeol.idrd32671923.rt.poly&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.55595%2C43.732949999999995%2C11.556049999999999%2C43.73305&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 997,
+      "cors": "*",
+      "bytes": 180,
+      "retrievedAt": "2026-10-05T23:28:05.344Z",
+      "sha256": "841d70b1219a3b2923c8fee7f94393cb337d6a05c0c9896adc83954924619c6e"
+    },
+    {
+      "id": "pedo-vallombrosa",
+      "url": "https://www502.regione.toscana.it/ows2/com.rt.wms.RTmap/wms?map=owspedologia&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=capacita_di_uso_e_fertilita_dei_suoli&query_layers=capacita_di_uso_e_fertilita_dei_suoli&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.55595%2C43.732949999999995%2C11.556049999999999%2C43.73305&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 1042,
+      "cors": "*",
+      "bytes": 1402,
+      "retrievedAt": "2026-10-05T23:28:06.387Z",
+      "sha256": "30c1e4a577705bbb6f6707f8b26a735aa1140ae3a437798ff4777f6ad13dffab"
+    },
+    {
+      "id": "ucs-vallombrosa",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt&query_layers=rt_ucs.iducs.10k.2019.rt&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.55595%2C43.732949999999995%2C11.556049999999999%2C43.73305&width=101&height=101&x=50&y=50&feature_count=30&format=image%2Fpng&styles=",
+      "status": 200,
+      "ms": 2206,
+      "cors": "*",
+      "bytes": 459,
+      "retrievedAt": "2026-10-05T23:28:08.594Z",
+      "sha256": "96a4408fb490451bd6f2401001380472a93a329dc01936298d47cdeb581646a3"
+    },
+    {
+      "id": "osm-firenze",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A18%5D%3B%28way%28around%3A10000%2C43.76927%2C11.2565%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C43.76927%2C11.2565%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C43.76927%2C11.2565%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C43.76927%2C11.2565%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C43.76927%2C11.2565%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C43.76927%2C11.2565%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C43.76927%2C11.2565%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 504,
+      "ms": 11636,
+      "cors": "*",
+      "bytes": 695,
+      "retrievedAt": "2026-10-05T23:28:11.546Z",
+      "sha256": "9e8d149c02b9ab7719f9e6cfdf696730c39abead6f27e39eb13793b7d2adbb82"
+    },
+    {
+      "id": "osm-bagno",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A18%5D%3B%28way%28around%3A10000%2C43.7%2C11.32%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C43.7%2C11.32%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C43.7%2C11.32%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C43.7%2C11.32%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C43.7%2C11.32%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C43.7%2C11.32%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C43.7%2C11.32%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "ms": 17769,
+      "cors": "*",
+      "bytes": 93637,
+      "retrievedAt": "2026-10-05T23:28:34.316Z",
+      "sha256": "d1d6fb1640c6c143a4a8a40e62068e308130e091a549661ec49f20de7253f794"
+    },
+    {
+      "id": "osm-vallombrosa",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A18%5D%3B%28way%28around%3A10000%2C43.733%2C11.556%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C43.733%2C11.556%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C43.733%2C11.556%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C43.733%2C11.556%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C43.733%2C11.556%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C43.733%2C11.556%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C43.733%2C11.556%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "ms": 9849,
+      "cors": "*",
+      "bytes": 46579,
+      "retrievedAt": "2026-10-05T23:28:49.166Z",
+      "sha256": "73f83fbf685439b3a3f9523acf2f948a2df9bdf4dc94cfe946dae6b13eefd6b4"
+    },
+    {
+      "id": "osm-milano",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A18%5D%3B%28way%28around%3A10000%2C45.4648%2C9.191%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.4648%2C9.191%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.4648%2C9.191%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.4648%2C9.191%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.4648%2C9.191%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.4648%2C9.191%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.4648%2C9.191%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 504,
+      "ms": 10292,
+      "cors": "*",
+      "bytes": 695,
+      "retrievedAt": "2026-10-05T23:29:04.460Z",
+      "sha256": "9e8d149c02b9ab7719f9e6cfdf696730c39abead6f27e39eb13793b7d2adbb82"
+    },
+    {
+      "id": "osm-lodi",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A18%5D%3B%28way%28around%3A10000%2C45.307%2C9.329%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.307%2C9.329%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.307%2C9.329%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.307%2C9.329%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.307%2C9.329%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.307%2C9.329%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.307%2C9.329%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 504,
+      "ms": 8978,
+      "cors": "*",
+      "bytes": 695,
+      "retrievedAt": "2026-10-05T23:29:18.439Z",
+      "sha256": "9e8d149c02b9ab7719f9e6cfdf696730c39abead6f27e39eb13793b7d2adbb82"
+    },
+    {
+      "id": "osm-valsassina",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A18%5D%3B%28way%28around%3A10000%2C45.929%2C9.445%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.929%2C9.445%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.929%2C9.445%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.929%2C9.445%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.929%2C9.445%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.929%2C9.445%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.929%2C9.445%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 504,
+      "ms": 13236,
+      "cors": "*",
+      "bytes": 695,
+      "retrievedAt": "2026-10-05T23:29:36.680Z",
+      "sha256": "9e8d149c02b9ab7719f9e6cfdf696730c39abead6f27e39eb13793b7d2adbb82"
+    },
+    {
+      "id": "soil-raster-root",
+      "url": "https://sinacloud.isprambiente.it/arcgisina/rest/services/suolo?f=pjson",
+      "status": 200,
+      "cors": "https://particella.app",
+      "bytes": 80,
+      "retrievedAt": "2026-10-05T23:28:44.233Z",
+      "sha256": "5350d216bd85c7df18dcf66b9257114af99f04e5ffdbdfff3f4d425cf4a8db79"
+    },
+    {
+      "id": "bul-open",
+      "url": "https://bandaultralarga.italia.it/wp-json/bul/v1/opendata?format=csv&level=region&id=09",
+      "error": "fetch failed"
+    },
+    {
+      "id": "piemonte-idro-cap",
+      "url": "https://geomap.reteunitaria.piemonte.it/ws/sifor/rp-01/aggvincidro10kwms/wms_vincidro10k_2016?service=WMS&request=GetCapabilities",
+      "status": 200,
+      "cors": "*",
+      "bytes": 12587,
+      "retrievedAt": "2026-10-05T23:28:44.366Z",
+      "sha256": "a239e6b76d69333830a24323179735b4ec5b980d8dbbb709b70e88de1ea449d4"
+    },
+    {
+      "id": "toscana-csw",
+      "url": "https://www502.regione.toscana.it/geonetwork/srv/ita/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&ID=r_toscan:311e0ba8-8e3b-4428-a950-f4086ca367f0",
+      "status": 200,
+      "cors": "*",
+      "bytes": 1448,
+      "retrievedAt": "2026-10-05T23:28:44.454Z",
+      "sha256": "88183ffd099943f3b4f74b1662d9248dbb18868f6d701d6f6bc8566a85f804c8"
+    },
+    {
+      "id": "effis-valid-firenze",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256490000000001%2C43.769259999999996%2C11.25651%2C43.76928&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:44.483Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "piemonte-idro-license",
+      "url": "https://www.geoportale.piemonte.it/geonetwork/srv/api/records/r_piemon:dl45po47-sh45-p44w-854d-58fdq6p9iu45/formatters/xml",
+      "status": 200,
+      "cors": "*",
+      "bytes": 36761,
+      "retrievedAt": "2026-10-05T23:28:44.495Z",
+      "sha256": "36968310a013d754dd260790be4881d1248e27e57d16529d99077217c32e71c4"
+    },
+    {
+      "id": "effis-valid-bagno",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31999%2C43.69999%2C11.32001%2C43.700010000000006&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:44.667Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-valid-vallombrosa",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.55599%2C43.732989999999994%2C11.556009999999999%2C43.73301&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:44.771Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-valid-milano",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=9.190990000000001%2C45.464789999999994%2C9.19101%2C45.46481&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:44.873Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-valid-lodi",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=9.328990000000001%2C45.30699%2C9.32901%2C45.307010000000005&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:44.978Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-valid-valsassina",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2025&query_layers=modis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=9.44499%2C45.92899%2C9.44501%2C45.929010000000005&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:28:45.081Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "ucs-valid-firenze",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt.full&query_layers=rt_ucs.iducs.10k.2019.rt.full&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256490000000001%2C43.769259999999996%2C11.25651%2C43.76928&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:29:07.472Z",
+      "sha256": "eff9dc358407435939fe47478ff19e29ceb9c26b6dee6b1c276d3c39b317186d"
+    },
+    {
+      "id": "ucs-valid-bagno",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt.full&query_layers=rt_ucs.iducs.10k.2019.rt.full&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31999%2C43.69999%2C11.32001%2C43.700010000000006&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:29:07.736Z",
+      "sha256": "03f724089c2c378a1d655fb9dade59b936b07a0634963d664034d6a581df01f9"
+    },
+    {
+      "id": "ade-zoning-0.00002",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&BBOX=43.78648000%2C11.20098000%2C43.78652000%2C11.20102000%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+      "status": 200,
+      "cors": null,
+      "retrievedAt": "2026-10-05T23:29:07.993Z",
+      "sha256": "9284360aa0703ce83baea0e918041986f29cb75d8965d32e606a66c27fba409d"
+    },
+    {
+      "id": "ucs-valid-vallombrosa",
+      "url": "https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs&service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rt_ucs.iducs.10k.2019.rt.full&query_layers=rt_ucs.iducs.10k.2019.rt.full&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.55599%2C43.732989999999994%2C11.556009999999999%2C43.73301&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:29:08.260Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "ade-zoning-0.00025",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&BBOX=43.78625000%2C11.20075000%2C43.78675000%2C11.20125000%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+      "status": 200,
+      "cors": null,
+      "retrievedAt": "2026-10-05T23:29:08.341Z",
+      "sha256": "8ece494a95864d0ea50418da90add543b4697e0cb938a5b5eb91efd12df1132e"
+    },
+    {
+      "id": "ade-zoning-0.00005",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&BBOX=43.78645000%2C11.20095000%2C43.78655000%2C11.20105000%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+      "status": 200,
+      "cors": null,
+      "retrievedAt": "2026-10-05T23:29:08.791Z",
+      "sha256": "8ece494a95864d0ea50418da90add543b4697e0cb938a5b5eb91efd12df1132e"
+    },
+    {
+      "id": "toscana-ucs-license-search",
+      "url": "https://www502.regione.toscana.it/geonetwork/srv/ita/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecords&resultType=results&typeNames=gmd%3AMD_Metadata&outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&elementSetName=full&constraintLanguage=CQL_TEXT&constraint=AnyText+LIKE+%27%25Uso+e+Copertura+del+Suolo%25%27&maxRecords=10",
+      "status": 200,
+      "cors": "*",
+      "bytes": 403,
+      "retrievedAt": "2026-10-05T23:29:51.253Z",
+      "sha256": "b10d91a31f0ec918334d9fc1220ef232b55211d03e097b96a2ecedf70b205506"
+    },
+    {
+      "id": "idro-torino",
+      "url": "https://geomap.reteunitaria.piemonte.it/ws/sifor/rp-01/aggvincidro10kwms/wms_vincidro10k_2016?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=VincIdro2016&query_layers=VincIdro2016&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=7.68689%2C45.07029%2C7.686909999999999%2C45.070310000000006&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:29:51.944Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "toscana-full-license",
+      "url": "https://www502.regione.toscana.it/geonetwork/srv/ita/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&ID=r_toscan:311e0ba8-8e3b-4428-a950-f4086ca367f0&elementSetName=full&outputSchema=http://www.isotc211.org/2005/gmd",
+      "status": 200,
+      "cors": "*",
+      "bytes": 28890,
+      "retrievedAt": "2026-10-05T23:29:52.301Z",
+      "sha256": "41dabaaebf967a643da3025f0cc9f509eb3a23b499c39cf004fb235dd92a0fc5"
+    },
+    {
+      "id": "idro-vercelli",
+      "url": "https://geomap.reteunitaria.piemonte.it/ws/sifor/rp-01/aggvincidro10kwms/wms_vincidro10k_2016?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=VincIdro2016&query_layers=VincIdro2016&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=8.39999%2C45.31999%2C8.40001%2C45.32001&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:29:52.872Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "idro-susa",
+      "url": "https://geomap.reteunitaria.piemonte.it/ws/sifor/rp-01/aggvincidro10kwms/wms_vincidro10k_2016?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=VincIdro2016&query_layers=VincIdro2016&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=7.06799%2C45.13599%2C7.068009999999999%2C45.136010000000006&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:29:53.247Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "osm-retry-firenze",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A10%5D%3B%28way%28around%3A10000%2C43.76927%2C11.2565%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C43.76927%2C11.2565%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C43.76927%2C11.2565%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C43.76927%2C11.2565%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C43.76927%2C11.2565%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C43.76927%2C11.2565%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C43.76927%2C11.2565%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "cors": "*",
+      "bytes": 372,
+      "retrievedAt": "2026-10-05T23:30:02.012Z",
+      "sha256": "3c5e16f0cba31e64afd6cedffa25de26fffc25f8340fc1d093812d815d69668a"
+    },
+    {
+      "id": "osm-retry-milano",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A10%5D%3B%28way%28around%3A10000%2C45.4648%2C9.191%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.4648%2C9.191%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.4648%2C9.191%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.4648%2C9.191%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.4648%2C9.191%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.4648%2C9.191%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.4648%2C9.191%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 504,
+      "cors": "*",
+      "bytes": 695,
+      "retrievedAt": "2026-10-05T23:30:15.620Z",
+      "sha256": "9e8d149c02b9ab7719f9e6cfdf696730c39abead6f27e39eb13793b7d2adbb82"
+    },
+    {
+      "id": "tinitaly-cap",
+      "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?service=WMS&request=GetCapabilities",
+      "status": 200,
+      "cors": "*",
+      "bytes": 214072,
+      "retrievedAt": "2026-10-05T23:30:50.640Z",
+      "sha256": "12b1306f635fdcd6811aeeaf9ce724a692d9df85eace25adb6bdf4528aa43291"
+    },
+    {
+      "id": "effis-ten-calci",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&query_layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=10.53299%2C43.759989999999995%2C10.533009999999999%2C43.76001&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:30:51.073Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-ten-firenze",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&query_layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.256490000000001%2C43.769259999999996%2C11.25651%2C43.76928&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:30:51.553Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-ten-bagno",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&query_layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=11.31999%2C43.69999%2C11.32001%2C43.700010000000006&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:30:51.918Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "effis-ten-valsassina",
+      "url": "https://maps.effis.emergency.copernicus.eu/effis?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&query_layers=modis.ba.poly.2016%2Cmodis.ba.poly.2017%2Cmodis.ba.poly.2018%2Cmodis.ba.poly.2019%2Cmodis.ba.poly.2020%2Cmodis.ba.poly.2021%2Cmodis.ba.poly.2022%2Cmodis.ba.poly.2023%2Cmodis.ba.poly.2024%2Cmodis.ba.poly.2025&info_format=text%2Fplain&srs=EPSG%3A4326&bbox=9.44499%2C45.92899%2C9.44501%2C45.929010000000005&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+      "status": 200,
+      "cors": "*",
+      "bytes": 55,
+      "retrievedAt": "2026-10-05T23:30:52.282Z",
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da"
+    },
+    {
+      "id": "osm-kumi-milano",
+      "url": "https://overpass.kumi.systems/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A10%5D%3B%28way%28around%3A10000%2C45.4648%2C9.191%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.4648%2C9.191%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.4648%2C9.191%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.4648%2C9.191%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.4648%2C9.191%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.4648%2C9.191%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.4648%2C9.191%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "id": "osm-kumi-lodi",
+      "url": "https://overpass.kumi.systems/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A10%5D%3B%28way%28around%3A10000%2C45.307%2C9.329%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.307%2C9.329%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.307%2C9.329%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.307%2C9.329%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.307%2C9.329%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.307%2C9.329%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.307%2C9.329%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "id": "osm-kumi-valsassina",
+      "url": "https://overpass.kumi.systems/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A10%5D%3B%28way%28around%3A10000%2C45.929%2C9.445%29%5Bpower%3Dline%5D%3Bnw%28around%3A10000%2C45.929%2C9.445%29%5Bpower%3Dsubstation%5D%3Bway%28around%3A2000%2C45.929%2C9.445%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%28around%3A2000%2C45.929%2C9.445%29%5Brailway%3Drail%5D%3Bnw%28around%3A2000%2C45.929%2C9.445%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%28around%3A2000%2C45.929%2C9.445%29%5Bamenity%3Dgrave_yard%5D%3Bnode%28around%3A2000%2C45.929%2C9.445%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "id": "osm-bbox-milano",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2845.374710%2C9.062547%2C45.554890%2C9.319453%29%5Bpower%3Dline%5D%3Bnw%2845.374710%2C9.062547%2C45.554890%2C9.319453%29%5Bpower%3Dsubstation%5D%3Bway%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Brailway%3Drail%5D%3Bnw%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2845.446782%2C9.165309%2C45.482818%2C9.216691%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "ms": 4354,
+      "cors": "*",
+      "bytes": 944151,
+      "retrievedAt": "2026-10-05T23:31:52.376Z",
+      "sha256": "1c9ef386fc391b3d245c634f0334664f9a000e89501d029b2b4a02a6f4767922"
+    },
+    {
+      "id": "osm-bbox-bagno",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2843.609910%2C11.195388%2C43.790090%2C11.444612%29%5Bpower%3Dline%5D%3Bnw%2843.609910%2C11.195388%2C43.790090%2C11.444612%29%5Bpower%3Dsubstation%5D%3Bway%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Brailway%3Drail%5D%3Bnw%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2843.681982%2C11.295078%2C43.718018%2C11.344922%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "ms": 5988,
+      "cors": "*",
+      "bytes": 117343,
+      "retrievedAt": "2026-10-05T23:32:03.371Z",
+      "sha256": "8e13b0415745b86b6b372ccf60e95673c8ef2c39a05b9b2dcc989df1633bcd98"
+    },
+    {
+      "id": "osm-bbox-valsassina",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2845.838910%2C9.315476%2C46.019090%2C9.574524%29%5Bpower%3Dline%5D%3Bnw%2845.838910%2C9.315476%2C46.019090%2C9.574524%29%5Bpower%3Dsubstation%5D%3Bway%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Brailway%3Drail%5D%3Bnw%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 504,
+      "ms": 10016,
+      "cors": "*",
+      "bytes": 695,
+      "retrievedAt": "2026-10-05T23:32:18.388Z",
+      "sha256": "cae0c796a4de2c84e11a779249cd476e3fb129a0da9ed64485b32e6d40610375"
+    },
+    {
+      "id": "osm-bbox-valsassina",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2845.838910%2C9.315476%2C46.019090%2C9.574524%29%5Bpower%3Dline%5D%3Bnw%2845.838910%2C9.315476%2C46.019090%2C9.574524%29%5Bpower%3Dsubstation%5D%3Bway%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Brailway%3Drail%5D%3Bnw%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2845.910982%2C9.419095%2C45.947018%2C9.470905%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "retrievedAt": "2026-10-05T23:34:16.579Z",
+      "sha256": "cae0c796a4de2c84e11a779249cd476e3fb129a0da9ed64485b32e6d40610375"
+    },
+    {
+      "id": "osm-bbox-vallombrosa",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3B%28way%2843.642910%2C11.431388%2C43.823090%2C11.680612%29%5Bpower%3Dline%5D%3Bnw%2843.642910%2C11.431388%2C43.823090%2C11.680612%29%5Bpower%3Dsubstation%5D%3Bway%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Bhighway%7E%22%5E%28motorway%7Ctrunk%7Cprimary%7Csecondary%29%24%22%5D%3Bway%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Brailway%3Drail%5D%3Bnw%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Blanduse%7E%22%5E%28cemetery%7Cindustrial%7Cquarry%7Clandfill%29%24%22%5D%3Bnw%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Bamenity%3Dgrave_yard%5D%3Bnode%2843.714982%2C11.531078%2C43.751018%2C11.580922%29%5Bman_made%3Dwater_well%5D%3B%29%3Bout+geom+tags%3B",
+      "status": 200,
+      "retrievedAt": "2026-10-05T23:34:23.833Z",
+      "sha256": "ced0bfdf366d0414039fd151612c1455c480d52012eb557a8c43ca53084a852a"
+    },
+    {
+      "id": "ucs-license-confirm",
+      "url": "https://www502.regione.toscana.it/geonetwork/srv/ita/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&elementSetName=full&outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&id=r_toscan%3A0d4d6640-9a1c-47a4-9a5d-a85cdb36927c",
+      "status": 200,
+      "ms": 1612,
+      "bytes": 29853,
+      "cors": "*",
+      "retrievedAt": "2026-10-05T23:44:56.644Z",
+      "sha256": "06b589c03ef1d5d281789e2bba39ae95b39f3c52dac82b3dd0286ba82b7bb7d8"
+    }
+  ],
+  "curlRechecks": [
+    {
+      "example": 2,
+      "exitCode": 0,
+      "bytes": 55,
+      "sha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da",
+      "checkedAt": "2026-10-05T23:43:44.538355+00:00",
+      "request": "curl -sS --max-time 20 -G 'https://maps.effis.emergency.copernicus.eu/effis' \\\n  --data-urlencode 'service=WMS' --data-urlencode 'version=1.1.1' \\\n  --data-urlencode 'request=GetFeatureInfo' --data-urlencode 'layers=modis.ba.poly.2025' \\\n  --data-urlencode 'query_layers=modis.ba.poly.2025' --data-urlencode 'info_format=text/plain' \\\n  --data-urlencode 'srs=EPSG:4326' --data-urlencode 'bbox=11.25649,43.76926,11.25651,43.76928' \\\n  --data-urlencode 'width=101' --data-urlencode 'height=101' --data-urlencode 'x=50' \\\n  --data-urlencode 'y=50' --data-urlencode 'feature_count=100' --data-urlencode 'format=image/png' --data-urlencode 'styles='",
+      "bodyPreview": "GetFeatureInfo results:\n\n  Search returned no results.\n",
+      "stderr": ""
+    },
+    {
+      "example": 3,
+      "exitCode": 0,
+      "bytes": 180,
+      "sha256": "841d70b1219a3b2923c8fee7f94393cb337d6a05c0c9896adc83954924619c6e",
+      "checkedAt": "2026-10-05T23:43:44.819359+00:00",
+      "request": "curl -sS --max-time 20 -G 'https://www502.regione.toscana.it/ows_idrogeologico/com.rt.wms.RTmap/wms?map=owsidrogeologico' \\\n  --data-urlencode 'service=WMS' --data-urlencode 'version=1.1.1' --data-urlencode 'request=GetFeatureInfo' \\\n  --data-urlencode 'layers=rt_idrogeol.idrd32671923.rt.poly' --data-urlencode 'query_layers=rt_idrogeol.idrd32671923.rt.poly' \\\n  --data-urlencode 'info_format=text/plain' --data-urlencode 'srs=EPSG:4326' --data-urlencode 'bbox=11.55595,43.73295,11.55605,43.73305' \\\n  --data-urlencode 'width=101' --data-urlencode 'height=101' --data-urlencode 'x=50' --data-urlencode 'y=50' \\\n  --data-urlencode 'feature_count=30' --data-urlencode 'format=image/png' --data-urlencode 'styles='",
+      "bodyPreview": "GetFeatureInfo results:\n\nLayer 'rt_idrogeol.idrd32671923.rt.poly'\n  Feature 0: \n    featureid = '3'\n    pk_uid = '3'\n    id_idr = '0480000001'\n    atto = ''\n    idrt = 'RT0000003'\n",
+      "stderr": ""
+    },
+    {
+      "example": 4,
+      "exitCode": 0,
+      "bytes": 1013,
+      "sha256": "03f724089c2c378a1d655fb9dade59b936b07a0634963d664034d6a581df01f9",
+      "checkedAt": "2026-10-05T23:43:45.100111+00:00",
+      "request": "curl -sS --max-time 20 -G 'https://www502.regione.toscana.it/wmsraster/com.rt.wms.RTmap/wms?map=wmsucs' \\\n  --data-urlencode 'service=WMS' --data-urlencode 'version=1.1.1' --data-urlencode 'request=GetFeatureInfo' \\\n  --data-urlencode 'layers=rt_ucs.iducs.10k.2019.rt.full' --data-urlencode 'query_layers=rt_ucs.iducs.10k.2019.rt.full' \\\n  --data-urlencode 'info_format=text/plain' --data-urlencode 'srs=EPSG:4326' --data-urlencode 'bbox=11.31999,43.69999,11.32001,43.70001' \\\n  --data-urlencode 'width=101' --data-urlencode 'height=101' --data-urlencode 'x=50' --data-urlencode 'y=50' \\\n  --data-urlencode 'feature_count=100' --data-urlencode 'format=image/png' --data-urlencode 'styles='",
+      "bodyPreview": "GetFeatureInfo results:\n\nLayer 'rt_ucs.iducs.10k.2019.rt.full'\n  Feature 1: \n    msFID = '342899'\n    pk_uid = '342899'\n    codreg = '09'\n    siglareg = 'RT'\n    regione = 'TOSCANA'\n    codprov = '048'\n    siglaprov = 'FI'\n    codistat = '048001'\n    comune = 'BAGNO A RIPOLI'\n    areacom = ''\n    areaprv = ''\n    areareg = ''\n    ucs2007 = '210'\n  ",
+      "stderr": ""
+    },
+    {
+      "example": 5,
+      "exitCode": 0,
+      "bytes": 307,
+      "sha256": "ee274f3757421bcba789a7acec1ff829c7daa49570e27bbd165c0de6fbb3e8e1",
+      "checkedAt": "2026-10-05T23:43:45.428715+00:00",
+      "request": "curl -sS --max-time 20 -G 'https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/dusaf7/MapServer/1/query' \\\n  --data-urlencode 'f=json' --data-urlencode 'geometry=9.329,45.307' --data-urlencode 'geometryType=esriGeometryPoint' \\\n  --data-urlencode 'inSR=4326' --data-urlencode 'spatialRel=esriSpatialRelIntersects' --data-urlencode 'outFields=*' --data-urlencode 'returnGeometry=false'",
+      "bodyPreview": "{\"displayFieldName\":\"LIV_1\",\"fieldAliases\":{\"OBJECTID\":\"OBJECTID\",\"DESCR\":\"DESCR\"},\"fields\":[{\"name\":\"OBJECTID\",\"type\":\"esriFieldTypeOID\",\"alias\":\"OBJECTID\"},{\"name\":\"DESCR\",\"type\":\"esriFieldTypeString\",\"alias\":\"DESCR\",\"length\":150}],\"features\":[{\"attributes\":{\"OBJECTID\":201048,\"DESCR\":\"213 – risaie\"}}]}",
+      "stderr": ""
+    },
+    {
+      "example": 6,
+      "exitCode": 0,
+      "bytes": 226,
+      "sha256": "45a277c675838b10f28a3f92ad2677869a48df6e0d16bf424cde0e12c0c52444",
+      "checkedAt": "2026-10-05T23:43:45.660459+00:00",
+      "request": "curl -sS --max-time 20 -G 'https://tinitaly.pi.ingv.it/TINItaly_1_1/wms' \\\n  --data-urlencode 'service=WMS' --data-urlencode 'version=1.1.1' --data-urlencode 'request=GetFeatureInfo' \\\n  --data-urlencode 'layers=tinitaly_dem' --data-urlencode 'query_layers=tinitaly_dem' \\\n  --data-urlencode 'info_format=application/json' --data-urlencode 'srs=EPSG:4326' --data-urlencode 'bbox=9.19099,45.46479,9.19101,45.46481' \\\n  --data-urlencode 'width=101' --data-urlencode 'height=101' --data-urlencode 'x=50' --data-urlencode 'y=50' \\\n  --data-urlencode 'feature_count=100' --data-urlencode 'format=image/png' --data-urlencode 'styles='",
+      "bodyPreview": "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"id\":\"\",\"geometry\":null,\"properties\":{\"GRAY_INDEX\":119.49929809570312}}],\"totalFeatures\":\"unknown\",\"numberReturned\":1,\"timeStamp\":\"2026-10-05T23:43:46.502Z\",\"crs\":null}",
+      "stderr": ""
+    },
+    {
+      "example": 1,
+      "request": "curl -sS --fail-with-body --max-time 25 -A 'Particella/0.1 (+https://github.com/metaforismo/particella)' -G 'https://overpass-api.de/api/interpreter' \\\n  --data-urlencode 'data=[out:json][timeout:15];(way(45.374710,9.062547,45.554890,9.319453)[power=line];nw(45.374710,9.062547,45.554890,9.319453)[power=substation];way(45.446782,9.165309,45.482818,9.216691)[highway~\"^(motorway|trunk|primary|secondary)$\"];way(45.446782,9.165309,45.482818,9.216691)[railway=rail];nw(45.446782,9.165309,45.482818,9.216691)[landuse~\"^(cemetery|industrial|quarry|landfill)$\"];nw(45.446782,9.165309,45.482818,9.216691)[amenity=grave_yard];node(45.446782,9.165309,45.482818,9.216691)[man_made=water_well];);out geom tags;'",
+      "exitCode": 0,
+      "responseHeaders": "HTTP/1.1 200 OK\nDate: Mon, 05 Oct 2026 23:44:25 GMT\nServer: Apache/2.4.68 (Debian)\nVary: Accept-Encoding\nConnection: close\nTransfer-Encoding: chunked\nContent-Type: application/json\n\n",
+      "bytes": 944200,
+      "sha256": "679504aa3c4d86fa974745795eadb57f6209b03ecd01b9bf03bf32e5b3ae3e9c",
+      "checkedAt": "2026-10-05T23:44:30.569784+00:00"
+    }
+  ]
+}

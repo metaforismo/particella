@@ -20,6 +20,15 @@ export class UpstreamError extends BackendError {
   }
 }
 
+export class ProtocolError extends UpstreamError {
+  readonly kind: "ogc_exception" | "html";
+
+  constructor(kind: "ogc_exception" | "html", message = "Errore di protocollo della fonte.") {
+    super(message);
+    this.kind = kind;
+  }
+}
+
 export class NotFound extends BackendError {
   constructor(message = "Nessun risultato trovato.") {
     super("not_found", message, 404);

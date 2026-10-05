@@ -1,0 +1,104 @@
+/*
+ * Particella design tokens — "il rilievo".
+ * Palette borrowed from Italian topographic survey sheets: cool tracing paper,
+ * green-black ink, sepia contours, hydrography blue, vegetation green.
+ * The single loud colour is `--cantiere`: it marks the plot being analysed, nothing else.
+ * Components never hard-code colours; add a token here instead.
+ */
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --paper: #edefec;
+  --paper-sunk: #e3e6e2;
+  --paper-raised: #f9faf8;
+  --rule: #cdd3ce;
+  --rule-strong: #a9b2ac;
+
+  /* Ink */
+  --ink: #17201d;
+  --ink-2: #47524d;
+  --ink-3: #6f7a74;
+  --on-ink: #f1f3ef;
+  --on-ink-2: #b7c0ba;
+
+  /* Cartographic hues */
+  --sepia: #8b5e34;
+  --sepia-soft: #e9dccd;
+  --hydro: #2d6a96;
+  --hydro-soft: #d6e4ee;
+  --verde: #4f7a4a;
+  --verde-soft: #dbe6d6;
+
+  /* The plot highlight */
+  --cantiere: #f5c518;
+  --cantiere-ink: #6b5200;
+  --cantiere-soft: #fbedb4;
+  --hatch: repeating-linear-gradient(
+    135deg,
+    var(--cantiere) 0 2px,
+    transparent 2px 7px
+  );
+
+  /* Severity — reads as a ramp, never louder than the number next to it */
+  --sev-none: #5c7a5a;
+  --sev-none-bg: #e2ebe0;
+  --sev-low: #7c7a2e;
+  --sev-low-bg: #eeeccf;
+  --sev-medium: #a5651a;
+  --sev-medium-bg: #f5e3cb;
+  --sev-high: #a8352a;
+  --sev-high-bg: #f3d9d5;
+  --sev-unknown: #6f7a74;
+  --sev-unknown-bg: #e3e6e2;
+
+  --focus: #2d6a96;
+
+  /* Type */
+  --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --stretch-condensed: 78%;
+  --stretch-normal: 100%;
+  --stretch-wide: 118%;
+
+  --fs-2xs: 0.75rem;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.1875rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2rem;
+  --fs-2xl: clamp(2.25rem, 4vw, 2.875rem);
+  --fs-display: clamp(2.6rem, 5.4vw, 4.75rem);
+
+  --lh-tight: 1.04;
+  --lh-snug: 1.22;
+  --lh-body: 1.55;
+
+  /* Space (4px grid) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --content: 76rem;
+
+  /* Shape: radius grows with the size of the thing, not one value for all */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --lift: 0 1px 0 rgb(23 32 29 / 0.05), 0 10px 28px -14px rgb(23 32 29 / 0.32);
+  --lift-strong: 0 1px 0 rgb(23 32 29 / 0.06), 0 22px 48px -20px rgb(23 32 29 / 0.42);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+}

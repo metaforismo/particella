@@ -1,0 +1,72 @@
+.swatch {
+  --c: var(--ink);
+  --soft: var(--paper-sunk);
+  position: relative;
+  display: inline-block;
+  flex: none;
+  border-radius: var(--radius-xs);
+}
+
+.swatch[data-tone="sepia"] {
+  --c: var(--sepia);
+  --soft: var(--sepia-soft);
+}
+.swatch[data-tone="hydro"] {
+  --c: var(--hydro);
+  --soft: var(--hydro-soft);
+}
+.swatch[data-tone="verde"] {
+  --c: var(--verde);
+  --soft: var(--verde-soft);
+}
+.swatch[data-tone="cantiere"] {
+  --c: #c99a00;
+  --soft: var(--cantiere-soft);
+}
+
+.swatch[data-symbol="fill"] {
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--c);
+}
+
+.swatch[data-symbol="hatch"] {
+  background: repeating-linear-gradient(135deg, var(--c) 0 1.5px, var(--soft) 1.5px 5px);
+  box-shadow: inset 0 0 0 1.5px var(--c);
+}
+
+.swatch[data-symbol="line"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  background: var(--c);
+  transform: rotate(-24deg);
+}
+
+.swatch[data-symbol="dots"] {
+  background:
+    radial-gradient(circle at 30% 32%, var(--c) 0 2.2px, transparent 2.6px),
+    radial-gradient(circle at 72% 44%, var(--c) 0 2.2px, transparent 2.6px),
+    radial-gradient(circle at 44% 76%, var(--c) 0 2.2px, transparent 2.6px);
+}
+
+.swatch[data-symbol="ring"] {
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 1.5px var(--c),
+    inset 0 0 0 4px var(--paper-raised),
+    inset 0 0 0 5.5px var(--c);
+}
+
+.swatch[data-symbol="grid"] {
+  background:
+    linear-gradient(var(--c) 1px, transparent 1px) 0 0 / 6px 6px,
+    linear-gradient(90deg, var(--c) 1px, transparent 1px) 0 0 / 6px 6px,
+    var(--soft);
+  box-shadow: inset 0 0 0 1.5px var(--c);
+  opacity: 0.9;
+}

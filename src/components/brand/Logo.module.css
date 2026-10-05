@@ -1,0 +1,17 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ink);
+}
+
+.mark {
+  flex: none;
+}
+
+.word {
+  font-size: 1.0625rem;
+  font-weight: 650;
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.01em;
+}

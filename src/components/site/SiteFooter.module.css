@@ -1,0 +1,60 @@
+.footer {
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  padding: var(--s-8) var(--gutter) var(--s-6);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--s-7);
+  max-width: var(--content);
+  margin: 0 auto;
+}
+
+.brand p {
+  max-width: 34ch;
+  margin-top: var(--s-4);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-6);
+}
+
+.cols h2 {
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.cols a {
+  display: block;
+  padding: 0.2rem 0;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+
+.cols a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.legal {
+  max-width: var(--content);
+  margin: var(--s-8) auto 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+@media (max-width: 720px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}

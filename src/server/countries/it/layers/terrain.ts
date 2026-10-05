@@ -121,6 +121,7 @@ export const terrain: LayerProvider = async (plot, { signal }) => {
     },
     legend: [{ classKey: "elevation-sample", label: "Quota campionata nel DTM" }],
     notes: [
+      ...(!plot.geometry ? ["Senza geometria viene interrogato un solo punto: pendenza non stimabile."] : []),
       `${sourceId === "tinitaly" ? "TINITALY 1.1, terreno nudo 10 m (2023)" : "Fallback EU-DEM 1.1, 25 m, hosting OpenTopoData"}: griglia 4×4 nella bbox, solo punti coperti dal poligono, più un punto interno; massimo 17 campioni. Minimo/massimo/media dei campioni, non di tutti i pixel del lotto.`,
       "Pendenza da regressione di un piano sui campioni in coordinate metriche locali: 100 × √(a²+b²). Non misura scarpate o pendenza massima; null per campioni insufficienti o collineari.",
       "La pendenza del WMS tinitaly_slope non viene usata perché la sua unità non è verificata. Quote da modello, non rilievo topografico.",

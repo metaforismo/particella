@@ -125,7 +125,9 @@ export class HttpClient {
     return waitForCaller(task, options.signal);
   }
   private async execute(url: string, options: HttpOptions): Promise<HttpPayload> {
-    const deadline = AbortSignal.timeout(options.timeoutMs ?? 15_000);
+    const timeoutMs = options.timeoutMs ?? 15_000;
+    const expiresAt = Date.now() + timeoutMs;
+    const deadline = AbortSignal.timeout(timeoutMs);
     const signal = options.signal ? AbortSignal.any([options.signal, deadline]) : deadline;
     const policy = options.policy ?? { concurrency: 2, requestsPerSecond: 2 };
     const transient = new Set([408, 429, 500, 502, 503, 504]);
@@ -155,7 +157,7 @@ export class HttpClient {
             250 * 2 ** attempt + Math.random() * 200,
           );
           this.limiter.defer?.(new URL(url).host, wait);
-          if (response.status === 429) throw new RateLimited();
+          if (response.status === 429 && Date.now() + wait >= expiresAt) throw new RateLimited();
         } else {
           const bytes = await readLimited(response, signal);
           checkProtocol(bytes, response.headers.get("content-type") ?? "");
@@ -219,10 +221,15 @@ async function readLimited(response: Response, signal: AbortSignal): Promise<Uin
   if (!reader) throw new UpstreamError("Risposta vuota della fonte.");
   const chunks: Uint8Array[] = [];
   let size = 0;
+  const abort = () => {
+    void reader.cancel(signal.reason).catch(() => {});
+  };
+  signal.addEventListener("abort", abort, { once: true });
   try {
     while (true) {
       signal.throwIfAborted();
       const { value, done } = await reader.read();
+      signal.throwIfAborted();
       if (done) break;
       size += value.length;
       if (size > 12_000_000) throw new UpstreamError("Risposta della fonte troppo grande.");
@@ -231,6 +238,9 @@ async function readLimited(response: Response, signal: AbortSignal): Promise<Uin
   } catch (error) {
     await reader.cancel();
     throw error;
+  } finally {
+    signal.removeEventListener("abort", abort);
+    reader.releaseLock();
   }
   const result = new Uint8Array(size);
   let offset = 0;

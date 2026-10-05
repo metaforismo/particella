@@ -33,7 +33,9 @@ export const landslide: LayerProvider = async (plot, { signal }) => {
     status: complete ? (features.length ? "ok" : "empty") : answered.length ? "partial" : "unavailable",
     scope: "point",
     headline: classes.length
-      ? `La fonte segnala pericolosità da frana ${classes.join(", ")} sul punto.`
+      ? classes.includes("unknown")
+        ? "La fonte segnala un’area PAI sul punto, ma la classe non è riconosciuta."
+        : `La fonte segnala pericolosità da frana ${classes.join(", ")} sul punto.`
       : features.length
         ? "L'inventario segnala un fenomeno franoso sul punto."
         : complete
@@ -64,6 +66,12 @@ export const landslide: LayerProvider = async (plot, { signal }) => {
     })),
     notes: [
       identifyNote,
+      ...(!answered.some((a) => a.id === "iffi")
+        ? ["L’inventario IFFI non è disponibile in questa risposta."]
+        : []),
+      ...(!answered.some((a) => a.id === "idrogeo")
+        ? ["La pericolosità PAI non è disponibile in questa risposta."]
+        : []),
       "IFFI è un inventario di fenomeni conosciuti, distinto dalle classi PAI. AA non è una classe graduata di pericolosità.",
       "Assenza di oggetti non significa assenza di rischio; release live non dichiarata.",
       "Dati e derivati ISPRA: CC BY-SA 4.0; attribuzione ISPRA e Regione/Provincia autonoma.",

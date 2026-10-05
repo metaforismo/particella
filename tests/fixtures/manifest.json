@@ -86,5 +86,19 @@
     "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=9.189%2C45.4632%2C9.190999999999999%2C45.465199999999996&width=101&height=101&x=50&y=50&feature_count=5",
     "retrievedAt": "2026-10-05T21:37:49.290531+00:00",
     "reduction": "Metadata/unused monthly rows omitted, whitespace compacted."
+  },
+  {
+    "fixture": "services.json",
+    "originalSha256": "e446daaed43ca8d4280c72979e13eb01fcf639b8f1ae1c131683d4e208fdcad7",
+    "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A15%5D%3Bnwr%28around%3A500%2C45.4642%2C9.19%29%5Bamenity%3Dpharmacy%5D%3Bout+center+tags%3B",
+    "retrievedAt": "2026-10-05T22:19:06.048Z",
+    "reduction": "First five real pharmacies within 500 m of Milano Duomo; metadata omitted."
+  },
+  {
+    "fixture": "landslide-positive.json",
+    "originalSha256": "22e01014c9ba7a48a2afe7852f2cff5d44bfc1b5216ad711af2e5e94619f5d8d",
+    "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.3199%2C43.6999%2C11.3201%2C43.700100000000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+    "retrievedAt": "2026-10-05T22:21:30.995Z",
+    "reduction": "Original GeoJSON, no geometric changes."
   }
 ]

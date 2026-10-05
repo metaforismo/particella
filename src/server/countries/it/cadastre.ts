@@ -74,7 +74,8 @@ export function parseZoning(text: string): Zoning[] {
   });
 }
 function wfs(type: string, params: Record<string, string | number>) {
-  return { SERVICE: "WFS", VERSION: "2.0.0", REQUEST: "GetFeature", TYPENAMES: type, COUNT: 100, ...params };
+  // AdE zoning rejects COUNT=100 with an HTTP-200 OGC exception; 10 is verified live.
+  return { SERVICE: "WFS", VERSION: "2.0.0", REQUEST: "GetFeature", TYPENAMES: type, COUNT: 10, ...params };
 }
 const datumNote =
   "EPSG:6706 → WGS84: assi normalizzati con proj4, approssimazione di datum nulla; senza trasformazione di epoca/griglia, precisione sub-metrica non garantita. Area e perimetro geodetici Turf, non superficie censuaria.";

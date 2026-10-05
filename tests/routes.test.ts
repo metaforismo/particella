@@ -39,10 +39,11 @@ globalThis.fetch = async (input) => {
   let fixture: string;
   if (url.hostname === "geoportale.istat.it") fixture = "municipality-rural.json";
   else if (url.hostname === "nominatim.openstreetmap.org") fixture = "nominatim.json";
-  else if (url.hostname === "wfs.cartografia.agenziaentrate.gov.it")
+  else if (url.hostname === "wfs.cartografia.agenziaentrate.gov.it") {
+    assert.equal(url.searchParams.get("COUNT"), "10");
     fixture =
       url.searchParams.get("TYPENAMES") === "CP:CadastralZoning" ? "ade-zoning-rural.xml" : "ade-rural.xml";
-  else throw new Error(`Offline test blocked unexpected host ${url.host}`);
+  } else throw new Error(`Offline test blocked unexpected host ${url.host}`);
   return new Response(fixtureText(fixture), {
     headers: { "Content-Type": fixture.endsWith("xml") ? "application/xml" : "application/json" },
   });

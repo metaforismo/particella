@@ -11,6 +11,8 @@ function define(
   protocol: SourceDefinition["protocol"],
   extras: Partial<SourceDefinition> = {},
 ): SourceDefinition {
+  if (!["http:", "https:"].includes(new URL(endpoint).protocol))
+    throw new Error(`Invalid endpoint for ${id}`);
   return {
     id,
     name,
@@ -59,6 +61,7 @@ export const italianSources: SourceDefinition[] = [
       license: "ODbL 1.0",
       licenseUrl: osm,
       coverage: "Globale",
+      url: "https://github.com/komoot/photon",
       hostPolicy: { concurrency: 1, requestsPerSecond: 1 },
     },
   ),
@@ -172,6 +175,7 @@ export const italianSources: SourceDefinition[] = [
       isOfficial: false,
       license: "Copernicus free/full/open; elaborazione Particella",
       licenseUrl: "https://www.opentopodata.org/datasets/eudem/",
+      url: "https://www.opentopodata.org/datasets/eudem/",
       coverage: "Europa",
       hostPolicy: { concurrency: 1, requestsPerSecond: 1, requestsPerDay: 1000 },
     },
@@ -200,6 +204,7 @@ export const italianSources: SourceDefinition[] = [
       license: "ODbL 1.0",
       licenseUrl: osm,
       coverage: "Globale, completezza variabile",
+      url: "https://dev.overpass-api.de/overpass-doc/en/",
       hostPolicy: { concurrency: 1, requestsPerSecond: 0.2 },
     },
   ),

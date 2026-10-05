@@ -15,6 +15,40 @@ import { runLayer, layerResult } from "../src/server/core/layers.ts";
 import type { Plot } from "../src/lib/contracts/index.ts";
 
 const immediate: HostLimiter = { acquire: async () => () => {} };
+test("429 retries respect Retry-After when the deadline allows another attempt", async () => {
+  let calls = 0;
+  const start = Date.now();
+  const client = new HttpClient(new MemoryCache(), immediate, async () => {
+    return ++calls === 1
+      ? new Response("busy", { status: 429, headers: { "Retry-After": "0.5" } })
+      : new Response("ok");
+  });
+  await client.request("https://example.test/rate-retry", { timeoutMs: 2000 });
+  assert.equal(calls, 2);
+  assert.ok(Date.now() - start >= 490);
+});
+test("deadline cancels a response stream that never sends another chunk", async () => {
+  let cancelled = false;
+  const client = new HttpClient(
+    new MemoryCache(),
+    immediate,
+    async () =>
+      new Response(
+        new ReadableStream({
+          cancel() {
+            cancelled = true;
+          },
+        }),
+      ),
+  );
+  const hold = setTimeout(() => {}, 200);
+  try {
+    await assert.rejects(client.request("https://example.test/body", { timeoutMs: 20 }), UpstreamError);
+    assert.equal(cancelled, true);
+  } finally {
+    clearTimeout(hold);
+  }
+});
 test("LRU eviction, TTL, defensive copies, canonical keys", async () => {
   let now = 0;
   const cache = new MemoryCache(2, () => now);

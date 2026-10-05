@@ -169,6 +169,9 @@ test("OSM categories, straight-line distance, partial Overpass errors", () => {
   );
 });
 test("risk classifications stay stable; AA and empty are not safe", () => {
+  assert.equal(landslideClass({ cod_per_it: 3 }), "P3");
+  assert.equal(landslideClass({ cod_per_it: 0 }), "AA");
+  assert.equal(landslideClass({ cod_per_it: 9 }), null);
   assert.equal(landslideClass({ pericolosita: "Elevata P3" }), "P3");
   assert.equal(landslideClass({ classe: "AA" }), "AA");
   assert.equal(severityForHazard(["AA"]), "unknown");
@@ -189,6 +192,9 @@ test("protected sites distinguish contains/intersects/nearby", () => {
     ],
   };
   assert.equal(spatialRelation(square, smaller, { lat: 0.0005, lon: 0.0005 }).relation, "contains");
+  const multi: PlotGeometry = { type: "MultiPolygon", coordinates: [square.coordinates] };
+  assert.equal(spatialRelation(multi, smaller, { lat: 0.0005, lon: 0.0005 }).relation, "contains");
+  assert.equal(spatialRelation(square, multi, { lat: 0.0005, lon: 0.0005 }).relation, "contains");
   assert.equal(spatialRelation(square, null, { lat: 0.0005, lon: 0.002 }).relation, "nearby");
   assert.ok(spatialRelation(square, null, { lat: 0.0005, lon: 0.002 }).distanceM > 100);
 });

@@ -87,7 +87,16 @@ export function spatialRelation(
   parcel: PlotGeometry | null,
   p: LatLon,
 ): { relation: "contains" | "intersects" | "nearby"; distanceM: number } {
-  if (parcel && contains(site, parcel)) return { relation: "contains", distanceM: 0 };
+  if (parcel) {
+    const sites = site.type === "Polygon" ? [site.coordinates] : site.coordinates;
+    const parcels = parcel.type === "Polygon" ? [parcel.coordinates] : parcel.coordinates;
+    const fullyContained = parcels.every((coordinates) =>
+      sites.some((rings) =>
+        contains({ type: "Polygon", coordinates: rings }, { type: "Polygon", coordinates }),
+      ),
+    );
+    if (fullyContained) return { relation: "contains", distanceM: 0 };
+  }
   if (parcel && intersects(site, parcel)) return { relation: "intersects", distanceM: 0 };
   if (!parcel && coversPoint(site, p)) return { relation: "contains", distanceM: 0 };
   if (!parcel) return { relation: "nearby", distanceM: boundaryDistance(site, p) };

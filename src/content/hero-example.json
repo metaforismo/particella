@@ -1,28 +1,118 @@
 {
-  "_status": "placeholder — regenerate with npm run content:hero once the API is live",
   "plot": {
-    "id": "it:F205:_:0000:0000",
-    "label": "Foglio — · Particella —",
-    "municipality": "Milano",
-    "area": "— m²",
+    "id": "it:D612:_:173:68",
+    "label": "Foglio 173 · Particella 68",
+    "municipality": "Firenze",
+    "area": "6.375 m²",
     "geometry": {
       "type": "Polygon",
       "coordinates": [
         [
-          [9.1654, 45.4518],
-          [9.1661, 45.452],
-          [9.1665, 45.4515],
-          [9.16595, 45.4511],
-          [9.1653, 45.4513],
-          [9.1654, 45.4518]
+          [11.25656447, 43.7689433],
+          [11.25656945, 43.76894672],
+          [11.25675703, 43.76889028],
+          [11.25691335, 43.76878908],
+          [11.2569091, 43.76878334],
+          [11.25691778, 43.768779],
+          [11.25691578, 43.76877557],
+          [11.25693039, 43.768766],
+          [11.25694485, 43.76877695],
+          [11.25694114, 43.76878146],
+          [11.25694738, 43.76878757],
+          [11.25694393, 43.76879315],
+          [11.25717687, 43.76898976],
+          [11.25721188, 43.76904243],
+          [11.25721735, 43.76904134],
+          [11.25724639, 43.76908916],
+          [11.25724192, 43.76909205],
+          [11.25743233, 43.76939049],
+          [11.25743805, 43.76939083],
+          [11.25744357, 43.76940198],
+          [11.25742518, 43.76940401],
+          [11.25742269, 43.76940131],
+          [11.25682992, 43.76946753],
+          [11.25681608, 43.76948214],
+          [11.25651344, 43.7694805],
+          [11.25651367, 43.76947313],
+          [11.25650348, 43.76947315],
+          [11.25634622, 43.76947640000001],
+          [11.25625013, 43.76948995],
+          [11.25612871, 43.76950842],
+          [11.25608103, 43.76951357000001],
+          [11.25604876, 43.76951851],
+          [11.25602939, 43.76952089],
+          [11.25602461, 43.76950993],
+          [11.25601905, 43.76948707],
+          [11.25592941, 43.769498080000005],
+          [11.25586206, 43.76927084],
+          [11.25585709, 43.76927103],
+          [11.25584642, 43.76922064],
+          [11.25586012, 43.76917182],
+          [11.25588149, 43.76916997000001],
+          [11.25588097, 43.76916547],
+          [11.2559279, 43.76915906],
+          [11.25592485, 43.76914502],
+          [11.25622952, 43.76904762000001],
+          [11.25656447, 43.7689433]
         ]
       ]
     }
   },
   "rows": [
-    { "layer": "planning", "value": "—", "source": "—" },
-    { "layer": "flood", "value": "—", "source": "—" },
-    { "layer": "seismic", "value": "—", "source": "—" },
-    { "layer": "solar", "value": "—", "source": "—" }
-  ]
+    { "layer": "planning", "value": "Zona A · sottozona A1", "source": "Comune di Firenze" },
+    { "layer": "flood", "value": "Scenari P1, P2", "source": "ISPRA" },
+    {
+      "layer": "seismic",
+      "value": "Zona sismica 3 (Comune)",
+      "source": "Dipartimento della Protezione Civile"
+    },
+    { "layer": "solar", "value": "~1.374 kWh/anno per 1 kWp", "source": "Commissione europea - JRC" }
+  ],
+  "apiSample": {
+    "id": "it:D612:_:173:68",
+    "country": "it",
+    "cadastral": {
+      "municipalityCode": "D612",
+      "section": null,
+      "sheet": "173",
+      "parcel": "68",
+      "label": "Foglio 173 · Particella 68"
+    },
+    "municipality": {
+      "istatCode": "048017",
+      "cadastralCode": "D612",
+      "name": "Firenze",
+      "province": "Firenze",
+      "provinceCode": "FI",
+      "region": "Toscana"
+    },
+    "centroid": { "lat": 43.769143445, "lon": 11.256644994999998 },
+    "areaM2": 6374.608410795467,
+    "provenance": [
+      {
+        "authority": "Agenzia delle Entrate",
+        "dataset": "Cartografia catastale — particelle",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T23:02:52.096Z"
+      },
+      {
+        "authority": "Agenzia delle Entrate",
+        "dataset": "Mappe catastali — fogli",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T23:02:52.311Z"
+      },
+      {
+        "authority": "ISTAT",
+        "dataset": "Confini comunali 2026",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T23:02:51.724Z"
+      },
+      {
+        "authority": "ISTAT",
+        "dataset": "Province — nomi e sigle",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T22:47:25.483Z"
+      }
+    ]
+  }
 }

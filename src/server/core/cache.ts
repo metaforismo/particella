@@ -7,7 +7,11 @@ export function canonicalKey(namespace: string, value: unknown): string {
   const normalize = (v: unknown): unknown => {
     if (Array.isArray(v)) return v.map(normalize);
     if (v !== null && typeof v === "object") {
-      return Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b)).map(([k, x]) => [k, normalize(x)]));
+      return Object.fromEntries(
+        Object.entries(v)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([k, x]) => [k, normalize(x)]),
+      );
     }
     return v;
   };

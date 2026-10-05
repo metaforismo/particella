@@ -5,10 +5,15 @@ import { runLayer } from "../../../../../../../server/core/layers.ts";
 export async function GET(_request: Request, context: RouteContext<"/api/v1/plots/[id]/layers/[layer]">) {
   return route(async () => {
     const { id, layer: rawLayer } = await context.params;
-    const layer = LayerId.parse(rawLayer), country = getCountry("it");
+    const layer = LayerId.parse(rawLayer),
+      country = getCountry("it");
     const plot = await country.plotById(id);
     const result = await runLayer(layer, plot, country.layers[layer]);
-    return jsonResponse(LayerResult, result, ["unavailable", "partial", "error"].includes(result.status) ? 0 : 3600);
+    return jsonResponse(
+      LayerResult,
+      result,
+      ["unavailable", "partial", "error"].includes(result.status) ? 0 : 3600,
+    );
   });
 }
 export const runtime = "nodejs";

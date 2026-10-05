@@ -1,1 +1,18 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","id":"pericolosita_idraulica_p2.fid-6a965459_1a10dce5a88_-27f0","geometry":null,"geometry_name":"geom","properties":{"id":29419,"scenariop2":"Aree a pericolosita' idraulica media P2"},"bbox":[10.2133,43.0084,12.057,44.2617]}],"totalFeatures":"unknown","numberReturned":1,"timeStamp":"2026-10-05T21:37:51.913Z","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"bbox":[10.2133,43.0084,12.057,44.2617]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "pericolosita_idraulica_p2.fid-6a965459_1a10dce5a88_-27f0",
+      "geometry": null,
+      "geometry_name": "geom",
+      "properties": { "id": 29419, "scenariop2": "Aree a pericolosita' idraulica media P2" },
+      "bbox": [10.2133, 43.0084, 12.057, 44.2617]
+    }
+  ],
+  "totalFeatures": "unknown",
+  "numberReturned": 1,
+  "timeStamp": "2026-10-05T21:37:51.913Z",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4326" } },
+  "bbox": [10.2133, 43.0084, 12.057, 44.2617]
+}

@@ -1,1 +1,25 @@
-{"displayFieldName":"GRD_ID","features":[{"attributes":{"OBJECTID":183158,"GRD_ID":"CRS3035RES1000mN2288000E4427000","CNTR_ID":"IT","TOT_P_2021":99,"M":48,"F":51,"Y_LT15":10,"Y1564":63,"Y_GE65":26,"NAT":96,"EU_OTH":0,"OTH":3,"EMP":42,"SAME":99,"CHG_IN":0,"CHG_OUT":0}}]}
+{
+  "displayFieldName": "GRD_ID",
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 183158,
+        "GRD_ID": "CRS3035RES1000mN2288000E4427000",
+        "CNTR_ID": "IT",
+        "TOT_P_2021": 99,
+        "M": 48,
+        "F": 51,
+        "Y_LT15": 10,
+        "Y1564": 63,
+        "Y_GE65": 26,
+        "NAT": 96,
+        "EU_OTH": 0,
+        "OTH": 3,
+        "EMP": 42,
+        "SAME": 99,
+        "CHG_IN": 0,
+        "CHG_OUT": 0
+      }
+    }
+  ]
+}

@@ -131,6 +131,16 @@
   background: var(--paper-sunk);
 }
 
+.secondary[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--paper-sunk);
+}
+
+.secondary:disabled {
+  color: var(--ink-3);
+  cursor: not-allowed;
+}
+
 .menu {
   position: relative;
 }

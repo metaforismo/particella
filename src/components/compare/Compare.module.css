@@ -1,0 +1,217 @@
+.page {
+  max-width: 96rem;
+  margin: 0 auto;
+  padding: var(--s-7) var(--gutter) var(--s-8);
+}
+
+.header h1,
+.empty h1 {
+  font-size: var(--fs-2xl);
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.header p,
+.empty p {
+  max-width: 52ch;
+  margin-top: var(--s-3);
+  color: var(--ink-2);
+}
+
+.scroller {
+  margin-top: var(--s-6);
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  background: var(--paper-raised);
+}
+
+.table {
+  width: 100%;
+  min-width: calc(14rem + var(--cols) * 15rem);
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table td + td,
+.table th + th,
+.table th + td {
+  border-left: 1px solid var(--rule);
+}
+
+/* First column sticks while the plots scroll sideways on narrow screens. */
+.corner,
+.layerHead {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 14rem;
+  background: var(--paper-raised);
+}
+
+.plotHead {
+  position: sticky;
+  top: 0;
+  background: var(--paper-raised);
+  border-bottom: 1.5px solid var(--ink) !important;
+}
+
+.heading {
+  position: relative;
+  display: grid;
+  gap: 0.15rem;
+  padding-right: var(--s-5);
+  font-weight: 400;
+}
+
+.heading strong {
+  font-size: var(--fs-md);
+  font-weight: 620;
+  font-stretch: var(--stretch-condensed);
+}
+
+.place,
+.area {
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+}
+
+.failed {
+  color: var(--sev-high);
+  font-size: var(--fs-xs);
+}
+
+.remove {
+  position: absolute;
+  top: -0.2rem;
+  right: -0.4rem;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--ink-3);
+}
+
+.remove:hover {
+  background: var(--paper-sunk);
+  color: var(--ink);
+}
+
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+  margin-top: var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: 560;
+}
+
+.groupRow th {
+  padding-top: var(--s-4);
+  background: var(--paper);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.layerHead {
+  display: table-cell;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.layerHead > span {
+  margin-right: var(--s-2);
+  vertical-align: -2px;
+}
+
+.cell {
+  display: table-cell;
+  font-size: var(--fs-xs);
+}
+
+.cell > * + * {
+  margin-top: var(--s-2);
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-2);
+  color: var(--ink-3);
+}
+
+.metric strong {
+  color: var(--ink);
+  font-size: var(--fs-sm);
+  font-weight: 620;
+  font-stretch: var(--stretch-condensed);
+  white-space: nowrap;
+}
+
+.headline {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+
+.skeleton {
+  display: block;
+  height: 0.8rem;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(90deg, var(--paper-sunk) 0%, var(--rule) 50%, var(--paper-sunk) 100%) 0 0 / 200%
+    100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.note {
+  margin-top: var(--s-4);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-2);
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: var(--s-9) var(--gutter);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  height: 2.5rem;
+  margin-top: var(--s-3);
+  padding: 0 var(--s-4);
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-size: var(--fs-sm);
+  font-weight: 560;
+  text-decoration: none;
+}

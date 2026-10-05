@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Check, DownloadSimple, FileText, LinkSimple, X } from "@phosphor-icons/react";
+import { Check, CheckSquare, DownloadSimple, FileText, LinkSimple, Plus, X } from "@phosphor-icons/react";
+import { compareList } from "@/components/compare/compare-list";
+import { COMPARE_LIMIT } from "@/lib/compare";
+import { plotRef } from "@/lib/plot-list";
 import { download, plotGeoJson, plotKml } from "@/lib/export";
 import type { Plot } from "@/lib/contracts";
 import { formatArea, formatLength } from "@/lib/format";
@@ -11,6 +14,8 @@ import styles from "./PlotHeader.module.css";
 
 export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void }) {
   const [copied, setCopied] = useState(false);
+  const compared = compareList.useList();
+  const comparing = compared.some((p) => p.id === plot.id);
   const m = plot.municipality;
   // provinceCode may be the ISTAT number; only a two-letter sigla reads naturally after the name.
   const sigla = m?.provinceCode && /^[A-Z]{2}$/.test(m.provinceCode) ? `(${m.provinceCode})` : null;
@@ -68,9 +73,29 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
         <Link href={reportHref(plot.id, plot.centroid)} className={styles.primary}>
           <FileText size={16} aria-hidden="true" /> Apri la scheda
         </Link>
-        <button type="button" className={styles.secondary} onClick={copyLink} aria-live="polite">
+        <button
+          type="button"
+          className={styles.secondary}
+          aria-pressed={comparing}
+          disabled={!comparing && compared.length >= COMPARE_LIMIT}
+          title={
+            !comparing && compared.length >= COMPARE_LIMIT
+              ? `Puoi confrontare al massimo ${COMPARE_LIMIT} terreni`
+              : undefined
+          }
+          onClick={() => (comparing ? compareList.remove(plot.id) : compareList.add(plotRef(plot)))}
+        >
+          {comparing ? <CheckSquare size={16} aria-hidden="true" /> : <Plus size={16} aria-hidden="true" />}
+          Confronta
+        </button>
+        <button
+          type="button"
+          className={styles.secondary}
+          onClick={copyLink}
+          aria-label={copied ? "Link copiato" : "Copia il link a questo terreno"}
+          title={copied ? "Link copiato" : "Copia link"}
+        >
           {copied ? <Check size={16} aria-hidden="true" /> : <LinkSimple size={16} aria-hidden="true" />}
-          {copied ? "Link copiato" : "Copia link"}
         </button>
         {plot.geometry ? (
           <details className={styles.menu}>

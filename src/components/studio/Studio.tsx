@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowClockwise,
   ChatCircleText,
+  Columns,
   CircleNotch,
   ClockCounterClockwise,
   Crosshair,
@@ -19,6 +20,8 @@ import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
+import { compareList } from "@/components/compare/compare-list";
+import { compareHref } from "@/lib/compare";
 import { forgetRecentPlots, useRecentPlots } from "./recent";
 import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
@@ -37,6 +40,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   const { selection, layers, activeLayer, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear } =
     studio;
   const recent = useRecentPlots();
+  const compared = compareList.useList();
   const searchRef = useRef<HTMLInputElement>(null);
   const [showCadastre, setShowCadastre] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -186,6 +190,13 @@ export function Studio({ initial }: { initial: StudioInitial }) {
             onSelect={onSearch}
           />
         </div>
+        {compared.length ? (
+          <Link href={compareHref(compared)} className={styles.compare}>
+            <Columns size={16} aria-hidden="true" />
+            <span>Confronto</span>
+            <span className={styles.badge}>{compared.length}</span>
+          </Link>
+        ) : null}
         <button
           type="button"
           className={styles.locate}

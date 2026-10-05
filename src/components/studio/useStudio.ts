@@ -4,6 +4,7 @@ import { useCallback, useEffect, useReducer, useRef } from "react";
 import { api, ApiRequestError } from "@/lib/api/client";
 import type { LatLon, LayerId, LayerResult, Plot } from "@/lib/contracts";
 import { LAYERS } from "@/content/layers";
+import { rememberPlot } from "./recent";
 
 export type Selection =
   | { status: "idle" }
@@ -72,6 +73,20 @@ function describe(error: unknown) {
   return "Qualcosa non ha funzionato nel recupero del terreno. Riprova.";
 }
 
+function describeLayerError(error: unknown) {
+  if (error instanceof ApiRequestError) {
+    switch (error.code) {
+      case "upstream_unavailable":
+        return "La fonte non ha risposto in tempo. Puoi riprovare tra poco.";
+      case "rate_limited":
+        return "La fonte limita le richieste: riprova tra qualche secondo.";
+      case "network":
+        return "Connessione assente o instabile.";
+    }
+  }
+  return "Questo livello non è disponibile in questo momento.";
+}
+
 /** Owns plot selection and the progressive loading of every analysis layer. */
 export function useStudio() {
   const [state, dispatch] = useReducer(reducer, {
@@ -81,16 +96,15 @@ export function useStudio() {
   });
   const inflight = useRef<AbortController | null>(null);
 
-  const loadLayers = useCallback((plot: Plot, signal: AbortSignal) => {
-    for (const { id } of LAYERS) {
-      api
-        .layer(plot.id, id, signal)
-        .then((result) => dispatch({ type: "layer", id, state: { status: "done", result } }))
-        .catch((error: unknown) => {
-          if ((error as Error).name === "AbortError") return;
-          dispatch({ type: "layer", id, state: { status: "failed", message: describe(error) } });
-        });
-    }
+  const loadLayer = useCallback((plotId: string, id: LayerId, signal: AbortSignal) => {
+    dispatch({ type: "layer", id, state: { status: "loading" } });
+    api
+      .layer(plotId, id, signal)
+      .then((result) => dispatch({ type: "layer", id, state: { status: "done", result } }))
+      .catch((error: unknown) => {
+        if ((error as Error).name === "AbortError") return;
+        dispatch({ type: "layer", id, state: { status: "failed", message: describeLayerError(error) } });
+      });
   }, []);
 
   const run = useCallback(
@@ -103,13 +117,14 @@ export function useStudio() {
         const plot = await fetchPlot(controller.signal);
         dispatch({ type: "plot", plot });
         syncUrl(plot.id);
-        loadLayers(plot, controller.signal);
+        rememberPlot(plot);
+        for (const { id } of LAYERS) loadLayer(plot.id, id, controller.signal);
       } catch (error) {
         if ((error as Error).name === "AbortError") return;
         dispatch({ type: "fail", point, message: describe(error) });
       }
     },
-    [loadLayers],
+    [loadLayer],
   );
 
   const selectPoint = useCallback(
@@ -118,6 +133,15 @@ export function useStudio() {
   );
 
   const selectPlotId = useCallback((id: string) => run(null, (signal) => api.plot(id, signal)), [run]);
+
+  const plotId = state.selection.status === "ready" ? state.selection.plot.id : null;
+  const retryLayer = useCallback(
+    (id: LayerId) => {
+      const signal = inflight.current?.signal;
+      if (plotId && signal && !signal.aborted) loadLayer(plotId, id, signal);
+    },
+    [plotId, loadLayer],
+  );
 
   const setActiveLayer = useCallback((id: LayerId | null) => dispatch({ type: "activate", id }), []);
 
@@ -129,7 +153,7 @@ export function useStudio() {
 
   useEffect(() => () => inflight.current?.abort(), []);
 
-  return { ...state, selectPoint, selectPlotId, setActiveLayer, clear };
+  return { ...state, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear };
 }
 
 /** Keep the address bar shareable without triggering a navigation. */

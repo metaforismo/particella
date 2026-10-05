@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowClockwise, ChatCircleText, Stack } from "@phosphor-icons/react";
+import { ArrowClockwise, ChatCircleText, ClockCounterClockwise, Stack } from "@phosphor-icons/react";
+import { formatArea } from "@/lib/format";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
 import type { GeocodeResult, LatLon } from "@/lib/contracts";
@@ -10,6 +11,7 @@ import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
+import { forgetRecentPlots, useRecentPlots } from "./recent";
 import { useStudio } from "./useStudio";
 import styles from "./Studio.module.css";
 
@@ -23,7 +25,10 @@ const PANEL_WIDTH = 384;
 
 export function Studio({ initial }: { initial: StudioInitial }) {
   const studio = useStudio();
-  const { selection, layers, activeLayer, selectPoint, selectPlotId, setActiveLayer, clear } = studio;
+  const { selection, layers, activeLayer, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear } =
+    studio;
+  const recent = useRecentPlots();
+  const searchRef = useRef<HTMLInputElement>(null);
   const [showCadastre, setShowCadastre] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [narrow, setNarrow] = useState(false);
@@ -39,6 +44,22 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     query.addEventListener("change", update);
     return () => query.removeEventListener("change", update);
   }, []);
+
+  // "/" jumps to search, Escape closes the open layer detail.
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement;
+      const typing = target.closest("input, textarea, [contenteditable]");
+      if (event.key === "/" && !typing) {
+        event.preventDefault();
+        searchRef.current?.focus();
+      } else if (event.key === "Escape" && !typing) {
+        setActiveLayer(null);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [setActiveLayer]);
 
   // Deep links: /studio?plot=… or /studio?lat=…&lon=…
   useEffect(() => {
@@ -102,7 +123,13 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           <LogoMark size={22} />
         </Link>
         <div className={styles.search}>
-          <PlaceSearch size="compact" submitLabel="Cerca" defaultValue={initial.query} onSelect={onSearch} />
+          <PlaceSearch
+            size="compact"
+            submitLabel="Cerca"
+            defaultValue={initial.query}
+            inputRef={searchRef}
+            onSelect={onSearch}
+          />
         </div>
         <button
           type="button"
@@ -178,11 +205,40 @@ export function Studio({ initial }: { initial: StudioInitial }) {
         <div className={styles.scroll} hidden={narrow && Boolean(plot) && sheetTab === "chiedi"}>
           {selection.status === "idle" ? (
             <div className={styles.empty}>
+              <p className={styles.shortcut}>
+                Premi <kbd>/</kbd> per cercare
+              </p>
               <h1>Scegli un terreno</h1>
               <p>
                 Cerca un indirizzo qui sopra oppure tocca un punto sulla mappa. Più ti avvicini, più è facile
                 centrare la particella giusta.
               </p>
+              {recent.length ? (
+                <>
+                  <div className={styles.recentHead}>
+                    <p className={styles.examplesTitle}>
+                      <ClockCounterClockwise size={13} aria-hidden="true" /> Visti di recente
+                    </p>
+                    <button type="button" onClick={forgetRecentPlots}>
+                      Cancella
+                    </button>
+                  </div>
+                  <ul className={styles.examples}>
+                    {recent.map((r) => (
+                      <li key={r.id}>
+                        <button type="button" onClick={() => selectPlotId(r.id)}>
+                          <strong>{r.label}</strong>
+                          <span>
+                            {[r.place, r.areaM2 != null ? formatArea(r.areaM2) : null]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
               <p className={styles.examplesTitle}>Oppure parti da un esempio</p>
               <ul className={styles.examples}>
                 {EXAMPLES.map((ex) => (
@@ -221,7 +277,12 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           {plot ? (
             <>
               <PlotHeader plot={plot} onClear={clear} />
-              <LayerList layers={layers} active={activeLayer} onToggle={setActiveLayer} />
+              <LayerList
+                layers={layers}
+                active={activeLayer}
+                onToggle={setActiveLayer}
+                onRetry={retryLayer}
+              />
               <p className={styles.disclaimer}>
                 Valore orientativo. Non sostituisce il certificato di destinazione urbanistica né il parere di
                 un tecnico abilitato.

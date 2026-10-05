@@ -28,7 +28,8 @@ export function ReportView({ report }: { report: PlotReport }) {
   const sources = indexSources(report);
   const layers = [...report.layers].sort((a, b) => (ORDER.get(a.layer) ?? 99) - (ORDER.get(b.layer) ?? 99));
   const attention = layers.filter(
-    (l) => (l.status === "ok" || l.status === "partial") && (l.severity === "high" || l.severity === "medium"),
+    (l) =>
+      (l.status === "ok" || l.status === "partial") && (l.severity === "high" || l.severity === "medium"),
   );
   const missing = layers.filter((l) => ["unavailable", "error", "outside_coverage"].includes(l.status));
   const place = [plot.municipality?.name, plot.municipality?.province].filter(Boolean).join(", ");
@@ -102,8 +103,9 @@ export function ReportView({ report }: { report: PlotReport }) {
         )}
         {missing.length ? (
           <p className={styles.missing}>
-            Non disponibili al momento della generazione: {missing.map((l) => l.title.toLowerCase()).join(", ")}.
-            L&apos;assenza di un dato non indica l&apos;assenza di un vincolo.
+            Non disponibili al momento della generazione:{" "}
+            {missing.map((l) => l.title.toLowerCase()).join(", ")}. L&apos;assenza di un dato non indica
+            l&apos;assenza di un vincolo.
           </p>
         ) : null}
       </section>
@@ -137,8 +139,8 @@ export function ReportView({ report }: { report: PlotReport }) {
 
       <footer className={styles.footer}>
         Questa scheda ha valore orientativo. Non sostituisce il certificato di destinazione urbanistica, le
-        verifiche presso gli uffici competenti né il parere di un tecnico abilitato. I dati provengono dalle fonti
-        elencate e possono non essere aggiornati.
+        verifiche presso gli uffici competenti né il parere di un tecnico abilitato. I dati provengono dalle
+        fonti elencate e possono non essere aggiornati.
       </footer>
     </article>
   );

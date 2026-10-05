@@ -84,6 +84,10 @@
 }
 
 .rowButton:disabled {
+  cursor: default;
+}
+
+.row[data-loading] .rowButton:disabled {
   cursor: progress;
 }
 
@@ -138,4 +142,21 @@
 .detail {
   padding: 0 var(--s-5) var(--s-5);
   background: var(--paper-sunk);
+}
+
+.retry {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: calc(var(--s-2) * -1) 0 var(--s-3) calc(var(--s-5) + 16px + var(--s-3));
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-xs);
+  background: var(--paper-raised);
+  font-size: var(--fs-2xs);
+  font-weight: 560;
+}
+
+.retry:hover {
+  border-color: var(--ink);
 }

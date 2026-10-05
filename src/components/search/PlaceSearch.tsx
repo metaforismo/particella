@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type Ref } from "react";
 import { MagnifyingGlass, MapPin, CircleNotch } from "@phosphor-icons/react";
 import type { GeocodeResult } from "@/lib/contracts";
 import { useGeocode } from "./useGeocode";
@@ -13,6 +13,7 @@ type Props = {
   submitLabel?: string;
   autoFocus?: boolean;
   defaultValue?: string;
+  inputRef?: Ref<HTMLInputElement>;
 };
 
 export function PlaceSearch({
@@ -21,6 +22,7 @@ export function PlaceSearch({
   submitLabel = "Analizza il terreno",
   autoFocus,
   defaultValue = "",
+  inputRef,
 }: Props) {
   const [query, setQuery] = useState(defaultValue);
   const [open, setOpen] = useState(false);
@@ -62,6 +64,7 @@ export function PlaceSearch({
         <span className="visually-hidden">Cerca un terreno</span>
         <MagnifyingGlass className={styles.icon} size={size === "large" ? 20 : 17} aria-hidden="true" />
         <input
+          ref={inputRef}
           className={styles.input}
           type="text"
           inputMode="search"

@@ -170,6 +170,44 @@
   font-size: var(--fs-xs) !important;
 }
 
+.recentHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.recentHead p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.recentHead button {
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shortcut {
+  float: right;
+  margin-top: 0.35rem !important;
+  color: var(--ink-3) !important;
+  font-size: var(--fs-2xs) !important;
+}
+
+.shortcut kbd {
+  padding: 0 0.3rem;
+  border: 1px solid var(--rule-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-xs);
+  background: var(--paper-raised);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+}
+
 .examples {
   display: grid;
   gap: var(--s-2);
@@ -248,6 +286,10 @@
 
 /* Phones: the panel becomes a bottom sheet with a peek height. */
 @media (max-width: 820px) {
+  .shortcut {
+    display: none;
+  }
+
   .search {
     flex: 1;
     width: auto;

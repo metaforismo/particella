@@ -42,6 +42,10 @@
   --c: var(--sev-unknown);
   --bg: var(--sev-unknown-bg);
 }
+.pill[data-tone="info"] {
+  --c: var(--ink-2);
+  --bg: var(--paper-sunk);
+}
 .pill[data-tone="pending"] {
   --c: var(--ink-3);
   --bg: transparent;

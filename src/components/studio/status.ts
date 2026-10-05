@@ -1,7 +1,8 @@
 import type { LayerResult, Severity } from "@/lib/contracts";
 import type { LayerState } from "./useStudio";
 
-export type Tone = Severity | "pending";
+/** `info`: the source answered, but the layer describes rather than rates (e.g. a planning zone). */
+export type Tone = Severity | "pending" | "info";
 
 /** One label per state, written for someone who is not a planner. */
 export function stateLabel(state: LayerState | undefined): { tone: Tone; label: string } {
@@ -30,7 +31,9 @@ export function resultLabel(result: LayerResult): { tone: Tone; label: string } 
     case "none":
       return { tone: "none", label: "Nessun rilievo" };
     default:
-      return { tone: "unknown", label: "Dato incompleto" };
+      return result.status === "ok"
+        ? { tone: "info", label: "Informativo" }
+        : { tone: "unknown", label: "Dato incompleto" };
   }
 }
 
@@ -41,7 +44,7 @@ export function summarize(states: (LayerState | undefined)[]) {
     if (tone === "pending") counts.pending++;
     else if (tone === "high" || tone === "medium") counts.attention++;
     else if (tone === "low") counts.notable++;
-    else if (tone === "none") counts.clear++;
+    else if (tone === "none" || tone === "info") counts.clear++;
     else counts.missing++;
   }
   return counts;

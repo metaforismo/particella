@@ -7,20 +7,19 @@ servizi e contesto, leggendo fonti pubbliche ufficiali. Ogni valore porta con s�
 > Stato: beta in sviluppo. Le informazioni hanno valore orientativo e non sostituiscono il certificato di
 > destinazione urbanistica né il parere di un tecnico abilitato.
 
-## Tre modi di usarla
+## Cosa fa
 
-| | Cosa fa |
+| | |
 |---|---|
-| **Studio** (`/studio`) | Mappa a schermo pieno: tocchi un lotto, i livelli di analisi arrivano uno alla volta con stato, metriche e fonti. Un assistente risponde alle domande sul terreno usando solo i dati raccolti. |
-| **Scheda** (`/scheda/<id>`) | Pagina stampabile in A4 con sintesi, dettaglio per livello e fonti numerate. "Scarica PDF" usa la stampa del browser. |
-| **API** (`/api/v1`) | Le stesse risposte in JSON, validate da un contratto pubblico con provenienza su ogni campo. |
+| **Studio** (`/studio`) | Mappa a schermo pieno: scegli un lotto toccando la mappa, cercando un indirizzo o con la tua posizione. I livelli di analisi arrivano uno alla volta; in cima un quadro di cosa dice il piano, cosa approfondire e quali dati mancano. |
+| **Chiedi al terreno** | Assistente che risponde sulle domande del lotto usando solo i dati raccolti e citando le fonti. |
+| **Confronta** (`/confronta`) | Fino a quattro lotti affiancati, livello per livello. |
+| **Scheda** (`/scheda/<id>`) | Pagina stampabile in A4 con sintesi, dettaglio e fonti numerate. Confine esportabile in GeoJSON e KML. |
+| **API** (`/api/v1`) | Le stesse risposte in JSON, con provenienza su ogni campo. Documentazione in `/sviluppatori`. |
 
-## Cosa analizziamo
-
-Urbanistica, rischi (alluvioni, frane, sismica), aree protette e Natura 2000, profilo del terreno,
-esposizione solare, servizi nei dintorni, popolazione e valori immobiliari. L'elenco completo con enti e
-licenze è nella pagina `/fonti` e in [`docs/research/data-sources.md`](docs/research/data-sources.md), che
-documenta le verifiche fatte con richieste reali.
+Livelli reali oggi: urbanistica (Firenze, Milano), vincoli paesaggistici, uso del suolo, alluvioni, frane, sismica, aree
+protette, profilo del terreno, sole, servizi, raggiungibilità, popolazione, valori OMI. Enti, licenze e limiti nella
+pagina `/fonti` e in [`docs/research/`](docs/research/).
 
 ## Architettura in breve
 
@@ -39,6 +38,8 @@ Browser ── Studio / Scheda / Landing (React 19, MapLibre)
 - Il core non sa nulla dell'Italia: un nuovo paese è una nuova cartella in `src/server/countries/`.
 - Dettagli: [`docs/backend/ARCHITECTURE.md`](docs/backend/ARCHITECTURE.md), API in
   [`docs/backend/API.md`](docs/backend/API.md), design system in [`docs/DESIGN.md`](docs/DESIGN.md).
+- Prodotto: [`docs/ROADMAP.md`](docs/ROADMAP.md), mercato e pricing in
+  [`docs/business/mercato-e-pricing.md`](docs/business/mercato-e-pricing.md), novità in [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Sviluppo
 
@@ -60,7 +61,13 @@ npm run dev
 | `npm run format` | Prettier |
 
 Le variabili d'ambiente sono descritte in `.env.example`. Nessuna è necessaria per avviare il sito; l'assistente
-AI richiede una chiave del provider configurato.
+AI richiede `AI_GATEWAY_API_KEY` (o OIDC su Vercel). In produzione geocoder, Overpass e routing vanno puntati su
+istanze dedicate: quelle pubbliche hanno limiti d'uso stretti.
+
+### Come lavoriamo
+
+Il frontend è curato da Claude; il backend e la ricerca sui dati da Codex (GPT-6.1) su brief scritti, con review di
+Claude prima di ogni merge. I brief stanno fuori dal repository; le decisioni sono nei messaggi di commit e nelle PR.
 
 ## Contribuire
 

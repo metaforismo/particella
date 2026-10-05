@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowClockwise, Stack } from "@phosphor-icons/react";
+import { ArrowClockwise, ChatCircleText, Stack } from "@phosphor-icons/react";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
 import type { GeocodeResult, LatLon } from "@/lib/contracts";
+import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
@@ -26,6 +27,9 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   const [showCadastre, setShowCadastre] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [narrow, setNarrow] = useState(false);
+  const [askOpen, setAskOpen] = useState(false);
+  /** Phones show one view at a time inside the bottom sheet. */
+  const [sheetTab, setSheetTab] = useState<"terreno" | "chiedi">("terreno");
   const started = useRef(false);
 
   useEffect(() => {
@@ -73,9 +77,13 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   const pending = selection.status === "locating" ? selection.point : null;
   const activeState = activeLayer ? layers[activeLayer] : undefined;
   const activeResult = activeState?.status === "done" ? activeState.result : null;
+  const askVisible = Boolean(plot) && askOpen && !narrow;
   const inset = useMemo(
-    () => (narrow ? { left: 0, right: 0, bottom: 260 } : { left: PANEL_WIDTH + 16, right: 0, bottom: 0 }),
-    [narrow],
+    () =>
+      narrow
+        ? { left: 0, right: 0, bottom: 260 }
+        : { left: PANEL_WIDTH + 16, right: askVisible ? PANEL_WIDTH + 16 : 0, bottom: 0 },
+    [narrow, askVisible],
   );
 
   return (
@@ -105,7 +113,26 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           <Stack size={16} aria-hidden="true" />
           <span>Particelle</span>
         </button>
+        {!narrow ? (
+          <button
+            type="button"
+            className={styles.ask}
+            aria-pressed={askVisible}
+            disabled={!plot}
+            title={plot ? undefined : "Scegli prima un terreno"}
+            onClick={() => setAskOpen((v) => !v)}
+          >
+            <ChatCircleText size={16} aria-hidden="true" />
+            Chiedi al terreno
+          </button>
+        ) : null}
       </header>
+
+      {askVisible && plot ? (
+        <aside className={styles.askPanel}>
+          <AskPanel key={plot.id} plot={plot} onClose={() => setAskOpen(false)} />
+        </aside>
+      ) : null}
 
       <aside className={styles.panel} data-open={sheetOpen || undefined} aria-label="Analisi del terreno">
         <button
@@ -118,7 +145,37 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           <span />
         </button>
 
-        <div className={styles.scroll}>
+        {narrow && plot ? (
+          <div className={styles.tabs} role="tablist" aria-label="Vista">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={sheetTab === "terreno"}
+              onClick={() => setSheetTab("terreno")}
+            >
+              Terreno
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={sheetTab === "chiedi"}
+              onClick={() => {
+                setSheetTab("chiedi");
+                setSheetOpen(true);
+              }}
+            >
+              Chiedi al terreno
+            </button>
+          </div>
+        ) : null}
+
+        {narrow && plot && sheetTab === "chiedi" ? (
+          <div className={styles.sheetAsk}>
+            <AskPanel key={plot.id} plot={plot} />
+          </div>
+        ) : null}
+
+        <div className={styles.scroll} hidden={narrow && Boolean(plot) && sheetTab === "chiedi"}>
           {selection.status === "idle" ? (
             <div className={styles.empty}>
               <h1>Scegli un terreno</h1>

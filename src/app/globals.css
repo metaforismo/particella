@@ -122,3 +122,9 @@ pre {
     scroll-behavior: auto !important;
   }
 }
+
+@media print {
+  body {
+    background: #fff;
+  }
+}

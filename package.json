@@ -13,11 +13,14 @@
     "format:check": "prettier --check src"
   },
   "dependencies": {
+    "@ai-sdk/react": "^4.0.131",
     "@phosphor-icons/react": "^2.1.10",
+    "ai": "^7.0.128",
     "maplibre-gl": "^6.12.0",
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "react-markdown": "^10.1.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Studio, type StudioInitial } from "@/components/studio/Studio";
+import { LayerId } from "@/lib/contracts";
+import { parseAt } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -22,7 +24,14 @@ function toInitial(params: Record<string, string | string[] | undefined>): Studi
     Math.abs(lon) <= 180
       ? { lat, lon }
       : undefined;
-  return { plotId: one("plot"), point, query: one("q") };
+  const layer = LayerId.safeParse(one("layer"));
+  const plotId = one("plot");
+  return {
+    plotId,
+    point: plotId ? parseAt(one("at")) : point,
+    query: one("q"),
+    layer: layer.success ? layer.data : undefined,
+  };
 }
 
 export default async function StudioPage({ searchParams }: PageProps<"/studio">) {

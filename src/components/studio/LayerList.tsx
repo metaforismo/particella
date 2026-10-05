@@ -1,6 +1,6 @@
 "use client";
 
-import { CaretDown } from "@phosphor-icons/react";
+import { ArrowClockwise, CaretDown } from "@phosphor-icons/react";
 import { LegendSwatch } from "@/components/legend/LegendSwatch";
 import { GROUP_LABEL, LAYERS, type LayerMeta } from "@/content/layers";
 import type { LayerGroup, LayerId } from "@/lib/contracts";
@@ -14,21 +14,22 @@ type Props = {
   layers: Partial<Record<LayerId, LayerState>>;
   active: LayerId | null;
   onToggle: (id: LayerId | null) => void;
+  onRetry: (id: LayerId) => void;
 };
 
 const GROUPS = Object.keys(GROUP_LABEL) as LayerGroup[];
 
-export function LayerList({ layers, active, onToggle }: Props) {
+export function LayerList({ layers, active, onToggle, onRetry }: Props) {
   const counts = summarize(LAYERS.map((l) => layers[l.id]));
 
   return (
     <div className={styles.wrap}>
       <p className={styles.summary} aria-live="polite">
         {counts.pending > 0 ? (
-          <>
-            Sto leggendo le fonti: <span className="num">{LAYERS.length - counts.pending}</span> di{" "}
+          <span>
+            Fonti lette: <span className="num">{LAYERS.length - counts.pending}</span> di{" "}
             <span className="num">{LAYERS.length}</span>
-          </>
+          </span>
         ) : (
           <>
             <Count n={counts.attention} one="da approfondire" many="da approfondire" tone="medium" />
@@ -57,6 +58,7 @@ export function LayerList({ layers, active, onToggle }: Props) {
                 state={layers[meta.id]}
                 open={active === meta.id}
                 onToggle={() => onToggle(active === meta.id ? null : meta.id)}
+                onRetry={() => onRetry(meta.id)}
               />
             ))}
           </ul>
@@ -80,11 +82,13 @@ function LayerRow({
   state,
   open,
   onToggle,
+  onRetry,
 }: {
   meta: LayerMeta;
   state: LayerState | undefined;
   open: boolean;
   onToggle: () => void;
+  onRetry: () => void;
 }) {
   const { tone, label } = stateLabel(state);
   const loading = !state || state.status === "loading";
@@ -93,8 +97,11 @@ function LayerRow({
       ? state.result.headline
       : state?.status === "failed"
         ? state.message
-        : `Interrogo ${meta.authority}…`;
+        : `Lettura da ${meta.authority}…`;
   const panelId = `layer-${meta.id}`;
+  const retriable =
+    state?.status === "failed" ||
+    (state?.status === "done" && (state.result.status === "unavailable" || state.result.status === "error"));
 
   return (
     <li className={styles.row} data-open={open || undefined} data-loading={loading || undefined}>
@@ -103,7 +110,7 @@ function LayerRow({
         className={styles.rowButton}
         aria-expanded={open}
         aria-controls={panelId}
-        disabled={loading}
+        disabled={loading || state?.status === "failed"}
         onClick={onToggle}
       >
         <LegendSwatch symbol={meta.symbol} tone={meta.tone} size={16} />
@@ -116,6 +123,11 @@ function LayerRow({
           {!loading ? <CaretDown size={14} className={styles.caret} aria-hidden="true" /> : null}
         </span>
       </button>
+      {retriable ? (
+        <button type="button" className={styles.retry} onClick={onRetry}>
+          <ArrowClockwise size={13} aria-hidden="true" /> Riprova
+        </button>
+      ) : null}
       {open && state?.status === "done" ? (
         <div id={panelId} className={styles.detail}>
           <LayerDetail result={state.result} meta={meta} />

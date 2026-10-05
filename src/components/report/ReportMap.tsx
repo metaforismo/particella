@@ -36,7 +36,12 @@ export function ReportMap({ geometry }: { geometry: NonNullable<Plot["geometry"]
             minzoom: 15,
             attribution: "Catasto © Agenzia delle Entrate, CC BY 4.0",
           });
-          map.addLayer({ id: "cadastre", type: "raster", source: "cadastre", paint: { "raster-opacity": 0.7 } });
+          map.addLayer({
+            id: "cadastre",
+            type: "raster",
+            source: "cadastre",
+            paint: { "raster-opacity": 0.7 },
+          });
           setPlot(map, geometry);
         });
       })

@@ -154,7 +154,10 @@ export const LayerResult = z.object({
     .nullable(),
   overlays: z.array(MapOverlay),
   legend: z.array(LegendItem),
+  /** Limits a non-expert must know, in plain Italian. */
   notes: z.array(z.string()),
+  /** How the value was obtained (service, sampling, CRS), for technicians. Shown collapsed. */
+  method: z.string().nullable().optional(),
   provenance: z.array(Provenance),
   computedAt: z.iso.datetime(),
 });

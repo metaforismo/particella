@@ -4,6 +4,8 @@ import { useCallback, useEffect, useReducer, useRef } from "react";
 import { api, ApiRequestError } from "@/lib/api/client";
 import type { LatLon, LayerId, LayerResult, Plot } from "@/lib/contracts";
 import { LAYERS } from "@/content/layers";
+import { formatAt } from "@/lib/routes";
+import { rememberPlot } from "./recent";
 
 export type Selection =
   | { status: "idle" }
@@ -12,9 +14,7 @@ export type Selection =
   | { status: "error"; point: LatLon | null; message: string };
 
 export type LayerState =
-  | { status: "loading" }
-  | { status: "done"; result: LayerResult }
-  | { status: "failed"; message: string };
+  { status: "loading" } | { status: "done"; result: LayerResult } | { status: "failed"; message: string };
 
 type State = {
   selection: Selection;
@@ -72,6 +72,20 @@ function describe(error: unknown) {
   return "Qualcosa non ha funzionato nel recupero del terreno. Riprova.";
 }
 
+function describeLayerError(error: unknown) {
+  if (error instanceof ApiRequestError) {
+    switch (error.code) {
+      case "upstream_unavailable":
+        return "La fonte non ha risposto in tempo. Puoi riprovare tra poco.";
+      case "rate_limited":
+        return "La fonte limita le richieste: riprova tra qualche secondo.";
+      case "network":
+        return "Connessione assente o instabile.";
+    }
+  }
+  return "Questo livello non è disponibile in questo momento.";
+}
+
 /** Owns plot selection and the progressive loading of every analysis layer. */
 export function useStudio() {
   const [state, dispatch] = useReducer(reducer, {
@@ -81,16 +95,15 @@ export function useStudio() {
   });
   const inflight = useRef<AbortController | null>(null);
 
-  const loadLayers = useCallback((plot: Plot, signal: AbortSignal) => {
-    for (const { id } of LAYERS) {
-      api
-        .layer(plot.id, id, signal)
-        .then((result) => dispatch({ type: "layer", id, state: { status: "done", result } }))
-        .catch((error: unknown) => {
-          if ((error as Error).name === "AbortError") return;
-          dispatch({ type: "layer", id, state: { status: "failed", message: describe(error) } });
-        });
-    }
+  const loadLayer = useCallback((plot: Plot, id: LayerId, signal: AbortSignal) => {
+    dispatch({ type: "layer", id, state: { status: "loading" } });
+    api
+      .layer(plot.id, id, plot.centroid, signal)
+      .then((result) => dispatch({ type: "layer", id, state: { status: "done", result } }))
+      .catch((error: unknown) => {
+        if ((error as Error).name === "AbortError") return;
+        dispatch({ type: "layer", id, state: { status: "failed", message: describeLayerError(error) } });
+      });
   }, []);
 
   const run = useCallback(
@@ -102,14 +115,15 @@ export function useStudio() {
       try {
         const plot = await fetchPlot(controller.signal);
         dispatch({ type: "plot", plot });
-        syncUrl(plot.id);
-        loadLayers(plot, controller.signal);
+        syncUrl(plot);
+        rememberPlot(plot);
+        for (const { id } of LAYERS) loadLayer(plot, id, controller.signal);
       } catch (error) {
         if ((error as Error).name === "AbortError") return;
         dispatch({ type: "fail", point, message: describe(error) });
       }
     },
-    [loadLayers],
+    [loadLayer],
   );
 
   const selectPoint = useCallback(
@@ -117,9 +131,28 @@ export function useStudio() {
     [run],
   );
 
-  const selectPlotId = useCallback((id: string) => run(null, (signal) => api.plot(id, signal)), [run]);
+  /** `at` is a point inside the plot; without it the server may be unable to find the parcel. */
+  const selectPlotId = useCallback(
+    (id: string, at?: LatLon) => run(at ?? null, (signal) => api.plot(id, at, signal)),
+    [run],
+  );
 
-  const setActiveLayer = useCallback((id: LayerId | null) => dispatch({ type: "activate", id }), []);
+  const plot = state.selection.status === "ready" ? state.selection.plot : null;
+  const retryLayer = useCallback(
+    (id: LayerId) => {
+      const signal = inflight.current?.signal;
+      if (plot && signal && !signal.aborted) loadLayer(plot, id, signal);
+    },
+    [plot, loadLayer],
+  );
+
+  const setActiveLayer = useCallback(
+    (id: LayerId | null) => {
+      dispatch({ type: "activate", id });
+      if (plot) syncUrl(plot, id);
+    },
+    [plot],
+  );
 
   const clear = useCallback(() => {
     inflight.current?.abort();
@@ -129,12 +162,18 @@ export function useStudio() {
 
   useEffect(() => () => inflight.current?.abort(), []);
 
-  return { ...state, selectPoint, selectPlotId, setActiveLayer, clear };
+  return { ...state, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear };
 }
 
 /** Keep the address bar shareable without triggering a navigation. */
-function syncUrl(plotId: string | null) {
+function syncUrl(plot: Plot | null, layer: LayerId | null = null) {
   const url = new URL(window.location.href);
-  url.search = plotId ? `?plot=${encodeURIComponent(plotId)}` : "";
+  const params = new URLSearchParams();
+  if (plot) {
+    params.set("plot", plot.id);
+    params.set("at", formatAt(plot.centroid));
+    if (layer) params.set("layer", layer);
+  }
+  url.search = params.size ? `?${params}` : "";
   window.history.replaceState(null, "", url);
 }

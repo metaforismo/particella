@@ -62,6 +62,13 @@ export function LayerDetail({ result, meta }: { result: LayerResult; meta: Layer
         </ul>
       ) : null}
 
+      {result.method ? (
+        <details className={styles.method}>
+          <summary>Come è calcolato</summary>
+          <p>{result.method}</p>
+        </details>
+      ) : null}
+
       <div className={styles.sources}>
         <p className={styles.sourcesTitle}>Fonti</p>
         <ul>

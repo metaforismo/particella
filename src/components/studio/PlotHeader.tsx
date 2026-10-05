@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Check, FileText, LinkSimple, X } from "@phosphor-icons/react";
+import { Check, DownloadSimple, FileText, LinkSimple, X } from "@phosphor-icons/react";
+import { download, plotGeoJson, plotKml } from "@/lib/export";
 import type { Plot } from "@/lib/contracts";
 import { formatArea, formatLength } from "@/lib/format";
 import { reportHref } from "@/lib/routes";
@@ -10,7 +11,10 @@ import styles from "./PlotHeader.module.css";
 
 export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void }) {
   const [copied, setCopied] = useState(false);
-  const place = [plot.municipality?.name, plot.municipality?.provinceCode].filter(Boolean).join(" ");
+  const m = plot.municipality;
+  // provinceCode may be the ISTAT number; only a two-letter sigla reads naturally after the name.
+  const sigla = m?.provinceCode && /^[A-Z]{2}$/.test(m.provinceCode) ? `(${m.provinceCode})` : null;
+  const place = [m?.name, sigla ?? m?.region].filter(Boolean).join(sigla ? " " : ", ");
 
   const copyLink = async () => {
     try {
@@ -31,10 +35,14 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
         </button>
       </div>
 
-      <h1 className={styles.title}>
-        Foglio <span className="num">{plot.cadastral.sheet}</span>
+      <h1 className={styles.title} translate="no">
+        <span>
+          Foglio <span className="num">{plot.cadastral.sheet}</span>
+        </span>
         <span className={styles.sep} aria-hidden="true" />
-        Particella <span className="num">{plot.cadastral.parcel}</span>
+        <span>
+          Particella <span className="num">{plot.cadastral.parcel}</span>
+        </span>
       </h1>
       {plot.address ? <p className={styles.address}>{plot.address}</p> : null}
 
@@ -57,13 +65,29 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
       </p>
 
       <div className={styles.actions}>
-        <Link href={reportHref(plot.id)} className={styles.primary}>
+        <Link href={reportHref(plot.id, plot.centroid)} className={styles.primary}>
           <FileText size={16} aria-hidden="true" /> Apri la scheda
         </Link>
         <button type="button" className={styles.secondary} onClick={copyLink} aria-live="polite">
           {copied ? <Check size={16} aria-hidden="true" /> : <LinkSimple size={16} aria-hidden="true" />}
           {copied ? "Link copiato" : "Copia link"}
         </button>
+        {plot.geometry ? (
+          <details className={styles.menu}>
+            <summary className={styles.secondary} aria-label="Scarica il confine del lotto">
+              <DownloadSimple size={16} aria-hidden="true" />
+            </summary>
+            <div className={styles.menuPanel}>
+              <p>Scarica il confine</p>
+              <button type="button" onClick={() => download(plotGeoJson(plot))}>
+                GeoJSON <span>per QGIS e software GIS</span>
+              </button>
+              <button type="button" onClick={() => download(plotKml(plot))}>
+                KML <span>per Google Earth</span>
+              </button>
+            </div>
+          </details>
+        ) : null}
       </div>
     </header>
   );

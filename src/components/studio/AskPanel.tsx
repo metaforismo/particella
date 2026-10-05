@@ -63,7 +63,7 @@ export function AskPanel({ plot, onClose }: Props) {
         {messages.length === 0 ? (
           <div className={styles.intro}>
             <p>
-              Rispondo usando solo i dati raccolti per questo terreno, e ti dico da quale fonte arriva ogni
+              Le risposte usano solo i dati raccolti per questo terreno e indicano da quale fonte arriva ogni
               informazione.
             </p>
             <ul className={styles.suggestions}>
@@ -84,7 +84,7 @@ export function AskPanel({ plot, onClose }: Props) {
 
         {status === "submitted" ? (
           <p className={styles.thinking}>
-            <CircleNotch size={14} className={styles.spin} aria-hidden="true" /> Leggo i dati del terreno…
+            <CircleNotch size={14} className={styles.spin} aria-hidden="true" /> Lettura dei dati del terreno…
           </p>
         ) : null}
 
@@ -112,7 +112,7 @@ export function AskPanel({ plot, onClose }: Props) {
           id="ask-input"
           rows={1}
           value={input}
-          placeholder="Fai una domanda su questo terreno"
+          placeholder="Fai una domanda su questo terreno…"
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {

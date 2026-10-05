@@ -82,6 +82,35 @@ button {
   cursor: pointer;
 }
 
+a,
+button,
+input,
+textarea,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--s-2);
+  left: var(--s-2);
+  z-index: 100;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-size: var(--fs-sm);
+  font-weight: 560;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform var(--dur-fast);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
 code,
 pre {
   font-family: var(--font-code);

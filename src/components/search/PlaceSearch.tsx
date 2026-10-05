@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type Ref } from "react";
 import { MagnifyingGlass, MapPin, CircleNotch } from "@phosphor-icons/react";
 import type { GeocodeResult } from "@/lib/contracts";
 import { useGeocode } from "./useGeocode";
@@ -13,6 +13,7 @@ type Props = {
   submitLabel?: string;
   autoFocus?: boolean;
   defaultValue?: string;
+  inputRef?: Ref<HTMLInputElement>;
 };
 
 export function PlaceSearch({
@@ -21,6 +22,7 @@ export function PlaceSearch({
   submitLabel = "Analizza il terreno",
   autoFocus,
   defaultValue = "",
+  inputRef,
 }: Props) {
   const [query, setQuery] = useState(defaultValue);
   const [open, setOpen] = useState(false);
@@ -62,13 +64,15 @@ export function PlaceSearch({
         <span className="visually-hidden">Cerca un terreno</span>
         <MagnifyingGlass className={styles.icon} size={size === "large" ? 20 : 17} aria-hidden="true" />
         <input
+          ref={inputRef}
           className={styles.input}
           type="text"
+          name="q"
           inputMode="search"
           autoComplete="off"
           spellCheck={false}
           autoFocus={autoFocus}
-          placeholder="Indirizzo, comune o foglio e particella"
+          placeholder="Indirizzo, comune o foglio e particella…"
           value={query}
           role="combobox"
           aria-expanded={Boolean(showList)}
@@ -107,7 +111,7 @@ export function PlaceSearch({
           {error && !results.length ? (
             <li className={styles.status}>La ricerca degli indirizzi non risponde. Riprova tra poco.</li>
           ) : null}
-          {loading && !results.length ? <li className={styles.status}>Cerco…</li> : null}
+          {loading && !results.length ? <li className={styles.status}>Ricerca…</li> : null}
           {results.map((place, index) => (
             <li
               key={place.id}

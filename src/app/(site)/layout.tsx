@@ -4,8 +4,11 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
     <>
+      <a href="#contenuto" className="skip-link">
+        Vai al contenuto
+      </a>
       <SiteHeader />
-      <main>{children}</main>
+      <main id="contenuto">{children}</main>
       <SiteFooter />
     </>
   );

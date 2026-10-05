@@ -50,6 +50,14 @@
   font-stretch: var(--stretch-condensed);
 }
 
+.metrics dd.absent {
+  color: var(--ink-3);
+  font-size: var(--fs-2xs);
+  font-weight: 400;
+  font-stretch: var(--stretch-normal);
+  line-height: 1.35;
+}
+
 .legend {
   display: flex;
   flex-wrap: wrap;

@@ -32,9 +32,13 @@ export function LayerDetail({ result, meta }: { result: LayerResult; meta: Layer
       {result.metrics.length ? (
         <dl className={styles.metrics}>
           {result.metrics.map((m) => (
-            <div key={m.key} title={m.hint ?? undefined}>
+            <div key={m.key} title={m.value != null ? (m.hint ?? undefined) : undefined}>
               <dt>{m.label}</dt>
-              <dd className="num">{formatMetric(m.value, m.unit)}</dd>
+              {m.value == null && m.hint ? (
+                <dd className={styles.absent}>{m.hint}</dd>
+              ) : (
+                <dd className="num">{formatMetric(m.value, m.unit)}</dd>
+              )}
             </div>
           ))}
         </dl>

@@ -36,8 +36,8 @@ const Overpass = z.object({
 });
 
 export const gridLabels = {
-  "grid-line": "Linea con tensione dichiarata ≥132 kV",
-  substation: "Stazione elettrica censita in OSM",
+  "grid-line": "Linea ad alta tensione (≥132 kV)",
+  substation: "Stazione elettrica",
 };
 
 export const infrastructureLabels = {
@@ -175,7 +175,28 @@ export function osmLandQuery(plot: Pick<Plot, "geometry" | "centroid">): string 
   return `[out:json][timeout:15];(way(${large})[power=line];nw(${large})[power=substation];way(${small})[highway~"^(motorway|trunk|primary|secondary)$"];way(${small})[railway=rail];nw(${small})[landuse~"^(cemetery|industrial|quarry|landfill)$"];nw(${small})[amenity=grave_yard];node(${small})[man_made=water_well];);out geom tags;`;
 }
 
-function osmLayer(layer: LayerId, labels: Record<string, string>, title: string): LayerProvider {
+const distanceLabel = (meters: number) =>
+  meters < 1000
+    ? `${meters} m`
+    : `${(meters / 1000).toLocaleString("it-IT", { maximumFractionDigits: 1 })} km`;
+
+const searchRadiusLabel = (layer: LayerId) => (layer === "power-grid" ? "10 km" : "2 km");
+
+/** "Più vicini censiti: strada secondaria a 246 m, cimitero a 1,7 km." — the two closest categories. */
+function closestHeadline(layer: LayerId, found: { label: string; distance: number | null }[]) {
+  const lead = found
+    .filter((row): row is { label: string; distance: number } => row.distance !== null)
+    .sort((a, b) => a.distance - b.distance)
+    .slice(0, 2)
+    .map(
+      (row) => `${row.label.charAt(0).toLowerCase()}${row.label.slice(1)} a ${distanceLabel(row.distance)}`,
+    )
+    .join(", ");
+  const prefix = layer === "power-grid" ? "Rete elettrica più vicina censita" : "Più vicini censiti";
+  return `${prefix}: ${lead}.`;
+}
+
+function osmLayer(layer: LayerId, labels: Record<string, string>): LayerProvider {
   return async (plot, { signal }) => {
     if (
       process.env.NODE_ENV === "production" &&
@@ -202,7 +223,13 @@ function osmLayer(layer: LayerId, labels: Record<string, string>, title: string)
       scope: "buffer",
       severity: "unknown",
       headline: features.length
-        ? `OpenStreetMap censisce ${features.length} ${title} nei dintorni.`
+        ? closestHeadline(
+            layer,
+            Object.entries(labels).map(([key, label]) => ({
+              label,
+              distance: nearest(features.filter((f) => f.properties.classKey === key)),
+            })),
+          )
         : incomplete
           ? "La ricerca OpenStreetMap è incompleta per queste infrastrutture."
           : "OpenStreetMap non restituisce elementi delle categorie cercate nei dintorni.",
@@ -214,6 +241,12 @@ function osmLayer(layer: LayerId, labels: Record<string, string>, title: string)
             ? null
             : nearest(features.filter((f) => f.properties.classKey === key)),
           unit: "m",
+          // A null value is either "not found within the radius" or "the query for it failed".
+          hint: data.missing.has(key as ClassKey)
+            ? "Ricerca non completata per questa categoria."
+            : features.some((f) => f.properties.classKey === key)
+              ? null
+              : `Nessun elemento censito entro ${searchRadiusLabel(layer)}.`,
         })),
         ...(layer === "power-grid"
           ? [
@@ -288,16 +321,8 @@ function osmLayer(layer: LayerId, labels: Record<string, string>, title: string)
   };
 }
 
-export const powerGrid = osmLayer("power-grid", gridLabels, "elementi della rete elettrica entro 10 km");
+export const powerGrid = osmLayer("power-grid", gridLabels);
 
-export const infrastructureDistances = osmLayer(
-  "infrastructure-distances",
-  infrastructureLabels,
-  "infrastrutture entro 2 km",
-);
+export const infrastructureDistances = osmLayer("infrastructure-distances", infrastructureLabels);
 
-export const industrialSites = osmLayer(
-  "industrial-sites",
-  siteLabels,
-  "aree industriali, cave e discariche entro 2 km",
-);
+export const industrialSites = osmLayer("industrial-sites", siteLabels);

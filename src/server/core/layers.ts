@@ -40,7 +40,7 @@ export const layerCatalog: LayerCatalogEntry[] = [
   },
   {
     id: "regional-land-cover",
-    group: "ambiente",
+    group: "urbanistica",
     title: "Uso del suolo regionale",
     description: "Classe UCS Toscana 2019 o DUSAF Lombardia 2021 sul punto",
     sourceIds: ["toscana-ucs", "lombardia-dusaf"],

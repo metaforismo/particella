@@ -31,7 +31,7 @@ export class ChatRateLimiter {
 
   private readonly now: () => number;
 
-  constructor(limit = 8, windowMs = 60_000, now = Date.now, globalLimit = 60) {
+  constructor(limit = 8, windowMs = 60_000, now = Date.now, globalLimit = 120) {
     this.limit = limit;
     this.windowMs = windowMs;
     this.now = now;

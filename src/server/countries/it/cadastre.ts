@@ -17,7 +17,7 @@ import { wfsMembers, gmlGeometry } from "#server/geo/gml.ts";
 import { fetchSource, queryUrl } from "#server/countries/it/queries.ts";
 import { municipalityAt } from "#server/countries/it/municipality.ts";
 
-export const PlotId = z.string().regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}:[0-9]{1,8}[A-Z]?$/);
+export const PlotId = z.string().regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}[A-Z]?:[0-9]{1,8}[A-Z]?$/);
 
 export function parsePlotId(id: string) {
   const parsed = PlotId.safeParse(id);
@@ -69,14 +69,18 @@ export interface Zoning {
   section: string | null;
 }
 
+/**
+ * Map sheets in the response. Sheets can carry a letter suffix (e.g. "21C" for an attached
+ * development); a sheet we cannot interpret is skipped rather than failing every lookup in its bbox.
+ * Callers still fail when the sheet of the selected parcel is missing.
+ */
 export function parseZoning(text: string, requireConfirmedEmpty = false): Zoning[] {
-  return wfsMembers(text, requireConfirmedEmpty).map((n) => {
+  return wfsMembers(text, requireConfirmedEmpty).flatMap((n) => {
     const sheet = String(n.LABEL ?? "");
     const reference = String(n.NATIONALCADASTRALZONINGREFERENCE ?? "");
     const code = reference.match(/^([A-Z]\d{3})([A-Z0-9]{0,3})_[A-Z0-9]+$/);
-    if (!code || !/^\d{1,5}$/.test(sheet))
-      throw new UpstreamError("Foglio o sezione della mappa non riconosciuti.");
-    return { reference, sheet, belfiore: code[1], section: code[2] || null };
+    if (!code || !/^\d{1,5}[A-Z]?$/.test(sheet)) return [];
+    return [{ reference, sheet, belfiore: code[1], section: code[2] || null }];
   });
 }
 

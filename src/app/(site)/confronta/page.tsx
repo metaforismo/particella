@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-const ID = /^it:[A-Z]\d{3}:[A-Z0-9_]{1,3}:\d{1,5}:\d{1,8}[A-Z]?$/;
+const ID = /^it:[A-Z]\d{3}:[A-Z0-9_]{1,3}:\d{1,5}[A-Z]?:\d{1,8}[A-Z]?$/;
 
 /** `p=id@lat,lon`, repeated. Malformed entries are dropped rather than failing the page. */
 function toTargets(value: string | string[] | undefined): CompareTarget[] {

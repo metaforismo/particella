@@ -234,3 +234,20 @@ test("terrain slope known plane and Mercator tile axes", () => {
   assert.equal(s, 0);
   assert.ok(e > 20000000 && n > 20000000);
 });
+
+test("map sheets with a letter suffix are real sheets, not parse failures", () => {
+  // Real AdE response near Firenze Peretola, where sheet 21C is an attached development.
+  const sheets = parseZoning(fixtureText("ade-zoning-suffixed-sheet.xml"));
+  assert.ok(sheets.some((z) => z.sheet === "21C" && z.reference === "D612_0021C0"));
+  assert.deepEqual(parsePlotId("it:D612:_:21C:45"), {
+    municipalityCode: "D612",
+    section: null,
+    sheet: "21C",
+    parcel: "45",
+  });
+});
+
+test("an unreadable sheet in the bbox is skipped instead of failing the lookup", () => {
+  const xml = fixtureText("ade-zoning-suffixed-sheet.xml").replace("<CP:LABEL>21C", "<CP:LABEL>??");
+  assert.doesNotThrow(() => parseZoning(xml));
+});

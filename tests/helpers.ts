@@ -1,8 +1,11 @@
 import { readFileSync } from "node:fs";
-import type { HttpPayload } from "../src/server/core/http.ts";
+import type { HttpPayload } from "#server/core/http.ts";
+
 export const fixtureText = (name: string): string =>
   readFileSync(new URL(`./fixtures/${name}`, import.meta.url), "utf8");
+
 export const fixtureJson = (name: string): unknown => JSON.parse(fixtureText(name));
+
 export const payload = (name: string): HttpPayload => ({
   bytes: new TextEncoder().encode(fixtureText(name)),
   requestUrl: `https://example.test/${name}`,

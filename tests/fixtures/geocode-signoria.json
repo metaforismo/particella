@@ -1,0 +1,59 @@
+[
+  {
+    "place_id": 81981347,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "way",
+    "osm_id": 23298643,
+    "lat": "43.7695737",
+    "lon": "11.2558641",
+    "category": "place",
+    "type": "square",
+    "place_rank": 25,
+    "importance": 0.4802435941101253,
+    "addresstype": "square",
+    "name": "Piazza della Signoria",
+    "display_name": "Piazza della Signoria, Oltrarno, Quartiere 1, Firenze, Toscana, Italia",
+    "address": {
+      "square": "Piazza della Signoria",
+      "neighbourhood": "Oltrarno",
+      "suburb": "Quartiere 1",
+      "city": "Firenze",
+      "county": "Firenze",
+      "ISO3166-2-lvl6": "IT-FI",
+      "state": "Toscana",
+      "ISO3166-2-lvl4": "IT-52",
+      "country": "Italia",
+      "country_code": "it"
+    },
+    "boundingbox": ["43.7691470", "43.7700169", "11.2551323", "11.2567739"]
+  },
+  {
+    "place_id": 82489756,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 20351217,
+    "lat": "43.7695737",
+    "lon": "11.2555207",
+    "category": "highway",
+    "type": "pedestrian",
+    "place_rank": 26,
+    "importance": 0.053414390020599646,
+    "addresstype": "road",
+    "name": "Piazza della Signoria",
+    "display_name": "Piazza della Signoria, Oltrarno, Quartiere 1, Firenze, Toscana, 50122, Italia",
+    "address": {
+      "road": "Piazza della Signoria",
+      "neighbourhood": "Oltrarno",
+      "suburb": "Quartiere 1",
+      "city": "Firenze",
+      "county": "Firenze",
+      "ISO3166-2-lvl6": "IT-FI",
+      "state": "Toscana",
+      "ISO3166-2-lvl4": "IT-52",
+      "postcode": "50122",
+      "country": "Italia",
+      "country_code": "it"
+    },
+    "boundingbox": ["43.7691470", "43.7700169", "11.2551323", "11.2567739"]
+  }
+]

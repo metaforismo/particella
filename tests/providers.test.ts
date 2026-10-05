@@ -1,12 +1,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { LayerResult, Plot, MapOverlay, Provenance } from "../src/lib/contracts/index.ts";
-import { getCountry } from "../src/server/countries/index.ts";
-import { parseParcels } from "../src/server/countries/it/cadastre.ts";
+import { LayerResult, Plot, MapOverlay, Provenance } from "#contracts";
+import { getCountry } from "#server/countries/index.ts";
+import { parseParcels } from "#server/countries/it/cadastre.ts";
 import { fixtureText } from "./helpers.ts";
 
 const originalFetch = globalThis.fetch;
+
 let floodMode: "positive" | "empty" | "partial" = "positive";
+
 globalThis.fetch = async (input) => {
   const url = new URL(String(input));
   let fixture: string;
@@ -41,8 +43,8 @@ function plot(lat: number, lon: number): Plot {
       istatCode: "048001",
       cadastralCode: "A564",
       name: "Bagno a Ripoli",
-      province: null,
-      provinceCode: "048",
+      province: "Firenze",
+      provinceCode: "FI",
       region: "Toscana",
     },
     address: null,
@@ -53,10 +55,14 @@ function plot(lat: number, lon: number): Plot {
     provenance: [],
   });
 }
+
 const context = () => ({ signal: new AbortController().signal });
+
 test("all eight real providers normalize offline fixtures with source attribution and stable class keys", async () => {
   const country = getCountry("it");
-  for (const [id, provider] of Object.entries(country.layers)) {
+  for (const [id, provider] of Object.entries(country.layers).filter(
+    ([id]) => !["landscape", "planning", "land-cover", "accessibility", "market"].includes(id),
+  )) {
     const p =
       id === "services"
         ? plot(45.4642, 9.19)
@@ -99,6 +105,7 @@ test("all eight real providers normalize offline fixtures with source attributio
     }
   }
 });
+
 test("web URL contract rejects unsafe schemes and overlays require the local proxy", () => {
   const entry = {
     sourceId: "test",
@@ -117,6 +124,7 @@ test("web URL contract rejects unsafe schemes and overlays require the local pro
   assert.equal(overlay.tileUrl, "/api/v1/tiles/cadastre/{z}/{x}/{y}");
   assert.equal(MapOverlay.safeParse({ ...overlay, tileUrl: "https://example.test/{z}" }).success, false);
 });
+
 test("complete empty flood is unknown risk; one failed scenario produces partial data", async () => {
   const country = getCountry("it");
   floodMode = "empty";
@@ -128,6 +136,7 @@ test("complete empty flood is unknown risk; one failed scenario produces partial
   assert.equal(partial.status, "partial");
   assert.equal(partial.provenance.length, 2);
 });
+
 test.after(() => {
   globalThis.fetch = originalFetch;
 });

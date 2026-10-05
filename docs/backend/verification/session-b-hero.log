@@ -1,0 +1,33 @@
+
+> particella@0.1.0 content:hero
+> node --experimental-strip-types scripts/content/hero.ts
+
+{
+  "id": "it:D612:_:173:68",
+  "point": {
+    "lat": 43.76927,
+    "lon": 11.2565
+  },
+  "rows": [
+    {
+      "layer": "planning",
+      "value": "Zona A · sottozona A1",
+      "source": "Comune di Firenze"
+    },
+    {
+      "layer": "flood",
+      "value": "Scenari P1, P2",
+      "source": "ISPRA"
+    },
+    {
+      "layer": "seismic",
+      "value": "Zona sismica 3 (Comune)",
+      "source": "Dipartimento della Protezione Civile"
+    },
+    {
+      "layer": "solar",
+      "value": "~1.374 kWh/anno per 1 kWp",
+      "source": "Commissione europea - JRC"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 4195465643,
+        "osm_key": "place",
+        "osm_value": "house",
+        "type": "house",
+        "housenumber": "31",
+        "street": "Via Tortona",
+        "locality": "Foppette",
+        "district": "Municipio 6",
+        "city": "Milano",
+        "county": "Milano",
+        "state": "Lombardia",
+        "country": "Italia",
+        "postcode": "20144",
+        "countrycode": "IT"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.1619177, 45.4514552] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 5561293722,
+        "osm_key": "shop",
+        "osm_value": "furniture",
+        "type": "house",
+        "housenumber": "31",
+        "name": "Archiproducts",
+        "street": "Via Tortona",
+        "locality": "Foppette",
+        "district": "Municipio 6",
+        "city": "Milano",
+        "county": "Milano",
+        "state": "Lombardia",
+        "country": "Italia",
+        "postcode": "20144",
+        "countrycode": "IT"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.1627976, 45.4516869] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 136334085,
+        "osm_key": "building",
+        "osm_value": "yes",
+        "type": "house",
+        "name": "Opificio 31",
+        "street": "Via Tortona",
+        "locality": "Foppette",
+        "district": "Municipio 6",
+        "city": "Milano",
+        "county": "Milano",
+        "state": "Lombardia",
+        "country": "Italia",
+        "postcode": "20144",
+        "countrycode": "IT",
+        "extent": [9.1617509, 45.451322, 9.1620817, 45.4508919]
+      },
+      "geometry": { "type": "Point", "coordinates": [9.1619169, 45.4511064] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 2294678457,
+        "osm_key": "place",
+        "osm_value": "house",
+        "type": "house",
+        "housenumber": "31",
+        "street": "Via Bergognone Da Fossano",
+        "locality": "Tortona",
+        "district": "Municipio 6",
+        "city": "Milano",
+        "county": "Milano",
+        "state": "Lombardia",
+        "country": "Italia",
+        "postcode": "20144",
+        "countrycode": "IT"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.16387, 45.4539879] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 5616674290,
+        "osm_key": "amenity",
+        "osm_value": "fast_food",
+        "type": "house",
+        "housenumber": "31",
+        "name": "La Piadineria",
+        "street": "Via Bergognone Da Fossano",
+        "locality": "Tortona",
+        "district": "Municipio 6",
+        "city": "Milano",
+        "county": "Milano",
+        "state": "Lombardia",
+        "country": "Italia",
+        "postcode": "20144",
+        "countrycode": "IT"
+      },
+      "geometry": { "type": "Point", "coordinates": [9.1642821, 45.4534459] }
+    }
+  ]
+}

@@ -128,5 +128,141 @@
     "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22+xmlns%3ACP%3D%22http%3A%2F%2Fmapserver.gis.umn.edu%2Fmapserver%22%3E%3Cfes%3AAnd%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ECP%3AADMINISTRATIVEUNIT%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3EA564%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ECP%3ALABEL%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E60%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AAnd%3E%3C%2Ffes%3AFilter%3E&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralZoning&VERSION=2.0.0",
     "retrievedAt": "2026-10-05T22:30:25.648Z",
     "reduction": "Original response for the known sheet. numberMatched=unknown, numberReturned=0; not evidence that the sheet does not exist."
+  },
+  {
+    "fixture": "landscape-positive.json",
+    "fixtureSha256": "50312728f7dd1d140ffe35179f7d8d31637893b79f1ed05d90e7338b5009a221",
+    "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=toscana_art136&query_layers=toscana_art136&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=11.255700000000001%2C43.769499999999994%2C11.2559%2C43.7697&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "landscape-142.json",
+    "fixtureSha256": "273adcb2426926e19c04593da3bd33f6a718032748a3c51122f120ddddc96ab4",
+    "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=toscana_art142_ghiacciai%2Ctoscana_art142_montagne%2Ctoscana_art142_rispetto_fiumi%2Ctoscana_art142_rispetto_laghi%2Ctoscana_art142_territori_costieri&query_layers=toscana_art142_ghiacciai%2Ctoscana_art142_montagne%2Ctoscana_art142_rispetto_fiumi%2Ctoscana_art142_rispetto_laghi%2Ctoscana_art142_territori_costieri&info_format=application%2Fjson&srs=EPSG%3A4326&bbox=11.255700000000001%2C43.769499999999994%2C11.2559%2C43.7697&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "planning-firenze.xml",
+    "fixtureSha256": "c55edd5bac1b12e2dec965a81f6e36fc607f810e0fb499b4553c6fcbf3d6c2c8",
+    "requestUrl": "https://tms.comune.fi.it/tiles/service/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&query_layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&info_format=application%2Fvnd.ogc.gml&srs=EPSG%3A4326&bbox=11.245800000000001%2C43.7596%2C11.2658%2C43.779599999999995&width=101&height=101&x=50&y=50&feature_count=100&format=image%2Fpng&styles=",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "planning-milano.json",
+    "fixtureSha256": "9ffb038abfce037a04e7805fa096b3119b6284f9edfb4f5f7aa8849a7a2013b7",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/20/query?f=json&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "corine.json",
+    "fixtureSha256": "c1c42f97d7c08fb71e976be89e95fdf1d86fa6351300e5ac3276132afca8fe64",
+    "requestUrl": "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2018_WM/MapServer/0/query?f=geojson&geometry=11.2558%2C43.7696&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&outSR=4326",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "omi-semesters.json",
+    "fixtureSha256": "62071aef53498308c947ee68e71dfd8bc33b7209b0d5af5f36080290dffcba94",
+    "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?richiesta=5",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "omi-zone-list.json",
+    "fixtureSha256": "8a92446f96c920c6312ffa8ea239e5e5944c0b864a11ac639d633031a951a422",
+    "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?richiesta=3&codcom=D612&semestre=20252",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "omi-firenze.zip",
+    "fixtureSha256": "e2cde05960c2ce8a796417d383a0079e5fd3bcbbfa27aeb3fce54477c8751d9a",
+    "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/perimetri.php?id=1&prov=FI&codcom=D612&semestre=20252&formato=kml",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "omi-prices.html",
+    "fixtureSha256": "85e553e2f6ce5e098a295db2e9473df33d41f56b0725dbc9549d5d672bfd2edd",
+    "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?D612/FI00001135/20252/R/B5/11.2558/43.7696",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "omi-prices-rural.html",
+    "fixtureSha256": "4ad8f353f5d3cd99f9fe6f24fc175b03add7bd4a4d48a113cf816abdbbcc0e54",
+    "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?A564/FI00001660/20252/R/R1/11.319405934999999/43.700436545",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "cadastre-real-z18.png",
+    "fixtureSha256": "c3aa4a41855936535bcedc65a6344d06d560377983046a64538566ad943a3055",
+    "requestUrl": "https://wms.cartografia.agenziaentrate.gov.it/inspire/wms/ows01.php?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=CP.CadastralParcel&STYLES=&FORMAT=image%2Fpng&TRANSPARENT=true&WIDTH=256&HEIGHT=256&CRS=EPSG%3A6706&BBOX=43.699651229671446%2C11.318664550781259%2C43.700644071512464%2C11.320037841796882",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "accessibility-walk.json",
+    "fixtureSha256": "553b98cb8bdee7ab4c7c848afb7b8aa35c457e19da6a55fd3a9e84013965f67a",
+    "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A43.7696%2C%22lon%22%3A11.2558%7D%5D%2C%22costing%22%3A%22pedestrian%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "accessibility-car.json",
+    "fixtureSha256": "fcce092a24ed2e4ebe9255f0bb719c4dee529426e70ba95d5244d384ad8816bc",
+    "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A43.7696%2C%22lon%22%3A11.2558%7D%5D%2C%22costing%22%3A%22auto%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "geocode-tortona.json",
+    "fixtureSha256": "81329e7bf213d4a82bc1f0bdc163242562372830073ee885917b59ec8854a250",
+    "requestUrl": "https://nominatim.openstreetmap.org/search?q=Via+Tortona+31+Milano&format=jsonv2&limit=5&addressdetails=1&countrycodes=it",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "geocode-bagno.json",
+    "fixtureSha256": "d83badb5d50ae4f14aec05ee6de7ba3e730a7b5b578beb15fd3825898c5360ae",
+    "requestUrl": "https://nominatim.openstreetmap.org/search?q=Bagno+a+Ripoli&format=jsonv2&limit=5&addressdetails=1&countrycodes=it",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "geocode-signoria.json",
+    "fixtureSha256": "4de7969797ca0266e36f1da2ab6e3f08c85f681711d090521e389a2ce14d13fa",
+    "requestUrl": "https://nominatim.openstreetmap.org/search?q=Piazza+della+Signoria+Firenze&format=jsonv2&limit=5&addressdetails=1&countrycodes=it",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
+  },
+  {
+    "fixture": "photon-tortona.json",
+    "fixtureSha256": "d09998c8c610510f0cb4054ae6dbaee777c3c7c7fe20411104c8da32004e9885",
+    "requestUrl": "https://photon.komoot.io/api/?q=Via+Tortona+31+Milano&limit=5&lat=42.5&lon=12.5",
+    "retrievalDate": "2026-10-06",
+    "timezone": "Europe/Rome",
+    "reduction": "Real response; JSON whitespace formatted where applicable. No invented properties or altered geometries."
   }
 ]

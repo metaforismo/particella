@@ -1,0 +1,64 @@
+
+> particella@0.1.0 test
+> node --experimental-strip-types --test tests/*.test.ts
+
+✔ unconfigured endpoint returns 503 ApiError without any network or model calls (161.363791ms)
+✔ chat rejects invalid IDs, system roles, overlong messages, many messages, files, malformed at and oversized bodies (7.961583ms)
+✔ IP rate limit returns 429 with retry header and resets after the window (5.628459ms)
+✔ tools close over the selected plot and compact fake provider output without geometry (9.757541ms)
+✔ AI SDK 7 streams the real UI protocol with a mock model and executes the server tool first (88.914083ms)
+✔ cache evicts by byte budget and oversized payloads are not retained (186.052333ms)
+✔ 429 retries respect Retry-After when the deadline allows another attempt (802.686584ms)
+✔ deadline cancels a response stream that never sends another chunk (22.746875ms)
+✔ LRU eviction, TTL, defensive copies, canonical keys (1.216875ms)
+✔ requests deduplicate and cache with original retrieval timestamp (6.890875ms)
+✔ only transient status retries; failures have short negative cache (277.529334ms)
+✔ Retry-After seconds and date are honored within a request deadline (0.70725ms)
+✔ timeout covers hanging fetch and body streaming (17.463ms)
+✔ host limiter spaces starts and limits concurrency (21.796916ms)
+✔ request provenance removes credentials and token-like query fields (2.372542ms)
+✔ per-layer deadline resolves a hung provider without failing another layer (19.114333ms)
+✔ generic HTTP accepts legitimate status, remark and error fields; source validators reject their own errors even from cache (2.769ms)
+✔ opaque positional OMI query is not encoded into a parameter key (0.127875ms)
+✔ the three real Studio searches return sensible locations and labels through the route (2230.121209ms)
+✔ Nominatim 429 degrades to real Photon results with a valid UI payload and a street number (998.976333ms)
+✔ all five new providers use real offline fixtures, honest scope and source attribution (3105.054125ms)
+✔ accessibility and services share Overpass cache instead of making a second request (1.080625ms)
+✔ OMI chooses containing KML zone and rejects wrong-zone HTML or malformed tables (45.12575ms)
+✔ real cream cadastral PNG becomes transparent while every dark line and red attribution pixel stays intact (60.832583ms)
+✔ real rural OMI response has residential prices but no predominant typology; never invent one (4.370417ms)
+✔ real AdE GML swaps EPSG:6706 axes and chooses containing parcel, not first/nearest (53.336792ms)
+✔ covers includes boundary and excludes holes; representative point is inside (1.2145ms)
+✔ GML supports holes/multipolygons and rejects truncation, unknown CRS and OGC exception (1.732833ms)
+✔ real geocoders normalize bbox to west/south/east/north (8.01525ms)
+✔ real INGV nodes use distance selection; DPC retains leading zeroes and regional subclasses (10.760542ms)
+✔ real terrain/PVGIS/grid parse and no-data differs from valid zero (18.185709ms)
+✔ OSM categories, straight-line distance, partial Overpass errors (7.058792ms)
+✔ risk classifications stay stable; AA and empty are not safe (0.592292ms)
+✔ protected sites distinguish contains/intersects/nearby (5.454917ms)
+✔ terrain slope known plane and Mercator tile axes (0.573208ms)
+✔ warm cache avoids lookup; malformed at is still rejected (9.16475ms)
+✔ cold cache and negative ID cache use at, verify ID, and share the stored plot (1.129375ms)
+✔ without at, cold cache retains attribute lookup (0.24675ms)
+✔ all eight real providers normalize offline fixtures with source attribution and stable class keys (4601.540125ms)
+✔ web URL contract rejects unsafe schemes and overlays require the local proxy (0.287458ms)
+✔ complete empty flood is unknown risk; one failed scenario produces partial data (2505.300709ms)
+✔ route health/catalogs/geocode validate the shared contract (87.165417ms)
+✔ strict query validation rejects missing, blank, duplicated, non-numeric and out-of-range coordinates (9.432375ms)
+✔ real fixture plotAt and cold reversible plotById agree (1520.608666ms)
+Particella: response_schema_invalid
+Particella: internal_error
+✔ unconfirmed live WFS empty never becomes a false cadastral not_found (499.226625ms)
+✔ unknown layers fail validation; report isolates provider failures (4.962166ms)
+✔ production invalid response returns 500 internal, never invalid JSON or bad_request (0.577875ms)
+✔ tile proxy rejects arbitrary overlays and out-of-grid coordinates (14.24875ms)
+✔ AdE WMS uses latitude/longitude axes and PNG is resampled to Mercator (37.012833ms)
+✔ ID route cold at, mismatch, malformed at and province names use the same resolver (20.053458ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8437.810375

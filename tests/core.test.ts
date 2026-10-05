@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { MemoryCache, canonicalKey } from "../src/server/core/cache.ts";
+import { MemoryCache, canonicalKey } from "#server/core/cache.ts";
 import {
   HttpClient,
   retryAfterMs,
@@ -8,22 +8,29 @@ import {
   MemoryHostLimiter,
   canonicalUrl,
   type HostLimiter,
-} from "../src/server/core/http.ts";
-import { safeRequestUrl } from "../src/server/core/provenance.ts";
-import { apiError, OutsideCoverage, UpstreamError, RateLimited } from "../src/server/core/errors.ts";
-import { runLayer, layerResult } from "../src/server/core/layers.ts";
-import type { Plot } from "../src/lib/contracts/index.ts";
+} from "#server/core/http.ts";
+import { safeRequestUrl } from "#server/core/provenance.ts";
+import { apiError, OutsideCoverage, UpstreamError, RateLimited } from "#server/core/errors.ts";
+import { runLayer, layerResult } from "#server/core/layers.ts";
+import type { Plot } from "#contracts";
 
 const immediate: HostLimiter = { acquire: async () => () => {} };
+
 test("cache evicts by byte budget and oversized payloads are not retained", async () => {
-  const storage = new MemoryCache(100, Date.now, 400);
+  const storage = new MemoryCache(100, Date.now, 1200);
   await storage.set("first", new Uint8Array(200), 1000);
   await storage.set("second", new Uint8Array(200), 1000);
+  await storage.set("third", new Uint8Array(200), 1000);
+  await storage.set("fourth", new Uint8Array(200), 1000);
+  await storage.get("second");
+  await storage.set("fifth", new Uint8Array(200), 1000);
+  await storage.set("sixth", new Uint8Array(200), 1000);
   assert.equal(await storage.get("first"), undefined);
   assert.ok(await storage.get("second"));
-  await storage.set("oversized", new Uint8Array(500), 1000);
+  await storage.set("oversized", new Uint8Array(310), 1000);
   assert.equal(await storage.get("oversized"), undefined);
 });
+
 test("429 retries respect Retry-After when the deadline allows another attempt", async () => {
   let calls = 0;
   const start = Date.now();
@@ -36,6 +43,7 @@ test("429 retries respect Retry-After when the deadline allows another attempt",
   assert.equal(calls, 2);
   assert.ok(Date.now() - start >= 490);
 });
+
 test("deadline cancels a response stream that never sends another chunk", async () => {
   let cancelled = false;
   const client = new HttpClient(
@@ -58,6 +66,7 @@ test("deadline cancels a response stream that never sends another chunk", async 
     clearTimeout(hold);
   }
 });
+
 test("LRU eviction, TTL, defensive copies, canonical keys", async () => {
   let now = 0;
   const cache = new MemoryCache(2, () => now);
@@ -76,6 +85,7 @@ test("LRU eviction, TTL, defensive copies, canonical keys", async () => {
   );
   assert.equal(canonicalUrl("https://example.test/?b=2&a=1#x"), "https://example.test/?a=1&b=2");
 });
+
 test("requests deduplicate and cache with original retrieval timestamp", async () => {
   let calls = 0;
   const client = new HttpClient(new MemoryCache(), immediate, async (_url, init) => {
@@ -93,6 +103,7 @@ test("requests deduplicate and cache with original retrieval timestamp", async (
   assert.equal(a.retrievedAt, b.retrievedAt);
   assert.equal(a.retrievedAt, c.retrievedAt);
 });
+
 test("only transient status retries; failures have short negative cache", async () => {
   let calls = 0;
   const client = new HttpClient(
@@ -114,6 +125,7 @@ test("only transient status retries; failures have short negative cache", async 
   await assert.rejects(permanent.request("https://example.test/missing"), UpstreamError);
   assert.equal(permanentCalls, 1);
 });
+
 test("Retry-After seconds and date are honored within a request deadline", async () => {
   assert.equal(retryAfterMs("2"), 2000);
   assert.equal(retryAfterMs("Thu, 01 Jan 1970 00:00:05 GMT", 0), 5000);
@@ -126,6 +138,7 @@ test("Retry-After seconds and date are honored within a request deadline", async
   await assert.rejects(client.request("https://example.test/busy", { timeoutMs: 20 }), RateLimited);
   assert.equal(calls, 1);
 });
+
 test("timeout covers hanging fetch and body streaming", async () => {
   const client = new HttpClient(
     new MemoryCache(),
@@ -139,11 +152,12 @@ test("timeout covers hanging fetch and body streaming", async () => {
   await assert.rejects(client.request("https://example.test/slow", { timeoutMs: 15 }), UpstreamError);
   clearTimeout(hold);
 });
+
 test("host limiter spaces starts and limits concurrency", async () => {
-  const limiter = new MemoryHostLimiter(),
-    policy = { concurrency: 1, requestsPerSecond: 50 };
-  const start = Date.now(),
-    release = await limiter.acquire("fixture", policy, new AbortController().signal);
+  const limiter = new MemoryHostLimiter();
+  const policy = { concurrency: 1, requestsPerSecond: 50 };
+  const start = Date.now();
+  const release = await limiter.acquire("fixture", policy, new AbortController().signal);
   let second = false;
   const waiting = limiter.acquire("fixture", policy, new AbortController().signal).then((done) => {
     second = true;
@@ -156,6 +170,7 @@ test("host limiter spaces starts and limits concurrency", async () => {
   assert.ok(Date.now() - start >= 19);
   done();
 });
+
 test("request provenance removes credentials and token-like query fields", () => {
   const result = new URL(
     safeRequestUrl("https://user:password@example.test/data?api_key=hidden&signature=secret&layer=P1")!,
@@ -167,6 +182,7 @@ test("request provenance removes credentials and token-like query fields", () =>
   assert.equal(result.searchParams.get("layer"), "P1");
   assert.equal(apiError(new OutsideCoverage()).status, 404);
 });
+
 test("per-layer deadline resolves a hung provider without failing another layer", async () => {
   const plot = {
     id: "test-timeout",
@@ -196,4 +212,39 @@ test("per-layer deadline resolves a hung provider without failing another layer"
   assert.equal(a.status, "unavailable");
   assert.equal(b.status, "empty");
   assert.equal(aborted, true);
+});
+
+test("generic HTTP accepts legitimate status, remark and error fields; source validators reject their own errors even from cache", async () => {
+  let calls = 0;
+  const client = new HttpClient(new MemoryCache(), immediate, async () => {
+    calls++;
+    return new Response(JSON.stringify({ status: "complete", remark: "metadata", error: 0 }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  });
+  await client.request("https://example.test/legitimate-fields");
+  await assert.rejects(
+    client.request("https://example.test/legitimate-fields", {
+      validate: () => {
+        throw new UpstreamError("Specific source failure");
+      },
+    }),
+    UpstreamError,
+  );
+  assert.equal(calls, 1);
+  const html = new HttpClient(
+    new MemoryCache(),
+    immediate,
+    async () => new Response("<html>official data</html>", { headers: { "Content-Type": "text/html" } }),
+  );
+  await html.request("https://example.test/source-html", {
+    validate: (p) => assert.match(new TextDecoder().decode(p.bytes), /official data/),
+  });
+  await assert.rejects(html.request("https://example.test/unexpected-html"), UpstreamError);
+});
+
+test("opaque positional OMI query is not encoded into a parameter key", () => {
+  const input =
+    "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?D612/FI00001135/20252/R/B5/11.2558/43.7696";
+  assert.equal(canonicalUrl(input), input);
 });

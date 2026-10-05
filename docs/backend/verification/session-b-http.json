@@ -1,0 +1,192 @@
+{
+  "checkedAt": "2026-10-05T23:07:55Z",
+  "checks": [
+    {
+      "path": "plots/it:D612:_:173:68?at=43.769270,11.256500",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "detail": {
+        "id": "it:D612:_:173:68"
+      }
+    },
+    {
+      "path": "plots/it:D612:_:173:69?at=43.769270,11.256500",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "detail": {
+        "error": {
+          "code": "not_found",
+          "message": "Il punto indicato non ricade nella particella richiesta."
+        }
+      }
+    },
+    {
+      "path": "plots/it:D612:_:173:68?at=bad",
+      "status": 400,
+      "expected": 400,
+      "pass": true,
+      "detail": {
+        "error": {
+          "code": "bad_request",
+          "message": "Il parametro at deve contenere latitudine,longitudine valide."
+        }
+      }
+    },
+    {
+      "path": "plots/it:D612:_:173:68/layers/planning?at=43.769270,11.256500",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "detail": {
+        "headline": "Il punto è nell’ambito del nucleo storico (zona A - sottozona A1).",
+        "status": "ok"
+      }
+    },
+    {
+      "path": "health",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "detail": {
+        "status": "ok"
+      }
+    },
+    {
+      "path": "catalog/layers",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "detail": {
+        "count": 13
+      }
+    },
+    {
+      "path": "POST studio/chat",
+      "status": 503,
+      "expected": 503,
+      "pass": true,
+      "detail": {
+        "error": {
+          "code": "not_configured",
+          "message": "L’assistente non è ancora configurato."
+        }
+      }
+    },
+    {
+      "path": "plots/it:D612:_:173:68/report?at=43.769270,11.256500",
+      "status": 200,
+      "pass": true,
+      "detail": {
+        "id": "it:D612:_:173:68",
+        "layers": [
+          {
+            "layer": "flood",
+            "status": "ok",
+            "scope": "point",
+            "headline": "Il punto ricade negli scenari di alluvione P1, P2."
+          },
+          {
+            "layer": "landslide",
+            "status": "empty",
+            "scope": "point",
+            "headline": "La fonte non restituisce frane o aree PAI su questo punto."
+          },
+          {
+            "layer": "seismic",
+            "status": "ok",
+            "scope": "municipality",
+            "headline": "Il comune è classificato in zona sismica 3."
+          },
+          {
+            "layer": "protected-areas",
+            "status": "empty",
+            "scope": "parcel",
+            "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+          },
+          {
+            "layer": "terrain",
+            "status": "ok",
+            "scope": "parcel",
+            "headline": "I campioni del terreno hanno quote tra 49.9 e 50 metri."
+          },
+          {
+            "layer": "solar",
+            "status": "ok",
+            "scope": "point",
+            "headline": "PVGIS stima circa 1374 kWh all'anno per un impianto ideale da 1 kWp."
+          },
+          {
+            "layer": "services",
+            "status": "outside_coverage",
+            "scope": "point",
+            "headline": "Questo livello non è ancora collegato per questo servizio."
+          },
+          {
+            "layer": "demographics",
+            "status": "ok",
+            "scope": "grid_cell",
+            "headline": "Nel 2021 la cella di un chilometro quadrato contava 8131 residenti."
+          },
+          {
+            "layer": "landscape",
+            "status": "empty",
+            "scope": "point",
+            "headline": "SITAP non restituisce tutele sul punto controllato."
+          },
+          {
+            "layer": "planning",
+            "status": "ok",
+            "scope": "point",
+            "headline": "Il punto è nell’ambito del nucleo storico (zona A - sottozona A1)."
+          },
+          {
+            "layer": "land-cover",
+            "status": "ok",
+            "scope": "parcel",
+            "headline": "La copertura prevalente stimata è: tessuto urbano continuo."
+          },
+          {
+            "layer": "accessibility",
+            "status": "ok",
+            "scope": "buffer",
+            "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+          },
+          {
+            "layer": "market",
+            "status": "ok",
+            "scope": "zone",
+            "headline": "Nella zona OMI B5, abitazioni civili da 3600 a 5300 €/m²."
+          }
+        ]
+      }
+    },
+    {
+      "path": "geocode?q=Via%20Tortona%2031%20Milano",
+      "status": 200,
+      "pass": true,
+      "detail": [
+        {
+          "id": "osm:76092929",
+          "label": "Via Tortona 31",
+          "secondary": "Milano, Lombardia, Italia",
+          "kind": "address",
+          "center": {
+            "lat": 45.4516869,
+            "lon": 9.1627976
+          },
+          "bbox": [9.1627476, 45.4516369, 9.1628476, 45.4517369]
+        }
+      ]
+    },
+    {
+      "path": "plots/at?lat=43.7&lon=11.32",
+      "status": 200,
+      "pass": true,
+      "detail": {
+        "id": "it:A564:_:60:110"
+      }
+    }
+  ]
+}

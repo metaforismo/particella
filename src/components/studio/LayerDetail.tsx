@@ -14,6 +14,15 @@ const SCOPE_LABEL: Record<LayerResult["scope"], string> = {
   zone: "Riferito alla zona di appartenenza",
 };
 
+function isWebUrl(url: string) {
+  try {
+    const { protocol } = new URL(url);
+    return protocol === "https:" || protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
 export function LayerDetail({ result, meta }: { result: LayerResult; meta: LayerMeta }) {
   return (
     <div className={styles.detail}>
@@ -58,12 +67,20 @@ export function LayerDetail({ result, meta }: { result: LayerResult; meta: Layer
         <ul>
           {result.provenance.map((p) => (
             <li key={`${p.sourceId}-${p.dataset}`}>
-              <a href={p.url} target="_blank" rel="noreferrer" className={styles.sourceLink}>
-                <span>
-                  <strong>{p.authority}</strong> · {p.dataset}
+              {isWebUrl(p.url) ? (
+                <a href={p.url} target="_blank" rel="noreferrer" className={styles.sourceLink}>
+                  <span>
+                    <strong>{p.authority}</strong> · {p.dataset}
+                  </span>
+                  <ArrowSquareOut size={13} aria-hidden="true" />
+                </a>
+              ) : (
+                <span className={styles.sourceLink}>
+                  <span>
+                    <strong>{p.authority}</strong> · {p.dataset}
+                  </span>
                 </span>
-                <ArrowSquareOut size={13} aria-hidden="true" />
-              </a>
+              )}
               <span className={styles.sourceMeta}>
                 {p.license} · letto il {formatDate(p.retrievedAt)}
                 {p.referenceDate ? ` · dato al ${p.referenceDate}` : ""}

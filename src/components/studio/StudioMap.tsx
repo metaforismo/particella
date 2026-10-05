@@ -136,12 +136,14 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
 
     const meta = LAYER_BY_ID[activeResult.layer];
     for (const overlay of activeResult.overlays) {
+      if (!overlay.tileUrl.startsWith("/api/v1/tiles/")) continue;
       const id = `${ANALYSIS}-raster-${overlay.id}`;
       map.addSource(id, {
         type: "raster",
         tiles: [overlay.tileUrl],
         tileSize: 256,
-        attribution: overlay.attribution,
+        // MapLibre renders attribution as HTML; upstream text must never become markup.
+        attribution: escapeHtml(overlay.attribution),
       });
       map.addLayer(
         { id, type: "raster", source: id, paint: { "raster-opacity": overlay.opacity } },
@@ -211,6 +213,10 @@ function clearAnalysis(map: MapLibreMap) {
   for (const id of Object.keys(map.getStyle().sources)) {
     if (id.startsWith(ANALYSIS)) map.removeSource(id);
   }
+}
+
+function escapeHtml(text: string) {
+  return text.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 }
 
 function surveyPoint() {

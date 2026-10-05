@@ -218,7 +218,12 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
 
   return (
     <div className={styles.frame}>
-      <div ref={container} className={styles.map} />
+      <div
+        ref={container}
+        className={styles.map}
+        role="application"
+        aria-label="Mappa: tocca un punto per scegliere un terreno, oppure usa la ricerca"
+      />
       {hint && !plot ? (
         <p className={styles.hint} style={{ left: `calc(50% + ${(inset.left - inset.right) / 2}px)` }}>
           {hint}

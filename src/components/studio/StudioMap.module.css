@@ -61,8 +61,23 @@
   position: absolute;
   inset: 0;
   display: grid;
-  place-items: center;
+  place-content: center;
+  justify-items: center;
+  gap: var(--s-3);
+  padding: var(--s-6);
   color: var(--ink-2);
+  text-align: center;
+}
+
+.failed button {
+  height: 2.25rem;
+  padding: 0 var(--s-4);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-size: var(--fs-sm);
+  font-weight: 560;
 }
 
 /* Surveyor's benchmark: a dot with a slow expanding ring while we resolve the parcel. */

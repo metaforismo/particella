@@ -20,6 +20,7 @@ import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
 import { forgetRecentPlots, useRecentPlots } from "./recent";
+import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
 import styles from "./Studio.module.css";
 
@@ -41,6 +42,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [narrow, setNarrow] = useState(false);
   const [askOpen, setAskOpen] = useState(false);
+  const sheetDrag = useSheetDrag(sheetOpen, setSheetOpen);
   /** Phones show one view at a time inside the bottom sheet. */
   const [sheetTab, setSheetTab] = useState<"terreno" | "chiedi">("terreno");
 
@@ -243,7 +245,11 @@ export function Studio({ initial }: { initial: StudioInitial }) {
           className={styles.handle}
           aria-label={sheetOpen ? "Riduci il pannello" : "Espandi il pannello"}
           aria-expanded={sheetOpen}
-          onClick={() => setSheetOpen((v) => !v)}
+          onClick={(e) => {
+            // Pointer taps are handled by the drag hook; this keeps keyboard activation working.
+            if (e.detail === 0) setSheetOpen((v) => !v);
+          }}
+          {...sheetDrag}
         >
           <span />
         </button>

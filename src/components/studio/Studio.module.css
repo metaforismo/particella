@@ -368,12 +368,18 @@
   }
 
   .handle {
+    touch-action: none;
+    cursor: grab;
     display: grid;
     place-items: center;
     flex: none;
-    height: 1.5rem;
+    height: 1.75rem;
     border: 0;
     background: transparent;
+  }
+
+  .handle:active {
+    cursor: grabbing;
   }
 
   .tabs {

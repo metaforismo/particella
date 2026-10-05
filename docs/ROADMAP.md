@@ -24,7 +24,9 @@ profondità su una nicchia. Prima nicchia: **scouting di terreni per fotovoltaic
 2. **Urbanistica strutturata**: più Comuni collegati; indici e destinazioni con l'articolo delle NTA citato dall'assistente.
 3. **Scheda professionale**: logo dello studio, note del tecnico, PDF generato lato server e istantanea datata dei dati.
 4. **Account e progetti**: salvataggio dei lotti, cartelle per cliente, condivisione con il team.
-5. **Monitoraggio**: avviso quando cambia un dato di un lotto salvato (piano, vincoli, rischio).
+5. **Ricerca per foglio e particella**: indice locale dei dati catastali aperti (download GML per comune), perché il
+   servizio WFS non si interroga in modo affidabile per attributi.
+6. **Monitoraggio**: avviso quando cambia un dato di un lotto salvato (piano, vincoli, rischio).
 
 ## Infrastruttura per la produzione
 

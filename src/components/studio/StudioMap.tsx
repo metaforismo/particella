@@ -36,6 +36,7 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
   const markerRef = useRef<Marker | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [slow, setSlow] = useState(false);
   const [zoom, setZoom] = useState(5);
   const pick = useRef(onPick);
   const insetRef = useRef(inset);
@@ -107,6 +108,13 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
       mapRef.current = null;
     };
   }, []);
+
+  // A map that is still blank after a while is reported, never left grey in silence.
+  useEffect(() => {
+    if (ready) return;
+    const timer = setTimeout(() => setSlow(true), 15_000);
+    return () => clearTimeout(timer);
+  }, [ready]);
 
   // Pending point marker while the plot is being resolved.
   useEffect(() => {
@@ -216,8 +224,17 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
           {hint}
         </p>
       ) : null}
-      {failed ? (
-        <p className={styles.failed}>La mappa non si è caricata. Ricarica la pagina per riprovare.</p>
+      {failed || (slow && !ready) ? (
+        <div className={styles.failed} role="alert">
+          <p>
+            {failed
+              ? "La mappa non si è caricata."
+              : "La mappa sta impiegando più del previsto. La connessione potrebbe essere lenta."}
+          </p>
+          <button type="button" onClick={() => window.location.reload()}>
+            Ricarica la pagina
+          </button>
+        </div>
       ) : null}
     </div>
   );

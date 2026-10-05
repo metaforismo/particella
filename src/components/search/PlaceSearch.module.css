@@ -177,3 +177,14 @@
     display: none;
   }
 }
+
+/* On phones the compact bar shares the row with map controls: Enter and the list are enough. */
+@media (max-width: 820px) {
+  .form[data-size="compact"] .submit {
+    display: none;
+  }
+
+  .form[data-size="compact"] .input {
+    padding-right: var(--s-2);
+  }
+}

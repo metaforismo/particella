@@ -1,0 +1,149 @@
+.page {
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: var(--s-8) var(--gutter) var(--s-9);
+}
+
+.header h1 {
+  font-size: var(--fs-display);
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.035em;
+  line-height: var(--lh-tight);
+}
+
+.header p {
+  max-width: 54ch;
+  margin-top: var(--s-5);
+  color: var(--ink-2);
+  font-size: var(--fs-md);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: var(--s-8);
+  margin-top: var(--s-8);
+}
+
+.toc ul {
+  position: sticky;
+  top: 5rem;
+  display: grid;
+  gap: var(--s-1);
+  padding-left: var(--s-3);
+  border-left: 1px solid var(--rule-strong);
+}
+
+.toc a {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.content {
+  display: grid;
+  gap: var(--s-8);
+  max-width: 48rem;
+}
+
+.content section {
+  display: grid;
+  gap: var(--s-4);
+  scroll-margin-top: 5rem;
+}
+
+.content h2 {
+  font-size: var(--fs-xl);
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.02em;
+}
+
+.content p {
+  color: var(--ink-2);
+}
+
+.content p code,
+.content li code,
+.content td code {
+  padding: 0.05rem 0.3rem;
+  background: var(--paper-sunk);
+  border-radius: var(--radius-xs);
+  color: var(--ink);
+  font-size: 0.85em;
+  word-break: break-word;
+}
+
+.endpoints {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.endpoints li {
+  display: grid;
+  gap: 0.2rem;
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.endpoints code {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.endpoints span {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.small {
+  font-size: var(--fs-sm);
+}
+
+.errors {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.errors th,
+.errors td {
+  padding: var(--s-2) var(--s-3) var(--s-2) 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.errors th {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  font-weight: 560;
+}
+
+.rules {
+  display: grid;
+  gap: var(--s-2);
+  padding-left: var(--s-5);
+  list-style: disc;
+  color: var(--ink-2);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+
+  .toc ul {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+    padding-left: 0;
+    border-left: 0;
+  }
+}

@@ -3,7 +3,7 @@ import styles from "./HowItWorks.module.css";
 const STEPS = [
   {
     title: "Indica il terreno",
-    body: "Cerca un indirizzo, un foglio e una particella, oppure tocca la mappa. Troviamo la particella catastale e il suo confine.",
+    body: "Cerca un indirizzo, tocca la mappa o usa la tua posizione. Troviamo la particella catastale e il suo confine.",
   },
   {
     title: "Incrociamo le fonti",

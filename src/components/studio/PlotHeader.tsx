@@ -8,7 +8,7 @@ import { COMPARE_LIMIT } from "@/lib/compare";
 import { plotRef } from "@/lib/plot-list";
 import { download, plotGeoJson, plotKml } from "@/lib/export";
 import type { Plot } from "@/lib/contracts";
-import { formatArea, formatLength } from "@/lib/format";
+import { formatArea, formatLength, formatPlace } from "@/lib/format";
 import { reportHref } from "@/lib/routes";
 import styles from "./PlotHeader.module.css";
 
@@ -16,10 +16,6 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
   const [copied, setCopied] = useState(false);
   const compared = compareList.useList();
   const comparing = compared.some((p) => p.id === plot.id);
-  const m = plot.municipality;
-  // provinceCode may be the ISTAT number; only a two-letter sigla reads naturally after the name.
-  const sigla = m?.provinceCode && /^[A-Z]{2}$/.test(m.provinceCode) ? `(${m.provinceCode})` : null;
-  const place = [m?.name, sigla ?? m?.region].filter(Boolean).join(sigla ? " " : ", ");
 
   const copyLink = async () => {
     try {
@@ -34,7 +30,7 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
   return (
     <header className={styles.header}>
       <div className={styles.top}>
-        <p className={styles.place}>{place || "Comune non identificato"}</p>
+        <p className={styles.place}>{formatPlace(plot.municipality)}</p>
         <button type="button" className={styles.close} onClick={onClear} aria-label="Chiudi questo terreno">
           <X size={16} />
         </button>

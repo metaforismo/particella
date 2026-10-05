@@ -40,11 +40,13 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
   const [zoom, setZoom] = useState(5);
   const pick = useRef(onPick);
   const insetRef = useRef(inset);
+  const plotRef = useRef(plot);
 
   useEffect(() => {
     pick.current = onPick;
     insetRef.current = inset;
-  }, [onPick, inset]);
+    plotRef.current = plot;
+  }, [onPick, inset, plot]);
 
   // Create the map once.
   useEffect(() => {
@@ -171,6 +173,7 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
     }
 
     if (activeResult.features?.features.length) {
+      revealFeatures(map, activeResult.features.features, plotRef.current, insetRef.current);
       const color = featureColorExpression(activeResult.layer, meta.tone);
       map.addSource(ANALYSIS, { type: "geojson", data: activeResult.features as GeoJSON.FeatureCollection });
       map.addLayer(
@@ -252,6 +255,44 @@ function clearAnalysis(map: MapLibreMap) {
   for (const id of Object.keys(map.getStyle().sources)) {
     if (id.startsWith(ANALYSIS)) map.removeSource(id);
   }
+}
+
+/**
+ * When a layer's features reach well beyond the plot (isochrones, nearby services), frame plot and
+ * features together. Compared with the plot rather than the current view, because the camera may
+ * still be flying in when the layer arrives.
+ */
+function revealFeatures(
+  map: MapLibreMap,
+  features: GeoJSON.Feature[],
+  plot: Plot | null,
+  inset: Props["inset"],
+) {
+  type Box = [number, number, number, number];
+  const union = (a: Box | null, b: Box): Box =>
+    a ? [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])] : b;
+  let reach: Box | null = null;
+  for (const feature of features) {
+    if (!feature.geometry || feature.geometry.type === "GeometryCollection") continue;
+    reach = union(reach, geometryBounds(feature.geometry as Parameters<typeof geometryBounds>[0]));
+  }
+  if (!reach || !Number.isFinite(reach[0])) return;
+  const base: Box = plot?.geometry
+    ? geometryBounds(plot.geometry)
+    : [
+        plot?.centroid.lon ?? reach[0],
+        plot?.centroid.lat ?? reach[1],
+        plot?.centroid.lon ?? reach[2],
+        plot?.centroid.lat ?? reach[3],
+      ];
+  const span = (b: Box) => Math.max(b[2] - b[0], b[3] - b[1]);
+  // Features within about twice the plot's size are already visible around it.
+  if (span(union(base, reach)) <= span(base) * 2) return;
+  map.fitBounds(union(base, reach), {
+    padding: { top: 90, left: inset.left + 40, right: inset.right + 40, bottom: inset.bottom + 40 },
+    maxZoom: 17,
+    duration: 800,
+  });
 }
 
 /** Frame Italy beside the side panel on desktop, above the bottom sheet on phones. */

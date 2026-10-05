@@ -4,7 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { ArrowUp, CircleNotch, Stop, X } from "@phosphor-icons/react";
+import { ArrowCounterClockwise, ArrowUp, CircleNotch, Stop, X } from "@phosphor-icons/react";
 import { LAYER_BY_ID } from "@/content/layers";
 import type { LayerId, Plot } from "@/lib/contracts";
 import { formatAt } from "@/lib/routes";
@@ -16,6 +16,16 @@ const SUGGESTIONS = [
   "Quali vincoli ambientali o paesaggistici ci sono?",
   "Com'è servita la zona?",
 ];
+
+/** Messages sent back to the server: enough context for follow-ups, bounded in size and cost. */
+const HISTORY = 8;
+
+function textOnly(message: UIMessage): UIMessage {
+  if (message.role === "user") return message;
+  const parts = message.parts.filter((part) => part.type === "text");
+  // Providers reject empty text blocks, so a tools-only answer keeps a short marker instead.
+  return { ...message, parts: parts.length ? parts : [{ type: "text", text: "(dati consultati)" }] };
+}
 
 /** Tools the server exposes; their parts render as "consulted source" lines. */
 const TOOL_LABEL: Record<string, string> = {
@@ -30,11 +40,28 @@ export function AskPanel({ plot, onClose }: Props) {
     () =>
       new DefaultChatTransport({
         api: "/api/v1/studio/chat",
-        body: { plotId: plot.id, at: formatAt(plot.centroid) },
+        // The server re-reads layers through its tools, so earlier answers only need their text.
+        prepareSendMessagesRequest: ({ id, messages }) => ({
+          body: {
+            id,
+            plotId: plot.id,
+            at: formatAt(plot.centroid),
+            messages: messages.slice(-HISTORY).map(textOnly),
+          },
+        }),
       }),
     [plot.id, plot.centroid],
   );
-  const { messages, sendMessage, status, stop, error, regenerate } = useChat({ id: plot.id, transport });
+
+  const { messages, sendMessage, status, stop, error, regenerate, setMessages, clearError } = useChat({
+    id: plot.id,
+    transport,
+  });
+  const restart = () => {
+    stop();
+    clearError();
+    setMessages([]);
+  };
   const [input, setInput] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
   const busy = status === "submitted" || status === "streaming";
@@ -57,11 +84,18 @@ export function AskPanel({ plot, onClose }: Props) {
           <h2>Chiedi al terreno</h2>
           <p>{plot.cadastral.label}</p>
         </div>
-        {onClose ? (
-          <button type="button" className={styles.close} onClick={onClose} aria-label="Chiudi l'assistente">
-            <X size={16} />
-          </button>
-        ) : null}
+        <div className={styles.headActions}>
+          {messages.length ? (
+            <button type="button" className={styles.restart} onClick={restart} disabled={busy}>
+              <ArrowCounterClockwise size={14} aria-hidden="true" /> Nuova
+            </button>
+          ) : null}
+          {onClose ? (
+            <button type="button" className={styles.close} onClick={onClose} aria-label="Chiudi l'assistente">
+              <X size={16} />
+            </button>
+          ) : null}
+        </div>
       </header>
 
       <div ref={listRef} className={styles.messages} aria-live="polite">
@@ -96,9 +130,15 @@ export function AskPanel({ plot, onClose }: Props) {
         {error ? (
           <div className={styles.error} role="alert">
             <p>{errorText(error)}</p>
-            <button type="button" onClick={() => regenerate()}>
-              Riprova
-            </button>
+            {tooLong(error) ? (
+              <button type="button" onClick={restart}>
+                Nuova conversazione
+              </button>
+            ) : (
+              <button type="button" onClick={() => regenerate()}>
+                Riprova
+              </button>
+            )}
           </div>
         ) : null}
       </div>
@@ -190,7 +230,12 @@ function ToolLine({ name, part }: { name: string; part: { state?: string; input?
   );
 }
 
+const tooLong = (error: Error) => /troppo lunga|413/.test(error.message);
+
 function errorText(error: Error) {
+  if (tooLong(error)) {
+    return "La conversazione è diventata troppo lunga. Ricomincia: i dati del terreno restano gli stessi.";
+  }
   if (/not_configured|503/.test(error.message)) {
     return "L'assistente non è ancora configurato su questo ambiente.";
   }

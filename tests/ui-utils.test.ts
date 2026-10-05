@@ -117,7 +117,8 @@ test("status labels never turn missing data into reassurance", () => {
   assert.equal(resultLabel(layer({ status: "outside_coverage" })).tone, "unknown");
   assert.equal(resultLabel(layer({ status: "unavailable", severity: "none" })).tone, "unknown");
   assert.equal(resultLabel(layer({ severity: "high" })).label, "Rilevante");
-  assert.equal(resultLabel(layer({ severity: "unknown" })).label, "Dato incompleto");
+  assert.equal(resultLabel(layer({ severity: "unknown" })).label, "Informativo");
+  assert.equal(resultLabel(layer({ status: "partial", severity: "unknown" })).label, "Dato incompleto");
   assert.equal(stateLabel(undefined).tone, "pending");
   assert.equal(stateLabel({ status: "failed", message: "x" }).tone, "unknown");
 });
@@ -146,4 +147,11 @@ test("repeated readings of the same source are listed once, latest first", async
   ]);
   assert.equal(list.length, 2);
   assert.equal(list[0].retrievedAt, "2026-10-06T00:00:05.000Z");
+});
+
+test("place line never repeats the comune and only shows a real sigla", async () => {
+  const { formatPlace } = await import("../src/lib/format.ts");
+  assert.equal(formatPlace(plot.municipality), "Bagno a Ripoli (FI), Toscana");
+  assert.equal(formatPlace({ name: "Firenze", provinceCode: "048", region: "Toscana" }), "Firenze, Toscana");
+  assert.equal(formatPlace(null), "Comune non identificato");
 });

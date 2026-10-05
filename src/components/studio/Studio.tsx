@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -16,7 +17,6 @@ import { formatArea } from "@/lib/format";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
 import type { GeocodeResult, LatLon, LayerId } from "@/lib/contracts";
-import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
@@ -25,33 +25,15 @@ import { compareHref } from "@/lib/compare";
 import { forgetRecentPlots, useRecentPlots } from "./recent";
 import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
+import { EXAMPLES } from "@/content/examples";
 import styles from "./Studio.module.css";
 
-export type StudioInitial = { plotId?: string; point?: LatLon; query?: string; layer?: LayerId };
+// The assistant pulls in the AI SDK and a markdown renderer: load it only when someone opens it.
+const AskPanel = dynamic(() => import("./AskPanel").then((m) => m.AskPanel), {
+  loading: () => <p className={styles.askLoading}>Apertura dell&apos;assistente…</p>,
+});
 
-// Real parcels verified against the live sources, chosen to show different kinds of answers.
-const EXAMPLES: { label: string; detail: string; point: LatLon }[] = [
-  {
-    label: "Lotto residenziale a Firenze",
-    detail: "Zona B del Piano Operativo · 1.046 m²",
-    point: { lat: 43.737, lon: 11.233 },
-  },
-  {
-    label: "Collina coltivata a Firenze",
-    detail: "Sub-sistema agricolo · 5,3 ha",
-    point: { lat: 43.793, lon: 11.26 },
-  },
-  {
-    label: "Campagna a Bagno a Ripoli",
-    detail: "Pericolosità da frana segnalata · 1,9 ha",
-    point: { lat: 43.7, lon: 11.32 },
-  },
-  {
-    label: "Area urbana a Milano",
-    detail: "Zona Tortona · PGT di Milano",
-    point: { lat: 45.4515, lon: 9.166 },
-  },
-];
+export type StudioInitial = { plotId?: string; point?: LatLon; query?: string; layer?: LayerId };
 
 const PANEL_WIDTH = 384;
 

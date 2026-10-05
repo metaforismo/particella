@@ -24,6 +24,7 @@ export const SEVERITY_COLOR: Record<Severity, string> = {
 const CLASS_COLOR: Partial<Record<LayerId, Record<string, string>>> = {
   flood: { P1: "#9fc0d8", P2: "#4f84aa", P3: "#1f4f74" },
   landslide: { P1: "#e2cfa0", P2: "#c9a35f", P3: "#a5651a", P4: "#a8352a", AA: "#6f7a74" },
+  accessibility: { "walk-10": "#2d6a96", "car-10": "#8b5e34" },
   services: {
     school: "#2d6a96",
     transit: "#17201d",

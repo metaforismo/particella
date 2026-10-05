@@ -32,3 +32,10 @@ export function formatMetric(value: number | string | null, unit?: string | null
   const text = typeof value === "number" ? formatNumber(value, Math.abs(value) >= 100 ? 0 : 1) : value;
   return unit ? `${text} ${unit}` : text;
 }
+
+/** "Firenze (FI), Toscana": the sigla only when it is one, the region when known, no repetitions. */
+export function formatPlace(m: { name: string; provinceCode: string | null; region: string | null } | null) {
+  if (!m) return "Comune non identificato";
+  const sigla = m.provinceCode && /^[A-Z]{2}$/.test(m.provinceCode) ? ` (${m.provinceCode})` : "";
+  return [`${m.name}${sigla}`, m.region].filter(Boolean).join(", ");
+}

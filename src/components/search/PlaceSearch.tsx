@@ -75,7 +75,7 @@ export function PlaceSearch({
           autoComplete="off"
           spellCheck={false}
           autoFocus={autoFocus}
-          placeholder="Indirizzo, comune o foglio e particella…"
+          placeholder="Indirizzo, luogo o comune…"
           value={query}
           role="combobox"
           aria-expanded={Boolean(showList)}

@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -16,7 +17,6 @@ import { formatArea } from "@/lib/format";
 import { LogoMark } from "@/components/brand/Logo";
 import { PlaceSearch } from "@/components/search/PlaceSearch";
 import type { GeocodeResult, LatLon, LayerId } from "@/lib/contracts";
-import { AskPanel } from "./AskPanel";
 import { LayerList } from "./LayerList";
 import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
@@ -27,6 +27,11 @@ import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
 import { EXAMPLES } from "@/content/examples";
 import styles from "./Studio.module.css";
+
+// The assistant pulls in the AI SDK and a markdown renderer: load it only when someone opens it.
+const AskPanel = dynamic(() => import("./AskPanel").then((m) => m.AskPanel), {
+  loading: () => <p className={styles.askLoading}>Apertura dell&apos;assistente…</p>,
+});
 
 export type StudioInitial = { plotId?: string; point?: LatLon; query?: string; layer?: LayerId };
 

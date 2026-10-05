@@ -52,7 +52,8 @@ export const planning: LayerProvider = async (plot, { signal }) => {
       status: zones.length ? "ok" : "empty",
       severity: "unknown",
       headline: zones.length
-        ? `Il punto è nell’${zones.map((z) => z.descrizione).join("; ")}.`
+        ? // Descriptions start with their own article ("ambito dell'…", "sub-sistema della…").
+          `Piano Operativo di Firenze: ${zones.map((z) => z.descrizione).join("; ")}.`
         : "Il Piano Operativo non restituisce un ambito sul punto controllato.",
       metrics: zones.map((z) => ({
         key: z.tipologia,

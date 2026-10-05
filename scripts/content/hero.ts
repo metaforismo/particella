@@ -5,8 +5,8 @@ import { getCountry } from "#server/countries/index.ts";
 import { getPlotLayer } from "#server/plots.ts";
 import type { LayerId, LayerResult } from "#contracts";
 
-// Inside the real parcel of Palazzo Vecchio, Florence; not a street or nearest match.
-const point = { lat: 43.76927, lon: 11.2565 };
+// A residential infill plot (zona B) in the south of Florence, covered by the Piano Operativo.
+const point = { lat: 43.737, lon: 11.233 };
 
 const plot = await getCountry("it").plotAt(point.lat, point.lon);
 
@@ -26,8 +26,10 @@ for (const layer of ["planning", "flood", "seismic", "solar"] as const) {
   let source = result.provenance[0].authority;
   if (layer === "planning") {
     const description = String(result.metrics[0]?.value ?? "");
-    const zone = description.match(/zona ([A-Z]) - sottozona ([A-Z]\d+)/i);
-    value = zone ? `Zona ${zone[1]} · sottozona ${zone[2]}` : description;
+    const zone = description.match(/\(zona ([A-Z])(?: - sottozona ([A-Z]\d+))?\)/i);
+    // "ambito dell'insediamento recente (zona B)" → "Zona B · insediamento recente"
+    const name = description.replace(/^ambito dell['’]\s*/i, "").replace(/\s*\(.*\)\s*$/, "");
+    value = zone ? `Zona ${zone[1]} · ${zone[2] ? `sottozona ${zone[2]}` : name}` : description;
   } else if (layer === "flood") {
     const scenarios = metric(result, "scenarios");
     value = scenarios ? `Scenari ${scenarios}` : "Nessuna area restituita al punto";

@@ -190,7 +190,7 @@
   font-size: var(--fs-sm);
 }
 
-sup {
+.page sup {
   margin-left: 1px;
   color: var(--sepia);
   font-size: 0.7em;

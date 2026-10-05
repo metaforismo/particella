@@ -5,15 +5,17 @@ import {
   type LayerId,
   type Plot,
   type MapOverlay,
-} from "../../lib/contracts/index.ts";
-import { NotConfigured, OutsideCoverage } from "./errors.ts";
-import { cache, canonicalKey, NEGATIVE_TTL_MS } from "./cache.ts";
-import { hash } from "./http.ts";
+} from "#contracts";
+import { NotConfigured, OutsideCoverage } from "#server/core/errors.ts";
+import { cache, canonicalKey, NEGATIVE_TTL_MS } from "#server/core/cache.ts";
+import { hash } from "#server/core/http.ts";
 
 export interface LayerContext {
   signal: AbortSignal;
 }
+
 export type LayerProvider = (plot: Plot, context: LayerContext) => Promise<LayerResult>;
+
 export const layerCatalog: LayerCatalogEntry[] = [
   {
     id: "flood",
@@ -71,7 +73,43 @@ export const layerCatalog: LayerCatalogEntry[] = [
     description: "Residenti della cella censuaria di 1 km² nel 2021",
     sourceIds: ["istat-grid", "istat-population"],
   },
+  {
+    id: "landscape",
+    group: "urbanistica",
+    title: "Paesaggio",
+    description: "Tutele paesaggistiche SITAP sul punto",
+    sourceIds: ["sitap"],
+  },
+  {
+    id: "planning",
+    group: "urbanistica",
+    title: "Urbanistica",
+    description: "Ambiti del PO Firenze e sintesi PGT Milano",
+    sourceIds: ["planning-firenze", "planning-milano"],
+  },
+  {
+    id: "land-cover",
+    group: "ambiente",
+    title: "Copertura del suolo",
+    description: "Copertura prevalente stimata da CORINE 2018",
+    sourceIds: ["corine"],
+  },
+  {
+    id: "accessibility",
+    group: "contesto",
+    title: "Accessibilità",
+    description: "Aree raggiungibili in 10 minuti a piedi e in auto",
+    sourceIds: ["valhalla", "overpass"],
+  },
+  {
+    id: "market",
+    group: "contesto",
+    title: "Mercato immobiliare",
+    description: "Zona OMI e intervalli residenziali dell’ultimo semestre",
+    sourceIds: ["omi"],
+  },
 ];
+
 export function layerResult(
   layer: LayerId,
   values: Partial<Omit<LayerResult, "layer" | "group" | "title" | "computedAt">>,
@@ -95,20 +133,24 @@ export function layerResult(
     computedAt: new Date().toISOString(),
   });
 }
+
 export function failedLayer(layer: LayerId, error: unknown): LayerResult {
   return layerResult(layer, {
-    status: error instanceof OutsideCoverage ? "outside_coverage" : "unavailable",
+    status:
+      error instanceof OutsideCoverage || error instanceof NotConfigured ? "outside_coverage" : "unavailable",
     headline:
-      error instanceof OutsideCoverage
-        ? "La fonte non copre questo luogo."
-        : "La fonte non è al momento disponibile.",
-    notes: [
-      "I dati mancanti non equivalgono all'assenza di fenomeni.",
-      ...(error instanceof NotConfigured ? [error.message] : []),
-    ],
+      error instanceof NotConfigured
+        ? "Questo livello non è ancora collegato per questo servizio."
+        : error instanceof OutsideCoverage
+          ? "La fonte non copre questo luogo."
+          : "La fonte non è al momento disponibile.",
+    method: error instanceof NotConfigured ? error.message : undefined,
+    notes: ["I dati mancanti non equivalgono all'assenza di fenomeni."],
   });
 }
+
 const pending = new Map<string, Promise<LayerResult>>();
+
 export async function runLayer(
   layer: LayerId,
   plot: Plot,
@@ -117,9 +159,9 @@ export async function runLayer(
 ): Promise<LayerResult> {
   if (!provider)
     return layerResult(layer, {
-      status: "unavailable",
-      headline: "Questo livello non è ancora disponibile.",
-      notes: ["Provider previsto nella prossima fase."],
+      status: "outside_coverage",
+      headline: "Questo livello non è ancora collegato per questo luogo.",
+      notes: ["Consultare l’ente competente per queste informazioni."],
     });
   const key = canonicalKey("layer:v1", {
     layer,
@@ -159,6 +201,7 @@ export async function runLayer(
   pending.set(key, task);
   return task;
 }
+
 export function overlay(id: string, attribution: string, opacity = 0.5): MapOverlay {
   return { id, kind: "raster", tileUrl: `/api/v1/tiles/${id}/{z}/{x}/{y}`, opacity, attribution };
 }

@@ -15,14 +15,15 @@ export function parseDpcCsv(csv: string): Record<string, string> {
   });
   const zones: Record<string, string> = {};
   for (const raw of rows) {
-    const row = Row.parse(raw),
-      key = row.COD_ISTAT_COMUNE.padStart(6, "0");
+    const row = Row.parse(raw);
+    const key = row.COD_ISTAT_COMUNE.padStart(6, "0");
     if (zones[key] !== undefined) throw new Error(`Duplicate DPC municipality ${key}`);
     zones[key] = row.ZONA_SISMICA;
   }
   if (!rows.length) throw new Error("Empty DPC CSV");
   return zones;
 }
+
 export function parsePopulationCsv(csv: string): Record<string, number> {
   const rows: string[][] = parse(csv, { bom: true, delimiter: ";", skip_empty_lines: true, trim: true });
   const totals: Record<string, number> = {};

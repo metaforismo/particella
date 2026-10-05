@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import type { PlotGeometry } from "../src/server/geo/index.ts";
+import type { PlotGeometry } from "#server/geo/index.ts";
 import {
   coversPoint,
   measurements,
@@ -8,18 +8,18 @@ import {
   spatialRelation,
   representativePoint,
   esriRings,
-} from "../src/server/geo/index.ts";
-import { estimateSlope } from "../src/server/geo/terrain.ts";
-import { gmlGeometry, xmlDocument, wfsMembers } from "../src/server/geo/gml.ts";
-import { parseParcels, parseZoning, parsePlotId } from "../src/server/countries/it/cadastre.ts";
-import { parseNominatim, parsePhoton } from "../src/server/countries/it/geocode.ts";
-import { parsePga } from "../src/server/countries/it/layers/seismic.ts";
-import { parseTinitaly } from "../src/server/countries/it/layers/terrain.ts";
-import { parseSolar } from "../src/server/countries/it/layers/solar.ts";
-import { parseServices, serviceCategory } from "../src/server/countries/it/layers/services.ts";
-import { landslideClass, severityForHazard } from "../src/server/countries/it/layers/hazards.ts";
-import { parseArc, parseGeo } from "../src/server/countries/it/queries.ts";
-import { UpstreamError } from "../src/server/core/errors.ts";
+} from "#server/geo/index.ts";
+import { estimateSlope } from "#server/geo/terrain.ts";
+import { gmlGeometry, xmlDocument, wfsMembers } from "#server/geo/gml.ts";
+import { parseParcels, parseZoning, parsePlotId } from "#server/countries/it/cadastre.ts";
+import { parseNominatim, parsePhoton } from "#server/countries/it/geocode.ts";
+import { parsePga } from "#server/countries/it/layers/seismic.ts";
+import { parseTinitaly } from "#server/countries/it/layers/terrain.ts";
+import { parseSolar } from "#server/countries/it/layers/solar.ts";
+import { parseServices, serviceCategory } from "#server/countries/it/layers/services.ts";
+import { landslideClass, severityForHazard } from "#server/countries/it/layers/hazards.ts";
+import { parseArc, parseGeo } from "#server/countries/it/queries.ts";
+import { UpstreamError } from "#server/core/errors.ts";
 import { parseDpcCsv, parsePopulationCsv } from "../scripts/snapshots/parsers.ts";
 import { fixtureJson, fixtureText, payload } from "./helpers.ts";
 
@@ -35,6 +35,7 @@ const square: PlotGeometry = {
     ],
   ],
 };
+
 test("real AdE GML swaps EPSG:6706 axes and chooses containing parcel, not first/nearest", () => {
   const parcels = parseParcels(fixtureText("ade-rural.xml"));
   assert.equal(parcels.length, 2);
@@ -57,6 +58,7 @@ test("real AdE GML swaps EPSG:6706 axes and chooses containing parcel, not first
   });
   assert.throws(() => parsePlotId("it:bad:_:60:110"));
 });
+
 test("covers includes boundary and excludes holes; representative point is inside", () => {
   const withHole: PlotGeometry = {
     type: "Polygon",
@@ -97,6 +99,7 @@ test("covers includes boundary and excludes holes; representative point is insid
   };
   assert.equal(coversPoint(multi, { lat: 1.0005, lon: 1.0005 }), true);
 });
+
 test("GML supports holes/multipolygons and rejects truncation, unknown CRS and OGC exception", () => {
   assert.throws(
     () =>
@@ -129,6 +132,7 @@ test("GML supports holes/multipolygons and rejects truncation, unknown CRS and O
     UpstreamError,
   );
 });
+
 test("real geocoders normalize bbox to west/south/east/north", () => {
   const osm = parseNominatim(fixtureJson("nominatim.json"))[0];
   assert.ok(osm.center.lat > 45 && osm.center.lon < 10);
@@ -137,6 +141,7 @@ test("real geocoders normalize bbox to west/south/east/north", () => {
   assert.ok(photon.center.lat > 45 && photon.center.lon < 10);
   assert.throws(() => parseNominatim({ error: "invalid" }), UpstreamError);
 });
+
 test("real INGV nodes use distance selection; DPC retains leading zeroes and regional subclasses", () => {
   const nodes = parsePga(fixtureText("pga-firenze.xml"));
   assert.equal(nodes.length, 2);
@@ -150,6 +155,7 @@ test("real INGV nodes use distance selection; DPC retains leading zeroes and reg
   );
   assert.equal(population["015146"], 1362863);
 });
+
 test("real terrain/PVGIS/grid parse and no-data differs from valid zero", () => {
   assert.equal(parseTinitaly(fixtureJson("terrain.json")), 119.29900360107422);
   assert.equal(parseTinitaly({ features: [{ properties: { GRAY_INDEX: 0 } }] }), 0);
@@ -164,6 +170,7 @@ test("real terrain/PVGIS/grid parse and no-data differs from valid zero", () => 
     UpstreamError,
   );
 });
+
 test("OSM categories, straight-line distance, partial Overpass errors", () => {
   assert.equal(serviceCategory({ amenity: "pharmacy" }), "health");
   assert.equal(serviceCategory({ shop: "clothes" }), null);
@@ -179,6 +186,7 @@ test("OSM categories, straight-line distance, partial Overpass errors", () => {
     UpstreamError,
   );
 });
+
 test("risk classifications stay stable; AA and empty are not safe", () => {
   assert.equal(landslideClass({ cod_per_it: 3 }), "P3");
   assert.equal(landslideClass({ cod_per_it: 0 }), "AA");
@@ -189,6 +197,7 @@ test("risk classifications stay stable; AA and empty are not safe", () => {
   assert.equal(severityForHazard([]), "unknown");
   assert.equal(severityForHazard(["P1", "P2"]), "medium");
 });
+
 test("protected sites distinguish contains/intersects/nearby", () => {
   const smaller: PlotGeometry = {
     type: "Polygon",
@@ -209,6 +218,7 @@ test("protected sites distinguish contains/intersects/nearby", () => {
   assert.equal(spatialRelation(square, null, { lat: 0.0005, lon: 0.002 }).relation, "nearby");
   assert.ok(spatialRelation(square, null, { lat: 0.0005, lon: 0.002 }).distanceM > 100);
 });
+
 test("terrain slope known plane and Mercator tile axes", () => {
   const d = 180 / Math.PI / 6371008.8;
   const slope = estimateSlope([
@@ -223,4 +233,21 @@ test("terrain slope known plane and Mercator tile axes", () => {
   assert.equal(w, 0);
   assert.equal(s, 0);
   assert.ok(e > 20000000 && n > 20000000);
+});
+
+test("map sheets with a letter suffix are real sheets, not parse failures", () => {
+  // Real AdE response near Firenze Peretola, where sheet 21C is an attached development.
+  const sheets = parseZoning(fixtureText("ade-zoning-suffixed-sheet.xml"));
+  assert.ok(sheets.some((z) => z.sheet === "21C" && z.reference === "D612_0021C0"));
+  assert.deepEqual(parsePlotId("it:D612:_:21C:45"), {
+    municipalityCode: "D612",
+    section: null,
+    sheet: "21C",
+    parcel: "45",
+  });
+});
+
+test("an unreadable sheet in the bbox is skipped instead of failing the lookup", () => {
+  const xml = fixtureText("ade-zoning-suffixed-sheet.xml").replace("<CP:LABEL>21C", "<CP:LABEL>??");
+  assert.doesNotThrow(() => parseZoning(xml));
 });

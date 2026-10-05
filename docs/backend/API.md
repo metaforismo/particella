@@ -1,103 +1,153 @@
 # API v1
 
-GET, stesso dominio del frontend, runtime Node.js. JSON validato dal contratto zod condiviso. Non richiede autenticazione; le quote delle fonti restano applicate. Avvio locale: `npm run dev`, oppure `npm run build && npm start` con configurazione di produzione appropriata.
+Runtime Node.js, stesso dominio dello Studio. Le risposte JSON sono validate con il contratto zod condiviso. Avvio: `npm run dev`; per la produzione leggere gli override e le quote in ARCHITECTURE.md.
 
 ## Endpoint
 
-| Percorso                              | Parametri                                              | Risposta                                                   |
-| ------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- |
-| `/api/v1/health`                      | nessuno                                                | Health; sola vitalità dell'app                             |
-| `/api/v1/geocode`                     | `q` 3–200 caratteri; `country=it` opzionale            | GeocodeResult[]                                            |
-| `/api/v1/plots/at`                    | `lat` -90..90, `lon` -180..180; `country=it` opzionale | Plot oppure errore                                         |
-| `/api/v1/plots/{id}`                  | ID catastale reversibile                               | Plot; verificare il supporto live del lookup a cache vuota |
-| `/api/v1/plots/{id}/layers/{layer}`   | LayerId del contratto                                  | LayerResult                                                |
-| `/api/v1/plots/{id}/report`           | ID catastale                                           | PlotReport con otto layer paralleli                        |
-| `/api/v1/catalog/layers`              | nessuno                                                | LayerCatalogEntry[]; otto layer implementati               |
-| `/api/v1/catalog/sources`             | nessuno                                                | SourceCatalogEntry[]                                       |
-| `/api/v1/tiles/{overlay}/{z}/{x}/{y}` | overlay allowlist, z 0..22, x/y nella griglia          | PNG 256×256                                                |
+| Metodo e percorso                         | Input                                               | Risposta                                    |
+| ----------------------------------------- | --------------------------------------------------- | ------------------------------------------- |
+| GET `/api/v1/health`                      | nessuno                                             | Health, sola vitalità                       |
+| GET `/api/v1/geocode`                     | `q` 3–200 caratteri; `country=it` facoltativo       | GeocodeResult[]                             |
+| GET `/api/v1/plots/at`                    | `lat`, `lon`; `country=it` facoltativo              | Plot                                        |
+| GET `/api/v1/plots/{id}`                  | `at=lat,lon` facoltativo, raccomandato sempre       | Plot                                        |
+| GET `/api/v1/plots/{id}/layers/{layer}`   | LayerId; stesso `at`                                | LayerResult                                 |
+| GET `/api/v1/plots/{id}/report`           | stesso `at`                                         | PlotReport con 13 layer                     |
+| GET `/api/v1/catalog/layers`              | nessuno                                             | 13 LayerCatalogEntry                        |
+| GET `/api/v1/catalog/sources`             | nessuno                                             | SourceCatalogEntry[]                        |
+| GET `/api/v1/tiles/{overlay}/{z}/{x}/{y}` | allowlist `cadastre`, `flood`, `landslide`; z 0..22 | PNG trasparente 256×256                     |
+| POST `/api/v1/studio/chat`                | `{id, messages: UIMessage[], plotId, at?}`          | UI message stream AI SDK 7, oppure ApiError |
 
-I parametri query ripetuti o sconosciuti nelle query validate sono 400. Coordinate vuote, NaN, infinite o fuori intervallo non sono accettate. Geocode usa Nominatim con fallback Photon. `foglio 12 particella 340 Bergamo` produce 400 con istruzioni per usare un ID: la risoluzione del nome comune verso Belfiore non è implementata. Anche i layer del contratto previsti nella prossima fase rispondono con `unavailable`, senza simulare dati.
+Parametri sconosciuti/ripetuti nelle query validate: 400. Coordinate vuote, non finite o fuori intervallo: 400. ID: `it:Belfiore:sezione_o_:foglio:particella`. `at` è una coppia decimale latitudine,longitudine; il frontend invia sei decimali. Sono ammessi anche meno decimali. Ordine GeoJSON invece **lon,lat**.
+
+## Lotto freddo, layer e Scheda
+
+Tutte le route da ID usano `resolvePlot(id, at)`:
+
+1. Validazione di ID e punto, anche con cache calda.
+2. Se il lotto è in cache, riuso della particella confermata.
+3. Con cache fredda e `at`, `plotAt(at)` individua la geometria che contiene il punto. L’ID deve coincidere esattamente.
+4. Se non coincide: HTTP 404 `not_found`, messaggio **“Il punto indicato non ricade nella particella richiesta.”**
+5. Senza `at`, ricerca WFS per attributi. Un vuoto non confermato da AdE resta HTTP 502 `upstream_unavailable`; non viene convertito in un falso 404.
+
+Un errore negativo della ricerca per ID non blocca una nuova risoluzione con `at`. Il punto non sceglie il lotto più vicino. Strade/acque e ambiguità di confine conservano gli errori esistenti.
+
+Per un Server Component, senza HTTP verso la propria app:
+
+```ts
+import { getPlotReport } from "#server/plots.ts";
+
+// /scheda/[id]?at=43.769270,11.256500
+const { id } = await params;
+const { at } = await searchParams;
+const report = await getPlotReport(id, at);
+```
+
+Il modulo espone anche `resolvePlot` e `getPlotLayer`. La pagina Scheda è di competenza del frontend: il backend fornisce il modulo importabile, non modifica la UI.
 
 ```bash
 curl -sS 'http://localhost:3000/api/v1/health'
-curl -sS 'http://localhost:3000/api/v1/geocode?q=Piazza%20Duomo%20Milano'
-curl -sS 'http://localhost:3000/api/v1/plots/at?lat=43.7&lon=11.32'
-curl -sS 'http://localhost:3000/api/v1/plots/it:A564:_:60:110'
-curl -sS 'http://localhost:3000/api/v1/plots/it:A564:_:60:110/layers/flood'
-curl -sS 'http://localhost:3000/api/v1/plots/it:A564:_:60:110/report'
-curl -sS 'http://localhost:3000/api/v1/catalog/layers'
-curl -sS 'http://localhost:3000/api/v1/catalog/sources'
-curl -sS 'http://localhost:3000/api/v1/tiles/cadastre/16/34828/23905' -o cadastre.png
+curl -sS 'http://localhost:3000/api/v1/geocode?q=Via%20Tortona%2031%20Milano'
+curl -sS 'http://localhost:3000/api/v1/plots/at?lat=43.769270&lon=11.256500'
+curl -sS 'http://localhost:3000/api/v1/plots/it:D612:_:173:68?at=43.769270,11.256500'
+curl -sS 'http://localhost:3000/api/v1/plots/it:D612:_:173:68/layers/planning?at=43.769270,11.256500'
+curl -sS 'http://localhost:3000/api/v1/plots/it:D612:_:173:68/report?at=43.769270,11.256500'
+curl -sS 'http://localhost:3000/api/v1/tiles/cadastre/18/139314/95623' -o /tmp/cadastre.png
 ```
 
-Per gli altri tile sostituire `cadastre` con `flood` o `landslide`. Template frontend esatto: `/api/v1/tiles/cadastre/{z}/{x}/{y}`. Rimuovere il PNG locale dopo la prova se non serve conservarlo. Non usare endpoint pubblici Nominatim per autocomplete; in produzione vedere le condizioni in ARCHITECTURE.md.
+Geocoding: Nominatim con fallback Photon su errore, rate limit o vuoto. Nomi/civici sono conservati, compreso “Via Tortona 31”. Verificati live anche “Bagno a Ripoli” e “Piazza della Signoria Firenze”. La ricerca testuale `foglio … particella … Comune` non è implementata e restituisce 400 con istruzioni. In produzione Nominatim pubblico richiede hosting singolo/limiter globale; vedere ARCHITECTURE.md. Nessun autocomplete sul servizio pubblico.
 
 ## Risposte reali abbreviate
 
-Gli estratti omettono campi per leggibilità e non sono payload completi da passare a `.parse`. Provengono dalle chiamate live del 6 ottobre 2026, ora italiana; i timestamp UTC possono essere ancora del 5 ottobre. Il dettaglio è in `tests/live-results.json`.
-
-Lotto rurale Bagno a Ripoli:
+Estratti acquisiti il 6 ottobre 2026, ora italiana. I timestamp UTC possono essere del 5 ottobre. Sono abbreviati e non vanno passati direttamente a `.parse`. Il JSON completo generato per la landing è in `src/content/hero-example.json`.
 
 ```json
 {
-  "id": "it:A564:_:60:110",
-  "country": "it",
-  "cadastral": {
-    "municipalityCode": "A564",
-    "section": null,
-    "sheet": "60",
-    "parcel": "110",
-    "label": "Foglio 60 · Particella 110"
-  },
-  "municipality": { "istatCode": "048001", "cadastralCode": "A564", "name": "Bagno a Ripoli" },
-  "areaM2": 18665.20448761215
+  "id": "it:D612:_:173:68",
+  "cadastral": { "sheet": "173", "parcel": "68", "label": "Foglio 173 · Particella 68" },
+  "municipality": { "istatCode": "048017", "name": "Firenze", "province": "Firenze", "provinceCode": "FI" },
+  "areaM2": 6374.608410795467
 }
 ```
 
-La risposta completa include geometria GeoJSON lon/lat, punto rappresentativo, perimetro, indirizzo nullable e provenance AdE/ISTAT. L'area è misurata sulla geometria restituita, non attestata dal catasto.
-
-Milano Duomo ricade su una strada, quindi:
+Area geodetica della geometria restituita, non superficie censuaria. Ogni Plot contiene geometry, centroid (punto interno rappresentativo), perimeterM, dati nullable e provenienze AdE/ISTAT. I nomi dataset sono brevi e leggibili: “Cartografia catastale — particelle”, “Mappe catastali — fogli”. `provinceCode` è una **sigla di due lettere**, mai il numero ISTAT.
 
 ```json
 {
-  "error": {
-    "code": "not_found",
-    "message": "Il punto ricade su una strada o un'acqua catastale: non è un lotto."
-  }
-}
-```
-
-Popolazione della cella rurale:
-
-```json
-{
-  "layer": "demographics",
+  "layer": "planning",
   "status": "ok",
-  "scope": "grid_cell",
-  "headline": "Nel 2021 la cella di un chilometro quadrato contava 99 residenti.",
+  "scope": "point",
+  "headline": "Il punto è nell’ambito del nucleo storico (zona A - sottozona A1)."
+}
+```
+
+```json
+{
+  "layer": "market",
+  "status": "ok",
+  "scope": "zone",
+  "headline": "Nella zona OMI B5, abitazioni civili da 3600 a 5300 €/m².",
   "metrics": [
-    { "key": "grid_population", "label": "Residenti nella cella nel 2021", "value": 99, "unit": "residenti" }
+    { "key": "semester", "value": "2025/2" },
+    { "key": "residential-0-min", "value": 3600, "unit": "€/m²", "hint": "Superficie lorda" },
+    { "key": "residential-0-max", "value": 5300, "unit": "€/m²" }
   ]
 }
 ```
 
-Un report completo ha `{plot, layers, generatedAt}`. Ogni layer include gruppo, titolo, stato, scala, frase di sintesi, severity, metriche, feature nullable, overlay, legenda, note, provenienza e computedAt. Un timeout mantiene HTTP 200 del report con quel layer `unavailable`; un errore nel recupero del lotto impedisce invece il report.
+Quotazioni di zona per abitazioni, **non prezzo del lotto**. Il semestre si legge dalla fonte ad ogni scadenza della cache, senza hardcoding dell’anno.
+
+## Layer e significato
+
+Ogni LayerResult contiene titolo/gruppo, status, scope, headline, severity, metrics, features nullable, overlays, legend, notes, method opzionale, provenance e computedAt. `notes` è italiano per non tecnici; `method` contiene servizio, campionamento, CRS e dettagli riproducibili. Il campo era già nel contratto: nessuna modifica di schema in questa sessione.
+
+| Layer             | Fonte e copertura                                                | Scope / limite                                                                                         |
+| ----------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| flood / landslide | ISPRA IdroGEO PAI e IFFI                                         | `point`; verifica puntuale, non tutto il lotto                                                         |
+| seismic           | DPC maggio 2025 / INGV MPS04                                     | `municipality`; PGA del modello vicina al punto, non rilievo                                           |
+| protected-areas   | EEA Natura 2000 / NatDA                                          | `parcel` con geometria, altrimenti `buffer`; entro 1 km                                                |
+| landscape         | MiC SITAP, art. 136 e categorie art. 142 disponibili per regione | `point`; inventario non esaustivo né certificativo; licenza non accertata                              |
+| planning          | PO ambiti vigenti Firenze, CC BY 4.0; sintesi PGT Milano         | `point`; norme/tavole ulteriori da consultare; licenza PGT non accertata                               |
+| land-cover        | EEA/Copernicus CORINE 2018                                       | `parcel` con stima sui punti, altrimenti `point`; scala 1:100000, impermeabilizzazione non disponibile |
+| terrain           | INGV TINITALY, fallback EU-DEM                                   | `parcel`/`point`; quote e pendenza stimate                                                             |
+| solar             | JRC PVGIS 5.3                                                    | `point`; simulazione ideale da 1 kWp                                                                   |
+| services          | Overpass/OpenStreetMap                                           | `buffer`; inventario incompleto, 500 m/1 km, distanze in linea d’aria                                  |
+| accessibility     | Valhalla/FOSSGIS + stessa richiesta Overpass                     | `buffer`; classKey `walk-10`, `car-10`; servizi cercati solo entro 1 km                                |
+| demographics      | ISTAT 2021 / stima comunale 2026                                 | `grid_cell`; non residenti del lotto                                                                   |
+| market            | AdE OMI                                                          | `zone`; perimetri KML, min/max residenziale, stato e superficie L/N                                    |
+
+Fuori Firenze/Milano `planning` risponde `outside_coverage`: il piano comunale non è collegato, con indicazioni del Comune/geoportale regionale noto. Anche i provider non collegati o non configurati usano `outside_coverage`. Un guasto transitorio conserva `unavailable`. `empty` significa che la fonte ha risposto senza oggetti: non assenza di rischio. Un report può essere HTTP 200 anche con singoli layer indisponibili.
+
+Il tile catastale elimina il riempimento crema vicino a RGB 253/236/189, mantenendo linee, numeri e filigrana/attribuzione. Il test usa una PNG reale. Overlay arbitrari e URL upstream scelti dall’utente non sono ammessi.
+
+## Chat
+
+```bash
+curl -N -X POST 'http://localhost:3000/api/v1/studio/chat' \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"conversation-1","plotId":"it:D612:_:173:68","at":"43.769270,11.256500","messages":[{"id":"question-1","role":"user","parts":[{"type":"text","text":"Quali verifiche urbanistiche servono?"}]}]}'
+```
+
+Compatibile con `DefaultChatTransport` e `body: {plotId}`. `at` è un’estensione facoltativa: **per una chat su un’istanza fredda va passato anche il punto**, per lo stesso limite WFS del lookup da solo ID. Il frontend deve aggiungerlo al body per garantire la risoluzione fra istanze; nessuna coordinata è inventata dall’ID.
+
+Limiti: body 64 KiB, massimo 24 messaggi, 40 parti per messaggio, 6.000 caratteri per parte testuale e 32.000 totali. Solo ruoli user/assistant; messaggi utente solo testo. Risultati tool/reasoning ricevuti dal browser non vengono riprodotti come prove al modello. Il primo passo chiama obbligatoriamente `getPlot`; massimo 6 passi, 900 token di output per passo, timeout 90 s (maxDuration route 120 s). Tool server: `getPlot({})`, `listLayers({})`, `getLayer({layer: LayerId})`. Output senza geometrie e con fonti/metriche/note.
+
+Modello `PARTICELLA_CHAT_MODEL`, default `anthropic/claude-sonnet-5-5`, forma `provider/modello`. Autenticazione `AI_GATEWAY_API_KEY` oppure OIDC Vercel dal contesto runtime/`VERCEL_OIDC_TOKEN`. Se assente: HTTP 503 `not_configured`, nessuna richiesta al modello. Rate limit locale: 8 richieste/minuto per IP, 429 `rate_limited`. Gli errori dopo l’avvio dello stream sono eventi SDK con messaggio italiano privo di dettagli sensibili.
+
+Le istruzioni richiedono solo dati dei tool, ente e dataset per ogni affermazione, distinzione degli stati e nessuna conclusione definitiva di edificabilità. Comune, certificato di destinazione urbanistica e tecnico abilitato restano verifiche necessarie. Il modello non è stato chiamato live: lo streaming è verificato offline con un modello finto AI SDK 7.
 
 ## Errori e cache HTTP
 
-| HTTP | `error.code`         | Caso                                                   |
-| ---- | -------------------- | ------------------------------------------------------ |
-| 400  | bad_request          | query/ID/overlay invalido, selezione catastale ambigua |
-| 404  | not_found            | nessun lotto, strada/acqua, fuori copertura catasto    |
-| 429  | rate_limited         | quota o cooldown; `Retry-After: 30`                    |
-| 502  | upstream_unavailable | timeout, eccezione OGC, errore HTTP/protocollo remoto  |
-| 503  | not_configured       | paese o hosting richiesto non configurato              |
-| 500  | internal             | errore interno o payload di risposta non conforme      |
+| HTTP | error.code           | Caso                                                                           |
+| ---- | -------------------- | ------------------------------------------------------------------------------ |
+| 400  | bad_request          | input non valido, ID/at/query duplicati, ambiguità di selezione                |
+| 404  | not_found            | nessun lotto, strada/acqua, punto di altra particella, catasto fuori copertura |
+| 429  | rate_limited         | quota temporanea; header Retry-After                                           |
+| 502  | upstream_unavailable | errore remoto, timeout, protocollo, lookup per attributi non confermato        |
+| 503  | not_configured       | chat/paese non configurato                                                     |
+| 500  | internal             | errore interno o risposta non conforme                                         |
 
-L'envelope è sempre `{ "error": { "code": "…", "message": "…" } }`. Le risposte di errore e quelle parziali sono `no-store`. Cache pubblica: geocode/layer 3600 s, lotto 3600 s, report completo 300 s, cataloghi 86400 s, tile 604800 s. Health non prova che le fonti esterne siano disponibili. Tutte le risposte includono `X-Content-Type-Options: nosniff`.
+Envelope `{ "error": { "code": "…", "message": "…" } }`. Errori e risultati parziali sono no-store. Cache pubblica: geocode/layer/lotto 3600 s, report completo 300 s, cataloghi 86400 s, tile 604800 s. Chat e health no-store. Tutte le risposte includono nosniff.
 
-## Limiti
+`npm run test:live` esegue route e provider reali su Firenze, Duomo Milano e Bagno a Ripoli; scrive `tests/live-results.json` generato. Il risultato locale dei controlli e quello di rete sono distinti. Leggere anche `verification/SESSION-B.md` per esiti e limiti.
 
-L'Italia è il solo paese attuale. Catasto AdE esclude Trento/Bolzano. Il lookup da ID a cache vuota non ha superato la prova live: il filtro WFS sul foglio noto restituisce un vuoto con conteggio ignoto e il backend risponde 502 `upstream_unavailable`. Richiede un lookup ufficiale verificato o un indice condiviso. leggere l'ultimo esito live e non confondere la prova con fixture con una verifica remota. La cache è locale al processo, quindi un lookup riuscito dopo `plots/at` su una singola istanza non dimostra il funzionamento su istanze Vercel diverse.
-
-IdroGEO è uno screening del punto, non un'intersezione di tutto il lotto. I vuoti non certificano assenza di rischi/vincoli. Classificazione DPC e popolazione comunale sono snapshot, non refresh in tempo reale; popolazione comunale iniziale limitata ai soli comuni Milano e Firenze. Quote/pendenza e PVGIS sono stime da modello. Servizi OSM non sono un elenco ufficiale o completo. Urbanistica e atti locali non rientrano in questa fase.
+OMI può pubblicare quotazioni residenziali senza dichiarare una tipologia prevalente: in quel caso il livello è `partial` e mostra tutte le tipologie disponibili, senza attribuire una prevalenza. Se non pubblica prezzi residenziali, lo stato è `empty`, mantenendo la zona e il semestre. La fixture reale rurale registra questo caso.

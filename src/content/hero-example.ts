@@ -10,6 +10,8 @@ export type HeroExample = {
     geometry: NonNullable<Plot["geometry"]>;
   };
   rows: { layer: LayerId; value: string; source: string }[];
+  /** Abridged real response of GET /api/v1/plots/at for the same plot. */
+  apiSample: Record<string, unknown>;
 };
 
 /**

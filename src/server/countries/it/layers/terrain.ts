@@ -1,16 +1,17 @@
 import { z } from "zod";
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { jsonBody } from "../../../core/http.ts";
-import { UpstreamError } from "../../../core/errors.ts";
-import { parcelSamples, type PlotGeometry } from "../../../geo/index.ts";
-import { estimateSlope, type HeightSample } from "../../../geo/terrain.ts";
-import { fetchSource, wmsPointParams } from "../queries.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { jsonBody } from "#server/core/http.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { parcelSamples, type PlotGeometry } from "#server/geo/index.ts";
+import { estimateSlope, type HeightSample } from "#server/geo/terrain.ts";
+import { fetchSource, wmsPointParams } from "#server/countries/it/queries.ts";
 
 const TinResponse = z.object({
   features: z.array(z.object({ properties: z.object({ GRAY_INDEX: z.number().nullable() }) })),
 });
+
 export function parseTinitaly(value: unknown): number | null {
   const result = TinResponse.safeParse(value);
   if (!result.success) throw new UpstreamError("Quota TINITALY non valida.");
@@ -19,6 +20,7 @@ export function parseTinitaly(value: unknown): number | null {
   const height = result.data.features[0].properties.GRAY_INDEX;
   return height === null || height <= -9999 ? null : height;
 }
+
 const TopoResponse = z.object({
   status: z.literal("OK"),
   results: z.array(
@@ -29,10 +31,11 @@ const TopoResponse = z.object({
     }),
   ),
 });
+
 export const terrain: LayerProvider = async (plot, { signal }) => {
   const samples = plot.geometry ? parcelSamples(plot.geometry as PlotGeometry, 3) : [plot.centroid];
-  let sourceId = "tinitaly",
-    resolution = 10;
+  let sourceId = "tinitaly";
+  let resolution = 10;
   const provenanceEntries = [];
   const results = await Promise.allSettled(
     samples.map(async (center) => {
@@ -73,8 +76,8 @@ export const terrain: LayerProvider = async (plot, { signal }) => {
     sourceId = "opentopodata";
     resolution = 25;
   }
-  const values = heights.map((h) => h.elevation),
-    slope = estimateSlope(heights);
+  const values = heights.map((h) => h.elevation);
+  const slope = estimateSlope(heights);
   const round = (n: number) => Math.round(n * 10) / 10;
   return layerResult("terrain", {
     status: values.length ? (values.length === samples.length && slope !== null ? "ok" : "partial") : "empty",
@@ -120,12 +123,12 @@ export const terrain: LayerProvider = async (plot, { signal }) => {
       })),
     },
     legend: [{ classKey: "elevation-sample", label: "Quota campionata nel DTM" }],
+    method: `${sourceId === "tinitaly" ? "TINITALY 1.1 DTM 10 m (2023)" : "EU-DEM 1.1 25 m, OpenTopoData"}; griglia 4×4 nella bbox con punti interni e punto rappresentativo, massimo 17 campioni. Pendenza: piano ai minimi quadrati in coordinate metriche locali, 100 × √(a²+b²); null per campioni insufficienti/collineari. Unità tinitaly_slope non verificata: layer non usato.`,
     notes: [
-      ...(!plot.geometry ? ["Senza geometria viene interrogato un solo punto: pendenza non stimabile."] : []),
-      `${sourceId === "tinitaly" ? "TINITALY 1.1, terreno nudo 10 m (2023)" : "Fallback EU-DEM 1.1, 25 m, hosting OpenTopoData"}: griglia 4×4 nella bbox, solo punti coperti dal poligono, più un punto interno; massimo 17 campioni. Minimo/massimo/media dei campioni, non di tutti i pixel del lotto.`,
-      "Pendenza da regressione di un piano sui campioni in coordinate metriche locali: 100 × √(a²+b²). Non misura scarpate o pendenza massima; null per campioni insufficienti o collineari.",
-      "La pendenza del WMS tinitaly_slope non viene usata perché la sua unità non è verificata. Quote da modello, non rilievo topografico.",
-      ...(values.length < samples.length ? ["Alcuni campioni hanno NoData o non sono disponibili."] : []),
+      "Le quote e la pendenza sono stime da una mappa, non un rilievo sul posto.",
+      "Minimo e massimo riguardano i punti controllati: possono non cogliere scarpate o dislivelli piccoli.",
+      ...(!plot.geometry ? ["Senza il confine del terreno la pendenza non è stimabile."] : []),
+      ...(values.length < samples.length ? ["Mancano le quote di alcuni punti."] : []),
     ],
     provenance: provenanceEntries,
   });

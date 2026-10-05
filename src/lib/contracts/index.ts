@@ -149,9 +149,7 @@ export const LayerResult = z.object({
   severity: Severity,
   metrics: z.array(Metric),
   /** Vector features to draw; each feature carries `properties.classKey`. */
-  features: z
-    .object({ type: z.literal("FeatureCollection"), features: z.array(z.any()) })
-    .nullable(),
+  features: z.object({ type: z.literal("FeatureCollection"), features: z.array(z.any()) }).nullable(),
   overlays: z.array(MapOverlay),
   legend: z.array(LegendItem),
   /** Limits a non-expert must know, in plain Italian. */

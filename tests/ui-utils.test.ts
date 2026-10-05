@@ -135,3 +135,15 @@ test("summary counts every state exactly once", () => {
   ]);
   assert.deepEqual(counts, { attention: 2, notable: 1, clear: 1, missing: 2, pending: 2 });
 });
+
+test("repeated readings of the same source are listed once, latest first", async () => {
+  const { uniqueSources } = await import("../src/lib/provenance.ts");
+  const base = plot.provenance[0];
+  const list = uniqueSources([
+    { ...base, retrievedAt: "2026-10-06T00:00:00.000Z" },
+    { ...base, retrievedAt: "2026-10-06T00:00:05.000Z" },
+    { ...base, dataset: "Altro dataset" },
+  ]);
+  assert.equal(list.length, 2);
+  assert.equal(list[0].retrievedAt, "2026-10-06T00:00:05.000Z");
+});

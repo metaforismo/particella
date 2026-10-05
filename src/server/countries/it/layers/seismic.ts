@@ -1,13 +1,13 @@
 import { z } from "zod";
 import dpc from "../../../../../data/snapshots/it-dpc-seismic-2025-05.json" with { type: "json" };
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { textBody } from "../../../core/http.ts";
-import { UpstreamError } from "../../../core/errors.ts";
-import { meters, latLonBox } from "../../../geo/index.ts";
-import { gmlPoint, wfsMembers } from "../../../geo/gml.ts";
-import { fetchSource } from "../queries.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { textBody } from "#server/core/http.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { meters, latLonBox } from "#server/geo/index.ts";
+import { gmlPoint, wfsMembers } from "#server/geo/gml.ts";
+import { fetchSource } from "#server/countries/it/queries.ts";
 
 export function parsePga(text: string) {
   return wfsMembers(text).map((member) => {
@@ -16,6 +16,7 @@ export function parsePga(text: string) {
     return { center: gmlPoint(member.msGeometry), pga: parsed.data.iml, id: parsed.data.id_punto };
   });
 }
+
 export const seismic: LayerProvider = async (plot, { signal }) => {
   const zone = (dpc.zones as Record<string, string>)[plot.municipality?.istatCode ?? ""] ?? null;
   const sources = [provenance("dpc-seismic", { requestUrl: dpc.sourceUrl, retrievedAt: dpc.retrievedAt })];
@@ -49,7 +50,7 @@ export const seismic: LayerProvider = async (plot, { signal }) => {
     scope: "municipality",
     headline: zone
       ? `Il comune è classificato in zona sismica ${zone}.`
-      : "La classificazione comunale non è disponibile nello snapshot.",
+      : "La classificazione comunale non è disponibile nei dati collegati.",
     severity:
       zoneNumber === 1
         ? "high"
@@ -96,12 +97,14 @@ export const seismic: LayerProvider = async (plot, { signal }) => {
       ...["1", "2", "3", "4"].map((classKey) => ({ classKey, label: `Zona sismica ${classKey}` })),
       { classKey: "pga-node", label: "Nodo MPS04 selezionato" },
     ],
+    method:
+      "PGA: nodo MPS04 più vicino per distanza geodetica nella bbox ±0,15°, senza interpolazione; griglia ~0,05°. Classificazione DPC da snapshot per codice ISTAT.",
     notes: [
-      "La zona è comunale; la PGA è riferita al nodo INGV più vicino, scelto per distanza geodetica tra tutti i nodi della bbox ±0,15°. Non viene interpolata sul lotto.",
-      "MPS04 è una griglia di circa 0,05° (alcuni km), modello pubblicato nel 2004–2006; non sostituisce la verifica tecnica delle norme vigenti.",
-      ...(!closest ? ["La PGA non è disponibile."] : []),
+      "La zona descrive tutto il Comune. Il valore di accelerazione viene da un modello della zona, non da una misura sul terreno.",
+      "Il modello risale al 2004–2006; un tecnico deve verificare le norme vigenti.",
+      ...(!closest ? ["L’accelerazione sismica stimata non è disponibile."] : []),
       ...(!zone
-        ? ["Codice comunale non presente nello snapshot DPC; possibili fusioni successive alla release."]
+        ? ["Il Comune è assente dai dati collegati: potrebbero non includere fusioni o modifiche recenti."]
         : []),
     ],
     provenance: sources,

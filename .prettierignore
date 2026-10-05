@@ -1,0 +1,3 @@
+
+# Raw upstream fixtures retain their provider serialization.
+tests/fixtures/

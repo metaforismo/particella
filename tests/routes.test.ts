@@ -10,7 +10,7 @@ import {
   LayerCatalogEntry,
   SourceCatalogEntry,
   ApiError,
-} from "../src/lib/contracts/index.ts";
+} from "#contracts";
 import { GET as health } from "../src/app/api/v1/health/route.ts";
 import { GET as geocode } from "../src/app/api/v1/geocode/route.ts";
 import { GET as at } from "../src/app/api/v1/plots/at/route.ts";
@@ -20,21 +20,24 @@ import { GET as report } from "../src/app/api/v1/plots/[id]/report/route.ts";
 import { GET as layers } from "../src/app/api/v1/catalog/layers/route.ts";
 import { GET as sources } from "../src/app/api/v1/catalog/sources/route.ts";
 import { GET as tiles } from "../src/app/api/v1/tiles/[overlay]/[z]/[x]/[y]/route.ts";
-import { query, coordinateQuery, route, jsonResponse } from "../src/server/http/responses.ts";
-import { canonicalKey, cache } from "../src/server/core/cache.ts";
-import { getCountry } from "../src/server/countries/index.ts";
-import { layerResult } from "../src/server/core/layers.ts";
+import { query, coordinateQuery, route, jsonResponse } from "#server/http/responses.ts";
+import { canonicalKey, cache } from "#server/core/cache.ts";
+import { getCountry } from "#server/countries/index.ts";
+import { layerResult } from "#server/core/layers.ts";
 import {
   PngTile,
   TileParams,
   cadastralTileRequest,
   reprojectCadastralTile,
-} from "../src/server/countries/it/tiles.ts";
+} from "#server/countries/it/tiles.ts";
 import { fixtureText } from "./helpers.ts";
 
 const request = (path: string) => new Request(`http://localhost/api/v1/${path}`);
+
 const originalFetch = globalThis.fetch;
+
 let unconfirmedColdLookup = false;
+
 globalThis.fetch = async (input) => {
   const url = new URL(String(input));
   let fixture: string;
@@ -61,6 +64,7 @@ test("route health/catalogs/geocode validate the shared contract", async () => {
   assert.equal(result.status, 200);
   z.array(GeocodeResult).parse(await result.json());
 });
+
 test("strict query validation rejects missing, blank, duplicated, non-numeric and out-of-range coordinates", async () => {
   for (const suffix of [
     "",
@@ -82,6 +86,7 @@ test("strict query validation rejects missing, blank, duplicated, non-numeric an
   const invalid = await byId(request("plots/bad"), { params: Promise.resolve({ id: "bad" }) });
   assert.equal(invalid.status, 400);
 });
+
 test("real fixture plotAt and cold reversible plotById agree", async () => {
   const response = await at(request("plots/at?lat=43.7&lon=11.32"));
   assert.equal(response.status, 200);
@@ -94,6 +99,7 @@ test("real fixture plotAt and cold reversible plotById agree", async () => {
   assert.equal(cold.status, 200);
   assert.equal(Plot.parse(await cold.json()).id, plot.id);
 });
+
 test("unconfirmed live WFS empty never becomes a false cadastral not_found", async () => {
   unconfirmedColdLookup = true;
   try {
@@ -105,14 +111,15 @@ test("unconfirmed live WFS empty never becomes a false cadastral not_found", asy
     unconfirmedColdLookup = false;
   }
 });
+
 test("unknown layers fail validation; report isolates provider failures", async () => {
   const id = "it:A564:_:60:110";
   const invalid = await layer(request(`plots/${id}/layers/bad`), {
     params: Promise.resolve({ id, layer: "bad" }),
   });
   assert.equal(invalid.status, 400);
-  const country = getCountry("it"),
-    saved = country.layers;
+  const country = getCountry("it");
+  const saved = country.layers;
   country.layers = {
     flood: async () => layerResult("flood", { status: "empty", headline: "Nessun oggetto restituito." }),
     solar: async () => {
@@ -123,7 +130,7 @@ test("unknown layers fail validation; report isolates provider failures", async 
     const response = await report(request(`plots/${id}/report`), { params: Promise.resolve({ id }) });
     assert.equal(response.status, 200);
     const parsed = PlotReport.parse(await response.json());
-    assert.equal(parsed.layers.length, 8);
+    assert.equal(parsed.layers.length, 13);
     assert.equal(parsed.layers.find((l) => l.layer === "solar")?.status, "unavailable");
     assert.equal(parsed.layers.find((l) => l.layer === "flood")?.status, "empty");
     assert.equal(response.headers.get("Cache-Control"), "no-store");
@@ -131,6 +138,7 @@ test("unknown layers fail validation; report isolates provider failures", async 
     country.layers = saved;
   }
 });
+
 test("production invalid response returns 500 internal, never invalid JSON or bad_request", async () => {
   const previous = process.env.NODE_ENV;
   Object.assign(process.env, { NODE_ENV: "production" });
@@ -143,6 +151,7 @@ test("production invalid response returns 500 internal, never invalid JSON or ba
     else Object.assign(process.env, { NODE_ENV: previous });
   }
 });
+
 test("tile proxy rejects arbitrary overlays and out-of-grid coordinates", async () => {
   const bad = await tiles(request("tiles/evil/1/0/0"), {
     params: Promise.resolve({ overlay: "https://evil.test", z: "1", x: "0", y: "0" }),
@@ -155,6 +164,7 @@ test("tile proxy rejects arbitrary overlays and out-of-grid coordinates", async 
   assert.equal(response.status, 200);
   PngTile.parse(new Uint8Array(await response.arrayBuffer()));
 });
+
 test("AdE WMS uses latitude/longitude axes and PNG is resampled to Mercator", () => {
   const url = new URL(cadastralTileRequest(16, 34828, 23941));
   assert.equal(url.searchParams.get("CRS"), "EPSG:6706");
@@ -167,6 +177,55 @@ test("AdE WMS uses latitude/longitude axes and PNG is resampled to Mercator", ()
   PngTile.parse(bytes);
   assert.equal(PNG.sync.read(Buffer.from(bytes)).data[0], 255);
 });
+
 test.after(() => {
   globalThis.fetch = originalFetch;
+});
+
+test("ID route cold at, mismatch, malformed at and province names use the same resolver", async () => {
+  const id = "it:A564:_:60:110";
+  await cache.set(canonicalKey("plot:v1", id), { missing: true }, 10000);
+  const response = await byId(request(`plots/${id}?at=43.700000,11.320000`), {
+    params: Promise.resolve({ id }),
+  });
+  assert.equal(response.status, 200);
+  const plot = Plot.parse(await response.json());
+  assert.equal(plot.municipality?.province, "Firenze");
+  assert.equal(plot.municipality?.provinceCode, "FI");
+  assert.ok(plot.provenance.every((p) => p.dataset.length < 100));
+  const other = "it:A564:_:60:111";
+  const mismatch = await byId(request(`plots/${other}?at=43.700000,11.320000`), {
+    params: Promise.resolve({ id: other }),
+  });
+  assert.equal(mismatch.status, 404);
+  assert.equal(
+    ApiError.parse(await mismatch.json()).error.message,
+    "Il punto indicato non ricade nella particella richiesta.",
+  );
+  for (const suffix of ["at=no", "at=91,11", "at=43,11&at=43,12"]) {
+    assert.equal(
+      (await byId(request(`plots/${id}?${suffix}`), { params: Promise.resolve({ id }) })).status,
+      400,
+    );
+  }
+  for (const [name, handler, params] of [
+    ["report", report, { id, layer: "flood" }],
+    ["layers/flood", layer, { id, layer: "flood" }],
+  ] as const) {
+    await cache.set(canonicalKey("plot:v1", id), null, 0);
+    const saved = getCountry("it").layers;
+    getCountry("it").layers = { flood: async () => layerResult("flood", { status: "empty" }) };
+    try {
+      assert.equal(
+        (
+          await handler(request(`plots/${id}/${name}?at=43.700000,11.320000`), {
+            params: Promise.resolve(params),
+          })
+        ).status,
+        200,
+      );
+    } finally {
+      getCountry("it").layers = saved;
+    }
+  }
 });

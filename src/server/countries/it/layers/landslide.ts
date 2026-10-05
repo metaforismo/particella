@@ -1,8 +1,8 @@
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult, overlay } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { fetchSource, parseGeo, wmsPointParams } from "../queries.ts";
-import { identifyNote, landslideClass, severityForHazard } from "./hazards.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult, overlay } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { fetchSource, parseGeo, wmsPointParams } from "#server/countries/it/queries.ts";
+import { identifyNote, landslideClass, severityForHazard } from "#server/countries/it/layers/hazards.ts";
 
 export const landslide: LayerProvider = async (plot, { signal }) => {
   const results = await Promise.allSettled([
@@ -24,10 +24,10 @@ export const landslide: LayerProvider = async (plot, { signal }) => {
     }),
   ]);
   const answered = results.flatMap((r) => (r.status === "fulfilled" ? [r.value] : []));
-  const features = answered.flatMap((r) => r.features),
-    classes = [
-      ...new Set(features.filter((f) => f.properties.classKey !== "IFFI").map((f) => f.properties.classKey)),
-    ];
+  const features = answered.flatMap((r) => r.features);
+  const classes = [
+    ...new Set(features.filter((f) => f.properties.classKey !== "IFFI").map((f) => f.properties.classKey)),
+  ];
   const complete = answered.length === 2 && !classes.includes("unknown");
   return layerResult("landslide", {
     status: complete ? (features.length ? "ok" : "empty") : answered.length ? "partial" : "unavailable",
@@ -64,17 +64,17 @@ export const landslide: LayerProvider = async (plot, { signal }) => {
               ? "Classe non riconosciuta"
               : `Pericolosità ${classKey}`,
     })),
+    method: identifyNote,
     notes: [
-      identifyNote,
+      "La verifica riguarda un punto interno, non tutto il terreno.",
       ...(!answered.some((a) => a.id === "iffi")
         ? ["L’inventario IFFI non è disponibile in questa risposta."]
         : []),
       ...(!answered.some((a) => a.id === "idrogeo")
         ? ["La pericolosità PAI non è disponibile in questa risposta."]
         : []),
-      "IFFI è un inventario di fenomeni conosciuti, distinto dalle classi PAI. AA non è una classe graduata di pericolosità.",
-      "Assenza di oggetti non significa assenza di rischio; release live non dichiarata.",
-      "Dati e derivati ISPRA: CC BY-SA 4.0; attribuzione ISPRA e Regione/Provincia autonoma.",
+      "L’inventario elenca frane già conosciute. Le aree di attenzione richiedono una verifica anche quando manca una classe di pericolosità.",
+      "Un risultato vuoto non esclude rischi. La data di aggiornamento della mappa non è indicata.",
     ],
     provenance: answered.map((r) => r.provenance),
   });

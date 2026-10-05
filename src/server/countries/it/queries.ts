@@ -1,15 +1,16 @@
 import { z } from "zod";
-import type { LatLon } from "../../../lib/contracts/index.ts";
-import { http, jsonBody, type HttpPayload, type HttpOptions } from "../../core/http.ts";
-import { source } from "../../core/sources.ts";
-import { UpstreamError } from "../../core/errors.ts";
-import { pointBox } from "../../geo/index.ts";
+import type { LatLon } from "#contracts";
+import { http, jsonBody, type HttpPayload, type HttpOptions } from "#server/core/http.ts";
+import { source } from "#server/core/sources.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { pointBox } from "#server/geo/index.ts";
 
 export function queryUrl(base: string, params: Record<string, string | number | boolean>): string {
   const url = new URL(base);
   for (const [key, value] of Object.entries(params)) url.searchParams.set(key, String(value));
   return url.toString();
 }
+
 export async function fetchSource(
   id: string,
   params: Record<string, string | number | boolean>,
@@ -18,12 +19,14 @@ export async function fetchSource(
   const s = source(id);
   return http.request(queryUrl(s.endpoint, params), { policy: s.hostPolicy, ...options });
 }
+
 export const ArcResponse = z.object({
   features: z.array(
     z.object({ attributes: z.record(z.string(), z.unknown()), geometry: z.unknown().optional() }),
   ),
   exceededTransferLimit: z.boolean().optional(),
 });
+
 export function parseArc(payload: HttpPayload): z.infer<typeof ArcResponse> {
   const parsed = ArcResponse.safeParse(jsonBody(payload));
   if (!parsed.success) throw new UpstreamError("Risposta ArcGIS non valida o errore della fonte.");
@@ -31,6 +34,7 @@ export function parseArc(payload: HttpPayload): z.infer<typeof ArcResponse> {
     throw new UpstreamError("Risposta ArcGIS troncata: analisi incompleta.");
   return parsed.data;
 }
+
 export function arcPointParams(p: LatLon): Record<string, string | number | boolean> {
   return {
     f: "json",
@@ -42,6 +46,7 @@ export function arcPointParams(p: LatLon): Record<string, string | number | bool
     returnGeometry: false,
   };
 }
+
 export function wmsPointParams(
   layer: string,
   p: LatLon,
@@ -65,6 +70,7 @@ export function wmsPointParams(
     styles: "",
   };
 }
+
 const Geometry = z.union([
   z.object({ type: z.literal("Polygon"), coordinates: z.array(z.array(z.array(z.number()))).min(1) }),
   z.object({
@@ -74,6 +80,7 @@ const Geometry = z.union([
   z.object({ type: z.literal("Point"), coordinates: z.tuple([z.number(), z.number()]) }),
   z.object({ type: z.literal("LineString"), coordinates: z.array(z.array(z.number())) }),
 ]);
+
 export const GeoCollection = z.object({
   type: z.literal("FeatureCollection"),
   features: z.array(
@@ -87,6 +94,7 @@ export const GeoCollection = z.object({
   numberReturned: z.number().optional(),
   totalFeatures: z.union([z.number(), z.string()]).optional(),
 });
+
 export function parseGeo(payload: HttpPayload): z.infer<typeof GeoCollection> {
   const parsed = GeoCollection.safeParse(jsonBody(payload));
   if (!parsed.success) throw new UpstreamError("GeoJSON della fonte non valido.");

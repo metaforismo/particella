@@ -1,0 +1,3663 @@
+{
+  "executedAt": "2026-10-05T23:08:20.450Z",
+  "counts": {
+    "PASS": 57,
+    "PARTIAL": 3
+  },
+  "points": {
+    "firenze": {
+      "lat": 43.76927,
+      "lon": 11.2565
+    },
+    "milano": {
+      "lat": 45.4642,
+      "lon": 9.19
+    },
+    "toscana": {
+      "lat": 43.7,
+      "lon": 11.32
+    }
+  },
+  "results": [
+    {
+      "check": "health",
+      "state": "PASS",
+      "detail": {
+        "status": "ok",
+        "version": "0.1",
+        "timestamp": "2026-10-05T23:07:50.534Z"
+      }
+    },
+    {
+      "check": "catalog layers",
+      "state": "PASS",
+      "detail": {
+        "count": 13
+      }
+    },
+    {
+      "check": "catalog sources",
+      "state": "PASS",
+      "detail": {
+        "count": 24
+      }
+    },
+    {
+      "check": "GET plot Firenze cold ID + at",
+      "state": "PASS",
+      "detail": {
+        "id": "it:D612:_:173:68",
+        "areaM2": 6374.608410795467,
+        "municipality": {
+          "istatCode": "048017",
+          "cadastralCode": "D612",
+          "name": "Firenze",
+          "province": "Firenze",
+          "provinceCode": "FI",
+          "region": "Toscana"
+        }
+      }
+    },
+    {
+      "check": "geocode Via Tortona 31 Milano",
+      "state": "PASS",
+      "detail": {
+        "id": "osm:76092929",
+        "label": "Via Tortona 31",
+        "secondary": "Milano, Lombardia, Italia",
+        "kind": "address",
+        "center": {
+          "lat": 45.4516869,
+          "lon": 9.1627976
+        },
+        "bbox": [9.1627476, 45.4516369, 9.1628476, 45.4517369]
+      }
+    },
+    {
+      "check": "geocode Bagno a Ripoli",
+      "state": "PASS",
+      "detail": {
+        "id": "osm:81786693",
+        "label": "Bagno a Ripoli",
+        "secondary": "Toscana, Italia",
+        "kind": "municipality",
+        "center": {
+          "lat": 43.752172,
+          "lon": 11.3199949
+        },
+        "bbox": [11.2562787, 43.6702857, 11.4164037, 43.7922676]
+      }
+    },
+    {
+      "check": "geocode Piazza della Signoria Firenze",
+      "state": "PASS",
+      "detail": {
+        "id": "osm:81981347",
+        "label": "Piazza della Signoria",
+        "secondary": "Firenze, Toscana, Italia",
+        "kind": "place",
+        "center": {
+          "lat": 43.7695737,
+          "lon": 11.2558641
+        },
+        "bbox": [11.2551323, 43.769147, 11.2567739, 43.7700169]
+      }
+    },
+    {
+      "check": "plotAt Milano Duomo is street",
+      "state": "PASS",
+      "detail": {
+        "expected": "not_found",
+        "message": "Il punto ricade su una strada o un'acqua catastale: non è un lotto."
+      }
+    },
+    {
+      "check": "GET plotAt rural Toscana",
+      "state": "PASS",
+      "detail": {
+        "id": "it:A564:_:60:110",
+        "areaM2": 18665.20448761215,
+        "province": "FI"
+      }
+    },
+    {
+      "check": "GET plot cold without at",
+      "state": "PARTIAL",
+      "detail": {
+        "status": 502,
+        "body": {
+          "error": {
+            "code": "upstream_unavailable",
+            "message": "La fonte WFS non conferma la ricerca catastale da ID; selezionare il lotto sulla mappa."
+          }
+        },
+        "limit": "Attribute lookup is not confirmed by the public WFS; use at."
+      }
+    },
+    {
+      "check": "GET plot cold with at after negative ID lookup",
+      "state": "PASS",
+      "detail": {
+        "id": "it:A564:_:60:110"
+      }
+    },
+    {
+      "check": "GET mismatched plot + at",
+      "state": "PASS",
+      "detail": {
+        "error": {
+          "code": "not_found",
+          "message": "Il punto indicato non ricade nella particella richiesta."
+        }
+      }
+    },
+    {
+      "check": "GET malformed at",
+      "state": "PASS",
+      "detail": {
+        "error": {
+          "code": "bad_request",
+          "message": "Il parametro at deve contenere latitudine,longitudine valide."
+        }
+      }
+    },
+    {
+      "check": "GET layer planning cold ID + at",
+      "state": "PASS",
+      "detail": {
+        "status": "ok",
+        "headline": "Il punto è nell’ambito del nucleo storico (zona A - sottozona A1).",
+        "provenance": [
+          {
+            "sourceId": "planning-firenze",
+            "dataset": "Piano Operativo — ambiti vigenti",
+            "authority": "Comune di Firenze",
+            "license": "CC BY 4.0",
+            "url": "https://opendata.comune.fi.it/page_dataset_show?id=po_subsistemi_e_ambiti-stato_vigente",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tms.comune.fi.it/tiles/service/wms?bbox=11.246644994999999%2C43.759143445%2C11.266644994999998%2C43.779143444999995&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fvnd.ogc.gml&layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&query_layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:55.483Z",
+            "referenceDate": "2025-06-06"
+          }
+        ]
+      }
+    },
+    {
+      "check": "flood Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "flood",
+        "group": "rischi",
+        "title": "Alluvioni",
+        "status": "ok",
+        "scope": "point",
+        "headline": "Il punto ricade negli scenari di alluvione P1, P2.",
+        "severity": "medium",
+        "metrics": [
+          {
+            "key": "scenarios",
+            "label": "Scenari al punto",
+            "value": "P1, P2",
+            "unit": null
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "P1",
+            "label": "P1: bassa probabilità"
+          },
+          {
+            "classKey": "P2",
+            "label": "P2: media probabilità"
+          },
+          {
+            "classKey": "P3",
+            "label": "P3: elevata probabilità"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il terreno.",
+          "P1/P2/P3 sono scenari distinti, non probabilità calcolate sul lotto. Nessun dato restituito non significa assenza di rischio.",
+          "La data di aggiornamento della mappa non è indicata: verificare il piano vigente e gli studi locali."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo coperto dal lotto (pixel 101×101, bbox ±0,0001°): screening puntuale, senza verifica dell'intero poligono catastale. La geometria restituita è del dataset originale. PropertyName limita la risposta a id e scenario; geometrie escluse, overlay raster dal proxy.",
+        "provenance": [
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P1",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p1&propertyName=id%2Cscenariop1&query_layers=idrogeo%3Apericolosita_idraulica_p1&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:57.130Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P2",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p2&propertyName=id%2Cscenariop2&query_layers=idrogeo%3Apericolosita_idraulica_p2&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:57.870Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P3",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p3&propertyName=id%2Cscenariop3&query_layers=idrogeo%3Apericolosita_idraulica_p3&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:57.870Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:57.871Z"
+      }
+    },
+    {
+      "check": "landslide Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "landslide",
+        "group": "rischi",
+        "title": "Frane",
+        "status": "empty",
+        "scope": "point",
+        "headline": "La fonte non restituisce frane o aree PAI su questo punto.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "pai_classes",
+            "label": "Classi PAI al punto",
+            "value": null
+          },
+          {
+            "key": "iffi_count",
+            "label": "Fenomeni IFFI al punto",
+            "value": 0,
+            "unit": "fenomeni"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "P1",
+            "label": "Pericolosità P1"
+          },
+          {
+            "classKey": "P2",
+            "label": "Pericolosità P2"
+          },
+          {
+            "classKey": "P3",
+            "label": "Pericolosità P3"
+          },
+          {
+            "classKey": "P4",
+            "label": "Pericolosità P4"
+          },
+          {
+            "classKey": "AA",
+            "label": "AA: area di attenzione"
+          },
+          {
+            "classKey": "IFFI",
+            "label": "IFFI: fenomeno inventariato"
+          },
+          {
+            "classKey": "unknown",
+            "label": "Classe non riconosciuta"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il terreno.",
+          "L’inventario elenca frane già conosciute. Le aree di attenzione richiedono una verifica anche quando manca una classe di pericolosità.",
+          "Un risultato vuoto non esclude rischi. La data di aggiornamento della mappa non è indicata."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo coperto dal lotto (pixel 101×101, bbox ±0,0001°): screening puntuale, senza verifica dell'intero poligono catastale. La geometria restituita è del dataset originale.",
+        "provenance": [
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Mosaicature PAI idraulica e frane",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:58.727Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "iffi",
+            "dataset": "Inventario dei fenomeni franosi IFFI",
+            "authority": "ISPRA e Regioni / Province autonome",
+            "license": "CC BY-SA 4.0",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Afrane&query_layers=idrogeo%3Afrane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:58.694Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.728Z"
+      }
+    },
+    {
+      "check": "seismic Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "seismic",
+        "group": "rischi",
+        "title": "Sismicità",
+        "status": "ok",
+        "scope": "municipality",
+        "headline": "Il comune è classificato in zona sismica 3.",
+        "severity": "low",
+        "metrics": [
+          {
+            "key": "zone",
+            "label": "Zona del comune",
+            "value": "3",
+            "unit": null,
+            "hint": "Classificazione DPC maggio 2025; eventuali sottoclassi regionali mantenute."
+          },
+          {
+            "key": "pga",
+            "label": "PGA MPS04 del nodo più vicino",
+            "value": 0.1302,
+            "unit": "g",
+            "hint": "Nodo del modello, non valore misurato sul lotto; 50° percentile, 10% di eccedenza in 50 anni."
+          },
+          {
+            "key": "pga_node_distance",
+            "label": "Distanza del nodo dal punto",
+            "value": 1575,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "1",
+            "label": "Zona sismica 1"
+          },
+          {
+            "classKey": "2",
+            "label": "Zona sismica 2"
+          },
+          {
+            "classKey": "3",
+            "label": "Zona sismica 3"
+          },
+          {
+            "classKey": "4",
+            "label": "Zona sismica 4"
+          },
+          {
+            "classKey": "pga-node",
+            "label": "Nodo MPS04 selezionato"
+          }
+        ],
+        "notes": [
+          "La zona descrive tutto il Comune. Il valore di accelerazione viene da un modello della zona, non da una misura sul terreno.",
+          "Il modello risale al 2004–2006; un tecnico deve verificare le norme vigenti."
+        ],
+        "method": "PGA: nodo MPS04 più vicino per distanza geodetica nella bbox ±0,15°, senza interpolazione; griglia ~0,05°. Classificazione DPC da snapshot per codice ISTAT.",
+        "provenance": [
+          {
+            "sourceId": "dpc-seismic",
+            "dataset": "Classificazione sismica comunale maggio 2025",
+            "authority": "Dipartimento della Protezione Civile - Presidenza del Consiglio dei Ministri",
+            "license": "CC BY 4.0",
+            "url": "https://rischi.protezionecivile.gov.it/static/4717c6a369cdc298b69730c9d740e39a/classificazione-sismica-aggiornata-maggio-2025.csv",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://rischi.protezionecivile.gov.it/static/4717c6a369cdc298b69730c9d740e39a/classificazione-sismica-aggiornata-maggio-2025.csv",
+            "retrievedAt": "2026-10-05T21:37:02.625Z",
+            "referenceDate": "2025-05"
+          },
+          {
+            "sourceId": "ingv-pga",
+            "dataset": "Pericolosità sismica — MPS04",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://data.ingv.it/dataset/193",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://mps04-ws.pi.ingv.it/wfs_mps04_pga?bbox=43.61914344%2C11.10664499%2C43.91914344%2C11.40664499%2CEPSG%3A4326&count=100&request=GetFeature&service=WFS&srsName=EPSG%3A4326&typeNames=ms%3AshkValsPoeCost_PGA_50oPerc_10poe_&version=2.0.0",
+            "retrievedAt": "2026-10-05T23:07:55.885Z",
+            "referenceDate": "2004-2006"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:55.888Z"
+      }
+    },
+    {
+      "check": "protected-areas Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "protected-areas",
+        "group": "ambiente",
+        "title": "Aree protette",
+        "status": "empty",
+        "scope": "parcel",
+        "headline": "I dati europei non restituiscono aree protette entro un chilometro.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "intersecting_sites",
+            "label": "Aree che contengono o intersecano il lotto",
+            "value": 0,
+            "unit": "aree"
+          },
+          {
+            "key": "nearby_sites",
+            "label": "Aree vicine senza intersezione",
+            "value": 0,
+            "unit": "aree"
+          },
+          {
+            "key": "search_radius",
+            "label": "Distanza massima di ricerca dal lotto",
+            "value": 1000,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "natura2000",
+            "label": "Natura 2000"
+          },
+          {
+            "classKey": "natda",
+            "label": "Area protetta nazionale (NatDA)"
+          }
+        ],
+        "notes": [
+          "Il confronto usa i confini pubblicati; le distanze sono approssimate.",
+          "La vicinanza non implica un vincolo sul lotto; per gli effetti consultare gli atti e il piano del gestore.",
+          "Le aree protette nazionali sono distinte dalla rete Natura 2000. Queste mappe possono non comprendere altre tutele nazionali o regionali."
+        ],
+        "method": "Relazioni contains/intersects/nearby sulle geometrie EEA; distanza approssimata tra vertici e segmenti geodetici. Nessuna percentuale di sovrapposizione stimata.",
+        "provenance": [
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/0/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.25656447%2C43.7689433%5D%2C%5B11.25622952%2C43.76904762000001%5D%2C%5B11.25592485%2C43.76914502%5D%2C%5B11.2559279%2C43.76915906%5D%2C%5B11.25588097%2C43.76916547%5D%2C%5B11.25588149%2C43.76916997000001%5D%2C%5B11.25586012%2C43.76917182%5D%2C%5B11.25584642%2C43.76922064%5D%2C%5B11.25585709%2C43.76927103%5D%2C%5B11.25586206%2C43.76927084%5D%2C%5B11.25592941%2C43.769498080000005%5D%2C%5B11.25601905%2C43.76948707%5D%2C%5B11.25602461%2C43.76950993%5D%2C%5B11.25602939%2C43.76952089%5D%2C%5B11.25604876%2C43.76951851%5D%2C%5B11.25608103%2C43.76951357000001%5D%2C%5B11.25612871%2C43.76950842%5D%2C%5B11.25625013%2C43.76948995%5D%2C%5B11.25634622%2C43.76947640000001%5D%2C%5B11.25650348%2C43.76947315%5D%2C%5B11.25651367%2C43.76947313%5D%2C%5B11.25651344%2C43.7694805%5D%2C%5B11.25681608%2C43.76948214%5D%2C%5B11.25682992%2C43.76946753%5D%2C%5B11.25742269%2C43.76940131%5D%2C%5B11.25742518%2C43.76940401%5D%2C%5B11.25744357%2C43.76940198%5D%2C%5B11.25743805%2C43.76939083%5D%2C%5B11.25743233%2C43.76939049%5D%2C%5B11.25724192%2C43.76909205%5D%2C%5B11.25724639%2C43.76908916%5D%2C%5B11.25721735%2C43.76904134%5D%2C%5B11.25721188%2C43.76904243%5D%2C%5B11.25717687%2C43.76898976%5D%2C%5B11.25694393%2C43.76879315%5D%2C%5B11.25694738%2C43.76878757%5D%2C%5B11.25694114%2C43.76878146%5D%2C%5B11.25694485%2C43.76877695%5D%2C%5B11.25693039%2C43.768766%5D%2C%5B11.25691578%2C43.76877557%5D%2C%5B11.25691778%2C43.768779%5D%2C%5B11.2569091%2C43.76878334%5D%2C%5B11.25691335%2C43.76878908%5D%2C%5B11.25675703%2C43.76889028%5D%2C%5B11.25656945%2C43.76894672%5D%2C%5B11.25656447%2C43.7689433%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:55.926Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/1/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.25656447%2C43.7689433%5D%2C%5B11.25622952%2C43.76904762000001%5D%2C%5B11.25592485%2C43.76914502%5D%2C%5B11.2559279%2C43.76915906%5D%2C%5B11.25588097%2C43.76916547%5D%2C%5B11.25588149%2C43.76916997000001%5D%2C%5B11.25586012%2C43.76917182%5D%2C%5B11.25584642%2C43.76922064%5D%2C%5B11.25585709%2C43.76927103%5D%2C%5B11.25586206%2C43.76927084%5D%2C%5B11.25592941%2C43.769498080000005%5D%2C%5B11.25601905%2C43.76948707%5D%2C%5B11.25602461%2C43.76950993%5D%2C%5B11.25602939%2C43.76952089%5D%2C%5B11.25604876%2C43.76951851%5D%2C%5B11.25608103%2C43.76951357000001%5D%2C%5B11.25612871%2C43.76950842%5D%2C%5B11.25625013%2C43.76948995%5D%2C%5B11.25634622%2C43.76947640000001%5D%2C%5B11.25650348%2C43.76947315%5D%2C%5B11.25651367%2C43.76947313%5D%2C%5B11.25651344%2C43.7694805%5D%2C%5B11.25681608%2C43.76948214%5D%2C%5B11.25682992%2C43.76946753%5D%2C%5B11.25742269%2C43.76940131%5D%2C%5B11.25742518%2C43.76940401%5D%2C%5B11.25744357%2C43.76940198%5D%2C%5B11.25743805%2C43.76939083%5D%2C%5B11.25743233%2C43.76939049%5D%2C%5B11.25724192%2C43.76909205%5D%2C%5B11.25724639%2C43.76908916%5D%2C%5B11.25721735%2C43.76904134%5D%2C%5B11.25721188%2C43.76904243%5D%2C%5B11.25717687%2C43.76898976%5D%2C%5B11.25694393%2C43.76879315%5D%2C%5B11.25694738%2C43.76878757%5D%2C%5B11.25694114%2C43.76878146%5D%2C%5B11.25694485%2C43.76877695%5D%2C%5B11.25693039%2C43.768766%5D%2C%5B11.25691578%2C43.76877557%5D%2C%5B11.25691778%2C43.768779%5D%2C%5B11.2569091%2C43.76878334%5D%2C%5B11.25691335%2C43.76878908%5D%2C%5B11.25675703%2C43.76889028%5D%2C%5B11.25656945%2C43.76894672%5D%2C%5B11.25656447%2C43.7689433%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:56.284Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.25656447%2C43.7689433%5D%2C%5B11.25622952%2C43.76904762000001%5D%2C%5B11.25592485%2C43.76914502%5D%2C%5B11.2559279%2C43.76915906%5D%2C%5B11.25588097%2C43.76916547%5D%2C%5B11.25588149%2C43.76916997000001%5D%2C%5B11.25586012%2C43.76917182%5D%2C%5B11.25584642%2C43.76922064%5D%2C%5B11.25585709%2C43.76927103%5D%2C%5B11.25586206%2C43.76927084%5D%2C%5B11.25592941%2C43.769498080000005%5D%2C%5B11.25601905%2C43.76948707%5D%2C%5B11.25602461%2C43.76950993%5D%2C%5B11.25602939%2C43.76952089%5D%2C%5B11.25604876%2C43.76951851%5D%2C%5B11.25608103%2C43.76951357000001%5D%2C%5B11.25612871%2C43.76950842%5D%2C%5B11.25625013%2C43.76948995%5D%2C%5B11.25634622%2C43.76947640000001%5D%2C%5B11.25650348%2C43.76947315%5D%2C%5B11.25651367%2C43.76947313%5D%2C%5B11.25651344%2C43.7694805%5D%2C%5B11.25681608%2C43.76948214%5D%2C%5B11.25682992%2C43.76946753%5D%2C%5B11.25742269%2C43.76940131%5D%2C%5B11.25742518%2C43.76940401%5D%2C%5B11.25744357%2C43.76940198%5D%2C%5B11.25743805%2C43.76939083%5D%2C%5B11.25743233%2C43.76939049%5D%2C%5B11.25724192%2C43.76909205%5D%2C%5B11.25724639%2C43.76908916%5D%2C%5B11.25721735%2C43.76904134%5D%2C%5B11.25721188%2C43.76904243%5D%2C%5B11.25717687%2C43.76898976%5D%2C%5B11.25694393%2C43.76879315%5D%2C%5B11.25694738%2C43.76878757%5D%2C%5B11.25694114%2C43.76878146%5D%2C%5B11.25694485%2C43.76877695%5D%2C%5B11.25693039%2C43.768766%5D%2C%5B11.25691578%2C43.76877557%5D%2C%5B11.25691778%2C43.768779%5D%2C%5B11.2569091%2C43.76878334%5D%2C%5B11.25691335%2C43.76878908%5D%2C%5B11.25675703%2C43.76889028%5D%2C%5B11.25656945%2C43.76894672%5D%2C%5B11.25656447%2C43.7689433%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:56.817Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natda",
+            "dataset": "Aree protette nazionali NatDA / CDDA 2026",
+            "authority": "EEA e autorità nazionali",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.25656447%2C43.7689433%5D%2C%5B11.25622952%2C43.76904762000001%5D%2C%5B11.25592485%2C43.76914502%5D%2C%5B11.2559279%2C43.76915906%5D%2C%5B11.25588097%2C43.76916547%5D%2C%5B11.25588149%2C43.76916997000001%5D%2C%5B11.25586012%2C43.76917182%5D%2C%5B11.25584642%2C43.76922064%5D%2C%5B11.25585709%2C43.76927103%5D%2C%5B11.25586206%2C43.76927084%5D%2C%5B11.25592941%2C43.769498080000005%5D%2C%5B11.25601905%2C43.76948707%5D%2C%5B11.25602461%2C43.76950993%5D%2C%5B11.25602939%2C43.76952089%5D%2C%5B11.25604876%2C43.76951851%5D%2C%5B11.25608103%2C43.76951357000001%5D%2C%5B11.25612871%2C43.76950842%5D%2C%5B11.25625013%2C43.76948995%5D%2C%5B11.25634622%2C43.76947640000001%5D%2C%5B11.25650348%2C43.76947315%5D%2C%5B11.25651367%2C43.76947313%5D%2C%5B11.25651344%2C43.7694805%5D%2C%5B11.25681608%2C43.76948214%5D%2C%5B11.25682992%2C43.76946753%5D%2C%5B11.25742269%2C43.76940131%5D%2C%5B11.25742518%2C43.76940401%5D%2C%5B11.25744357%2C43.76940198%5D%2C%5B11.25743805%2C43.76939083%5D%2C%5B11.25743233%2C43.76939049%5D%2C%5B11.25724192%2C43.76909205%5D%2C%5B11.25724639%2C43.76908916%5D%2C%5B11.25721735%2C43.76904134%5D%2C%5B11.25721188%2C43.76904243%5D%2C%5B11.25717687%2C43.76898976%5D%2C%5B11.25694393%2C43.76879315%5D%2C%5B11.25694738%2C43.76878757%5D%2C%5B11.25694114%2C43.76878146%5D%2C%5B11.25694485%2C43.76877695%5D%2C%5B11.25693039%2C43.768766%5D%2C%5B11.25691578%2C43.76877557%5D%2C%5B11.25691778%2C43.768779%5D%2C%5B11.2569091%2C43.76878334%5D%2C%5B11.25691335%2C43.76878908%5D%2C%5B11.25675703%2C43.76889028%5D%2C%5B11.25656945%2C43.76894672%5D%2C%5B11.25656447%2C43.7689433%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:57.552Z",
+            "referenceDate": "2026"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:57.553Z"
+      }
+    },
+    {
+      "check": "terrain Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "terrain",
+        "group": "ambiente",
+        "title": "Terreno",
+        "status": "ok",
+        "scope": "parcel",
+        "headline": "I campioni del terreno hanno quote tra 49.9 e 50 metri.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "elevation_min",
+            "label": "Quota minima dei campioni",
+            "value": 49.9,
+            "unit": "m"
+          },
+          {
+            "key": "elevation_max",
+            "label": "Quota massima dei campioni",
+            "value": 50,
+            "unit": "m"
+          },
+          {
+            "key": "elevation_mean",
+            "label": "Quota media dei campioni",
+            "value": 50,
+            "unit": "m"
+          },
+          {
+            "key": "slope_estimate",
+            "label": "Pendenza media stimata",
+            "value": 0.4,
+            "unit": "%"
+          },
+          {
+            "key": "samples",
+            "label": "Campioni validi",
+            "value": 5,
+            "unit": "campioni"
+          },
+          {
+            "key": "resolution",
+            "label": "Risoluzione del modello",
+            "value": 10,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "elevation-sample",
+            "label": "Quota campionata nel DTM"
+          }
+        ],
+        "notes": [
+          "Le quote e la pendenza sono stime da una mappa, non un rilievo sul posto.",
+          "Minimo e massimo riguardano i punti controllati: possono non cogliere scarpate o dislivelli piccoli."
+        ],
+        "method": "TINITALY 1.1 DTM 10 m (2023); griglia 4×4 nella bbox con punti interni e punto rappresentativo, massimo 17 campioni. Pendenza: piano ai minimi quadrati in coordinate metriche locali, 100 × √(a²+b²); null per campioni insufficienti/collineari. Unità tinitaly_slope non verificata: layer non usato.",
+        "provenance": [
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.256368803333332%2C43.76900763%2C11.256388803333332%2C43.769027630000004&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:55.652Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.256901186666667%2C43.76900763%2C11.256921186666666%2C43.769027630000004&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:56.006Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.256368803333332%2C43.76925926%2C11.256388803333332%2C43.769279260000005&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:56.157Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.256901186666667%2C43.76925926%2C11.256921186666666%2C43.769279260000005&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:56.341Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.256634994999999%2C43.769133444999994%2C11.256654994999998%2C43.769153445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:56.562Z",
+            "referenceDate": "2023-01"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:56.563Z"
+      }
+    },
+    {
+      "check": "solar Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "solar",
+        "group": "ambiente",
+        "title": "Sole",
+        "status": "ok",
+        "scope": "point",
+        "headline": "PVGIS stima circa 1374 kWh all'anno per un impianto ideale da 1 kWp.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "irradiation_annual",
+            "label": "Irraggiamento annuo sul piano ottimale",
+            "value": 1763.81,
+            "unit": "kWh/m²/anno"
+          },
+          {
+            "key": "pv_annual",
+            "label": "Produzione annua stimata di 1 kWp",
+            "value": 1373.5,
+            "unit": "kWh/anno"
+          },
+          {
+            "key": "optimal_slope",
+            "label": "Inclinazione ottimale",
+            "value": 37,
+            "unit": "°"
+          },
+          {
+            "key": "optimal_azimuth",
+            "label": "Azimut ottimale (0° sud)",
+            "value": -1,
+            "unit": "°"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "optimal-pv",
+            "label": "Simulazione PVGIS a orientamento ottimale"
+          }
+        ],
+        "notes": [
+          "La stima usa il clima degli anni passati e un impianto ideale. Non garantisce la produzione reale.",
+          "Le ombre di edifici e alberi vicini non sono considerate. Verificare i permessi per installare l’impianto."
+        ],
+        "method": "PVGIS 5.3 PVGIS-SARAH3, anni 2005–2023; 1 kWp silicio cristallino, montaggio libero, perdite 14%, inclinazione/azimut ottimali; orizzonte DEM attivo.",
+        "provenance": [
+          {
+            "sourceId": "pvgis",
+            "dataset": "PVGIS 5.3 PVGIS-SARAH3",
+            "authority": "Commissione europea - JRC",
+            "license": "JRC: utilizzo gratuito senza restrizioni d'uso, citare PVGIS",
+            "url": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=43.769143445&lon=11.256644994999998&loss=14&mountingplace=free&optimalangles=1&outputformat=json&peakpower=1&pvtechchoice=crystSi&usehorizon=1",
+            "retrievedAt": "2026-10-05T23:07:56.657Z",
+            "referenceDate": "2005–2023"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:56.659Z"
+      }
+    },
+    {
+      "check": "services Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "services",
+        "group": "contesto",
+        "title": "Servizi vicini",
+        "status": "ok",
+        "scope": "buffer",
+        "headline": "OpenStreetMap registra 258 servizi e luoghi utili entro un chilometro.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "schools_500m",
+            "label": "Scuole entro 500 m",
+            "value": 2,
+            "unit": "luoghi"
+          },
+          {
+            "key": "schools_1000m",
+            "label": "Scuole entro 1 km",
+            "value": 34,
+            "unit": "luoghi"
+          },
+          {
+            "key": "schools_nearest",
+            "label": "Scuole: distanza del più vicino entro 1 km",
+            "value": 244,
+            "unit": "m"
+          },
+          {
+            "key": "transit_500m",
+            "label": "Fermate TPL entro 500 m",
+            "value": 57,
+            "unit": "luoghi"
+          },
+          {
+            "key": "transit_1000m",
+            "label": "Fermate TPL entro 1 km",
+            "value": 158,
+            "unit": "luoghi"
+          },
+          {
+            "key": "transit_nearest",
+            "label": "Fermate TPL: distanza del più vicino entro 1 km",
+            "value": 75,
+            "unit": "m"
+          },
+          {
+            "key": "health_500m",
+            "label": "Sanità e farmacie entro 500 m",
+            "value": 14,
+            "unit": "luoghi"
+          },
+          {
+            "key": "health_1000m",
+            "label": "Sanità e farmacie entro 1 km",
+            "value": 40,
+            "unit": "luoghi"
+          },
+          {
+            "key": "health_nearest",
+            "label": "Sanità e farmacie: distanza del più vicino entro 1 km",
+            "value": 97,
+            "unit": "m"
+          },
+          {
+            "key": "supermarkets_500m",
+            "label": "Supermercati entro 500 m",
+            "value": 4,
+            "unit": "luoghi"
+          },
+          {
+            "key": "supermarkets_1000m",
+            "label": "Supermercati entro 1 km",
+            "value": 15,
+            "unit": "luoghi"
+          },
+          {
+            "key": "supermarkets_nearest",
+            "label": "Supermercati: distanza del più vicino entro 1 km",
+            "value": 171,
+            "unit": "m"
+          },
+          {
+            "key": "parks_500m",
+            "label": "Parchi entro 500 m",
+            "value": 2,
+            "unit": "luoghi"
+          },
+          {
+            "key": "parks_1000m",
+            "label": "Parchi entro 1 km",
+            "value": 11,
+            "unit": "luoghi"
+          },
+          {
+            "key": "parks_nearest",
+            "label": "Parchi: distanza del più vicino entro 1 km",
+            "value": 390,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "schools",
+            "label": "Scuole"
+          },
+          {
+            "classKey": "transit",
+            "label": "Fermate TPL"
+          },
+          {
+            "classKey": "health",
+            "label": "Sanità e farmacie"
+          },
+          {
+            "classKey": "supermarkets",
+            "label": "Supermercati"
+          },
+          {
+            "classKey": "parks",
+            "label": "Parchi"
+          }
+        ],
+        "notes": [
+          "Dati collaborativi OpenStreetMap, non elenco ufficiale né completo; servizi mancanti non significano assenza reale.",
+          "Le distanze sono in linea d’aria: il percorso reale può essere più lungo. Alcune fermate possono comparire più volte.",
+          "© OpenStreetMap contributors, dati ODbL 1.0."
+        ],
+        "method": "Overpass entro 1 km dal punto rappresentativo; distanze geodetiche in linea d’aria. Per way/relation centro della bbox, non ingresso; deduplicazione per ID OSM, non per nome.",
+        "provenance": [
+          {
+            "sourceId": "overpass",
+            "dataset": "Servizi OpenStreetMap",
+            "authority": "OpenStreetMap contributors",
+            "license": "ODbL 1.0",
+            "url": "https://dev.overpass-api.de/overpass-doc/en/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3B%28nwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bamenity%7E%22%5E%28school%7Ckindergarten%7Ccollege%7Cuniversity%7Chospital%7Cclinic%7Cdoctors%7Cpharmacy%29%24%22%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bpublic_transport%7E%22%5E%28platform%7Cstop_position%29%24%22%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bhighway%3Dbus_stop%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Brailway%7E%22%5E%28tram_stop%7Cstation%7Chalt%29%24%22%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bshop%3Dsupermarket%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bleisure%3Dpark%5D%3B%29%3Bout+center+tags%3B",
+            "retrievedAt": "2026-10-05T23:07:58.640Z",
+            "referenceDate": "2026-10-05T23:06:18Z"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.643Z"
+      }
+    },
+    {
+      "check": "demographics Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "demographics",
+        "group": "contesto",
+        "title": "Popolazione",
+        "status": "ok",
+        "scope": "grid_cell",
+        "headline": "Nel 2021 la cella di un chilometro quadrato contava 8131 residenti.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "grid_population",
+            "label": "Residenti nella cella nel 2021",
+            "value": 8131,
+            "unit": "residenti"
+          },
+          {
+            "key": "grid_id",
+            "label": "Identificativo della cella",
+            "value": "CRS3035RES1000mN2296000E4422000"
+          },
+          {
+            "key": "municipality_population",
+            "label": "Residenti nel comune, stima 1 gennaio 2026",
+            "value": 361625,
+            "unit": "residenti",
+            "hint": "Scala comunale distinta dalla cella e dal lotto; stima provvisoria ISTAT."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "census-grid-2021",
+            "label": "Cella censuaria 1 km², 2021"
+          }
+        ],
+        "notes": [
+          "La popolazione riguarda un quadrato di un chilometro di lato, non gli abitanti di questo terreno o edificio.",
+          "Il dato comunale è una stima al 1 gennaio 2026 e può essere revisionato."
+        ],
+        "method": "Query puntuale sul punto rappresentativo; cella censuaria europea 1 km² EPSG:3035, senza ripartizione areale. Join popolazione comunale per codice ISTAT.",
+        "provenance": [
+          {
+            "sourceId": "istat-grid",
+            "dataset": "Griglia censuaria 2021, celle 1 km²",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query?f=json&geometry=11.256644994999998%2C43.769143445&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:07:55.552Z",
+            "referenceDate": "2021"
+          },
+          {
+            "sourceId": "istat-population",
+            "dataset": "Popolazione residente, stima 1 gennaio 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://demo.istat.it/data/posas/",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://demo.istat.it/data/posas/POSAS_2026_it_048_Firenze.zip",
+            "retrievedAt": "2026-10-05T21:39:26.006Z",
+            "referenceDate": "2026-01-01"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:55.553Z"
+      }
+    },
+    {
+      "check": "landscape Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "landscape",
+        "group": "urbanistica",
+        "title": "Paesaggio",
+        "status": "empty",
+        "scope": "point",
+        "headline": "SITAP non restituisce tutele sul punto controllato.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "identified_constraints",
+            "label": "Tutele al punto",
+            "value": 0,
+            "unit": "tutele"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "art-136",
+            "label": "Beni di notevole interesse pubblico — art. 136"
+          },
+          {
+            "classKey": "art-142",
+            "label": "Aree tutelate per legge — art. 142"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il lotto. Le categorie disponibili non comprendono tutte le tutele previste dalla legge.",
+          "SITAP è una ricognizione: può essere incompleto o non aggiornato. Verificare il piano paesaggistico regionale, gli atti e il Comune.",
+          "La licenza di riuso del dataset non è accertata; consultare la fonte per gli usi successivi."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo, non intersezione del lotto; EPSG:4326, bbox ±0,0001°, pixel centrale 101×101; layer toscana_art136, toscana_art142_ghiacciai, toscana_art142_montagne, toscana_art142_rispetto_fiumi, toscana_art142_rispetto_laghi, toscana_art142_territori_costieri. Inventario capabilities 2026-10-05T22:48:41.860Z.",
+        "provenance": [
+          {
+            "sourceId": "sitap",
+            "dataset": "Vincoli paesaggistici — SITAP",
+            "authority": "Ministero della Cultura",
+            "license": "Licenza di riuso non accertata",
+            "url": "https://sitap.cultura.gov.it/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=toscana_art136&query_layers=toscana_art136&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:55.660Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "sitap",
+            "dataset": "Vincoli paesaggistici — SITAP",
+            "authority": "Ministero della Cultura",
+            "license": "Licenza di riuso non accertata",
+            "url": "https://sitap.cultura.gov.it/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?bbox=11.256544994999999%2C43.769043444999994%2C11.256744994999998%2C43.769243445&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=toscana_art142_ghiacciai%2Ctoscana_art142_montagne%2Ctoscana_art142_rispetto_fiumi%2Ctoscana_art142_rispetto_laghi%2Ctoscana_art142_territori_costieri&query_layers=toscana_art142_ghiacciai%2Ctoscana_art142_montagne%2Ctoscana_art142_rispetto_fiumi%2Ctoscana_art142_rispetto_laghi%2Ctoscana_art142_territori_costieri&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:56.065Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:56.065Z"
+      }
+    },
+    {
+      "check": "planning Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "ok",
+        "scope": "point",
+        "headline": "Il punto è nell’ambito del nucleo storico (zona A - sottozona A1).",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "PO_SSA_ANS",
+            "label": "Ambito del Piano Operativo",
+            "value": "ambito del nucleo storico (zona A - sottozona A1)",
+            "hint": "Decorrenza dichiarata: 2025-06-06"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "firenze-PO_SSA_ANS",
+            "label": "ambito del nucleo storico (zona A - sottozona A1)"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno. Un ambito non riassume tutte le regole del terreno.",
+          "Prima di decidere, consultare norme e tavole del Comune, richiedere il certificato di destinazione urbanistica e coinvolgere un tecnico abilitato."
+        ],
+        "method": "WMS GetFeatureInfo GML del layer vigente subsistemi/ambiti; EPSG:4326, bbox ±0,01°, pixel centrale 101×101. Gli altri strati del PO non sono inclusi.",
+        "provenance": [
+          {
+            "sourceId": "planning-firenze",
+            "dataset": "Piano Operativo — ambiti vigenti",
+            "authority": "Comune di Firenze",
+            "license": "CC BY 4.0",
+            "url": "https://opendata.comune.fi.it/page_dataset_show?id=po_subsistemi_e_ambiti-stato_vigente",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tms.comune.fi.it/tiles/service/wms?bbox=11.246644994999999%2C43.759143445%2C11.266644994999998%2C43.779143444999995&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fvnd.ogc.gml&layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&query_layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:55.483Z",
+            "referenceDate": "2025-06-06"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:55.484Z"
+      }
+    },
+    {
+      "check": "land-cover Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "land-cover",
+        "group": "ambiente",
+        "title": "Copertura del suolo",
+        "status": "ok",
+        "scope": "parcel",
+        "headline": "La copertura prevalente stimata è: tessuto urbano continuo.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "dominant_cover",
+            "label": "Copertura prevalente stimata",
+            "value": "Tessuto urbano continuo"
+          },
+          {
+            "key": "dominant_sample_share",
+            "label": "Punti con la classe prevalente",
+            "value": 100,
+            "unit": "%",
+            "hint": "Percentuale dei punti controllati, non superficie impermeabilizzata."
+          },
+          {
+            "key": "impervious_share",
+            "label": "Superficie impermeabilizzata",
+            "value": null,
+            "unit": "%",
+            "hint": "Non disponibile in CORINE: non viene dedotta dalla classe."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "clc-111",
+            "label": "Tessuto urbano continuo"
+          }
+        ],
+        "notes": [
+          "La mappa del 2018 descrive aree ampie: può non riconoscere dettagli o cambiamenti recenti di questo terreno.",
+          "La prevalenza è una stima sui punti controllati, non una misura della superficie. Non descrive la destinazione urbanistica o i permessi per costruire.",
+          "Fonte Copernicus/EEA; classificazione ed elaborazione Particella, senza approvazione implicita dell’Unione europea."
+        ],
+        "method": "Una query ArcGIS interseca il poligono del lotto (o il punto); classe prevalente stimata con conteggio su griglia interna 4×4 più punto rappresentativo. CORINE 2018, unità minima 25 ha, larghezza 100 m, scala 1:100000; nessun calcolo della superficie impermeabilizzata.",
+        "provenance": [
+          {
+            "sourceId": "corine",
+            "dataset": "Copertura del suolo — CORINE 2018",
+            "authority": "EEA / Copernicus",
+            "license": "Copernicus: accesso libero, completo e aperto; citare fonte ed elaborazioni",
+            "url": "https://land.copernicus.eu/en/products/corine-land-cover",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2018_WM/MapServer/0/query?f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.25656447%2C43.7689433%5D%2C%5B11.25622952%2C43.76904762000001%5D%2C%5B11.25592485%2C43.76914502%5D%2C%5B11.2559279%2C43.76915906%5D%2C%5B11.25588097%2C43.76916547%5D%2C%5B11.25588149%2C43.76916997000001%5D%2C%5B11.25586012%2C43.76917182%5D%2C%5B11.25584642%2C43.76922064%5D%2C%5B11.25585709%2C43.76927103%5D%2C%5B11.25586206%2C43.76927084%5D%2C%5B11.25592941%2C43.769498080000005%5D%2C%5B11.25601905%2C43.76948707%5D%2C%5B11.25602461%2C43.76950993%5D%2C%5B11.25602939%2C43.76952089%5D%2C%5B11.25604876%2C43.76951851%5D%2C%5B11.25608103%2C43.76951357000001%5D%2C%5B11.25612871%2C43.76950842%5D%2C%5B11.25625013%2C43.76948995%5D%2C%5B11.25634622%2C43.76947640000001%5D%2C%5B11.25650348%2C43.76947315%5D%2C%5B11.25651367%2C43.76947313%5D%2C%5B11.25651344%2C43.7694805%5D%2C%5B11.25681608%2C43.76948214%5D%2C%5B11.25682992%2C43.76946753%5D%2C%5B11.25742269%2C43.76940131%5D%2C%5B11.25742518%2C43.76940401%5D%2C%5B11.25744357%2C43.76940198%5D%2C%5B11.25743805%2C43.76939083%5D%2C%5B11.25743233%2C43.76939049%5D%2C%5B11.25724192%2C43.76909205%5D%2C%5B11.25724639%2C43.76908916%5D%2C%5B11.25721735%2C43.76904134%5D%2C%5B11.25721188%2C43.76904243%5D%2C%5B11.25717687%2C43.76898976%5D%2C%5B11.25694393%2C43.76879315%5D%2C%5B11.25694738%2C43.76878757%5D%2C%5B11.25694114%2C43.76878146%5D%2C%5B11.25694485%2C43.76877695%5D%2C%5B11.25693039%2C43.768766%5D%2C%5B11.25691578%2C43.76877557%5D%2C%5B11.25691778%2C43.768779%5D%2C%5B11.2569091%2C43.76878334%5D%2C%5B11.25691335%2C43.76878908%5D%2C%5B11.25675703%2C43.76889028%5D%2C%5B11.25656945%2C43.76894672%5D%2C%5B11.25656447%2C43.7689433%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:07:55.872Z",
+            "referenceDate": "2018"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:55.872Z"
+      }
+    },
+    {
+      "check": "accessibility Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "accessibility",
+        "group": "contesto",
+        "title": "Accessibilità",
+        "status": "ok",
+        "scope": "buffer",
+        "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "walk-10-area",
+            "label": "A piedi, 10 minuti: superficie raggiungibile",
+            "value": 117.7,
+            "unit": "ha"
+          },
+          {
+            "key": "walk-10-services",
+            "label": "A piedi, 10 minuti: servizi censiti entro 1 km",
+            "value": 119,
+            "unit": "luoghi",
+            "hint": "Solo i servizi della ricerca entro 1 km, non un conteggio di tutta l’area raggiungibile."
+          },
+          {
+            "key": "car-10-area",
+            "label": "In auto, 10 minuti: superficie raggiungibile",
+            "value": 417.9,
+            "unit": "ha"
+          },
+          {
+            "key": "car-10-services",
+            "label": "In auto, 10 minuti: servizi censiti entro 1 km",
+            "value": 100,
+            "unit": "luoghi",
+            "hint": "Solo i servizi della ricerca entro 1 km, non un conteggio di tutta l’area raggiungibile."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "walk-10",
+            "label": "A piedi, 10 minuti"
+          },
+          {
+            "classKey": "car-10",
+            "label": "In auto, 10 minuti"
+          }
+        ],
+        "notes": [
+          "Le aree sono stime sulla rete stradale: non considerano il traffico attuale e non attestano accesso a ZTL, cancelli o proprietà private.",
+          "I servizi contati sono solo quelli censiti entro un chilometro: quelli più lontani non vengono cercati.",
+          "© OpenStreetMap contributors, dati ODbL. Il servizio pubblico di prova non garantisce disponibilità continua."
+        ],
+        "method": "Valhalla/FOSSGIS isochrone, costing pedestrian e auto, time=10 min, polygons=true. Area geodetica Turf. Join spaziale ai servizi Overpass della stessa cache, limitati a 1 km; nessuna seconda query Overpass.",
+        "provenance": [
+          {
+            "sourceId": "valhalla",
+            "dataset": "Isocrone — rete OpenStreetMap",
+            "authority": "OpenStreetMap contributors / FOSSGIS",
+            "license": "ODbL 1.0 (dati); MIT (software)",
+            "url": "https://valhalla.openstreetmap.de/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A43.769143445%2C%22lon%22%3A11.256644994999998%7D%5D%2C%22costing%22%3A%22pedestrian%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+            "retrievedAt": "2026-10-05T23:07:55.644Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "valhalla",
+            "dataset": "Isocrone — rete OpenStreetMap",
+            "authority": "OpenStreetMap contributors / FOSSGIS",
+            "license": "ODbL 1.0 (dati); MIT (software)",
+            "url": "https://valhalla.openstreetmap.de/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A43.769143445%2C%22lon%22%3A11.256644994999998%7D%5D%2C%22costing%22%3A%22auto%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+            "retrievedAt": "2026-10-05T23:07:56.553Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "overpass",
+            "dataset": "Servizi OpenStreetMap",
+            "authority": "OpenStreetMap contributors",
+            "license": "ODbL 1.0",
+            "url": "https://dev.overpass-api.de/overpass-doc/en/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3B%28nwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bamenity%7E%22%5E%28school%7Ckindergarten%7Ccollege%7Cuniversity%7Chospital%7Cclinic%7Cdoctors%7Cpharmacy%29%24%22%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bpublic_transport%7E%22%5E%28platform%7Cstop_position%29%24%22%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bhighway%3Dbus_stop%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Brailway%7E%22%5E%28tram_stop%7Cstation%7Chalt%29%24%22%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bshop%3Dsupermarket%5D%3Bnwr%28around%3A1000%2C43.769143445%2C11.256644994999998%29%5Bleisure%3Dpark%5D%3B%29%3Bout+center+tags%3B",
+            "retrievedAt": "2026-10-05T23:07:58.640Z",
+            "referenceDate": "2026-10-05T23:06:18Z"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.646Z"
+      }
+    },
+    {
+      "check": "market Firenze",
+      "state": "PASS",
+      "detail": {
+        "layer": "market",
+        "group": "contesto",
+        "title": "Mercato immobiliare",
+        "status": "ok",
+        "scope": "zone",
+        "headline": "Nella zona OMI B5, abitazioni civili da 3600 a 5300 €/m².",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "omi_zone",
+            "label": "Zona OMI",
+            "value": "B5 · CENTRO STORICO (SIGNORIA - DUOMO - PITTI - SAN NICCOLO)"
+          },
+          {
+            "key": "semester",
+            "label": "Semestre pubblicato più recente",
+            "value": "2025/2"
+          },
+          {
+            "key": "residential-0-min",
+            "label": "Abitazioni civili (NORMALE): minimo",
+            "value": 3600,
+            "unit": "€/m²",
+            "hint": "Superficie lorda"
+          },
+          {
+            "key": "residential-0-max",
+            "label": "Abitazioni civili (NORMALE): massimo",
+            "value": 5300,
+            "unit": "€/m²"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "omi-zone",
+            "label": "Zona OMI B5"
+          }
+        ],
+        "notes": [
+          "Questi sono valori di zona per abitazioni, non una stima del lotto o il prezzo di un terreno.",
+          "Il punto interno identifica la zona; un lotto esteso può attraversare più zone. Le condizioni del singolo immobile possono cambiare molto il prezzo.",
+          "Il semestre è l’ultimo pubblicato dalla fonte, anche quando risale a un anno precedente."
+        ],
+        "method": "Elenco semestri live; KML ufficiale per Comune, point-in-polygon sul punto rappresentativo, quindi elenco zone e tabella HTML residenziale. Stato conservativo e superficie L/N mantenuti; nessun valore dedotto per il terreno.",
+        "provenance": [
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?richiesta=5",
+            "retrievedAt": "2026-10-05T23:07:55.997Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/perimetri.php?codcom=D612&formato=kml&id=1&prov=FI&semestre=20252",
+            "retrievedAt": "2026-10-05T23:07:56.398Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?codcom=D612&richiesta=3&semestre=20252",
+            "retrievedAt": "2026-10-05T23:07:56.588Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?D612/FI00001135/20252/R/B5/11.256644994999998/43.769143445",
+            "retrievedAt": "2026-10-05T23:07:57.171Z",
+            "referenceDate": "2025/2"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:57.177Z"
+      }
+    },
+    {
+      "check": "GET report cold ID + at",
+      "state": "PASS",
+      "detail": {
+        "id": "it:D612:_:173:68",
+        "layers": 13,
+        "statuses": [
+          {
+            "layer": "flood",
+            "status": "ok"
+          },
+          {
+            "layer": "landslide",
+            "status": "empty"
+          },
+          {
+            "layer": "seismic",
+            "status": "ok"
+          },
+          {
+            "layer": "protected-areas",
+            "status": "empty"
+          },
+          {
+            "layer": "terrain",
+            "status": "ok"
+          },
+          {
+            "layer": "solar",
+            "status": "ok"
+          },
+          {
+            "layer": "services",
+            "status": "ok"
+          },
+          {
+            "layer": "demographics",
+            "status": "ok"
+          },
+          {
+            "layer": "landscape",
+            "status": "empty"
+          },
+          {
+            "layer": "planning",
+            "status": "ok"
+          },
+          {
+            "layer": "land-cover",
+            "status": "ok"
+          },
+          {
+            "layer": "accessibility",
+            "status": "ok"
+          },
+          {
+            "layer": "market",
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    {
+      "check": "municipality Milano",
+      "state": "PASS",
+      "detail": {
+        "istatCode": "015146",
+        "cadastralCode": "F205",
+        "name": "Milano",
+        "province": "Milano",
+        "provinceCode": "MI",
+        "region": "Lombardia"
+      }
+    },
+    {
+      "check": "demographics Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "demographics",
+        "group": "contesto",
+        "title": "Popolazione",
+        "status": "ok",
+        "scope": "grid_cell",
+        "headline": "Nel 2021 la cella di un chilometro quadrato contava 6906 residenti.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "grid_population",
+            "label": "Residenti nella cella nel 2021",
+            "value": 6906,
+            "unit": "residenti"
+          },
+          {
+            "key": "grid_id",
+            "label": "Identificativo della cella",
+            "value": "CRS3035RES1000mN2483000E4257000"
+          },
+          {
+            "key": "municipality_population",
+            "label": "Residenti nel comune, stima 1 gennaio 2026",
+            "value": 1362863,
+            "unit": "residenti",
+            "hint": "Scala comunale distinta dalla cella e dal lotto; stima provvisoria ISTAT."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "census-grid-2021",
+            "label": "Cella censuaria 1 km², 2021"
+          }
+        ],
+        "notes": [
+          "La popolazione riguarda un quadrato di un chilometro di lato, non gli abitanti di questo terreno o edificio.",
+          "Il dato comunale è una stima al 1 gennaio 2026 e può essere revisionato."
+        ],
+        "method": "Query puntuale sul punto rappresentativo; cella censuaria europea 1 km² EPSG:3035, senza ripartizione areale. Join popolazione comunale per codice ISTAT.",
+        "provenance": [
+          {
+            "sourceId": "istat-grid",
+            "dataset": "Griglia censuaria 2021, celle 1 km²",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query?f=json&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:07:58.815Z",
+            "referenceDate": "2021"
+          },
+          {
+            "sourceId": "istat-population",
+            "dataset": "Popolazione residente, stima 1 gennaio 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://demo.istat.it/data/posas/",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://demo.istat.it/data/posas/POSAS_2026_it_015_Milano.zip",
+            "retrievedAt": "2026-10-05T21:39:26.006Z",
+            "referenceDate": "2026-01-01"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.815Z"
+      }
+    },
+    {
+      "check": "terrain Milano",
+      "state": "PARTIAL",
+      "detail": {
+        "layer": "terrain",
+        "group": "ambiente",
+        "title": "Terreno",
+        "status": "partial",
+        "scope": "point",
+        "headline": "I campioni del terreno hanno quote tra 119.3 e 119.3 metri.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "elevation_min",
+            "label": "Quota minima dei campioni",
+            "value": 119.3,
+            "unit": "m"
+          },
+          {
+            "key": "elevation_max",
+            "label": "Quota massima dei campioni",
+            "value": 119.3,
+            "unit": "m"
+          },
+          {
+            "key": "elevation_mean",
+            "label": "Quota media dei campioni",
+            "value": 119.3,
+            "unit": "m"
+          },
+          {
+            "key": "slope_estimate",
+            "label": "Pendenza media stimata",
+            "value": null,
+            "unit": "%"
+          },
+          {
+            "key": "samples",
+            "label": "Campioni validi",
+            "value": 1,
+            "unit": "campioni"
+          },
+          {
+            "key": "resolution",
+            "label": "Risoluzione del modello",
+            "value": 10,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "elevation-sample",
+            "label": "Quota campionata nel DTM"
+          }
+        ],
+        "notes": [
+          "Le quote e la pendenza sono stime da una mappa, non un rilievo sul posto.",
+          "Minimo e massimo riguardano i punti controllati: possono non cogliere scarpate o dislivelli piccoli.",
+          "Senza il confine del terreno la pendenza non è stimabile."
+        ],
+        "method": "TINITALY 1.1 DTM 10 m (2023); griglia 4×4 nella bbox con punti interni e punto rappresentativo, massimo 17 campioni. Pendenza: piano ai minimi quadrati in coordinate metriche locali, 100 × √(a²+b²); null per campioni insufficienti/collineari. Unità tinitaly_slope non verificata: layer non usato.",
+        "provenance": [
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=9.18999%2C45.464189999999995%2C9.19001%2C45.46421&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:58.914Z",
+            "referenceDate": "2023-01"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.914Z"
+      }
+    },
+    {
+      "check": "land-cover Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "land-cover",
+        "group": "ambiente",
+        "title": "Copertura del suolo",
+        "status": "ok",
+        "scope": "point",
+        "headline": "La copertura al punto è: tessuto urbano continuo.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "dominant_cover",
+            "label": "Copertura prevalente stimata",
+            "value": "Tessuto urbano continuo"
+          },
+          {
+            "key": "dominant_sample_share",
+            "label": "Punti con la classe prevalente",
+            "value": 100,
+            "unit": "%",
+            "hint": "Percentuale dei punti controllati, non superficie impermeabilizzata."
+          },
+          {
+            "key": "impervious_share",
+            "label": "Superficie impermeabilizzata",
+            "value": null,
+            "unit": "%",
+            "hint": "Non disponibile in CORINE: non viene dedotta dalla classe."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "clc-111",
+            "label": "Tessuto urbano continuo"
+          }
+        ],
+        "notes": [
+          "La mappa del 2018 descrive aree ampie: può non riconoscere dettagli o cambiamenti recenti di questo terreno.",
+          "La prevalenza è una stima sui punti controllati, non una misura della superficie. Non descrive la destinazione urbanistica o i permessi per costruire.",
+          "Fonte Copernicus/EEA; classificazione ed elaborazione Particella, senza approvazione implicita dell’Unione europea."
+        ],
+        "method": "Una query ArcGIS interseca il poligono del lotto (o il punto); classe prevalente stimata con conteggio su griglia interna 4×4 più punto rappresentativo. CORINE 2018, unità minima 25 ha, larghezza 100 m, scala 1:100000; nessun calcolo della superficie impermeabilizzata.",
+        "provenance": [
+          {
+            "sourceId": "corine",
+            "dataset": "Copertura del suolo — CORINE 2018",
+            "authority": "EEA / Copernicus",
+            "license": "Copernicus: accesso libero, completo e aperto; citare fonte ed elaborazioni",
+            "url": "https://land.copernicus.eu/en/products/corine-land-cover",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2018_WM/MapServer/0/query?f=geojson&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:07:58.915Z",
+            "referenceDate": "2018"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.915Z"
+      }
+    },
+    {
+      "check": "seismic Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "seismic",
+        "group": "rischi",
+        "title": "Sismicità",
+        "status": "ok",
+        "scope": "municipality",
+        "headline": "Il comune è classificato in zona sismica 3.",
+        "severity": "low",
+        "metrics": [
+          {
+            "key": "zone",
+            "label": "Zona del comune",
+            "value": "3",
+            "unit": null,
+            "hint": "Classificazione DPC maggio 2025; eventuali sottoclassi regionali mantenute."
+          },
+          {
+            "key": "pga",
+            "label": "PGA MPS04 del nodo più vicino",
+            "value": 0.0515,
+            "unit": "g",
+            "hint": "Nodo del modello, non valore misurato sul lotto; 50° percentile, 10% di eccedenza in 50 anni."
+          },
+          {
+            "key": "pga_node_distance",
+            "label": "Distanza del nodo dal punto",
+            "value": 2204,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "1",
+            "label": "Zona sismica 1"
+          },
+          {
+            "classKey": "2",
+            "label": "Zona sismica 2"
+          },
+          {
+            "classKey": "3",
+            "label": "Zona sismica 3"
+          },
+          {
+            "classKey": "4",
+            "label": "Zona sismica 4"
+          },
+          {
+            "classKey": "pga-node",
+            "label": "Nodo MPS04 selezionato"
+          }
+        ],
+        "notes": [
+          "La zona descrive tutto il Comune. Il valore di accelerazione viene da un modello della zona, non da una misura sul terreno.",
+          "Il modello risale al 2004–2006; un tecnico deve verificare le norme vigenti."
+        ],
+        "method": "PGA: nodo MPS04 più vicino per distanza geodetica nella bbox ±0,15°, senza interpolazione; griglia ~0,05°. Classificazione DPC da snapshot per codice ISTAT.",
+        "provenance": [
+          {
+            "sourceId": "dpc-seismic",
+            "dataset": "Classificazione sismica comunale maggio 2025",
+            "authority": "Dipartimento della Protezione Civile - Presidenza del Consiglio dei Ministri",
+            "license": "CC BY 4.0",
+            "url": "https://rischi.protezionecivile.gov.it/static/4717c6a369cdc298b69730c9d740e39a/classificazione-sismica-aggiornata-maggio-2025.csv",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://rischi.protezionecivile.gov.it/static/4717c6a369cdc298b69730c9d740e39a/classificazione-sismica-aggiornata-maggio-2025.csv",
+            "retrievedAt": "2026-10-05T21:37:02.625Z",
+            "referenceDate": "2025-05"
+          },
+          {
+            "sourceId": "ingv-pga",
+            "dataset": "Pericolosità sismica — MPS04",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://data.ingv.it/dataset/193",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://mps04-ws.pi.ingv.it/wfs_mps04_pga?bbox=45.31420000%2C9.04000000%2C45.61420000%2C9.34000000%2CEPSG%3A4326&count=100&request=GetFeature&service=WFS&srsName=EPSG%3A4326&typeNames=ms%3AshkValsPoeCost_PGA_50oPerc_10poe_&version=2.0.0",
+            "retrievedAt": "2026-10-05T23:07:58.953Z",
+            "referenceDate": "2004-2006"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:58.960Z"
+      }
+    },
+    {
+      "check": "planning Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "ok",
+        "scope": "point",
+        "headline": "La sintesi PGT indica: residenziale.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "ambito-23",
+            "label": "Ambito nella sintesi PGT",
+            "value": "RESIDENZIALE · Commerciale"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "milano-23",
+            "label": "RESIDENZIALE"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto. La Tavola delle Previsioni è una sintesi regionale e non stabilisce da sola gli interventi consentiti.",
+          "La licenza del dataset non è accertata. Consultare il Geoportale e il PGT del Comune di Milano per norme, aggiornamenti e condizioni di riuso.",
+          "Richiedere il certificato di destinazione urbanistica e una verifica di un tecnico abilitato."
+        ],
+        "method": "ArcGIS REST identify al punto: layer 20 Ambiti del tessuto urbano consolidato della Tavola delle Previsioni; EPSG:4326. Ambiti di trasformazione e altre tavole non inclusi.",
+        "provenance": [
+          {
+            "sourceId": "planning-milano",
+            "dataset": "PGT — Tavola delle Previsioni",
+            "authority": "Regione Lombardia / Comune di Milano",
+            "license": "Licenza del dataset non accertata",
+            "url": "https://www.geoportale.regione.lombardia.it/",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/20/query?f=json&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:07:59.180Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:59.181Z"
+      }
+    },
+    {
+      "check": "landscape Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "landscape",
+        "group": "urbanistica",
+        "title": "Paesaggio",
+        "status": "empty",
+        "scope": "point",
+        "headline": "SITAP non restituisce tutele sul punto controllato.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "identified_constraints",
+            "label": "Tutele al punto",
+            "value": 0,
+            "unit": "tutele"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "art-136",
+            "label": "Beni di notevole interesse pubblico — art. 136"
+          },
+          {
+            "classKey": "art-142",
+            "label": "Aree tutelate per legge — art. 142"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il lotto. Le categorie disponibili non comprendono tutte le tutele previste dalla legge.",
+          "SITAP è una ricognizione: può essere incompleto o non aggiornato. Verificare il piano paesaggistico regionale, gli atti e il Comune.",
+          "La licenza di riuso del dataset non è accertata; consultare la fonte per gli usi successivi."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo, non intersezione del lotto; EPSG:4326, bbox ±0,0001°, pixel centrale 101×101; layer lombardia_142_boschi_e_foreste, lombardia_142_ghiacciai, lombardia_142_montagne, lombardia_142_rispetto_fiumi, lombardia_142_rispetto_laghi, lombardia_142_zone_umide, lombardia_art136. Inventario capabilities 2026-10-05T22:48:41.860Z.",
+        "provenance": [
+          {
+            "sourceId": "sitap",
+            "dataset": "Vincoli paesaggistici — SITAP",
+            "authority": "Ministero della Cultura",
+            "license": "Licenza di riuso non accertata",
+            "url": "https://sitap.cultura.gov.it/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=lombardia_art136&query_layers=lombardia_art136&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:58.790Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "sitap",
+            "dataset": "Vincoli paesaggistici — SITAP",
+            "authority": "Ministero della Cultura",
+            "license": "Licenza di riuso non accertata",
+            "url": "https://sitap.cultura.gov.it/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=lombardia_142_boschi_e_foreste%2Clombardia_142_ghiacciai%2Clombardia_142_montagne%2Clombardia_142_rispetto_fiumi%2Clombardia_142_rispetto_laghi%2Clombardia_142_zone_umide&query_layers=lombardia_142_boschi_e_foreste%2Clombardia_142_ghiacciai%2Clombardia_142_montagne%2Clombardia_142_rispetto_fiumi%2Clombardia_142_rispetto_laghi%2Clombardia_142_zone_umide&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:07:59.302Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:59.302Z"
+      }
+    },
+    {
+      "check": "solar Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "solar",
+        "group": "ambiente",
+        "title": "Sole",
+        "status": "ok",
+        "scope": "point",
+        "headline": "PVGIS stima circa 1369 kWh all'anno per un impianto ideale da 1 kWp.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "irradiation_annual",
+            "label": "Irraggiamento annuo sul piano ottimale",
+            "value": 1764.32,
+            "unit": "kWh/m²/anno"
+          },
+          {
+            "key": "pv_annual",
+            "label": "Produzione annua stimata di 1 kWp",
+            "value": 1368.94,
+            "unit": "kWh/anno"
+          },
+          {
+            "key": "optimal_slope",
+            "label": "Inclinazione ottimale",
+            "value": 39,
+            "unit": "°"
+          },
+          {
+            "key": "optimal_azimuth",
+            "label": "Azimut ottimale (0° sud)",
+            "value": 4,
+            "unit": "°"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "optimal-pv",
+            "label": "Simulazione PVGIS a orientamento ottimale"
+          }
+        ],
+        "notes": [
+          "La stima usa il clima degli anni passati e un impianto ideale. Non garantisce la produzione reale.",
+          "Le ombre di edifici e alberi vicini non sono considerate. Verificare i permessi per installare l’impianto."
+        ],
+        "method": "PVGIS 5.3 PVGIS-SARAH3, anni 2005–2023; 1 kWp silicio cristallino, montaggio libero, perdite 14%, inclinazione/azimut ottimali; orizzonte DEM attivo.",
+        "provenance": [
+          {
+            "sourceId": "pvgis",
+            "dataset": "PVGIS 5.3 PVGIS-SARAH3",
+            "authority": "Commissione europea - JRC",
+            "license": "JRC: utilizzo gratuito senza restrizioni d'uso, citare PVGIS",
+            "url": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.4642&lon=9.19&loss=14&mountingplace=free&optimalangles=1&outputformat=json&peakpower=1&pvtechchoice=crystSi&usehorizon=1",
+            "retrievedAt": "2026-10-05T23:07:59.791Z",
+            "referenceDate": "2005–2023"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:59.791Z"
+      }
+    },
+    {
+      "check": "market Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "market",
+        "group": "contesto",
+        "title": "Mercato immobiliare",
+        "status": "ok",
+        "scope": "zone",
+        "headline": "Nella zona OMI B12, abitazioni civili da 8700 a 15.300 €/m².",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "omi_zone",
+            "label": "Zona OMI",
+            "value": "B12 · CENTRO STORICO -DUOMO, SANBABILA, MONTENAPOLEONE, MISSORI, CAIROLI"
+          },
+          {
+            "key": "semester",
+            "label": "Semestre pubblicato più recente",
+            "value": "2025/2"
+          },
+          {
+            "key": "residential-0-min",
+            "label": "Abitazioni civili (Ottimo): minimo",
+            "value": 11000,
+            "unit": "€/m²",
+            "hint": "Superficie lorda"
+          },
+          {
+            "key": "residential-0-max",
+            "label": "Abitazioni civili (Ottimo): massimo",
+            "value": 15300,
+            "unit": "€/m²"
+          },
+          {
+            "key": "residential-1-min",
+            "label": "Abitazioni civili (NORMALE): minimo",
+            "value": 8700,
+            "unit": "€/m²",
+            "hint": "Superficie lorda"
+          },
+          {
+            "key": "residential-1-max",
+            "label": "Abitazioni civili (NORMALE): massimo",
+            "value": 10900,
+            "unit": "€/m²"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "omi-zone",
+            "label": "Zona OMI B12"
+          }
+        ],
+        "notes": [
+          "Questi sono valori di zona per abitazioni, non una stima del lotto o il prezzo di un terreno.",
+          "Il punto interno identifica la zona; un lotto esteso può attraversare più zone. Le condizioni del singolo immobile possono cambiare molto il prezzo.",
+          "Il semestre è l’ultimo pubblicato dalla fonte, anche quando risale a un anno precedente."
+        ],
+        "method": "Elenco semestri live; KML ufficiale per Comune, point-in-polygon sul punto rappresentativo, quindi elenco zone e tabella HTML residenziale. Stato conservativo e superficie L/N mantenuti; nessun valore dedotto per il terreno.",
+        "provenance": [
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?richiesta=5",
+            "retrievedAt": "2026-10-05T23:07:55.997Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/perimetri.php?codcom=F205&formato=kml&id=1&prov=MI&semestre=20252",
+            "retrievedAt": "2026-10-05T23:07:59.082Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?codcom=F205&richiesta=3&semestre=20252",
+            "retrievedAt": "2026-10-05T23:07:59.678Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?F205/MI00003228/20252/R/B12/9.19/45.4642",
+            "retrievedAt": "2026-10-05T23:07:59.960Z",
+            "referenceDate": "2025/2"
+          }
+        ],
+        "computedAt": "2026-10-05T23:07:59.961Z"
+      }
+    },
+    {
+      "check": "protected-areas Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "protected-areas",
+        "group": "ambiente",
+        "title": "Aree protette",
+        "status": "empty",
+        "scope": "buffer",
+        "headline": "I dati europei non restituiscono aree protette entro un chilometro.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "intersecting_sites",
+            "label": "Aree che contengono o intersecano il lotto",
+            "value": 0,
+            "unit": "aree"
+          },
+          {
+            "key": "nearby_sites",
+            "label": "Aree vicine senza intersezione",
+            "value": 0,
+            "unit": "aree"
+          },
+          {
+            "key": "search_radius",
+            "label": "Distanza massima di ricerca dal lotto",
+            "value": 1000,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "natura2000",
+            "label": "Natura 2000"
+          },
+          {
+            "classKey": "natda",
+            "label": "Area protetta nazionale (NatDA)"
+          }
+        ],
+        "notes": [
+          "Il confronto usa i confini pubblicati; le distanze sono approssimate.",
+          "La vicinanza non implica un vincolo sul lotto; per gli effetti consultare gli atti e il piano del gestore.",
+          "Le aree protette nazionali sono distinte dalla rete Natura 2000. Queste mappe possono non comprendere altre tutele nazionali o regionali."
+        ],
+        "method": "Relazioni contains/intersects/nearby sulle geometrie EEA; distanza approssimata tra vertici e segmenti geodetici. Nessuna percentuale di sovrapposizione stimata.",
+        "provenance": [
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/0/query?distance=1000&f=geojson&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:58.817Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/1/query?distance=1000&f=geojson&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:08:00.328Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query?distance=1000&f=geojson&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:59.435Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natda",
+            "dataset": "Aree protette nazionali NatDA / CDDA 2026",
+            "authority": "EEA e autorità nazionali",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4/query?distance=1000&f=geojson&geometry=9.19%2C45.4642&geometryType=esriGeometryPoint&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:07:59.834Z",
+            "referenceDate": "2026"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:00.328Z"
+      }
+    },
+    {
+      "check": "landslide Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "landslide",
+        "group": "rischi",
+        "title": "Frane",
+        "status": "empty",
+        "scope": "point",
+        "headline": "La fonte non restituisce frane o aree PAI su questo punto.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "pai_classes",
+            "label": "Classi PAI al punto",
+            "value": null
+          },
+          {
+            "key": "iffi_count",
+            "label": "Fenomeni IFFI al punto",
+            "value": 0,
+            "unit": "fenomeni"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "P1",
+            "label": "Pericolosità P1"
+          },
+          {
+            "classKey": "P2",
+            "label": "Pericolosità P2"
+          },
+          {
+            "classKey": "P3",
+            "label": "Pericolosità P3"
+          },
+          {
+            "classKey": "P4",
+            "label": "Pericolosità P4"
+          },
+          {
+            "classKey": "AA",
+            "label": "AA: area di attenzione"
+          },
+          {
+            "classKey": "IFFI",
+            "label": "IFFI: fenomeno inventariato"
+          },
+          {
+            "classKey": "unknown",
+            "label": "Classe non riconosciuta"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il terreno.",
+          "L’inventario elenca frane già conosciute. Le aree di attenzione richiedono una verifica anche quando manca una classe di pericolosità.",
+          "Un risultato vuoto non esclude rischi. La data di aggiornamento della mappa non è indicata."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo coperto dal lotto (pixel 101×101, bbox ±0,0001°): screening puntuale, senza verifica dell'intero poligono catastale. La geometria restituita è del dataset originale.",
+        "provenance": [
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Mosaicature PAI idraulica e frane",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:01.233Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "iffi",
+            "dataset": "Inventario dei fenomeni franosi IFFI",
+            "authority": "ISPRA e Regioni / Province autonome",
+            "license": "CC BY-SA 4.0",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Afrane&query_layers=idrogeo%3Afrane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:01.066Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:01.233Z"
+      }
+    },
+    {
+      "check": "flood Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "flood",
+        "group": "rischi",
+        "title": "Alluvioni",
+        "status": "empty",
+        "scope": "point",
+        "headline": "La fonte non restituisce aree di alluvione su questo punto.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "scenarios",
+            "label": "Scenari al punto",
+            "value": null,
+            "unit": null
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "P1",
+            "label": "P1: bassa probabilità"
+          },
+          {
+            "classKey": "P2",
+            "label": "P2: media probabilità"
+          },
+          {
+            "classKey": "P3",
+            "label": "P3: elevata probabilità"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il terreno.",
+          "P1/P2/P3 sono scenari distinti, non probabilità calcolate sul lotto. Nessun dato restituito non significa assenza di rischio.",
+          "La data di aggiornamento della mappa non è indicata: verificare il piano vigente e gli studi locali."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo coperto dal lotto (pixel 101×101, bbox ±0,0001°): screening puntuale, senza verifica dell'intero poligono catastale. La geometria restituita è del dataset originale. PropertyName limita la risposta a id e scenario; geometrie escluse, overlay raster dal proxy.",
+        "provenance": [
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P1",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p1&propertyName=id%2Cscenariop1&query_layers=idrogeo%3Apericolosita_idraulica_p1&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:02.927Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P2",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p2&propertyName=id%2Cscenariop2&query_layers=idrogeo%3Apericolosita_idraulica_p2&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:00.328Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P3",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=9.1899%2C45.464099999999995%2C9.1901%2C45.4643&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p3&propertyName=id%2Cscenariop3&query_layers=idrogeo%3Apericolosita_idraulica_p3&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:00.558Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:02.928Z"
+      }
+    },
+    {
+      "check": "services Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "services",
+        "group": "contesto",
+        "title": "Servizi vicini",
+        "status": "ok",
+        "scope": "buffer",
+        "headline": "OpenStreetMap registra 465 servizi e luoghi utili entro un chilometro.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "schools_500m",
+            "label": "Scuole entro 500 m",
+            "value": 2,
+            "unit": "luoghi"
+          },
+          {
+            "key": "schools_1000m",
+            "label": "Scuole entro 1 km",
+            "value": 24,
+            "unit": "luoghi"
+          },
+          {
+            "key": "schools_nearest",
+            "label": "Scuole: distanza del più vicino entro 1 km",
+            "value": 418,
+            "unit": "m"
+          },
+          {
+            "key": "transit_500m",
+            "label": "Fermate TPL entro 500 m",
+            "value": 122,
+            "unit": "luoghi"
+          },
+          {
+            "key": "transit_1000m",
+            "label": "Fermate TPL entro 1 km",
+            "value": 376,
+            "unit": "luoghi"
+          },
+          {
+            "key": "transit_nearest",
+            "label": "Fermate TPL: distanza del più vicino entro 1 km",
+            "value": 51,
+            "unit": "m"
+          },
+          {
+            "key": "health_500m",
+            "label": "Sanità e farmacie entro 500 m",
+            "value": 13,
+            "unit": "luoghi"
+          },
+          {
+            "key": "health_1000m",
+            "label": "Sanità e farmacie entro 1 km",
+            "value": 42,
+            "unit": "luoghi"
+          },
+          {
+            "key": "health_nearest",
+            "label": "Sanità e farmacie: distanza del più vicino entro 1 km",
+            "value": 89,
+            "unit": "m"
+          },
+          {
+            "key": "supermarkets_500m",
+            "label": "Supermercati entro 500 m",
+            "value": 2,
+            "unit": "luoghi"
+          },
+          {
+            "key": "supermarkets_1000m",
+            "label": "Supermercati entro 1 km",
+            "value": 9,
+            "unit": "luoghi"
+          },
+          {
+            "key": "supermarkets_nearest",
+            "label": "Supermercati: distanza del più vicino entro 1 km",
+            "value": 230,
+            "unit": "m"
+          },
+          {
+            "key": "parks_500m",
+            "label": "Parchi entro 500 m",
+            "value": 1,
+            "unit": "luoghi"
+          },
+          {
+            "key": "parks_1000m",
+            "label": "Parchi entro 1 km",
+            "value": 14,
+            "unit": "luoghi"
+          },
+          {
+            "key": "parks_nearest",
+            "label": "Parchi: distanza del più vicino entro 1 km",
+            "value": 434,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "schools",
+            "label": "Scuole"
+          },
+          {
+            "classKey": "transit",
+            "label": "Fermate TPL"
+          },
+          {
+            "classKey": "health",
+            "label": "Sanità e farmacie"
+          },
+          {
+            "classKey": "supermarkets",
+            "label": "Supermercati"
+          },
+          {
+            "classKey": "parks",
+            "label": "Parchi"
+          }
+        ],
+        "notes": [
+          "Dati collaborativi OpenStreetMap, non elenco ufficiale né completo; servizi mancanti non significano assenza reale.",
+          "Le distanze sono in linea d’aria: il percorso reale può essere più lungo. Alcune fermate possono comparire più volte.",
+          "© OpenStreetMap contributors, dati ODbL 1.0."
+        ],
+        "method": "Overpass entro 1 km dal punto rappresentativo; distanze geodetiche in linea d’aria. Per way/relation centro della bbox, non ingresso; deduplicazione per ID OSM, non per nome.",
+        "provenance": [
+          {
+            "sourceId": "overpass",
+            "dataset": "Servizi OpenStreetMap",
+            "authority": "OpenStreetMap contributors",
+            "license": "ODbL 1.0",
+            "url": "https://dev.overpass-api.de/overpass-doc/en/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3B%28nwr%28around%3A1000%2C45.4642%2C9.19%29%5Bamenity%7E%22%5E%28school%7Ckindergarten%7Ccollege%7Cuniversity%7Chospital%7Cclinic%7Cdoctors%7Cpharmacy%29%24%22%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bpublic_transport%7E%22%5E%28platform%7Cstop_position%29%24%22%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bhighway%3Dbus_stop%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Brailway%7E%22%5E%28tram_stop%7Cstation%7Chalt%29%24%22%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bshop%3Dsupermarket%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bleisure%3Dpark%5D%3B%29%3Bout+center+tags%3B",
+            "retrievedAt": "2026-10-05T23:08:13.150Z",
+            "referenceDate": "2026-10-05T23:06:18Z"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:13.159Z"
+      }
+    },
+    {
+      "check": "accessibility Milano",
+      "state": "PASS",
+      "detail": {
+        "layer": "accessibility",
+        "group": "contesto",
+        "title": "Accessibilità",
+        "status": "ok",
+        "scope": "buffer",
+        "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "walk-10-area",
+            "label": "A piedi, 10 minuti: superficie raggiungibile",
+            "value": 146.9,
+            "unit": "ha"
+          },
+          {
+            "key": "walk-10-services",
+            "label": "A piedi, 10 minuti: servizi censiti entro 1 km",
+            "value": 228,
+            "unit": "luoghi",
+            "hint": "Solo i servizi della ricerca entro 1 km, non un conteggio di tutta l’area raggiungibile."
+          },
+          {
+            "key": "car-10-area",
+            "label": "In auto, 10 minuti: superficie raggiungibile",
+            "value": 781.2,
+            "unit": "ha"
+          },
+          {
+            "key": "car-10-services",
+            "label": "In auto, 10 minuti: servizi censiti entro 1 km",
+            "value": 354,
+            "unit": "luoghi",
+            "hint": "Solo i servizi della ricerca entro 1 km, non un conteggio di tutta l’area raggiungibile."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "walk-10",
+            "label": "A piedi, 10 minuti"
+          },
+          {
+            "classKey": "car-10",
+            "label": "In auto, 10 minuti"
+          }
+        ],
+        "notes": [
+          "Le aree sono stime sulla rete stradale: non considerano il traffico attuale e non attestano accesso a ZTL, cancelli o proprietà private.",
+          "I servizi contati sono solo quelli censiti entro un chilometro: quelli più lontani non vengono cercati.",
+          "© OpenStreetMap contributors, dati ODbL. Il servizio pubblico di prova non garantisce disponibilità continua."
+        ],
+        "method": "Valhalla/FOSSGIS isochrone, costing pedestrian e auto, time=10 min, polygons=true. Area geodetica Turf. Join spaziale ai servizi Overpass della stessa cache, limitati a 1 km; nessuna seconda query Overpass.",
+        "provenance": [
+          {
+            "sourceId": "valhalla",
+            "dataset": "Isocrone — rete OpenStreetMap",
+            "authority": "OpenStreetMap contributors / FOSSGIS",
+            "license": "ODbL 1.0 (dati); MIT (software)",
+            "url": "https://valhalla.openstreetmap.de/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A45.4642%2C%22lon%22%3A9.19%7D%5D%2C%22costing%22%3A%22pedestrian%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+            "retrievedAt": "2026-10-05T23:07:58.796Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "valhalla",
+            "dataset": "Isocrone — rete OpenStreetMap",
+            "authority": "OpenStreetMap contributors / FOSSGIS",
+            "license": "ODbL 1.0 (dati); MIT (software)",
+            "url": "https://valhalla.openstreetmap.de/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A45.4642%2C%22lon%22%3A9.19%7D%5D%2C%22costing%22%3A%22auto%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+            "retrievedAt": "2026-10-05T23:07:59.822Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "overpass",
+            "dataset": "Servizi OpenStreetMap",
+            "authority": "OpenStreetMap contributors",
+            "license": "ODbL 1.0",
+            "url": "https://dev.overpass-api.de/overpass-doc/en/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3B%28nwr%28around%3A1000%2C45.4642%2C9.19%29%5Bamenity%7E%22%5E%28school%7Ckindergarten%7Ccollege%7Cuniversity%7Chospital%7Cclinic%7Cdoctors%7Cpharmacy%29%24%22%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bpublic_transport%7E%22%5E%28platform%7Cstop_position%29%24%22%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bhighway%3Dbus_stop%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Brailway%7E%22%5E%28tram_stop%7Cstation%7Chalt%29%24%22%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bshop%3Dsupermarket%5D%3Bnwr%28around%3A1000%2C45.4642%2C9.19%29%5Bleisure%3Dpark%5D%3B%29%3Bout+center+tags%3B",
+            "retrievedAt": "2026-10-05T23:08:13.150Z",
+            "referenceDate": "2026-10-05T23:06:18Z"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:13.163Z"
+      }
+    },
+    {
+      "check": "municipality Toscana",
+      "state": "PASS",
+      "detail": {
+        "istatCode": "048001",
+        "cadastralCode": "A564",
+        "name": "Bagno a Ripoli",
+        "province": "Firenze",
+        "provinceCode": "FI",
+        "region": "Toscana"
+      }
+    },
+    {
+      "check": "planning Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "outside_coverage",
+        "scope": "municipality",
+        "headline": "Il piano di Bagno a Ripoli non è ancora collegato.",
+        "severity": "unknown",
+        "metrics": [],
+        "legend": [],
+        "notes": [
+          "Consultare l’ufficio urbanistica del Comune per il piano vigente e il certificato di destinazione urbanistica.",
+          "Il geoportale regionale è consultabile su https://www.regione.toscana.it/-/geoscopio"
+        ],
+        "provenance": [],
+        "computedAt": "2026-10-05T23:08:13.166Z"
+      }
+    },
+    {
+      "check": "demographics Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "demographics",
+        "group": "contesto",
+        "title": "Popolazione",
+        "status": "ok",
+        "scope": "grid_cell",
+        "headline": "Nel 2021 la cella di un chilometro quadrato contava 99 residenti.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "grid_population",
+            "label": "Residenti nella cella nel 2021",
+            "value": 99,
+            "unit": "residenti"
+          },
+          {
+            "key": "grid_id",
+            "label": "Identificativo della cella",
+            "value": "CRS3035RES1000mN2288000E4427000"
+          },
+          {
+            "key": "municipality_population",
+            "label": "Residenti nel comune, stima 1 gennaio 2026",
+            "value": null,
+            "unit": "residenti",
+            "hint": "Scala comunale distinta dalla cella e dal lotto; stima provvisoria ISTAT."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "census-grid-2021",
+            "label": "Cella censuaria 1 km², 2021"
+          }
+        ],
+        "notes": [
+          "La popolazione riguarda un quadrato di un chilometro di lato, non gli abitanti di questo terreno o edificio.",
+          "La popolazione comunale non è presente nell’elenco disponibile."
+        ],
+        "method": "Query puntuale sul punto rappresentativo; cella censuaria europea 1 km² EPSG:3035, senza ripartizione areale. Join popolazione comunale per codice ISTAT.",
+        "provenance": [
+          {
+            "sourceId": "istat-grid",
+            "dataset": "Griglia censuaria 2021, celle 1 km²",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/Griglia/GrigliaCensPop2021_1kmq_Ind/MapServer/2/query?f=json&geometry=11.319405934999999%2C43.700436545&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:08:13.473Z",
+            "referenceDate": "2021"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:13.474Z"
+      }
+    },
+    {
+      "check": "seismic Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "seismic",
+        "group": "rischi",
+        "title": "Sismicità",
+        "status": "ok",
+        "scope": "municipality",
+        "headline": "Il comune è classificato in zona sismica 3.",
+        "severity": "low",
+        "metrics": [
+          {
+            "key": "zone",
+            "label": "Zona del comune",
+            "value": "3",
+            "unit": null,
+            "hint": "Classificazione DPC maggio 2025; eventuali sottoclassi regionali mantenute."
+          },
+          {
+            "key": "pga",
+            "label": "PGA MPS04 del nodo più vicino",
+            "value": 0.12832,
+            "unit": "g",
+            "hint": "Nodo del modello, non valore misurato sul lotto; 50° percentile, 10% di eccedenza in 50 anni."
+          },
+          {
+            "key": "pga_node_distance",
+            "label": "Distanza del nodo dal punto",
+            "value": 2690,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "1",
+            "label": "Zona sismica 1"
+          },
+          {
+            "classKey": "2",
+            "label": "Zona sismica 2"
+          },
+          {
+            "classKey": "3",
+            "label": "Zona sismica 3"
+          },
+          {
+            "classKey": "4",
+            "label": "Zona sismica 4"
+          },
+          {
+            "classKey": "pga-node",
+            "label": "Nodo MPS04 selezionato"
+          }
+        ],
+        "notes": [
+          "La zona descrive tutto il Comune. Il valore di accelerazione viene da un modello della zona, non da una misura sul terreno.",
+          "Il modello risale al 2004–2006; un tecnico deve verificare le norme vigenti."
+        ],
+        "method": "PGA: nodo MPS04 più vicino per distanza geodetica nella bbox ±0,15°, senza interpolazione; griglia ~0,05°. Classificazione DPC da snapshot per codice ISTAT.",
+        "provenance": [
+          {
+            "sourceId": "dpc-seismic",
+            "dataset": "Classificazione sismica comunale maggio 2025",
+            "authority": "Dipartimento della Protezione Civile - Presidenza del Consiglio dei Ministri",
+            "license": "CC BY 4.0",
+            "url": "https://rischi.protezionecivile.gov.it/static/4717c6a369cdc298b69730c9d740e39a/classificazione-sismica-aggiornata-maggio-2025.csv",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://rischi.protezionecivile.gov.it/static/4717c6a369cdc298b69730c9d740e39a/classificazione-sismica-aggiornata-maggio-2025.csv",
+            "retrievedAt": "2026-10-05T21:37:02.625Z",
+            "referenceDate": "2025-05"
+          },
+          {
+            "sourceId": "ingv-pga",
+            "dataset": "Pericolosità sismica — MPS04",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://data.ingv.it/dataset/193",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://mps04-ws.pi.ingv.it/wfs_mps04_pga?bbox=43.55043655%2C11.16940593%2C43.85043655%2C11.46940593%2CEPSG%3A4326&count=100&request=GetFeature&service=WFS&srsName=EPSG%3A4326&typeNames=ms%3AshkValsPoeCost_PGA_50oPerc_10poe_&version=2.0.0",
+            "retrievedAt": "2026-10-05T23:08:13.707Z",
+            "referenceDate": "2004-2006"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:13.718Z"
+      }
+    },
+    {
+      "check": "land-cover Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "land-cover",
+        "group": "ambiente",
+        "title": "Copertura del suolo",
+        "status": "ok",
+        "scope": "parcel",
+        "headline": "La copertura prevalente stimata è: vigneti.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "dominant_cover",
+            "label": "Copertura prevalente stimata",
+            "value": "Vigneti"
+          },
+          {
+            "key": "dominant_sample_share",
+            "label": "Punti con la classe prevalente",
+            "value": 100,
+            "unit": "%",
+            "hint": "Percentuale dei punti controllati, non superficie impermeabilizzata."
+          },
+          {
+            "key": "impervious_share",
+            "label": "Superficie impermeabilizzata",
+            "value": null,
+            "unit": "%",
+            "hint": "Non disponibile in CORINE: non viene dedotta dalla classe."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "clc-221",
+            "label": "Vigneti"
+          }
+        ],
+        "notes": [
+          "La mappa del 2018 descrive aree ampie: può non riconoscere dettagli o cambiamenti recenti di questo terreno.",
+          "La prevalenza è una stima sui punti controllati, non una misura della superficie. Non descrive la destinazione urbanistica o i permessi per costruire.",
+          "Fonte Copernicus/EEA; classificazione ed elaborazione Particella, senza approvazione implicita dell’Unione europea."
+        ],
+        "method": "Una query ArcGIS interseca il poligono del lotto (o il punto); classe prevalente stimata con conteggio su griglia interna 4×4 più punto rappresentativo. CORINE 2018, unità minima 25 ha, larghezza 100 m, scala 1:100000; nessun calcolo della superficie impermeabilizzata.",
+        "provenance": [
+          {
+            "sourceId": "corine",
+            "dataset": "Copertura del suolo — CORINE 2018",
+            "authority": "EEA / Copernicus",
+            "license": "Copernicus: accesso libero, completo e aperto; citare fonte ed elaborazioni",
+            "url": "https://land.copernicus.eu/en/products/corine-land-cover",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2018_WM/MapServer/0/query?f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.3188466%2C43.699572890000006%5D%2C%5B11.31891138%2C43.69991913%5D%2C%5B11.31832792%2C43.70010382%5D%2C%5B11.31842091%2C43.70027924%5D%2C%5B11.31850249%2C43.70043451%5D%2C%5B11.31855408%2C43.70051731%5D%2C%5B11.3188327%2C43.70097609%5D%2C%5B11.31902726%2C43.7013002%5D%2C%5B11.31935106%2C43.70122816%5D%2C%5B11.319231430000002%2C43.70089136%5D%2C%5B11.31998129%2C43.70106534%5D%2C%5B11.32020855%2C43.70060456%5D%2C%5B11.32048395%2C43.7000429%5D%2C%5B11.32008652%2C43.69992702%5D%2C%5B11.31947834%2C43.69975468%5D%2C%5B11.3188466%2C43.699572890000006%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-05T23:08:13.771Z",
+            "referenceDate": "2018"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:13.772Z"
+      }
+    },
+    {
+      "check": "landscape Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "landscape",
+        "group": "urbanistica",
+        "title": "Paesaggio",
+        "status": "empty",
+        "scope": "point",
+        "headline": "SITAP non restituisce tutele sul punto controllato.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "identified_constraints",
+            "label": "Tutele al punto",
+            "value": 0,
+            "unit": "tutele"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "art-136",
+            "label": "Beni di notevole interesse pubblico — art. 136"
+          },
+          {
+            "classKey": "art-142",
+            "label": "Aree tutelate per legge — art. 142"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il lotto. Le categorie disponibili non comprendono tutte le tutele previste dalla legge.",
+          "SITAP è una ricognizione: può essere incompleto o non aggiornato. Verificare il piano paesaggistico regionale, gli atti e il Comune.",
+          "La licenza di riuso del dataset non è accertata; consultare la fonte per gli usi successivi."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo, non intersezione del lotto; EPSG:4326, bbox ±0,0001°, pixel centrale 101×101; layer toscana_art136, toscana_art142_ghiacciai, toscana_art142_montagne, toscana_art142_rispetto_fiumi, toscana_art142_rispetto_laghi, toscana_art142_territori_costieri. Inventario capabilities 2026-10-05T22:48:41.860Z.",
+        "provenance": [
+          {
+            "sourceId": "sitap",
+            "dataset": "Vincoli paesaggistici — SITAP",
+            "authority": "Ministero della Cultura",
+            "license": "Licenza di riuso non accertata",
+            "url": "https://sitap.cultura.gov.it/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=toscana_art136&query_layers=toscana_art136&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:13.606Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "sitap",
+            "dataset": "Vincoli paesaggistici — SITAP",
+            "authority": "Ministero della Cultura",
+            "license": "Licenza di riuso non accertata",
+            "url": "https://sitap.cultura.gov.it/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=toscana_art142_ghiacciai%2Ctoscana_art142_montagne%2Ctoscana_art142_rispetto_fiumi%2Ctoscana_art142_rispetto_laghi%2Ctoscana_art142_territori_costieri&query_layers=toscana_art142_ghiacciai%2Ctoscana_art142_montagne%2Ctoscana_art142_rispetto_fiumi%2Ctoscana_art142_rispetto_laghi%2Ctoscana_art142_territori_costieri&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:13.861Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:13.862Z"
+      }
+    },
+    {
+      "check": "terrain Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "terrain",
+        "group": "ambiente",
+        "title": "Terreno",
+        "status": "ok",
+        "scope": "parcel",
+        "headline": "I campioni del terreno hanno quote tra 137.6 e 146.2 metri.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "elevation_min",
+            "label": "Quota minima dei campioni",
+            "value": 137.6,
+            "unit": "m"
+          },
+          {
+            "key": "elevation_max",
+            "label": "Quota massima dei campioni",
+            "value": 146.2,
+            "unit": "m"
+          },
+          {
+            "key": "elevation_mean",
+            "label": "Quota media dei campioni",
+            "value": 141.8,
+            "unit": "m"
+          },
+          {
+            "key": "slope_estimate",
+            "label": "Pendenza media stimata",
+            "value": 11.9,
+            "unit": "%"
+          },
+          {
+            "key": "samples",
+            "label": "Campioni validi",
+            "value": 5,
+            "unit": "campioni"
+          },
+          {
+            "key": "resolution",
+            "label": "Risoluzione del modello",
+            "value": 10,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "elevation-sample",
+            "label": "Quota campionata nel DTM"
+          }
+        ],
+        "notes": [
+          "Le quote e la pendenza sono stime da una mappa, non un rilievo sul posto.",
+          "Minimo e massimo riguardano i punti controllati: possono non cogliere scarpate o dislivelli piccoli."
+        ],
+        "method": "TINITALY 1.1 DTM 10 m (2023); griglia 4×4 nella bbox con punti interni e punto rappresentativo, massimo 17 campioni. Pendenza: piano ai minimi quadrati in coordinate metriche locali, 100 × √(a²+b²); null per campioni insufficienti/collineari. Unità tinitaly_slope non verificata: layer non usato.",
+        "provenance": [
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.319036596666667%2C43.70013866%2C11.319056596666666%2C43.70015866000001&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:13.606Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.319755273333334%2C43.70013866%2C11.319775273333333%2C43.70015866000001&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:13.977Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.319036596666667%2C43.70071443%2C11.319056596666666%2C43.700734430000004&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:13.819Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.319755273333334%2C43.70071443%2C11.319775273333333%2C43.700734430000004&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:14.005Z",
+            "referenceDate": "2023-01"
+          },
+          {
+            "sourceId": "tinitaly",
+            "dataset": "Quote del terreno — TINITALY",
+            "authority": "INGV",
+            "license": "CC BY 4.0",
+            "url": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://tinitaly.pi.ingv.it/TINItaly_1_1/wms?bbox=11.319395935%2C43.700426545%2C11.319415934999999%2C43.700446545000005&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=tinitaly_dem&query_layers=tinitaly_dem&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:14.257Z",
+            "referenceDate": "2023-01"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:14.257Z"
+      }
+    },
+    {
+      "check": "solar Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "solar",
+        "group": "ambiente",
+        "title": "Sole",
+        "status": "ok",
+        "scope": "point",
+        "headline": "PVGIS stima circa 1339 kWh all'anno per un impianto ideale da 1 kWp.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "irradiation_annual",
+            "label": "Irraggiamento annuo sul piano ottimale",
+            "value": 1714.38,
+            "unit": "kWh/m²/anno"
+          },
+          {
+            "key": "pv_annual",
+            "label": "Produzione annua stimata di 1 kWp",
+            "value": 1339.46,
+            "unit": "kWh/anno"
+          },
+          {
+            "key": "optimal_slope",
+            "label": "Inclinazione ottimale",
+            "value": 37,
+            "unit": "°"
+          },
+          {
+            "key": "optimal_azimuth",
+            "label": "Azimut ottimale (0° sud)",
+            "value": -2,
+            "unit": "°"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "optimal-pv",
+            "label": "Simulazione PVGIS a orientamento ottimale"
+          }
+        ],
+        "notes": [
+          "La stima usa il clima degli anni passati e un impianto ideale. Non garantisce la produzione reale.",
+          "Le ombre di edifici e alberi vicini non sono considerate. Verificare i permessi per installare l’impianto."
+        ],
+        "method": "PVGIS 5.3 PVGIS-SARAH3, anni 2005–2023; 1 kWp silicio cristallino, montaggio libero, perdite 14%, inclinazione/azimut ottimali; orizzonte DEM attivo.",
+        "provenance": [
+          {
+            "sourceId": "pvgis",
+            "dataset": "PVGIS 5.3 PVGIS-SARAH3",
+            "authority": "Commissione europea - JRC",
+            "license": "JRC: utilizzo gratuito senza restrizioni d'uso, citare PVGIS",
+            "url": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=43.700436545&lon=11.319405934999999&loss=14&mountingplace=free&optimalangles=1&outputformat=json&peakpower=1&pvtechchoice=crystSi&usehorizon=1",
+            "retrievedAt": "2026-10-05T23:08:14.275Z",
+            "referenceDate": "2005–2023"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:14.275Z"
+      }
+    },
+    {
+      "check": "market Toscana",
+      "state": "PARTIAL",
+      "detail": {
+        "layer": "market",
+        "group": "contesto",
+        "title": "Mercato immobiliare",
+        "status": "partial",
+        "scope": "zone",
+        "headline": "La zona OMI R1 pubblica quotazioni senza indicare una tipologia residenziale prevalente.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "omi_zone",
+            "label": "Zona OMI",
+            "value": "R1 · RESTO DEL TERRITORIO"
+          },
+          {
+            "key": "semester",
+            "label": "Semestre pubblicato più recente",
+            "value": "2025/2"
+          },
+          {
+            "key": "residential-0-min",
+            "label": "Abitazioni civili (NORMALE): minimo",
+            "value": 1750,
+            "unit": "€/m²",
+            "hint": "Superficie lorda"
+          },
+          {
+            "key": "residential-0-max",
+            "label": "Abitazioni civili (NORMALE): massimo",
+            "value": 2600,
+            "unit": "€/m²"
+          },
+          {
+            "key": "residential-1-min",
+            "label": "Ville e Villini (NORMALE): minimo",
+            "value": 2100,
+            "unit": "€/m²",
+            "hint": "Superficie lorda"
+          },
+          {
+            "key": "residential-1-max",
+            "label": "Ville e Villini (NORMALE): massimo",
+            "value": 3100,
+            "unit": "€/m²"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "omi-zone",
+            "label": "Zona OMI R1"
+          }
+        ],
+        "notes": [
+          "La fonte non indica una tipologia residenziale prevalente; sono mostrate tutte quelle disponibili.",
+          "Questi sono valori di zona per abitazioni, non una stima del lotto o il prezzo di un terreno.",
+          "Il punto interno identifica la zona; un lotto esteso può attraversare più zone. Le condizioni del singolo immobile possono cambiare molto il prezzo.",
+          "Il semestre è l’ultimo pubblicato dalla fonte, anche quando risale a un anno precedente."
+        ],
+        "method": "Elenco semestri live; KML ufficiale per Comune, point-in-polygon sul punto rappresentativo, quindi elenco zone e tabella HTML residenziale. Stato conservativo e superficie L/N mantenuti; nessun valore dedotto per il terreno.",
+        "provenance": [
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?richiesta=5",
+            "retrievedAt": "2026-10-05T23:07:55.997Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/perimetri.php?codcom=A564&formato=kml&id=1&prov=FI&semestre=20252",
+            "retrievedAt": "2026-10-05T23:08:14.131Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/zoneomi.php?codcom=A564&richiesta=3&semestre=20252",
+            "retrievedAt": "2026-10-05T23:08:14.378Z",
+            "referenceDate": "2025/2"
+          },
+          {
+            "sourceId": "omi",
+            "dataset": "Zone e quotazioni immobiliari — OMI",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/fabbricatiterreni/omi/banche-dati/quotazioni-immobiliari",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www1.agenziaentrate.gov.it/servizi/geopoi_omi/stampaomi.php?A564/FI00001660/20252/R/R1/11.319405934999999/43.700436545",
+            "retrievedAt": "2026-10-05T23:08:14.765Z",
+            "referenceDate": "2025/2"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:14.767Z"
+      }
+    },
+    {
+      "check": "services Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "services",
+        "group": "contesto",
+        "title": "Servizi vicini",
+        "status": "ok",
+        "scope": "buffer",
+        "headline": "OpenStreetMap registra 11 servizi e luoghi utili entro un chilometro.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "schools_500m",
+            "label": "Scuole entro 500 m",
+            "value": 0,
+            "unit": "luoghi"
+          },
+          {
+            "key": "schools_1000m",
+            "label": "Scuole entro 1 km",
+            "value": 1,
+            "unit": "luoghi"
+          },
+          {
+            "key": "schools_nearest",
+            "label": "Scuole: distanza del più vicino entro 1 km",
+            "value": 583,
+            "unit": "m"
+          },
+          {
+            "key": "transit_500m",
+            "label": "Fermate TPL entro 500 m",
+            "value": 0,
+            "unit": "luoghi"
+          },
+          {
+            "key": "transit_1000m",
+            "label": "Fermate TPL entro 1 km",
+            "value": 8,
+            "unit": "luoghi"
+          },
+          {
+            "key": "transit_nearest",
+            "label": "Fermate TPL: distanza del più vicino entro 1 km",
+            "value": 640,
+            "unit": "m"
+          },
+          {
+            "key": "health_500m",
+            "label": "Sanità e farmacie entro 500 m",
+            "value": 0,
+            "unit": "luoghi"
+          },
+          {
+            "key": "health_1000m",
+            "label": "Sanità e farmacie entro 1 km",
+            "value": 0,
+            "unit": "luoghi"
+          },
+          {
+            "key": "health_nearest",
+            "label": "Sanità e farmacie: distanza del più vicino entro 1 km",
+            "value": null,
+            "unit": "m"
+          },
+          {
+            "key": "supermarkets_500m",
+            "label": "Supermercati entro 500 m",
+            "value": 0,
+            "unit": "luoghi"
+          },
+          {
+            "key": "supermarkets_1000m",
+            "label": "Supermercati entro 1 km",
+            "value": 0,
+            "unit": "luoghi"
+          },
+          {
+            "key": "supermarkets_nearest",
+            "label": "Supermercati: distanza del più vicino entro 1 km",
+            "value": null,
+            "unit": "m"
+          },
+          {
+            "key": "parks_500m",
+            "label": "Parchi entro 500 m",
+            "value": 1,
+            "unit": "luoghi"
+          },
+          {
+            "key": "parks_1000m",
+            "label": "Parchi entro 1 km",
+            "value": 2,
+            "unit": "luoghi"
+          },
+          {
+            "key": "parks_nearest",
+            "label": "Parchi: distanza del più vicino entro 1 km",
+            "value": 432,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "schools",
+            "label": "Scuole"
+          },
+          {
+            "classKey": "transit",
+            "label": "Fermate TPL"
+          },
+          {
+            "classKey": "health",
+            "label": "Sanità e farmacie"
+          },
+          {
+            "classKey": "supermarkets",
+            "label": "Supermercati"
+          },
+          {
+            "classKey": "parks",
+            "label": "Parchi"
+          }
+        ],
+        "notes": [
+          "Dati collaborativi OpenStreetMap, non elenco ufficiale né completo; servizi mancanti non significano assenza reale.",
+          "Le distanze sono in linea d’aria: il percorso reale può essere più lungo. Alcune fermate possono comparire più volte.",
+          "© OpenStreetMap contributors, dati ODbL 1.0."
+        ],
+        "method": "Overpass entro 1 km dal punto rappresentativo; distanze geodetiche in linea d’aria. Per way/relation centro della bbox, non ingresso; deduplicazione per ID OSM, non per nome.",
+        "provenance": [
+          {
+            "sourceId": "overpass",
+            "dataset": "Servizi OpenStreetMap",
+            "authority": "OpenStreetMap contributors",
+            "license": "ODbL 1.0",
+            "url": "https://dev.overpass-api.de/overpass-doc/en/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3B%28nwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bamenity%7E%22%5E%28school%7Ckindergarten%7Ccollege%7Cuniversity%7Chospital%7Cclinic%7Cdoctors%7Cpharmacy%29%24%22%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bpublic_transport%7E%22%5E%28platform%7Cstop_position%29%24%22%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bhighway%3Dbus_stop%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Brailway%7E%22%5E%28tram_stop%7Cstation%7Chalt%29%24%22%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bshop%3Dsupermarket%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bleisure%3Dpark%5D%3B%29%3Bout+center+tags%3B",
+            "retrievedAt": "2026-10-05T23:08:14.954Z",
+            "referenceDate": "2026-10-05T23:06:18Z"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:14.955Z"
+      }
+    },
+    {
+      "check": "accessibility Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "accessibility",
+        "group": "contesto",
+        "title": "Accessibilità",
+        "status": "ok",
+        "scope": "buffer",
+        "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto.",
+        "severity": "none",
+        "metrics": [
+          {
+            "key": "walk-10-area",
+            "label": "A piedi, 10 minuti: superficie raggiungibile",
+            "value": 43,
+            "unit": "ha"
+          },
+          {
+            "key": "walk-10-services",
+            "label": "A piedi, 10 minuti: servizi censiti entro 1 km",
+            "value": 5,
+            "unit": "luoghi",
+            "hint": "Solo i servizi della ricerca entro 1 km, non un conteggio di tutta l’area raggiungibile."
+          },
+          {
+            "key": "car-10-area",
+            "label": "In auto, 10 minuti: superficie raggiungibile",
+            "value": 1140.9,
+            "unit": "ha"
+          },
+          {
+            "key": "car-10-services",
+            "label": "In auto, 10 minuti: servizi censiti entro 1 km",
+            "value": 11,
+            "unit": "luoghi",
+            "hint": "Solo i servizi della ricerca entro 1 km, non un conteggio di tutta l’area raggiungibile."
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "walk-10",
+            "label": "A piedi, 10 minuti"
+          },
+          {
+            "classKey": "car-10",
+            "label": "In auto, 10 minuti"
+          }
+        ],
+        "notes": [
+          "Le aree sono stime sulla rete stradale: non considerano il traffico attuale e non attestano accesso a ZTL, cancelli o proprietà private.",
+          "I servizi contati sono solo quelli censiti entro un chilometro: quelli più lontani non vengono cercati.",
+          "© OpenStreetMap contributors, dati ODbL. Il servizio pubblico di prova non garantisce disponibilità continua."
+        ],
+        "method": "Valhalla/FOSSGIS isochrone, costing pedestrian e auto, time=10 min, polygons=true. Area geodetica Turf. Join spaziale ai servizi Overpass della stessa cache, limitati a 1 km; nessuna seconda query Overpass.",
+        "provenance": [
+          {
+            "sourceId": "valhalla",
+            "dataset": "Isocrone — rete OpenStreetMap",
+            "authority": "OpenStreetMap contributors / FOSSGIS",
+            "license": "ODbL 1.0 (dati); MIT (software)",
+            "url": "https://valhalla.openstreetmap.de/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A43.700436545%2C%22lon%22%3A11.319405934999999%7D%5D%2C%22costing%22%3A%22pedestrian%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+            "retrievedAt": "2026-10-05T23:08:13.602Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "valhalla",
+            "dataset": "Isocrone — rete OpenStreetMap",
+            "authority": "OpenStreetMap contributors / FOSSGIS",
+            "license": "ODbL 1.0 (dati); MIT (software)",
+            "url": "https://valhalla.openstreetmap.de/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://valhalla1.openstreetmap.de/isochrone?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A43.700436545%2C%22lon%22%3A11.319405934999999%7D%5D%2C%22costing%22%3A%22auto%22%2C%22contours%22%3A%5B%7B%22time%22%3A10%7D%5D%2C%22polygons%22%3Atrue%7D",
+            "retrievedAt": "2026-10-05T23:08:14.276Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "overpass",
+            "dataset": "Servizi OpenStreetMap",
+            "authority": "OpenStreetMap contributors",
+            "license": "ODbL 1.0",
+            "url": "https://dev.overpass-api.de/overpass-doc/en/",
+            "method": "api",
+            "isOfficial": false,
+            "requestUrl": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%3B%28nwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bamenity%7E%22%5E%28school%7Ckindergarten%7Ccollege%7Cuniversity%7Chospital%7Cclinic%7Cdoctors%7Cpharmacy%29%24%22%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bpublic_transport%7E%22%5E%28platform%7Cstop_position%29%24%22%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bhighway%3Dbus_stop%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Brailway%7E%22%5E%28tram_stop%7Cstation%7Chalt%29%24%22%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bshop%3Dsupermarket%5D%3Bnwr%28around%3A1000%2C43.700436545%2C11.319405934999999%29%5Bleisure%3Dpark%5D%3B%29%3Bout+center+tags%3B",
+            "retrievedAt": "2026-10-05T23:08:14.954Z",
+            "referenceDate": "2026-10-05T23:06:18Z"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:14.956Z"
+      }
+    },
+    {
+      "check": "protected-areas Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "protected-areas",
+        "group": "ambiente",
+        "title": "Aree protette",
+        "status": "empty",
+        "scope": "parcel",
+        "headline": "I dati europei non restituiscono aree protette entro un chilometro.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "intersecting_sites",
+            "label": "Aree che contengono o intersecano il lotto",
+            "value": 0,
+            "unit": "aree"
+          },
+          {
+            "key": "nearby_sites",
+            "label": "Aree vicine senza intersezione",
+            "value": 0,
+            "unit": "aree"
+          },
+          {
+            "key": "search_radius",
+            "label": "Distanza massima di ricerca dal lotto",
+            "value": 1000,
+            "unit": "m"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "natura2000",
+            "label": "Natura 2000"
+          },
+          {
+            "classKey": "natda",
+            "label": "Area protetta nazionale (NatDA)"
+          }
+        ],
+        "notes": [
+          "Il confronto usa i confini pubblicati; le distanze sono approssimate.",
+          "La vicinanza non implica un vincolo sul lotto; per gli effetti consultare gli atti e il piano del gestore.",
+          "Le aree protette nazionali sono distinte dalla rete Natura 2000. Queste mappe possono non comprendere altre tutele nazionali o regionali."
+        ],
+        "method": "Relazioni contains/intersects/nearby sulle geometrie EEA; distanza approssimata tra vertici e segmenti geodetici. Nessuna percentuale di sovrapposizione stimata.",
+        "provenance": [
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/0/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.3188466%2C43.699572890000006%5D%2C%5B11.31891138%2C43.69991913%5D%2C%5B11.31832792%2C43.70010382%5D%2C%5B11.31842091%2C43.70027924%5D%2C%5B11.31850249%2C43.70043451%5D%2C%5B11.31855408%2C43.70051731%5D%2C%5B11.3188327%2C43.70097609%5D%2C%5B11.31902726%2C43.7013002%5D%2C%5B11.31935106%2C43.70122816%5D%2C%5B11.319231430000002%2C43.70089136%5D%2C%5B11.31998129%2C43.70106534%5D%2C%5B11.32020855%2C43.70060456%5D%2C%5B11.32048395%2C43.7000429%5D%2C%5B11.32008652%2C43.69992702%5D%2C%5B11.31947834%2C43.69975468%5D%2C%5B11.3188466%2C43.699572890000006%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:08:13.606Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/1/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.3188466%2C43.699572890000006%5D%2C%5B11.31891138%2C43.69991913%5D%2C%5B11.31832792%2C43.70010382%5D%2C%5B11.31842091%2C43.70027924%5D%2C%5B11.31850249%2C43.70043451%5D%2C%5B11.31855408%2C43.70051731%5D%2C%5B11.3188327%2C43.70097609%5D%2C%5B11.31902726%2C43.7013002%5D%2C%5B11.31935106%2C43.70122816%5D%2C%5B11.319231430000002%2C43.70089136%5D%2C%5B11.31998129%2C43.70106534%5D%2C%5B11.32020855%2C43.70060456%5D%2C%5B11.32048395%2C43.7000429%5D%2C%5B11.32008652%2C43.69992702%5D%2C%5B11.31947834%2C43.69975468%5D%2C%5B11.3188466%2C43.699572890000006%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:08:13.861Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natura2000",
+            "dataset": "Natura 2000, release 2024",
+            "authority": "EEA / Commissione europea DG ENV",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.3188466%2C43.699572890000006%5D%2C%5B11.31891138%2C43.69991913%5D%2C%5B11.31832792%2C43.70010382%5D%2C%5B11.31842091%2C43.70027924%5D%2C%5B11.31850249%2C43.70043451%5D%2C%5B11.31855408%2C43.70051731%5D%2C%5B11.3188327%2C43.70097609%5D%2C%5B11.31902726%2C43.7013002%5D%2C%5B11.31935106%2C43.70122816%5D%2C%5B11.319231430000002%2C43.70089136%5D%2C%5B11.31998129%2C43.70106534%5D%2C%5B11.32020855%2C43.70060456%5D%2C%5B11.32048395%2C43.7000429%5D%2C%5B11.32008652%2C43.69992702%5D%2C%5B11.31947834%2C43.69975468%5D%2C%5B11.3188466%2C43.699572890000006%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:08:14.299Z",
+            "referenceDate": "2024"
+          },
+          {
+            "sourceId": "natda",
+            "dataset": "Aree protette nazionali NatDA / CDDA 2026",
+            "authority": "EEA e autorità nazionali",
+            "license": "CC BY 4.0",
+            "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4/query?distance=1000&f=geojson&geometry=%7B%22rings%22%3A%5B%5B%5B11.3188466%2C43.699572890000006%5D%2C%5B11.31891138%2C43.69991913%5D%2C%5B11.31832792%2C43.70010382%5D%2C%5B11.31842091%2C43.70027924%5D%2C%5B11.31850249%2C43.70043451%5D%2C%5B11.31855408%2C43.70051731%5D%2C%5B11.3188327%2C43.70097609%5D%2C%5B11.31902726%2C43.7013002%5D%2C%5B11.31935106%2C43.70122816%5D%2C%5B11.319231430000002%2C43.70089136%5D%2C%5B11.31998129%2C43.70106534%5D%2C%5B11.32020855%2C43.70060456%5D%2C%5B11.32048395%2C43.7000429%5D%2C%5B11.32008652%2C43.69992702%5D%2C%5B11.31947834%2C43.69975468%5D%2C%5B11.3188466%2C43.699572890000006%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&outFields=*&outSR=4326&resultRecordCount=100&returnGeometry=true&spatialRel=esriSpatialRelIntersects&units=esriSRUnit_Meter",
+            "retrievedAt": "2026-10-05T23:08:14.959Z",
+            "referenceDate": "2026"
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:14.959Z"
+      }
+    },
+    {
+      "check": "flood Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "flood",
+        "group": "rischi",
+        "title": "Alluvioni",
+        "status": "empty",
+        "scope": "point",
+        "headline": "La fonte non restituisce aree di alluvione su questo punto.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "scenarios",
+            "label": "Scenari al punto",
+            "value": null,
+            "unit": null
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "P1",
+            "label": "P1: bassa probabilità"
+          },
+          {
+            "classKey": "P2",
+            "label": "P2: media probabilità"
+          },
+          {
+            "classKey": "P3",
+            "label": "P3: elevata probabilità"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il terreno.",
+          "P1/P2/P3 sono scenari distinti, non probabilità calcolate sul lotto. Nessun dato restituito non significa assenza di rischio.",
+          "La data di aggiornamento della mappa non è indicata: verificare il piano vigente e gli studi locali."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo coperto dal lotto (pixel 101×101, bbox ±0,0001°): screening puntuale, senza verifica dell'intero poligono catastale. La geometria restituita è del dataset originale. PropertyName limita la risposta a id e scenario; geometrie escluse, overlay raster dal proxy.",
+        "provenance": [
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P1",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p1&propertyName=id%2Cscenariop1&query_layers=idrogeo%3Apericolosita_idraulica_p1&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:14.865Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P2",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p2&propertyName=id%2Cscenariop2&query_layers=idrogeo%3Apericolosita_idraulica_p2&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:15.454Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Alluvioni — scenario P3",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_idraulica_p3&propertyName=id%2Cscenariop3&query_layers=idrogeo%3Apericolosita_idraulica_p3&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:15.387Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:15.455Z"
+      }
+    },
+    {
+      "check": "landslide Toscana",
+      "state": "PASS",
+      "detail": {
+        "layer": "landslide",
+        "group": "rischi",
+        "title": "Frane",
+        "status": "ok",
+        "scope": "point",
+        "headline": "La fonte segnala pericolosità da frana P3 sul punto.",
+        "severity": "high",
+        "metrics": [
+          {
+            "key": "pai_classes",
+            "label": "Classi PAI al punto",
+            "value": "P3"
+          },
+          {
+            "key": "iffi_count",
+            "label": "Fenomeni IFFI al punto",
+            "value": 1,
+            "unit": "fenomeni"
+          }
+        ],
+        "legend": [
+          {
+            "classKey": "P1",
+            "label": "Pericolosità P1"
+          },
+          {
+            "classKey": "P2",
+            "label": "Pericolosità P2"
+          },
+          {
+            "classKey": "P3",
+            "label": "Pericolosità P3"
+          },
+          {
+            "classKey": "P4",
+            "label": "Pericolosità P4"
+          },
+          {
+            "classKey": "AA",
+            "label": "AA: area di attenzione"
+          },
+          {
+            "classKey": "IFFI",
+            "label": "IFFI: fenomeno inventariato"
+          },
+          {
+            "classKey": "unknown",
+            "label": "Classe non riconosciuta"
+          }
+        ],
+        "notes": [
+          "La verifica riguarda un punto interno, non tutto il terreno.",
+          "L’inventario elenca frane già conosciute. Le aree di attenzione richiedono una verifica anche quando manca una classe di pericolosità.",
+          "Un risultato vuoto non esclude rischi. La data di aggiornamento della mappa non è indicata."
+        ],
+        "method": "GetFeatureInfo WMS sul punto rappresentativo coperto dal lotto (pixel 101×101, bbox ±0,0001°): screening puntuale, senza verifica dell'intero poligono catastale. La geometria restituita è del dataset originale.",
+        "provenance": [
+          {
+            "sourceId": "idrogeo",
+            "dataset": "Mosaicature PAI idraulica e frane",
+            "authority": "ISPRA",
+            "license": "CC BY-SA 4.0; attribuzione ISPRA, derivati con stessa licenza",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Apericolosita_frane&query_layers=idrogeo%3Apericolosita_frane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:16.455Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "iffi",
+            "dataset": "Inventario dei fenomeni franosi IFFI",
+            "authority": "ISPRA e Regioni / Province autonome",
+            "license": "CC BY-SA 4.0",
+            "url": "https://idrogeo.isprambiente.it/geoserver/ows",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idrogeo.isprambiente.it/geoserver/ows?bbox=11.319305935%2C43.700336545%2C11.319505934999999%2C43.700536545000006&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=idrogeo%3Afrane&query_layers=idrogeo%3Afrane&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-05T23:08:16.248Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-05T23:08:16.456Z"
+      }
+    },
+    {
+      "check": "tile cadastre",
+      "state": "PASS",
+      "detail": {
+        "z": 18,
+        "x": 139314,
+        "y": 95623,
+        "bytes": 6847
+      }
+    },
+    {
+      "check": "tile flood",
+      "state": "PASS",
+      "detail": {
+        "z": 18,
+        "x": 139314,
+        "y": 95623,
+        "bytes": 1784
+      }
+    },
+    {
+      "check": "tile landslide",
+      "state": "PASS",
+      "detail": {
+        "z": 18,
+        "x": 139314,
+        "y": 95623,
+        "bytes": 4602
+      }
+    },
+    {
+      "check": "POST chat unconfigured",
+      "state": "PASS",
+      "detail": {
+        "error": {
+          "code": "not_configured",
+          "message": "L’assistente non è ancora configurato."
+        }
+      }
+    }
+  ]
+}

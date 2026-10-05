@@ -1,28 +1,77 @@
 {
-  "_status": "placeholder — regenerate with npm run content:hero once the API is live",
   "plot": {
-    "id": "it:F205:_:0000:0000",
-    "label": "Foglio — · Particella —",
-    "municipality": "Milano",
-    "area": "— m²",
+    "id": "it:D612:_:150B:782",
+    "label": "Foglio 150B · Particella 782",
+    "municipality": "Firenze",
+    "area": "1.046 m²",
     "geometry": {
       "type": "Polygon",
       "coordinates": [
         [
-          [9.1654, 45.4518],
-          [9.1661, 45.452],
-          [9.1665, 45.4515],
-          [9.16595, 45.4511],
-          [9.1653, 45.4513],
-          [9.1654, 45.4518]
+          [11.23296722, 43.73710804],
+          [11.23258655, 43.73702276],
+          [11.23270395, 43.73674209],
+          [11.23308782, 43.7368297],
+          [11.23296722, 43.73710804]
         ]
       ]
     }
   },
   "rows": [
-    { "layer": "planning", "value": "—", "source": "—" },
-    { "layer": "flood", "value": "—", "source": "—" },
-    { "layer": "seismic", "value": "—", "source": "—" },
-    { "layer": "solar", "value": "—", "source": "—" }
-  ]
+    { "layer": "planning", "value": "Zona B · insediamento recente", "source": "Comune di Firenze" },
+    { "layer": "flood", "value": "Scenari P1, P2", "source": "ISPRA" },
+    {
+      "layer": "seismic",
+      "value": "Zona sismica 3 (Comune)",
+      "source": "Dipartimento della Protezione Civile"
+    },
+    { "layer": "solar", "value": "~1.351 kWh/anno per 1 kWp", "source": "Commissione europea - JRC" }
+  ],
+  "apiSample": {
+    "id": "it:D612:_:150B:782",
+    "country": "it",
+    "cadastral": {
+      "municipalityCode": "D612",
+      "section": null,
+      "sheet": "150B",
+      "parcel": "782",
+      "label": "Foglio 150B · Particella 782"
+    },
+    "municipality": {
+      "istatCode": "048017",
+      "cadastralCode": "D612",
+      "name": "Firenze",
+      "province": "Firenze",
+      "provinceCode": "FI",
+      "region": "Toscana"
+    },
+    "centroid": { "lat": 43.736925065, "lon": 11.232837185000001 },
+    "areaM2": 1046.411639292308,
+    "provenance": [
+      {
+        "authority": "Agenzia delle Entrate",
+        "dataset": "Cartografia catastale — particelle",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T23:19:28.294Z"
+      },
+      {
+        "authority": "Agenzia delle Entrate",
+        "dataset": "Mappe catastali — fogli",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T23:19:28.700Z"
+      },
+      {
+        "authority": "ISTAT",
+        "dataset": "Confini comunali 2026",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T23:19:28.151Z"
+      },
+      {
+        "authority": "ISTAT",
+        "dataset": "Province — nomi e sigle",
+        "license": "CC BY 4.0",
+        "retrievedAt": "2026-10-05T22:47:25.483Z"
+      }
+    ]
+  }
 }

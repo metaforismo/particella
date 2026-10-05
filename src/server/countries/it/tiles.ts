@@ -1,11 +1,11 @@
 import { PNG } from "pngjs";
 import { z } from "zod";
-import type { HttpPayload } from "../../core/http.ts";
-import { http } from "../../core/http.ts";
-import { source } from "../../core/sources.ts";
-import { NotFound, UpstreamError } from "../../core/errors.ts";
-import { tileBbox } from "../../geo/index.ts";
-import { queryUrl } from "./queries.ts";
+import type { HttpPayload } from "#server/core/http.ts";
+import { http } from "#server/core/http.ts";
+import { source } from "#server/core/sources.ts";
+import { NotFound, UpstreamError } from "#server/core/errors.ts";
+import { tileBbox } from "#server/geo/index.ts";
+import { queryUrl } from "#server/countries/it/queries.ts";
 
 export const TileParams = z
   .object({
@@ -25,6 +25,7 @@ export const TileParams = z
       .transform(Number),
   })
   .refine((p) => p.x < 2 ** p.z && p.y < 2 ** p.z, "Coordinate tile fuori griglia");
+
 export const PngTile = z.custom<Uint8Array>(
   (value) =>
     value instanceof Uint8Array &&
@@ -34,6 +35,7 @@ export const PngTile = z.custom<Uint8Array>(
     Buffer.from(value).readUInt32BE(20) === 256,
   "Tile PNG 256×256 non valido",
 );
+
 const definitions = {
   cadastre: { sourceId: "ade-zoning", layers: "CP.CadastralParcel", minZoom: 12 },
   flood: {
@@ -44,7 +46,9 @@ const definitions = {
   },
   landslide: { sourceId: "idrogeo", layers: "idrogeo:pericolosita_frane", minZoom: 0 },
 } as const;
+
 const latitude = (mercatorY: number) => (Math.atan(Math.sinh(mercatorY / 6378137)) * 180) / Math.PI;
+
 export function cadastralTileRequest(z: number, x: number, y: number): string {
   const [west, south, east, north] = tileBbox(z, x, y);
   const lon = (value: number) => ((value / 6378137) * 180) / Math.PI;
@@ -62,20 +66,32 @@ export function cadastralTileRequest(z: number, x: number, y: number): string {
     BBOX: [latitude(south), lon(west), latitude(north), lon(east)].join(","),
   });
 }
+
+/** AdE parcel fill observed live: RGB 253,236,189; keep black/red marks intact. */
+export function removeCadastralFill(image: PNG): void {
+  for (let i = 0; i < image.data.length; i += 4) {
+    const red = image.data[i];
+    const green = image.data[i + 1];
+    const blue = image.data[i + 2];
+    if (Math.abs(red - 253) <= 6 && Math.abs(green - 236) <= 6 && Math.abs(blue - 189) <= 6)
+      image.data[i + 3] = 0;
+  }
+}
+
 // AdE cannot render EPSG:3857. Resample latitude rows to Mercator; x is linear in both CRSs.
 export function reprojectCadastralTile(bytes: Uint8Array, z: number, x: number, y: number): Uint8Array {
   const input = PNG.sync.read(Buffer.from(bytes));
   if (input.width !== 256 || input.height !== 256) throw new UpstreamError("Dimensioni tile AdE inattese.");
   const output = new PNG({ width: 256, height: 256 });
-  const [, south, , north] = tileBbox(z, x, y),
-    top = latitude(north),
-    bottom = latitude(south);
+  const [, south, , north] = tileBbox(z, x, y);
+  const top = latitude(north);
+  const bottom = latitude(south);
   for (let row = 0; row < 256; row++) {
     const lat = latitude(north - ((row + 0.5) / 256) * (north - south));
     const src = Math.max(0, Math.min(255, ((top - lat) / (top - bottom)) * 256 - 0.5));
-    const low = Math.floor(src),
-      high = Math.min(255, low + 1),
-      weight = src - low;
+    const low = Math.floor(src);
+    const high = Math.min(255, low + 1);
+    const weight = src - low;
     for (let col = 0; col < 256; col++)
       for (let channel = 0; channel < 4; channel++) {
         output.data[(row * 256 + col) * 4 + channel] = Math.round(
@@ -84,8 +100,10 @@ export function reprojectCadastralTile(bytes: Uint8Array, z: number, x: number, 
         );
       }
   }
+  removeCadastralFill(output);
   return new Uint8Array(PNG.sync.write(output));
 }
+
 export async function tile(params: z.infer<typeof TileParams>, signal?: AbortSignal): Promise<Uint8Array> {
   const definition = definitions[params.overlay];
   if (!definition) throw new NotFound("Overlay non disponibile.");

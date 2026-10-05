@@ -1,22 +1,14 @@
 import Link from "next/link";
 import { ArrowUpRight, FilePdf, Quotes } from "@phosphor-icons/react/dist/ssr";
+import { heroExample } from "@/content/hero-example";
 import styles from "./Products.module.css";
 
-const API_SAMPLE = `GET /api/v1/plots/at?lat=45.4642&lon=9.1900
+const { centroid } = heroExample.apiSample as { centroid: { lat: number; lon: number } };
 
-{
-  "id": "it:F205:_:388:112",
-  "cadastral": {
-    "sheet": "388",
-    "parcel": "112",
-    "label": "Foglio 388 · Particella 112"
-  },
-  "areaM2": 1777.2,
-  "provenance": [{
-    "authority": "Agenzia delle Entrate",
-    "license": "CC BY 4.0"
-  }]
-}`;
+// Real response captured by `npm run content:hero`, not a hand-written example.
+const API_SAMPLE = `GET /api/v1/plots/at?lat=${centroid.lat.toFixed(5)}&lon=${centroid.lon.toFixed(5)}
+
+${JSON.stringify(heroExample.apiSample, null, 2)}`;
 
 export function Products() {
   return (

@@ -1,6 +1,6 @@
-import { route } from "../../../../../../../../server/http/responses.ts";
-import { TileParams, PngTile, tile } from "../../../../../../../../server/countries/it/tiles.ts";
-import { validated } from "../../../../../../../../server/http/responses.ts";
+import { route, validated } from "#server/http/responses.ts";
+import { TileParams, PngTile, tile } from "#server/countries/it/tiles.ts";
+
 export async function GET(_request: Request, context: RouteContext<"/api/v1/tiles/[overlay]/[z]/[x]/[y]">) {
   return route(async () => {
     const params = TileParams.parse(await context.params);
@@ -14,5 +14,7 @@ export async function GET(_request: Request, context: RouteContext<"/api/v1/tile
     });
   });
 }
+
 export const runtime = "nodejs";
+
 export const maxDuration = 60;

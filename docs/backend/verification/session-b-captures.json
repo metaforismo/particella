@@ -1,0 +1,14 @@
+[
+  {
+    "file": "data/snapshots/it-provinces-2026.json",
+    "sha256": "db5dab0005f5eceb40211ea5e398b9e62b869b3d1533fb7fc3d1039b2569bcc4",
+    "sourceUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+    "retrievedAt": "2026-10-05T22:47:25.483Z"
+  },
+  {
+    "file": "data/snapshots/it-sitap-layers.json",
+    "sha256": "64f2dc25e8cbce25920f8d9ef8ddd09d6f1b0e0011498f047f992e969597aa93",
+    "sourceUrl": "https://sitap.cultura.gov.it/geoserver/sitap_ws_clone/wms?service=WMS&request=GetCapabilities",
+    "retrievedAt": "2026-10-05T22:48:41.860Z"
+  }
+]

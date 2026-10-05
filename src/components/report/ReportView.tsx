@@ -6,6 +6,8 @@ import { resultLabel } from "@/components/studio/status";
 import { GROUP_LABEL, LAYER_BY_ID, LAYERS } from "@/content/layers";
 import type { LayerGroup, LayerResult, PlotReport, Provenance } from "@/lib/contracts";
 import { formatArea, formatDate, formatLength, formatMetric } from "@/lib/format";
+import { uniqueSources } from "@/lib/provenance";
+import { formatAt } from "@/lib/routes";
 import { PrintButton } from "./PrintButton";
 import { ReportMap } from "./ReportMap";
 import styles from "./ReportView.module.css";
@@ -44,7 +46,10 @@ export function ReportView({ report }: { report: PlotReport }) {
           Scheda generata il {formatDate(report.generatedAt)} · <span className={styles.id}>{plot.id}</span>
         </span>
         <div className={styles.actions}>
-          <Link href={`/studio?plot=${encodeURIComponent(plot.id)}`} className={styles.secondary}>
+          <Link
+            href={`/studio?plot=${encodeURIComponent(plot.id)}&at=${formatAt(plot.centroid)}`}
+            className={styles.secondary}
+          >
             Apri nello Studio
           </Link>
           <PrintButton className={styles.primary} />
@@ -79,8 +84,8 @@ export function ReportView({ report }: { report: PlotReport }) {
           </dl>
           <p className={styles.small}>
             Misure calcolate sul poligono della mappa catastale
-            {plot.provenance.map((p) => (
-              <sup key={p.sourceId}>[{sources.cite(p)}]</sup>
+            {uniqueSources(plot.provenance).map((p) => (
+              <sup key={`${p.sourceId}-${p.dataset}`}>[{sources.cite(p)}]</sup>
             ))}
             , non la superficie censuaria.
           </p>
@@ -158,7 +163,7 @@ function LayerBlock({ layer, cite }: { layer: LayerResult; cite: (p: Provenance)
       </div>
       <p className={styles.headline}>
         {layer.headline}
-        {layer.provenance.map((p) => (
+        {uniqueSources(layer.provenance).map((p) => (
           <sup key={`${p.sourceId}-${p.dataset}`}>[{cite(p)}]</sup>
         ))}
       </p>

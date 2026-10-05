@@ -10,9 +10,10 @@ import pointToLineDistance from "@turf/point-to-line-distance";
 import { feature, point, lineString } from "@turf/helpers";
 import proj4 from "proj4";
 import type { Polygon, MultiPolygon, Position } from "geojson";
-import type { LatLon } from "../../lib/contracts/index.ts";
+import type { LatLon } from "#contracts";
 
 export type PlotGeometry = Polygon | MultiPolygon;
+
 export function esriRings(geometry: PlotGeometry): Position[][] {
   const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
   return polygons.flatMap((rings) =>
@@ -25,7 +26,9 @@ export function esriRings(geometry: PlotGeometry): Position[][] {
     }),
   );
 }
+
 proj4.defs("EPSG:6706", "+proj=longlat +ellps=GRS80 +no_defs +type=crs");
+
 proj4.defs(
   "EPSG:3857",
   "+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +no_defs",
@@ -37,19 +40,24 @@ export function toCadastre(p: LatLon): LatLon {
   const [lon, lat] = proj4("EPSG:4326", "EPSG:6706", [p.lon, p.lat]);
   return { lat, lon };
 }
+
 export function fromCadastre(lat: number, lon: number): Position {
   return proj4("EPSG:6706", "EPSG:4326", [lon, lat]);
 }
+
 export function coversPoint(geometry: PlotGeometry, p: LatLon): boolean {
   return covers(point([p.lon, p.lat]), geometry, { ignoreBoundary: false });
 }
+
 export function geometryBbox(geometry: PlotGeometry): [number, number, number, number] {
   return bbox(geometry) as [number, number, number, number];
 }
+
 export function representativePoint(geometry: PlotGeometry): LatLon {
   const [lon, lat] = pointOnFeature(geometry).geometry.coordinates;
   return { lat, lon };
 }
+
 export function measurements(geometry: PlotGeometry): { areaM2: number; perimeterM: number } {
   const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
   return {
@@ -60,16 +68,20 @@ export function measurements(geometry: PlotGeometry): { areaM2: number; perimete
     ),
   };
 }
+
 export function meters(a: LatLon, b: LatLon): number {
   return distance([a.lon, a.lat], [b.lon, b.lat], { units: "meters" });
 }
+
 export function pointBox(p: LatLon, delta = 0.0001): [number, number, number, number] {
   return [p.lon - delta, p.lat - delta, p.lon + delta, p.lat + delta];
 }
+
 export function latLonBox(p: LatLon, delta = 0.0001): string {
   const b = pointBox(p, delta);
   return [b[1], b[0], b[3], b[2]].map((v) => v.toFixed(8)).join(",");
 }
+
 export function parcelSamples(geometry: PlotGeometry, divisions = 4): LatLon[] {
   const [west, south, east, north] = geometryBbox(geometry);
   const samples: LatLon[] = [];
@@ -84,6 +96,7 @@ export function parcelSamples(geometry: PlotGeometry, divisions = 4): LatLon[] {
   samples.push(representativePoint(geometry));
   return [...new Map(samples.map((p) => [`${p.lat},${p.lon}`, p])).values()];
 }
+
 export function boundaryDistance(geometry: PlotGeometry, p: LatLon): number {
   const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
   return Math.min(
@@ -94,6 +107,7 @@ export function boundaryDistance(geometry: PlotGeometry, p: LatLon): number {
     ),
   );
 }
+
 export function spatialRelation(
   site: PlotGeometry,
   parcel: PlotGeometry | null,
@@ -118,9 +132,11 @@ export function spatialRelation(
   const b = sitePolygons.flat(2).map(([lon, lat]) => boundaryDistance(parcel, { lat, lon }));
   return { relation: "nearby", distanceM: Math.min(...a, ...b) };
 }
+
 export function tileBbox(z: number, x: number, y: number): [number, number, number, number] {
-  const half = 20037508.342789244,
-    size = (2 * half) / 2 ** z;
+  const half = 20037508.342789244;
+  const size = (2 * half) / 2 ** z;
   return [-half + x * size, half - (y + 1) * size, -half + (x + 1) * size, half - y * size];
 }
+
 export const geoFeature = (geometry: PlotGeometry) => feature(geometry);

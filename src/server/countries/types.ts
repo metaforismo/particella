@@ -1,5 +1,6 @@
-import type { CountryCode, GeocodeResult, LayerId, MapOverlay, Plot } from "../../lib/contracts/index.ts";
-import type { LayerProvider } from "../core/layers.ts";
+import type { CountryCode, GeocodeResult, LayerId, MapOverlay, Plot } from "#contracts";
+import type { LayerProvider } from "#server/core/layers.ts";
+
 export interface CountryAdapter {
   code: CountryCode;
   geocode(query: string, signal?: AbortSignal): Promise<GeocodeResult[]>;

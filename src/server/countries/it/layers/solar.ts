@@ -1,10 +1,10 @@
 import { z } from "zod";
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { jsonBody } from "../../../core/http.ts";
-import { UpstreamError } from "../../../core/errors.ts";
-import { fetchSource } from "../queries.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { jsonBody } from "#server/core/http.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { fetchSource } from "#server/countries/it/queries.ts";
 
 const SolarResponse = z.object({
   inputs: z.object({
@@ -24,11 +24,13 @@ const SolarResponse = z.object({
     }),
   }),
 });
+
 export function parseSolar(value: unknown) {
   const result = SolarResponse.safeParse(value);
   if (!result.success) throw new UpstreamError("Risposta PVGIS non valida.");
   return result.data;
 }
+
 export const solar: LayerProvider = async (plot, { signal }) => {
   const payload = await fetchSource(
     "pvgis",
@@ -46,9 +48,9 @@ export const solar: LayerProvider = async (plot, { signal }) => {
     { signal, timeoutMs: 22_000, ttlMs: 7_776_000_000 },
   );
   const data = parseSolar(jsonBody(payload));
-  const totals = data.outputs.totals.fixed,
-    meteo = data.inputs.meteo_data,
-    mount = data.inputs.mounting_system.fixed;
+  const totals = data.outputs.totals.fixed;
+  const meteo = data.inputs.meteo_data;
+  const mount = data.inputs.mounting_system.fixed;
   return layerResult("solar", {
     scope: "point",
     headline: `PVGIS stima circa ${Math.round(totals.E_y)} kWh all'anno per un impianto ideale da 1 kWp.`,
@@ -65,9 +67,10 @@ export const solar: LayerProvider = async (plot, { signal }) => {
       { key: "optimal_azimuth", label: "Azimut ottimale (0° sud)", value: mount.azimuth.value, unit: "°" },
     ],
     legend: [{ classKey: "optimal-pv", label: "Simulazione PVGIS a orientamento ottimale" }],
+    method: `PVGIS 5.3 ${meteo.radiation_db}, anni ${meteo.year_min}–${meteo.year_max}; 1 kWp silicio cristallino, montaggio libero, perdite 14%, inclinazione/azimut ottimali; orizzonte DEM ${meteo.use_horizon ? "attivo" : "non attivo"}.`,
     notes: [
-      `PVGIS 5.3, database ${meteo.radiation_db}, anni ${meteo.year_min}–${meteo.year_max}; 1 kWp silicio cristallino, montaggio libero, perdite 14%, inclinazione e azimut ottimali.`,
-      `Orizzonte DEM ${meteo.use_horizon ? "attivo" : "non attivo"}; ombre di edifici e alberi vicini non simulate. La produzione è climatologica, non una garanzia o un'autorizzazione all'impianto.`,
+      "La stima usa il clima degli anni passati e un impianto ideale. Non garantisce la produzione reale.",
+      "Le ombre di edifici e alberi vicini non sono considerate. Verificare i permessi per installare l’impianto.",
     ],
     provenance: [
       provenance("pvgis", payload, {

@@ -1,13 +1,16 @@
 import { XMLParser, XMLValidator } from "fast-xml-parser";
 import { z } from "zod";
 import type { Position } from "geojson";
-import { UpstreamError } from "../core/errors.ts";
-import { fromCadastre, type PlotGeometry } from "./index.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { fromCadastre, type PlotGeometry } from "#server/geo/index.ts";
 
 type XmlNode = Record<string, unknown>;
+
 const object = (value: unknown): XmlNode =>
   value !== null && typeof value === "object" ? (value as XmlNode) : {};
+
 export const list = (v: unknown): unknown[] => (v === undefined ? [] : Array.isArray(v) ? v : [v]);
+
 export function xmlDocument(text: string): XmlNode {
   if (text.includes("<!DOCTYPE") || XMLValidator.validate(text) !== true)
     throw new UpstreamError("XML della fonte non valido.");
@@ -23,6 +26,7 @@ export function xmlDocument(text: string): XmlNode {
     throw new UpstreamError("La fonte ha restituito un'eccezione OGC.");
   return document;
 }
+
 export function wfsMembers(text: string, requireConfirmedEmpty = false): XmlNode[] {
   const root = object(xmlDocument(text).FeatureCollection);
   if (!Object.keys(root).length) throw new UpstreamError("FeatureCollection WFS mancante.");
@@ -31,8 +35,8 @@ export function wfsMembers(text: string, requireConfirmedEmpty = false): XmlNode
     throw new UpstreamError(
       "La fonte WFS non conferma la ricerca catastale da ID; selezionare il lotto sulla mappa.",
     );
-  const matched = Number(root["@_numberMatched"]),
-    returned = Number(root["@_numberReturned"]);
+  const matched = Number(root["@_numberMatched"]);
+  const returned = Number(root["@_numberReturned"]);
   if (
     (Number.isFinite(matched) && matched > members.length) ||
     (Number.isFinite(returned) && returned > members.length)
@@ -40,7 +44,9 @@ export function wfsMembers(text: string, requireConfirmedEmpty = false): XmlNode
     throw new UpstreamError("Risposta WFS troncata: analisi incompleta.");
   return members.map((m) => object(Object.values(m)[0]));
 }
+
 const positions = z.array(z.tuple([z.number().min(-180).max(180), z.number().min(-90).max(90)])).min(4);
+
 function ring(value: unknown, crs: string): Position[] {
   const linear = object(object(value).LinearRing);
   const node = linear.posList;
@@ -61,12 +67,13 @@ function ring(value: unknown, crs: string): Position[] {
     throw new UpstreamError("Anello GML non valido o non chiuso.");
   return points;
 }
+
 function polygons(node: XmlNode, inheritedCrs: string): Position[][][] {
   const result: Position[][][] = [];
   for (const [key, value] of Object.entries(node)) {
     for (const entry of list(value)) {
-      const child = object(entry),
-        crs = String(child["@_srsName"] ?? inheritedCrs);
+      const child = object(entry);
+      const crs = String(child["@_srsName"] ?? inheritedCrs);
       if (key === "Polygon" || key === "PolygonPatch") {
         if (!/EPSG(?:::|:)(6706|4326)$/.test(crs)) throw new UpstreamError("CRS GML non supportato.");
         result.push([ring(child.exterior, crs), ...list(child.interior).map((x) => ring(x, crs))]);
@@ -75,6 +82,7 @@ function polygons(node: XmlNode, inheritedCrs: string): Position[][][] {
   }
   return result;
 }
+
 export function gmlGeometry(value: unknown): PlotGeometry {
   const result = polygons(object(value), "urn:ogc:def:crs:EPSG::6706");
   if (!result.length) throw new UpstreamError("Geometria catastale mancante.");
@@ -82,6 +90,7 @@ export function gmlGeometry(value: unknown): PlotGeometry {
     ? { type: "Polygon", coordinates: result[0] }
     : { type: "MultiPolygon", coordinates: result };
 }
+
 export function gmlPoint(value: unknown): { lat: number; lon: number } {
   const node = object(object(value).Point);
   const crs = String(node["@_srsName"] ?? "");

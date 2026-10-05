@@ -2,6 +2,7 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
 import type { LayerMeta } from "@/content/layers";
 import type { LayerResult } from "@/lib/contracts";
 import { formatDate, formatMetric } from "@/lib/format";
+import { uniqueSources } from "@/lib/provenance";
 import { classColor } from "@/lib/map/layer-style";
 import styles from "./LayerDetail.module.css";
 
@@ -72,7 +73,7 @@ export function LayerDetail({ result, meta }: { result: LayerResult; meta: Layer
       <div className={styles.sources}>
         <p className={styles.sourcesTitle}>Fonti</p>
         <ul>
-          {result.provenance.map((p) => (
+          {uniqueSources(result.provenance).map((p) => (
             <li key={`${p.sourceId}-${p.dataset}`}>
               {isWebUrl(p.url) ? (
                 <a href={p.url} target="_blank" rel="noreferrer" className={styles.sourceLink}>

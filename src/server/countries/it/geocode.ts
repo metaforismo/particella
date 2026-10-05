@@ -1,9 +1,9 @@
 import { z } from "zod";
-import type { GeocodeResult } from "../../../lib/contracts/index.ts";
-import { BadRequest, NotConfigured, UpstreamError } from "../../core/errors.ts";
-import { jsonBody } from "../../core/http.ts";
-import { source } from "../../core/sources.ts";
-import { fetchSource } from "./queries.ts";
+import type { GeocodeResult } from "#contracts";
+import { BadRequest, NotConfigured, UpstreamError } from "#server/core/errors.ts";
+import { jsonBody } from "#server/core/http.ts";
+import { source } from "#server/core/sources.ts";
+import { fetchSource } from "#server/countries/it/queries.ts";
 
 const Nominatim = z.array(
   z.object({
@@ -12,18 +12,44 @@ const Nominatim = z.array(
     lat: z.coerce.number().min(-90).max(90),
     lon: z.coerce.number().min(-180).max(180),
     addresstype: z.string().optional(),
+    address: z
+      .object({
+        road: z.string().optional(),
+        house_number: z.string().optional(),
+        city: z.string().optional(),
+        town: z.string().optional(),
+        village: z.string().optional(),
+        state: z.string().optional(),
+        country: z.string().optional(),
+      })
+      .optional(),
     boundingbox: z.array(z.coerce.number()).length(4).optional(),
   }),
 );
+
 export function parseNominatim(value: unknown): GeocodeResult[] {
   const parsed = Nominatim.safeParse(value);
   if (!parsed.success) throw new UpstreamError("Risposta Nominatim non valida.");
   return parsed.data.map((r) => ({
     id: `osm:${r.place_id}`,
-    label: r.display_name.split(",")[0],
-    secondary: r.display_name.split(",").slice(1).join(",").trim() || null,
+    label:
+      r.address?.road && r.address.house_number
+        ? `${r.address.road} ${r.address.house_number}`
+        : r.display_name.split(",")[0],
+    secondary: r.address
+      ? [
+          r.address.city ??
+            (r.addresstype === "town" || r.addresstype === "village"
+              ? undefined
+              : (r.address.town ?? r.address.village)),
+          r.address.state,
+          r.address.country,
+        ]
+          .filter(Boolean)
+          .join(", ") || null
+      : r.display_name.split(",").slice(1).join(",").trim() || null,
     kind:
-      r.addresstype === "house"
+      r.addresstype === "house" || Boolean(r.address?.house_number)
         ? "address"
         : r.addresstype === "road"
           ? "street"
@@ -34,6 +60,7 @@ export function parseNominatim(value: unknown): GeocodeResult[] {
     bbox: r.boundingbox ? [r.boundingbox[2], r.boundingbox[0], r.boundingbox[3], r.boundingbox[1]] : null,
   }));
 }
+
 const Photon = z.object({
   type: z.literal("FeatureCollection"),
   features: z.array(
@@ -46,6 +73,9 @@ const Photon = z.object({
         osm_id: z.number(),
         osm_type: z.string(),
         name: z.string().optional(),
+        street: z.string().optional(),
+        housenumber: z.string().optional(),
+        postcode: z.string().optional(),
         city: z.string().optional(),
         country: z.string().optional(),
         type: z.string().optional(),
@@ -53,18 +83,29 @@ const Photon = z.object({
     }),
   ),
 });
+
 export function parsePhoton(value: unknown): GeocodeResult[] {
   const parsed = Photon.safeParse(value);
   if (!parsed.success) throw new UpstreamError("Risposta Photon non valida.");
   return parsed.data.features.map((f) => ({
     id: `photon:${f.properties.osm_type}:${f.properties.osm_id}`,
-    label: f.properties.name ?? f.properties.city ?? "Luogo",
+    label:
+      f.properties.street && f.properties.housenumber
+        ? `${f.properties.street} ${f.properties.housenumber}`
+        : (f.properties.name ?? f.properties.city ?? "Luogo"),
     secondary: [f.properties.city, f.properties.country].filter(Boolean).join(", ") || null,
-    kind: "place",
+    kind: f.properties.housenumber
+      ? "address"
+      : f.properties.type === "street"
+        ? "street"
+        : f.properties.type === "city"
+          ? "municipality"
+          : "place",
     center: { lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1] },
     bbox: null,
   }));
 }
+
 export async function geocode(query: string, signal?: AbortSignal): Promise<GeocodeResult[]> {
   const q = query.trim().replace(/\s+/g, " ");
   if (/\bfoglio\s+\d+.*\bparticella\s+\d+/i.test(q))

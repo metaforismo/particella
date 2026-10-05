@@ -6,6 +6,7 @@ import { cache, canonicalKey, type Cache } from "#server/core/cache.ts";
 import { layerCatalog, runLayer } from "#server/core/layers.ts";
 import { BadRequest, NotFound } from "#server/core/errors.ts";
 import { z } from "zod";
+import { ServerTiming } from "#server/core/timing.ts";
 
 export const plotQuery = z.object({ at: z.string().max(64).optional() }).strict();
 
@@ -44,16 +45,23 @@ export async function resolvePlot(id: string, at?: string | LatLon): Promise<Plo
   return createPlotResolver(getCountry("it"))(id, at);
 }
 
-export async function getPlotLayer(id: string, layer: LayerId, at?: string | LatLon) {
+export async function getPlotLayer(
+  id: string,
+  layer: LayerId,
+  at?: string | LatLon,
+  timing = new ServerTiming(),
+) {
   const selected = LayerId.parse(layer);
-  const plot = await resolvePlot(id, at);
-  return runLayer(selected, plot, getCountry(plot.country).layers[selected]);
+  const plot = await timing.measure("cadastre", () => resolvePlot(id, at));
+  return timing.measure(selected, () => runLayer(selected, plot, getCountry(plot.country).layers[selected]));
 }
 
 /** Import directly from a Server Component, including /scheda/[id]?at=lat,lon. */
-export async function getPlotReport(id: string, at?: string | LatLon) {
-  const plot = await resolvePlot(id, at);
+export async function getPlotReport(id: string, at?: string | LatLon, timing = new ServerTiming()) {
+  const plot = await timing.measure("cadastre", () => resolvePlot(id, at));
   const country = getCountry(plot.country);
-  const layers = await Promise.all(layerCatalog.map(({ id }) => runLayer(id, plot, country.layers[id])));
+  const layers = await Promise.all(
+    layerCatalog.map(({ id }) => timing.measure(id, () => runLayer(id, plot, country.layers[id]))),
+  );
   return PlotReport.parse({ plot, layers, generatedAt: new Date().toISOString() });
 }

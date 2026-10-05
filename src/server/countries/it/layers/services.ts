@@ -1,13 +1,13 @@
 import { z } from "zod";
-import type { LatLon } from "../../../../lib/contracts/index.ts";
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { jsonBody } from "../../../core/http.ts";
-import { NotConfigured, UpstreamError } from "../../../core/errors.ts";
-import { source } from "../../../core/sources.ts";
-import { meters } from "../../../geo/index.ts";
-import { fetchSource } from "../queries.ts";
+import type { LatLon } from "#contracts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { jsonBody } from "#server/core/http.ts";
+import { NotConfigured, UpstreamError } from "#server/core/errors.ts";
+import { source } from "#server/core/sources.ts";
+import { meters } from "#server/geo/index.ts";
+import { fetchSource } from "#server/countries/it/queries.ts";
 
 export const categories = {
   schools: "Scuole",
@@ -16,7 +16,9 @@ export const categories = {
   supermarkets: "Supermercati",
   parks: "Parchi",
 } as const;
+
 type Category = keyof typeof categories;
+
 export function serviceCategory(tags: Record<string, string>): Category | null {
   if (["school", "kindergarten", "college", "university"].includes(tags.amenity)) return "schools";
   if (["hospital", "clinic", "doctors", "pharmacy"].includes(tags.amenity)) return "health";
@@ -30,7 +32,9 @@ export function serviceCategory(tags: Record<string, string>): Category | null {
     return "transit";
   return null;
 }
+
 const coordinate = { lat: z.number().min(-90).max(90), lon: z.number().min(-180).max(180) };
+
 const Overpass = z.object({
   osm3s: z.object({ timestamp_osm_base: z.string() }),
   remark: z.string().optional(),
@@ -45,13 +49,14 @@ const Overpass = z.object({
     }),
   ),
 });
+
 export function parseServices(value: unknown, center: LatLon) {
   const result = Overpass.safeParse(value);
   if (!result.success || result.data.remark)
     throw new UpstreamError("Overpass ha restituito un errore o una query incompleta.");
   const features = result.data.elements.flatMap((e) => {
-    const tags = e.tags ?? {},
-      classKey = serviceCategory(tags);
+    const tags = e.tags ?? {};
+    const classKey = serviceCategory(tags);
     const p = e.center ?? (e.lat !== undefined && e.lon !== undefined ? { lat: e.lat, lon: e.lon } : null);
     if (!classKey || !p) return [];
     const distanceM = meters(center, p);
@@ -77,6 +82,7 @@ export function parseServices(value: unknown, center: LatLon) {
     referenceDate: result.data.osm3s.timestamp_osm_base,
   };
 }
+
 export const services: LayerProvider = async (plot, { signal }) => {
   if (
     process.env.NODE_ENV === "production" &&
@@ -116,10 +122,12 @@ export const services: LayerProvider = async (plot, { signal }) => {
     }),
     features: { type: "FeatureCollection", features: data.features },
     legend: Object.entries(categories).map(([classKey, label]) => ({ classKey, label })),
+    method:
+      "Overpass entro 1 km dal punto rappresentativo; distanze geodetiche in linea d’aria. Per way/relation centro della bbox, non ingresso; deduplicazione per ID OSM, non per nome.",
     notes: [
       "Dati collaborativi OpenStreetMap, non elenco ufficiale né completo; servizi mancanti non significano assenza reale.",
-      "Distanze in linea d'aria dal punto rappresentativo del lotto; per way/relation si usa il centro della bbox, non l'ingresso. Fermate e piattaforme possono rappresentare lo stesso luogo: nessuna deduplicazione per nome è applicata.",
-      "Attribuzione © OpenStreetMap contributors; dati ODbL 1.0. Per carico stabile configurare un proprio Overpass o un provider con accordo.",
+      "Le distanze sono in linea d’aria: il percorso reale può essere più lungo. Alcune fermate possono comparire più volte.",
+      "© OpenStreetMap contributors, dati ODbL 1.0.",
     ],
     provenance: [provenance("overpass", payload, { referenceDate: data.referenceDate })],
   });

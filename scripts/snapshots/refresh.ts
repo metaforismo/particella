@@ -2,13 +2,17 @@ import { writeFile, readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { unzipSync } from "fflate";
 import { parseDpcCsv, parsePopulationCsv } from "./parsers.ts";
-import { http, textBody } from "../../src/server/core/http.ts";
-import { source } from "../../src/server/core/sources.ts";
+import { http, textBody } from "#server/core/http.ts";
+import { source } from "#server/core/sources.ts";
 
 const version = process.env.DPC_VERSION ?? "2025-05";
+
 if (!/^\d{4}-\d{2}$/.test(version)) throw new Error("DPC_VERSION must be YYYY-MM");
+
 const sourceUrl = process.env.DPC_CSV_URL ?? source("dpc-seismic").endpoint;
+
 const input = process.env.DPC_CSV_FILE;
+
 const payload = input
   ? {
       bytes: new Uint8Array(await readFile(input)),
@@ -16,7 +20,9 @@ const payload = input
       retrievedAt: process.env.SNAPSHOT_RETRIEVED_AT ?? new Date().toISOString(),
     }
   : await http.request(sourceUrl, { ttlMs: 0 });
+
 const sha256 = createHash("sha256").update(payload.bytes).digest("hex");
+
 const dpc = {
   version,
   sourceUrl,
@@ -24,18 +30,20 @@ const dpc = {
   sha256,
   zones: parseDpcCsv(textBody({ ...payload, contentType: "text/csv" })),
 };
+
 await writeFile(
   new URL(`../../data/snapshots/it-dpc-seismic-${version}.json`, import.meta.url),
   `${JSON.stringify(dpc)}\n`,
   { flag: "wx" },
 );
+
 console.log(
   `Written DPC ${version}: ${Object.keys(dpc.zones).length} municipalities. Existing versions are never overwritten.`,
 );
 
 if (process.env.POPULATION_REFRESH === "1") {
-  const rows: Record<string, { population: number; sourceUrl: string }> = {},
-    artifacts = [];
+  const rows: Record<string, { population: number; sourceUrl: string }> = {};
+  const artifacts = [];
   for (const province of ["015_Milano", "048_Firenze"]) {
     const url = `https://demo.istat.it/data/posas/POSAS_2026_it_${province}.zip`;
     const archive = await http.request(url, { ttlMs: 0 });

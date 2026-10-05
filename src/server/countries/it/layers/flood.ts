@@ -1,8 +1,8 @@
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult, overlay } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { fetchSource, parseGeo, wmsPointParams } from "../queries.ts";
-import { severityForHazard, identifyNote } from "./hazards.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult, overlay } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { fetchSource, parseGeo, wmsPointParams } from "#server/countries/it/queries.ts";
+import { severityForHazard, identifyNote } from "#server/countries/it/layers/hazards.ts";
 
 export const flood: LayerProvider = async (plot, { signal }) => {
   const scenarios = ["P1", "P2", "P3"] as const;
@@ -10,7 +10,10 @@ export const flood: LayerProvider = async (plot, { signal }) => {
     scenarios.map(async (classKey) => {
       const payload = await fetchSource(
         "idrogeo",
-        wmsPointParams(`idrogeo:pericolosita_idraulica_${classKey.toLowerCase()}`, plot.centroid),
+        {
+          ...wmsPointParams(`idrogeo:pericolosita_idraulica_${classKey.toLowerCase()}`, plot.centroid),
+          propertyName: `id,scenario${classKey.toLowerCase()}`,
+        },
         { signal },
       );
       return {
@@ -20,14 +23,14 @@ export const flood: LayerProvider = async (plot, { signal }) => {
           properties: { ...f.properties, classKey },
         })),
         provenance: provenance("idrogeo", payload, {
-          dataset: `Pericolosità idraulica ${classKey}; release live non dichiarata`,
+          dataset: `Alluvioni — scenario ${classKey}`,
         }),
       };
     }),
   );
   const answered = results.flatMap((r) => (r.status === "fulfilled" ? [r.value] : []));
-  const features = answered.flatMap((r) => r.features),
-    classes = answered.filter((r) => r.features.length).map((r) => r.classKey);
+  const features = answered.flatMap((r) => r.features);
+  const classes = answered.filter((r) => r.features.length).map((r) => r.classKey);
   const complete = answered.length === scenarios.length;
   return layerResult("flood", {
     status: complete ? (features.length ? "ok" : "empty") : answered.length ? "partial" : "unavailable",
@@ -46,11 +49,11 @@ export const flood: LayerProvider = async (plot, { signal }) => {
       { classKey: "P3", label: "P3: elevata probabilità" },
     ],
     overlays: [overlay("flood", "ISPRA IdroGEO · CC BY-SA 4.0")],
+    method: `${identifyNote} PropertyName limita la risposta a id e scenario; geometrie escluse, overlay raster dal proxy.`,
     notes: [
-      identifyNote,
+      "La verifica riguarda un punto interno, non tutto il terreno.",
       "P1/P2/P3 sono scenari distinti, non probabilità calcolate sul lotto. Nessun dato restituito non significa assenza di rischio.",
-      "La data della mosaicatura live non è dichiarata; verificare il PAI vigente e gli studi locali.",
-      "Dati e derivati ISPRA: CC BY-SA 4.0; attribuzione e condivisione con stessa licenza.",
+      "La data di aggiornamento della mappa non è indicata: verificare il piano vigente e gli studi locali.",
     ],
     provenance: answered.map((r) => r.provenance),
   });

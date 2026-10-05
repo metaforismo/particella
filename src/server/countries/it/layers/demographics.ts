@@ -1,12 +1,13 @@
 import { z } from "zod";
 import population from "../../../../../data/snapshots/it-population-2026-01.json" with { type: "json" };
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { UpstreamError } from "../../../core/errors.ts";
-import { arcPointParams, fetchSource, parseArc } from "../queries.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { arcPointParams, fetchSource, parseArc } from "#server/countries/it/queries.ts";
 
 const Grid = z.object({ GRD_ID: z.string(), TOT_P_2021: z.number().int().nonnegative() });
+
 export const demographics: LayerProvider = async (plot, { signal }) => {
   const payload = await fetchSource("istat-grid", arcPointParams(plot.centroid), { signal });
   const features = parseArc(payload).features;
@@ -42,10 +43,12 @@ export const demographics: LayerProvider = async (plot, { signal }) => {
       },
     ],
     legend: [{ classKey: "census-grid-2021", label: "Cella censuaria 1 km², 2021" }],
+    method:
+      "Query puntuale sul punto rappresentativo; cella censuaria europea 1 km² EPSG:3035, senza ripartizione areale. Join popolazione comunale per codice ISTAT.",
     notes: [
-      "Popolazione della cella europea EPSG:3035, non abitanti del lotto o dell'edificio. Query puntuale sul centro rappresentativo del lotto, nessuna ripartizione areale.",
+      "La popolazione riguarda un quadrato di un chilometro di lato, non gli abitanti di questo terreno o edificio.",
       ...(!commune
-        ? ["La popolazione comunale non è presente nello snapshot delle province importate."]
+        ? ["La popolazione comunale non è presente nell’elenco disponibile."]
         : ["Il dato comunale è una stima al 1 gennaio 2026 e può essere revisionato."]),
     ],
     provenance: [

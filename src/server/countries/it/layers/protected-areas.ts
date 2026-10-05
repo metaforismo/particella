@@ -1,13 +1,14 @@
-import type { LayerProvider } from "../../../core/layers.ts";
-import { layerResult } from "../../../core/layers.ts";
-import { provenance } from "../../../core/provenance.ts";
-import { http } from "../../../core/http.ts";
-import { source } from "../../../core/sources.ts";
-import { UpstreamError } from "../../../core/errors.ts";
-import { spatialRelation, esriRings, type PlotGeometry } from "../../../geo/index.ts";
-import { arcPointParams, parseGeo, queryUrl } from "../queries.ts";
+import type { LayerProvider } from "#server/core/layers.ts";
+import { layerResult } from "#server/core/layers.ts";
+import { provenance } from "#server/core/provenance.ts";
+import { http } from "#server/core/http.ts";
+import { source } from "#server/core/sources.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+import { spatialRelation, esriRings, type PlotGeometry } from "#server/geo/index.ts";
+import { arcPointParams, parseGeo, queryUrl } from "#server/countries/it/queries.ts";
 
 const radiusM = 1000;
+
 export const protectedAreas: LayerProvider = async (plot, { signal }) => {
   const requests = [0, 1, 2].map((id) => ({
     sourceId: "natura2000",
@@ -100,12 +101,14 @@ export const protectedAreas: LayerProvider = async (plot, { signal }) => {
     features: { type: "FeatureCollection", features },
     legend: [
       { classKey: "natura2000", label: "Natura 2000" },
-      { classKey: "natda", label: "Area protetta nazionale (NatDA / EUAP)" },
+      { classKey: "natda", label: "Area protetta nazionale (NatDA)" },
     ],
+    method:
+      "Relazioni contains/intersects/nearby sulle geometrie EEA; distanza approssimata tra vertici e segmenti geodetici. Nessuna percentuale di sovrapposizione stimata.",
     notes: [
-      "Relazioni contains/intersects/nearby calcolate sulle geometrie EEA; distanza minima tra vertici e segmenti geodetici, approssimata. Nessuna percentuale di sovrapposizione è stimata.",
+      "Il confronto usa i confini pubblicati; le distanze sono approssimate.",
       "La vicinanza non implica un vincolo sul lotto; per gli effetti consultare gli atti e il piano del gestore.",
-      "NatDA è distinto da Natura 2000. I dataset europei non escludono altre tutele nazionali o regionali.",
+      "Le aree protette nazionali sono distinte dalla rete Natura 2000. Queste mappe possono non comprendere altre tutele nazionali o regionali.",
     ],
     provenance: answered.map((a) => a.provenance),
   });

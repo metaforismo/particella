@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -35,7 +37,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="it" className={archivo.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Cookieless, aggregated; inactive outside a Vercel deployment. */}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

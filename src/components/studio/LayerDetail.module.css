@@ -139,3 +139,8 @@
   font-size: var(--fs-2xs);
   line-height: 1.5;
 }
+
+.coverage {
+  font-size: var(--fs-xs);
+  font-weight: 560;
+}

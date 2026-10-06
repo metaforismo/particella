@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LegendSwatch } from "@/components/legend/LegendSwatch";
 import { GROUP_LABEL, LAYERS } from "@/content/layers";
 import type { LayerGroup } from "@/lib/contracts";
@@ -14,7 +15,8 @@ export function LayerLegend() {
         </h2>
         <p>
           {LAYERS.length} livelli da enti pubblici e dataset aperti. La copertura dei piani urbanistici
-          dipende dalla Regione: quando un dato manca lo diciamo, non lo stimiamo.
+          dipende dalla Regione: <Link href="/fonti#copertura">ecco dove arriva oggi</Link>. Quando un dato
+          manca lo diciamo, non lo stimiamo.
         </p>
       </div>
 

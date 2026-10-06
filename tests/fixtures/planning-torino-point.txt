@@ -1,0 +1,12 @@
+GetFeatureInfo results:
+
+Layer 'AreeDiPiano'
+  Feature 4156: 
+    id_ap = 'R2'
+    area_di_piano = 'Residenza R2'
+    desc_dm_1444 = 'Zona di categoria B'
+
+Layer 'ZonediPiano'
+  Feature 4156: 
+    codice = 'ZUSA3'
+    zona_di_piano = 'Zona Urbana Storico Ambientale 3'

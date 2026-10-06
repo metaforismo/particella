@@ -315,6 +315,202 @@ export const italianSources: SourceDefinition[] = [
     },
   ),
   define(
+    "planning-lombardia",
+    "PGT — Tavola delle Previsioni regionale",
+    "Regione Lombardia",
+    "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify",
+    "REST",
+    {
+      coverage: "Comuni lombardi presenti nel mosaico; tessuto consolidato, agricoltura e trasformazioni",
+      license: "CC BY 4.0",
+      licenseUrl:
+        "https://www.geoportale.regione.lombardia.it/metadati?p_p_id=detailSheetMetadata_WAR_gptmetadataportlet&_detailSheetMetadata_WAR_gptmetadataportlet_identifier=r_lombar%3Aa964bb90-d3b8-4e23-95d6-f7925c38e164",
+      url: "https://www.geoportale.regione.lombardia.it/strumenti",
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "Identify verificato live a Milano, Bergamo e Lodi; sintesi non conformativa. Licenza del metadato specifico CC-BY 4.0. Nessuna efficacia comunale dedotta dalle date delle schede.",
+      },
+    },
+  ),
+  define(
+    "planning-torino",
+    "PRG — Aree e zone di piano",
+    "Comune di Torino",
+    "https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento",
+    "WMS",
+    {
+      coverage: "Comune di Torino",
+      referenceDate: "2025-06-30",
+      licenseUrl:
+        "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=c_l219%3A71bd559a-de54-4ebc-84c4-4c304a53a720",
+      url: "https://www.comune.torino.it/schede-informative/piano-regolatore-generale-prg",
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "GetFeatureInfo positivo R2/ZUSA3; PRG 1995 e salvaguardia per piano adottato nel 2026, non incluso.",
+      },
+    },
+  ),
+  define(
+    "planning-siena",
+    "Piano Operativo — geometrie variante 1",
+    "Comune di Siena",
+    "https://siena.ldpgis.it/services/piano_operativo_geometrie_r2/wms",
+    "WMS",
+    {
+      coverage: "Comune di Siena",
+      referenceDate: "2023-05-31",
+      licenseUrl: "https://dati.toscana.it/dataset/piano-operativo-variante-1",
+      url: "https://comune.siena.it/servizi/il-piano-operativo-0",
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "GetFeatureInfo positivo zona A, ambito CS2; CC BY 4.0 nel catalogo regionale del dataset comunale. Varianti normative successive separate.",
+      },
+    },
+  ),
+  define(
+    "planning-veneto",
+    "Mosaico della zonizzazione P.R.C.",
+    "Regione del Veneto — Direzione Pianificazione Territoriale",
+    "https://idt2-geoserver.regione.veneto.it/geoserver/ows",
+    "WMS",
+    {
+      coverage: "Comuni veneti presenti nel mosaico PI/PAT/PRG",
+      referenceDate: "2026-06-30",
+      license: "IODL 2.0",
+      licenseUrl:
+        "https://idt2.regione.veneto.it/geoportal/csw?getxml=%7B81A99EE7-7801-49DA-93E4-76A0F5F2DBB7%7D",
+      url: "https://idt2.regione.veneto.it/portfolio/webgis-della-pianificazione-urbanistica-e-territoriale-2/",
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "Metadato specifico IODL 2.0; GetFeatureInfo positivo Sona. Sintesi non conformativa; Verona/Vicenza vuote sui punti provati, non copertura integrale attestata.",
+      },
+    },
+  ),
+  define(
+    "planning-veneto-legend",
+    "Legenda regionale della zonizzazione P.R.C.",
+    "Regione del Veneto — Direzione Pianificazione Territoriale",
+    "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetStyles&layers=rv%3Azonizzazione_072026",
+    "snapshot",
+    {
+      coverage: "Legenda mosaico veneto",
+      license: "IODL 2.0",
+      licenseUrl: "https://idt2.regione.veneto.it/condizioni_utilizzo_geoportale/",
+      verification: {
+        state: "verified",
+        date: "2026-10-06",
+        note: "Etichette estratte dal SLD ufficiale, whitespace normalizzato; titoli con caratteri corrotti non interpretati.",
+      },
+    },
+  ),
+  // Research candidates are catalogued but have no provider: see PLANNING-COVERAGE.md.
+  define(
+    "planning-emilia-romagna-candidate",
+    "PSC regionale — candidato non collegato",
+    "Regione Emilia-Romagna",
+    "https://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali",
+    "WMS",
+    {
+      coverage: "Emilia-Romagna; copertura puntuale non qualificata",
+      licenseUrl:
+        "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=r_emiro%3A2016-04-01T154059",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Capabilities valide con versione 1.3.0; GetFeatureInfo Bologna/Imola/Reggio vuoto o LayerNotDefined. Non PUG vigente; provider assente.",
+      },
+    },
+  ),
+  define(
+    "planning-toscana-status",
+    "Stato regionale degli strumenti urbanistici — non zonizzazione",
+    "Regione Toscana",
+    "https://www502.regione.toscana.it/ows2/com.rt.wms.RTmap/wms?map=owsstrumentiurbanistici",
+    "WMS",
+    {
+      coverage: "Toscana; stato comunale dei piani, non zone del lotto",
+      license: "Creative Commons; variante e versione da chiarire",
+      licenseUrl: "https://www.regione.toscana.it/servizi-wms",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Scheda ufficiale conferma stato/iter del piano, non zonizzazione; non usato dal provider planning.",
+      },
+    },
+  ),
+  define(
+    "planning-prato-candidate",
+    "PO Prato — candidato non collegato",
+    "Comune di Prato",
+    "https://geoserver.comune.prato.it/geoserver/po/wms",
+    "WMS",
+    {
+      coverage: "Comune di Prato",
+      license: "Licenza specifica non accertata",
+      licenseUrl: "https://www.comune.prato.it/it/per-le-imprese/urbanistica/web-map-service/pagina4013.html",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "GetFeatureInfo positivo ZTO A; licenza del dataset non qualificata. Provider assente.",
+      },
+    },
+  ),
+  define(
+    "planning-pisa-candidate",
+    "Regolamento Urbanistico Pisa — candidato non collegato",
+    "Comune di Pisa",
+    "https://sit.comune.pisa.it/arcgis/rest/services/Regolamento_Urbanistico/MapServer",
+    "REST",
+    {
+      coverage: "Comune di Pisa",
+      license: "Licenza specifica non accertata",
+      licenseUrl: "https://sit.comune.pisa.it/geoportal/catalog/main/home.page",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Directory REST pubblica con RU; vigenza/zonizzazione/licenza non qualificate. Provider assente.",
+      },
+    },
+  ),
+  define(
+    "planning-puglia-candidate",
+    "PRG/PdF Area Vasta Sud Salento — candidato non collegato",
+    "Regione Puglia",
+    "https://webapps.sit.puglia.it/arcgis/rest/services/Operationals/AreaVastaSudSalento/MapServer",
+    "REST",
+    {
+      coverage: "Comuni vettorializzati del Salento; non tutta la Puglia",
+      license: "Licenza del mosaico non accertata",
+      licenseUrl: "https://pugliacon.regione.puglia.it/web/sit-puglia-sit/web-map-service5",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Directory e layer 4 Zone di piano rispondono; Lecce vuoto. Licenza/vigenza non qualificate; provider assente.",
+      },
+    },
+  ),
+  define(
+    "planning-roma-candidate",
+    "PRG Roma — WMS storico non qualificato",
+    "Roma Capitale",
+    "https://www.comune.roma.it/wms",
+    "WMS",
+    {
+      coverage: "Roma; endpoint operativo non qualificato",
+      license: "Licenza specifica non accertata",
+      licenseUrl: "https://geoportale.comune.roma.it/",
+      verification: {
+        state: "partial",
+        date: "2026-10-06",
+        note: "Endpoint WMS documentato nel manuale ufficiale restituisce HTML invece di capabilities; provider assente.",
+      },
+    },
+  ),
+  define(
     "planning-milano",
     "PGT — Tavola delle Previsioni",
     "Regione Lombardia / Comune di Milano",
@@ -322,13 +518,14 @@ export const italianSources: SourceDefinition[] = [
     "REST",
     {
       coverage: "Comune di Milano (adapter)",
-      license: "Licenza del dataset non accertata",
-      licenseUrl: "https://www.geoportale.regione.lombardia.it/",
+      license: "CC BY 4.0",
+      licenseUrl:
+        "https://www.geoportale.regione.lombardia.it/metadati?p_p_id=detailSheetMetadata_WAR_gptmetadataportlet&_detailSheetMetadata_WAR_gptmetadataportlet_identifier=r_lombar%3Aa964bb90-d3b8-4e23-95d6-f7925c38e164",
       url: "https://www.geoportale.regione.lombardia.it/",
       verification: {
         state: "partial",
         date: "2026-10-06",
-        note: "Sintesi regionale non conformativa; vigenza e licenza da verificare sul piano comunale.",
+        note: "Fonte storica Milano mantenuta per compatibilità; sostituita nel provider da planning-lombardia. Sintesi non conformativa, licenza specifica CC BY 4.0 verificata.",
       },
     },
   ),

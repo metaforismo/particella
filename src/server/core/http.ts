@@ -116,6 +116,18 @@ export class HttpClient {
     this.fetcher = fetcher;
   }
 
+  /** Whether `request` would be answered from cache, without contacting the source. */
+  async has(input: string, options: Pick<HttpOptions, "method" | "body" | "headers"> = {}): Promise<boolean> {
+    const key = canonicalKey("http:v1", {
+      url: canonicalUrl(input),
+      method: options.method ?? "GET",
+      body: options.body,
+      headers: options.headers,
+    });
+    const cached = await this.storage.get<HttpPayload | { failure: true }>(key);
+    return Boolean(cached && !("failure" in cached));
+  }
+
   async request(input: string, options: HttpOptions = {}): Promise<HttpPayload> {
     if (options.signal?.aborted) throw new UpstreamError("Richiesta interrotta.");
     const url = canonicalUrl(input);

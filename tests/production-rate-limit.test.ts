@@ -110,3 +110,24 @@ test("map tiles have their own generous bucket so panning never starves the anal
   // One Studio session: a plot, all layers and several screens of cadastral tiles.
   assert.ok(API_LIMITS.tiles.anonymous >= 10 * API_LIMITS.heavy.anonymous);
 });
+
+test("uncached tiles have a stricter per-client quota than cached ones", async () => {
+  const { enforceTileUpstreamLimit, TILE_UPSTREAM_LIMIT } = await import("#server/http/rate-limit.ts");
+  const store = new MemoryCounterStore();
+  const req = new Request("http://x/api/v1/tiles/cadastre/17/1/1", { headers: { "x-real-ip": "5.5.5.5" } });
+  for (let i = 0; i < TILE_UPSTREAM_LIMIT; i++) await enforceTileUpstreamLimit(req, store);
+  await assert.rejects(enforceTileUpstreamLimit(req, store), RateLimited);
+  const other = new Request("http://x/api/v1/tiles/cadastre/17/1/1", { headers: { "x-real-ip": "6.6.6.6" } });
+  await enforceTileUpstreamLimit(other, store);
+});
+
+test("tiles outside Italy are blank and never reach a source or the quota", async () => {
+  const { tile } = await import("#server/countries/it/tiles.ts");
+  let charged = false;
+  // z=12 tile over Paris.
+  const bytes = await tile({ overlay: "flood", z: 12, x: 2074, y: 1408 }, undefined, async () => {
+    charged = true;
+  });
+  assert.ok(bytes.length > 0);
+  assert.equal(charged, false);
+});

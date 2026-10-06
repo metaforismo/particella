@@ -104,6 +104,22 @@ export async function enforceApiLimit(request: Request, store: CounterStore): Pr
   if (result.count > API_LIMITS[bucket][keyed ? "keyed" : "anonymous"])
     throw new RateLimited("Limite temporaneo di richieste raggiunto.", result.retryAfterSeconds);
 }
+/**
+ * Tiles not yet in our cache cost the public source a request. They get a stricter per-client quota
+ * than cached tiles, so random-tile scraping cannot starve the shared queue towards the source.
+ */
+export const TILE_UPSTREAM_LIMIT = 240;
+
+export async function enforceTileUpstreamLimit(request: Request, store: CounterStore): Promise<void> {
+  const key = keyDigest(`${clientAddress(request)}:tile-upstream`);
+  const result = await store.consume(key, 60_000);
+  if (result.count > TILE_UPSTREAM_LIMIT)
+    throw new RateLimited(
+      "Troppe zone nuove della mappa in poco tempo: riprova tra poco.",
+      result.retryAfterSeconds,
+    );
+}
+
 export function configuredCounterStore(): CounterStore {
   const redis = configuredRedis();
   return redis ? new FallbackCounterStore(new RedisCounterStore(redis)) : new MemoryCounterStore();

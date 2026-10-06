@@ -25,7 +25,8 @@ export function SiteFooter() {
             <h2>Trasparenza</h2>
             <Link href="/fonti">Fonti e licenze</Link>
             <Link href="/fonti#limiti">Limiti dei dati</Link>
-            <a href="https://github.com/metaforismo/particella">Codice su GitHub</a>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/condizioni">Condizioni d&apos;uso</Link>
           </div>
         </nav>
       </div>

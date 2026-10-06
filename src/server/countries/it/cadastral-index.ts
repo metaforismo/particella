@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { createHash, randomUUID } from "node:crypto";
 import { z } from "zod";
-import { BadRequest, NotFound, UpstreamError } from "#server/core/errors.ts";
+import { BadRequest, NotFound, RateLimited, UpstreamError } from "#server/core/errors.ts";
 import { parseZoning } from "#server/countries/it/cadastre.ts";
 import {
   zipDirectory,
@@ -229,7 +229,10 @@ export async function municipalIndex(belfiore: string, signal?: AbortSignal): Pr
     /* Missing, expired or invalid index is regenerated from the official archive. */
   }
   const existing = pending.get(belfiore);
-  if (existing) return existing;
+  if (existing) return waitFor(existing, signal);
+  admitBuild();
+  // The build is shared and outlives the request that started it: an abandoned search (the user
+  // kept typing or closed the page) must not throw away a download every later search needs.
   const task = (async () => {
     const municipality = municipalitySnapshot.municipalities.find((m) => m.cadastralCode === belfiore);
     if (!municipality) throw new NotFound("Comune catastale non disponibile nello snapshot ISTAT.");
@@ -241,12 +244,43 @@ export async function municipalIndex(belfiore: string, signal?: AbortSignal): Pr
       municipality.region,
       municipality.provinceCode,
       belfiore,
-      signal,
+      AbortSignal.timeout(BUILD_TIMEOUT_MS),
     );
     const index = await buildCadastralIndex(archive.bytes, belfiore, archive);
     await storeCadastralIndex(index);
     return index;
   })().finally(() => pending.delete(belfiore));
   pending.set(belfiore, task);
-  return task;
+  return waitFor(task, signal);
+}
+
+const BUILD_TIMEOUT_MS = 240_000;
+const MAX_CONCURRENT_BUILDS = Number(process.env.PARTICELLA_CADASTRAL_MAX_BUILDS ?? 2);
+const MAX_BUILDS_PER_HOUR = Number(process.env.PARTICELLA_CADASTRAL_BUILDS_PER_HOUR ?? 30);
+let hourly = { until: 0, count: 0 };
+
+/**
+ * Each new index downloads a whole comune archive (tens of MB) from the Agenzia delle Entrate.
+ * Bound concurrent and hourly builds so search requests cannot be turned into bulk downloads.
+ */
+function admitBuild() {
+  const now = Date.now();
+  if (hourly.until <= now) hourly = { until: now + 3_600_000, count: 0 };
+  if (pending.size >= MAX_CONCURRENT_BUILDS || hourly.count >= MAX_BUILDS_PER_HOUR)
+    throw new RateLimited(
+      "L'archivio catastale di questo Comune non è ancora pronto e ne stiamo già preparando altri: riprova tra qualche minuto.",
+      60,
+    );
+  hourly.count++;
+}
+
+/** The caller stops waiting on abort; the shared task keeps running for the next caller. */
+function waitFor<T>(task: Promise<T>, signal?: AbortSignal): Promise<T> {
+  if (!signal) return task;
+  signal.throwIfAborted();
+  return new Promise<T>((resolve, reject) => {
+    const abort = () => reject(signal.reason);
+    signal.addEventListener("abort", abort, { once: true });
+    task.then(resolve, reject).finally(() => signal.removeEventListener("abort", abort));
+  });
 }

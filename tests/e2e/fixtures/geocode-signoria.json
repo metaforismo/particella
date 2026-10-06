@@ -1,0 +1,10 @@
+[
+  {
+    "id": "osm:81189600",
+    "label": "Piazza della Signoria",
+    "secondary": "Firenze, Toscana, Italia",
+    "kind": "place",
+    "center": { "lat": 43.7695737, "lon": 11.2558641 },
+    "bbox": [11.2551323, 43.769147, 11.2567739, 43.7700169]
+  }
+]

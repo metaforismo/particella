@@ -60,6 +60,7 @@ npm run dev
 | `npm run typecheck` | genera i tipi delle route e lancia `tsc` |
 | `npm test` | test offline con fixture registrate |
 | `npm run test:live` | smoke test contro le fonti reali (non gira in CI) |
+| `npm run test:e2e` | test end-to-end nel browser (Playwright, desktop e mobile) con risposte API registrate |
 | `npm run build` | build di produzione |
 | `npm run format` | Prettier |
 

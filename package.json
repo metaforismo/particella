@@ -14,7 +14,8 @@
     "snapshots:refresh": "node --experimental-strip-types scripts/snapshots/refresh.ts",
     "format": "prettier --write src tests scripts",
     "format:check": "prettier --check src tests scripts",
-    "content:hero": "node --experimental-strip-types scripts/content/hero.ts"
+    "content:hero": "node --experimental-strip-types scripts/content/hero.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.131",
@@ -46,6 +47,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/node": "^24.19.1",
     "@types/pngjs": "^6.0.5",
     "@types/react": "^19",

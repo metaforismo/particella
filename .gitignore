@@ -56,3 +56,7 @@ docs/research/evidence/*/*
 /tests/live-results.json
 
 /tests/land-live-results.json
+
+# Playwright
+/test-results/
+/playwright-report/

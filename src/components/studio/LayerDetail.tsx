@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowSquareOut } from "@phosphor-icons/react";
 import type { LayerMeta } from "@/content/layers";
 import type { LayerResult } from "@/lib/contracts";
@@ -57,6 +58,12 @@ export function LayerDetail({ result, meta }: { result: LayerResult; meta: Layer
             </li>
           ))}
         </ul>
+      ) : null}
+
+      {result.layer === "planning" && result.status === "outside_coverage" ? (
+        <p className={styles.coverage}>
+          <Link href="/fonti#copertura">Dove è già disponibile l&apos;urbanistica</Link>
+        </p>
       ) : null}
 
       {result.notes.length ? (

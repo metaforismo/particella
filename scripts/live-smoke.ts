@@ -1,3 +1,4 @@
+import { runCadastralLive } from "./session-e-live.ts";
 import { writeFile } from "node:fs/promises";
 import { runLandLive } from "./land-live.ts";
 import { runPlanningLive } from "./session-d-live.ts";
@@ -28,6 +29,10 @@ import { GET as layerCatalogRoute } from "../src/app/api/v1/catalog/layers/route
 import { GET as sourceCatalogRoute } from "../src/app/api/v1/catalog/sources/route.ts";
 import { POST as chat } from "../src/app/api/v1/studio/chat/route.ts";
 import { chatConfigured } from "#server/chat/index.ts";
+
+if (process.argv.includes("--cadastral")) {
+  process.exit((await runCadastralLive()) ? 0 : 1);
+}
 
 const results: { check: string; state: "PASS" | "FAIL" | "PARTIAL" | "NOT RUN"; detail: unknown }[] = [];
 
@@ -305,3 +310,5 @@ console.log(
 const landFailures = await runLandLive();
 const planningFailures = await runPlanningLive();
 process.exitCode = failed || landFailures || planningFailures ? 1 : 0;
+
+if (!(await runCadastralLive())) process.exitCode = 1;

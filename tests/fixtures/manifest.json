@@ -478,5 +478,99 @@
     "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.46424730%2C9.19093930%2C45.46428730%2C9.19097930%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
     "retrievedAt": "2026-10-06T00:07:50.328Z",
     "reduction": "Original AdE WFS response; attributes and geometry unchanged."
+  },
+  {
+    "fixture": "cadastral-a074-parcels.xml",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.348548%2C7.76632%2C45.348957%2C7.766774%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:30:23.683Z",
+    "originalSha256": "488bc11556bac9bac0077ab4fc3a9504fada5be949d40a3b5be09392c2779f87",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a074-municipality.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=7.766548491320066%2C45.34868352000001&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-06T00:30:23.955Z",
+    "originalSha256": "80b4ac501fc3b815254aeaefec76bdd69087a844c3b08b1f2f606e7031ae9873",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a122-parcels.xml",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=44.030994%2C8.135571%2C44.031365%2C8.135809%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:30:25.717Z",
+    "originalSha256": "a50d4131ca8e1375c5f93ef7f985958ee48188926bfc28a9d05fe856afb5916f",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a122-municipality.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=8.135707082856701%2C44.03109496&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-06T00:30:25.919Z",
+    "originalSha256": "2301581c15a796cf091fdf669e18f989d8b03c18262cf1ef4ec1edeb8d985444",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a045-parcels.xml",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=42.733243%2C12.492926%2C42.733446%2C12.493054%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:30:27.889Z",
+    "originalSha256": "cbdb141912b80b871889738de910242e32401be7cb48981dcbd6b0a7a633d38d",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a045-municipality.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=12.49302404786938%2C42.73327505&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-06T00:30:28.031Z",
+    "originalSha256": "c6d5563d9580635c2f6a1b01354406725f57e7301e918ea099b97b1ec1528d3d",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a089-parcels.xml",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=37.261928%2C13.582217%2C37.262226%2C13.582577%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:30:29.965Z",
+    "originalSha256": "24db7b1320b6cd4be61f6fa614efac25bc14dbdc6ea34f48a8ad90be375be238",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a089-municipality.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=13.582397820526438%2C37.26205437&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-06T00:30:30.081Z",
+    "originalSha256": "9df9969a953448d81376d4e25ddf33a1780406f055d687dfb04b53bee83d3a0e",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a001-parcels.xml",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.349155%2C11.807941%2C45.349537%2C11.808372%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:30:31.838Z",
+    "originalSha256": "f019bf04fccd5898b292f82ab1d4ccb87ba44caef8aafcd49f486ee8246e3121",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-a001-municipality.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.80814537821064%2C45.34948276&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-06T00:30:31.916Z",
+    "originalSha256": "8deb4801ed241dc4cbc093572b5d8867f84eaa744d30a2bdb9eb055463b2d6e7",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-d612-parcels.xml",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.736742%2C11.232587%2C43.737108%2C11.233088%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:30:32.385Z",
+    "originalSha256": "1d01ba3a979ff197a79511d76b969728d7092d145a5181de6b39e1feee84ce5b",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-d612-municipality.json",
+    "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.232836461111074%2C43.73692623&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+    "retrievedAt": "2026-10-06T00:30:32.451Z",
+    "originalSha256": "875d7f028fa5bc49fe4d738140d5a2ed53653d6f79e6cb549482157e8706ae87",
+    "reduction": "Original live response; no geometric changes."
+  },
+  {
+    "fixture": "cadastral-search-window.zip",
+    "originalSha256": "8fed2d341877ec4f581933e753c11ef0095771100cc9d5fbf9776c75e4f4c98b",
+    "reduction": "Test ZIP packaging of unmodified ade-rural.xml and ade-zoning-rural.xml WFS responses. Complete response windows, not a complete Comune; used only for offline index/transport tests. Source URLs and retrieval times are the two existing manifest entries."
+  },
+  {
+    "fixture": "cadastral-search-index-samples.json",
+    "originalSha256": "39b1139ecf55348afbd5a1ec709ff1e4d25ab377fc366ec1e2270a7c32535bd6",
+    "reduction": "Positive replay samples of unmodified real map labels and bbox values from complete live-acquired official municipal indexes. Original ZIP hash/URL/retrieval timestamps are embedded per sample. Not an authoritative complete municipal index."
   }
 ]

@@ -22,7 +22,7 @@ Input validato, acquisizione dai provider, normalizzazione e validazione zod al 
 
 `plotAt` controlla prima la copertura comunale ISTAT, una sola volta; quel risultato viene riusato nella costruzione del Plot. Interroga WFS AdE in una piccola bbox, analizza GML e sceglie solo il poligono coprente, mai il più vicino. Bordi inclusi, più poligoni coprenti → selezione ambigua. Strade/acque → 404. Foglio/sezione dal riferimento della mappa e `LABEL`, senza deduzioni dagli zeri. ID `it:Belfiore:sezione_o_:foglio:particella`.
 
-`resolvePlot(id, at)` valida sempre entrambi, poi controlla la cache positiva. A cache fredda con punto usa `plotAt` e confronta l’ID, altrimenti 404 esplicito. La cache negativa da ID non sopprime questa ricerca. Senza punto tenta `plotById`: il WFS pubblico non conferma ancora i filtri attributo del foglio e può restituire `numberMatched="unknown"`. Si mantiene 502, evitando falsi 404. Questa limitazione riguarda anche la chat se il frontend invia solo plotId: l’estensione `at` al body elimina la dipendenza dalla cache della precedente richiesta.
+`resolvePlot(id, at)` valida ID e punti prima della cache. Con punto usa la risoluzione spaziale e verifica l'ID; senza punto la sessione E usa il download AdE completo comunale per localizzare la bbox e conferma la geometria WFS live. Gli indici vengono estratti dal contenitore regionale in streaming, con limiti e cache disco. Un vuoto WFS non confermato resta 502; l'assenza nel download semestrale è dichiarata come tale. ID composto `id1+id2`: risoluzione dei componenti e unione MultiPolygon; `at` contiene un punto per componente separato da `;`. [Ricerca, misure e limiti](../research/cadastral-search.md), [contratto API](API.md).
 
 Province: snapshot ufficiale ISTAT Province2026, 110 codici numerici→nome/sigla. Il codice numerico resta interno; la risposta Municipality contiene nome e sigla a due lettere. Provenienza dello snapshot aggiunta al Plot, senza cambiare lo schema.
 
@@ -96,7 +96,6 @@ Snapshot piccoli: DPC, popolazione importata Milano/Firenze, province 2026, inve
 Per aggiungere un layer: registrare fonte/condizioni, provider LayerResult e classKey, catalogo, adapter del paese, fixture, test offline/live, limiti e metodo. Per un paese: nuovo CountryAdapter in `countries/<code>`, registry/fonti e ampliamento additivo CountryCode/query. Il core resta agnostico. PostGIS può sostituire ricerca/geometria dietro l’adapter; Redis Cache/HostLimiter. Redis Cache da solo non rende globale la deduplicazione.
 
 OMI può pubblicare quotazioni residenziali senza dichiarare una tipologia prevalente: in quel caso il livello è `partial` e mostra tutte le tipologie disponibili, senza attribuire una prevalenza. Se non pubblica prezzi residenziali, lo stato è `empty`, mantenendo la zona e il semestre. La fixture reale rurale registra questo caso.
-
 
 ## Espansione terreni, sessione C
 

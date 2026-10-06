@@ -41,6 +41,7 @@ export const GeocodeResult = z.object({
   kind: z.enum(["address", "street", "place", "municipality", "parcel"]),
   center: LatLon,
   bbox: z.tuple([z.number(), z.number(), z.number(), z.number()]).nullable(),
+  provenance: z.array(Provenance).optional(),
 });
 export type GeocodeResult = z.infer<typeof GeocodeResult>;
 
@@ -78,9 +79,44 @@ export const Plot = z.object({
   geometry: Geometry.nullable(),
   areaM2: z.number().nullable(),
   perimeterM: z.number().nullable(),
+  /** Components of an aggregate; coordinates allow cold-cache URL reconstruction. */
+  parcels: z
+    .array(
+      z.object({
+        id: z.string(),
+        at: LatLon,
+        cadastral: z.object({
+          municipalityCode: z.string(),
+          section: z.string().nullable(),
+          sheet: z.string(),
+          parcel: z.string(),
+          label: z.string(),
+        }),
+      }),
+    )
+    .optional(),
+  representativePointMethod: z.literal("interior-point").optional(),
   provenance: z.array(Provenance),
 });
 export type Plot = z.infer<typeof Plot>;
+
+/** POST /api/v1/lots; IDs and optional interior points are verified by the resolver. */
+export const LotInput = z
+  .object({
+    parcels: z
+      .array(
+        z
+          .object({
+            id: z.string().max(80),
+            at: LatLon.optional(),
+          })
+          .strict(),
+      )
+      .min(2)
+      .max(20),
+  })
+  .strict();
+export type LotInput = z.infer<typeof LotInput>;
 
 export const LayerId = z.enum([
   "terrain",

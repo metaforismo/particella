@@ -23,4 +23,4 @@ export async function GET(request: Request, context: RouteContext<"/api/v1/plots
 
 export const runtime = "nodejs";
 
-export const maxDuration = 60;
+export const maxDuration = 300;

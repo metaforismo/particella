@@ -240,7 +240,25 @@ export async function runLayer(
   const task = Promise.race([
     Promise.resolve()
       .then(() => provider(plot, { signal: controller.signal, timeoutMs }))
-      .then((r) => ResultSchema.parse(r))
+      .then((r) =>
+        ResultSchema.parse(
+          plot.parcels
+            ? {
+                ...r,
+                notes: [
+                  ...r.notes,
+                  r.scope === "parcel"
+                    ? "Analisi sulla geometria unita del lotto composto."
+                    : r.scope === "municipality"
+                      ? "Lotto composto: valori del Comune condiviso dalle particelle."
+                      : r.scope === "buffer"
+                        ? "Lotto composto: analisi nel buffer dichiarato dal livello; distanze e relazioni usano la geometria unita quando prevista dal metodo."
+                        : `Lotto composto: i dati con ambito ${r.scope} usano il punto interno dichiarato (${plot.centroid.lat}, ${plot.centroid.lon}); non descrivono tutte le particelle.`,
+                ],
+              }
+            : r,
+        ),
+      )
       .catch((error: unknown) => failedLayer(layer, error)),
     deadline,
   ])

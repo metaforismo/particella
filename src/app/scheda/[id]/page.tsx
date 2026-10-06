@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 // Each report reads public sources at request time; never prerender or cache it as a static page.
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 export default async function ReportPage({ params, searchParams }: PageProps<"/scheda/[id]">) {
   const { id } = await params;

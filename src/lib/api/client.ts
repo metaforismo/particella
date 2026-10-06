@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { plotApiPath } from "@/lib/routes";
+import { plotApiPath, type PlotLocation } from "@/lib/routes";
 import {
   ApiError,
   LayerCatalogEntry,
   LayerResult,
   Plot,
   PlotReport,
-  type LatLon,
+  LotInput,
   type LayerId,
 } from "@/lib/contracts";
 
@@ -22,10 +22,22 @@ export class ApiRequestError extends Error {
   }
 }
 
-async function getJson<T>(path: string, schema: z.ZodType<T>, signal?: AbortSignal): Promise<T> {
+async function getJson<T>(
+  path: string,
+  schema: z.ZodType<T>,
+  signal?: AbortSignal,
+  requestBody?: unknown,
+): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(path, { signal, headers: { accept: "application/json" } });
+    res = await fetch(path, {
+      signal,
+      ...(requestBody === undefined ? {} : { method: "POST", body: JSON.stringify(requestBody) }),
+      headers: {
+        accept: "application/json",
+        ...(requestBody === undefined ? {} : { "Content-Type": "application/json" }),
+      },
+    });
   } catch (error) {
     if ((error as Error).name === "AbortError") throw error;
     throw new ApiRequestError("network", "Connessione assente o instabile.", 0);
@@ -42,16 +54,18 @@ async function getJson<T>(path: string, schema: z.ZodType<T>, signal?: AbortSign
 }
 
 export const api = {
+  lot: (input: LotInput, signal?: AbortSignal) =>
+    getJson("/api/v1/lots", Plot, signal, LotInput.parse(input)),
   plotAt: (lat: number, lon: number, signal?: AbortSignal) =>
     getJson(`/api/v1/plots/at?lat=${lat}&lon=${lon}`, Plot, signal),
 
-  plot: (id: string, at: LatLon | undefined, signal?: AbortSignal) =>
+  plot: (id: string, at: PlotLocation | undefined, signal?: AbortSignal) =>
     getJson(plotApiPath(id, "", at), Plot, signal),
 
-  layer: (plotId: string, layer: LayerId, at: LatLon | undefined, signal?: AbortSignal) =>
+  layer: (plotId: string, layer: LayerId, at: PlotLocation | undefined, signal?: AbortSignal) =>
     getJson(plotApiPath(plotId, `/layers/${layer}`, at), LayerResult, signal),
 
-  report: (plotId: string, at: LatLon | undefined, signal?: AbortSignal) =>
+  report: (plotId: string, at: PlotLocation | undefined, signal?: AbortSignal) =>
     getJson(plotApiPath(plotId, "/report", at), PlotReport, signal),
 
   layerCatalog: (signal?: AbortSignal) =>

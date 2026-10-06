@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { Plot as PlotSchema, type Plot } from "#contracts";
 import { BadRequest, NotFound, ProtocolError, UpstreamError } from "#server/core/errors.ts";
-import { cache, canonicalKey, NEGATIVE_TTL_MS } from "#server/core/cache.ts";
+import { cache, canonicalKey } from "#server/core/cache.ts";
 import { textBody } from "#server/core/http.ts";
 import { provenance } from "#server/core/provenance.ts";
 import { source } from "#server/core/sources.ts";
@@ -15,6 +15,7 @@ import {
 } from "#server/geo/index.ts";
 import { wfsMembers, gmlGeometry } from "#server/geo/gml.ts";
 import { fetchSource, queryUrl } from "#server/countries/it/queries.ts";
+import { municipalIndex, findIndexedParcel } from "#server/countries/it/cadastral-index.ts";
 import { municipalityAt } from "#server/countries/it/municipality.ts";
 
 export const PlotId = z
@@ -101,6 +102,7 @@ async function toPlot(
   zoning: Zoning,
   payloads: { requestUrl: string; retrievedAt: string }[],
   municipalityLookup: Awaited<ReturnType<typeof municipalityAt>>,
+  downloadReferenceDate?: string,
 ): Promise<Plot> {
   if (parcel.special)
     throw new NotFound("Il punto ricade su una strada o un'acqua catastale: non è un lotto.");
@@ -116,20 +118,25 @@ async function toPlot(
       parcel: parcel.parcel,
       label: `Foglio ${zoning.sheet} · Particella ${parcel.parcel}`,
     },
-    municipality: { ...municipality.municipality, cadastralCode: parcel.belfiore },
+    municipality: municipality.municipality,
     address: null,
     centroid: representativePoint(parcel.geometry),
+    representativePointMethod: "interior-point",
     geometry: parcel.geometry,
     ...measurements(parcel.geometry),
     provenance: [
       provenance("ade-cadastre", payloads[0], {
         dataset: "Cartografia catastale — particelle",
       }),
-      provenance("ade-cadastre", payloads[1], {
+      provenance(downloadReferenceDate ? "ade-cadastral-download" : "ade-cadastre", payloads[1], {
         dataset: "Mappe catastali — fogli",
+        ...(downloadReferenceDate
+          ? { method: "snapshot" as const, referenceDate: downloadReferenceDate }
+          : {}),
       }),
       municipality.provenance,
       municipality.provinceProvenance,
+      municipality.codeProvenance,
     ],
   });
   await cache.set(canonicalKey("plot:v1", id), result, 86_400_000);
@@ -182,61 +189,33 @@ async function spatialCadastre(
   throw new UpstreamError();
 }
 
-function filter(property: string, value: string, sheet?: string): string {
-  const equal = (key: string, literal: string) =>
-    `<fes:PropertyIsEqualTo><fes:ValueReference>${key}</fes:ValueReference><fes:Literal>${literal}</fes:Literal></fes:PropertyIsEqualTo>`;
-  const expression = sheet
-    ? `<fes:And>${equal(property, value)}${equal("CP:LABEL", sheet)}</fes:And>`
-    : equal(property, value);
-  return `<fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:CP="http://mapserver.gis.umn.edu/mapserver">${expression}</fes:Filter>`;
-}
-
+/** Locate by the complete official municipal download, then confirm exact geometry live via bbox. */
 export async function plotById(id: string, signal?: AbortSignal): Promise<Plot> {
   const parts = parsePlotId(id);
   const key = canonicalKey("plot:v1", id);
   const cached = await cache.get<Plot | { missing: true }>(key);
-  if (cached) {
-    if ("missing" in cached) throw new NotFound();
-    return cached;
-  }
-  const admin = `${parts.municipalityCode}${parts.section ?? ""}`;
-  const zoningPayload = await fetchSource(
-    "ade-cadastre",
-    wfs("CP:CadastralZoning", {
-      FILTER: filter("CP:ADMINISTRATIVEUNIT", parts.municipalityCode, parts.sheet),
-    }),
-    { signal, ttlMs: NEGATIVE_TTL_MS },
-  );
-  const maps = parseZoning(textBody(zoningPayload), true).filter(
-    (z) =>
-      z.belfiore === parts.municipalityCode &&
-      z.section === parts.section &&
-      z.sheet === parts.sheet &&
-      z.reference.startsWith(admin),
-  );
-  if (maps.length !== 1) {
-    await cache.set(key, { missing: true }, NEGATIVE_TTL_MS);
-    throw new NotFound("Foglio catastale non trovato o ambiguo.");
-  }
-  const parcelPayload = await fetchSource(
+  if (cached && !("missing" in cached)) return cached;
+  const index = await municipalIndex(parts.municipalityCode, signal);
+  const selected = findIndexedParcel(index, parts.sheet, parts.parcel, parts.section, true);
+  const [west, south, east, north] = selected.bbox;
+  const payload = await fetchSource(
     "ade-cadastre",
     wfs("CP:CadastralParcel", {
-      FILTER: filter("CP:NATIONALCADASTRALREFERENCE", `${maps[0].reference}.${parts.parcel}`),
+      BBOX: `${south},${west},${north},${east},urn:ogc:def:crs:EPSG::6706`,
     }),
-    { signal, ttlMs: NEGATIVE_TTL_MS },
+    { signal, timeoutMs: 10000 },
   );
-  const parcels = parseParcels(textBody(parcelPayload), true);
-  const parcel = parcels.find((p) => p.reference === `${maps[0].reference}.${parts.parcel}`);
-  if (!parcel) {
-    await cache.set(key, { missing: true }, NEGATIVE_TTL_MS);
-    throw new NotFound();
-  }
-  return toPlot(
-    parcel,
-    maps[0],
-    [parcelPayload, zoningPayload],
-    await municipalityAt(representativePoint(parcel.geometry), parcel.belfiore, signal),
+  const parcels = parseParcels(textBody(payload)).filter((p) => p.reference === selected.reference);
+  if (parcels.length !== 1)
+    throw new UpstreamError(
+      "La geometria live non conferma la particella del download semestrale; scegliere sulla mappa o aggiornare l'indice.",
+    );
+  const municipality = await municipalityAt(
+    representativePoint(parcels[0].geometry),
+    parts.municipalityCode,
+    signal,
   );
+  return toPlot(parcels[0], selected.map, [payload, index], municipality, index.referenceDate);
 }
 
 export const cadastreRequestExample = queryUrl(

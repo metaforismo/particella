@@ -5,7 +5,7 @@ import intersects from "@turf/boolean-intersects";
 import contains from "@turf/boolean-contains";
 import distance from "@turf/distance";
 import length from "@turf/length";
-import pointOnFeature from "@turf/point-on-feature";
+import { UpstreamError } from "#server/core/errors.ts";
 import pointToLineDistance from "@turf/point-to-line-distance";
 import { feature, point, lineString } from "@turf/helpers";
 import proj4 from "proj4";
@@ -53,9 +53,41 @@ export function geometryBbox(geometry: PlotGeometry): [number, number, number, n
   return bbox(geometry) as [number, number, number, number];
 }
 
+/** Horizontal scanlines between vertex ordinates guarantee candidates away from edges/holes. */
 export function representativePoint(geometry: PlotGeometry): LatLon {
-  const [lon, lat] = pointOnFeature(geometry).geometry.coordinates;
-  return { lat, lon };
+  const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+  let best: { point: LatLon; width: number } | undefined;
+  for (const rings of polygons) {
+    const ys = [...new Set(rings.flat().map((p) => p[1]))].sort((a, b) => a - b);
+    // Try widest vertical bands first; every band is considered until an interior interval exists.
+    const bands = ys
+      .slice(1)
+      .map((y, i) => ({ y: (y + ys[i]) / 2, height: y - ys[i] }))
+      .sort((a, b) => b.height - a.height);
+    for (const { y } of bands) {
+      const xs: number[] = [];
+      for (const ring of rings)
+        for (let i = 1; i < ring.length; i++) {
+          const a = ring[i - 1],
+            b = ring[i];
+          if (a[1] > y !== b[1] > y) xs.push(a[0] + ((y - a[1]) * (b[0] - a[0])) / (b[1] - a[1]));
+        }
+      xs.sort((a, b) => a - b);
+      for (let i = 1; i < xs.length; i += 2) {
+        const p = { lat: y, lon: (xs[i - 1] + xs[i]) / 2 };
+        const width = xs[i] - xs[i - 1];
+        if (
+          width > 0 &&
+          covers(point([p.lon, p.lat]), geometry, { ignoreBoundary: true }) &&
+          (!best || width > best.width)
+        )
+          best = { point: p, width };
+      }
+      if (best) break;
+    }
+  }
+  if (!best) throw new UpstreamError("Impossibile trovare un punto interno alla geometria catastale.");
+  return best.point;
 }
 
 export function measurements(geometry: PlotGeometry): { areaM2: number; perimeterM: number } {

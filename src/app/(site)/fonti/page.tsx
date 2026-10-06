@@ -52,6 +52,8 @@ export default function SourcesPage() {
         </li>
       </ul>
 
+      <PlanningCoverage />
+
       <SourceGroup title="Enti pubblici" items={official} />
       <SourceGroup title="Dati aperti collaborativi" items={community} />
 
@@ -103,6 +105,51 @@ export default function SourcesPage() {
         </dl>
       </section>
     </div>
+  );
+}
+
+/** Planning sources are split into connected and under evaluation, straight from the registry. */
+function PlanningCoverage() {
+  const planning = sources.filter((s) => s.id.startsWith("planning-") && !s.id.endsWith("-legend"));
+  // Candidates are registered but not used by the planning layer until query and licence are qualified.
+  const isCandidate = (id: string) => id.endsWith("-candidate") || id.endsWith("-status");
+  const connected = planning.filter((s) => s.verification.state === "verified" && !isCandidate(s.id));
+  const evaluating = planning.filter((s) => isCandidate(s.id));
+  return (
+    <section id="copertura" className={styles.coverage} aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Dove arriva l&apos;urbanistica</h2>
+      <p>
+        Ogni Comune pubblica il proprio piano in modo diverso. Colleghiamo una fonte solo dopo averla
+        interrogata davvero e verificato la licenza; altrove il livello urbanistico lo dichiara come fuori
+        copertura.
+      </p>
+      <div className={styles.coverageGrid}>
+        <div>
+          <h3>Collegati</h3>
+          <ul>
+            {connected.map((s) => (
+              <li key={s.id}>
+                <strong>{s.coverage}</strong>
+                <span>
+                  {s.name} · {s.authority}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>In valutazione</h3>
+          <ul>
+            {evaluating.map((s) => (
+              <li key={s.id}>
+                <strong>{s.coverage}</strong>
+                <span>Fonte individuata: interrogazione, vigenza o licenza ancora da verificare.</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 

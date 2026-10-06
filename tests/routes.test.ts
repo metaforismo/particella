@@ -1,4 +1,8 @@
 import { test } from "node:test";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { buildCadastralIndex, storeCadastralIndex } from "#server/countries/it/cadastral-index.ts";
 import assert from "node:assert/strict";
 import { PNG } from "pngjs";
 import { z } from "zod";
@@ -6,10 +10,10 @@ import {
   Health,
   Plot,
   PlotReport,
-  GeocodeResult,
   LayerCatalogEntry,
   SourceCatalogEntry,
   ApiError,
+  GeocodeResponse,
 } from "#contracts";
 import { GET as health } from "../src/app/api/v1/health/route.ts";
 import { GET as geocode } from "../src/app/api/v1/geocode/route.ts";
@@ -35,6 +39,20 @@ import { fixtureText } from "./helpers.ts";
 const request = (path: string) => new Request(`http://localhost/api/v1/${path}`);
 
 const originalFetch = globalThis.fetch;
+const savedDirectory = process.env.PARTICELLA_CADASTRAL_INDEX_DIR;
+const directory = await mkdtemp(join(tmpdir(), "particella-routes-test-"));
+process.env.PARTICELLA_CADASTRAL_INDEX_DIR = directory;
+await storeCadastralIndex(
+  await buildCadastralIndex(
+    new Uint8Array(await readFile(new URL("./fixtures/cadastral-search-window.zip", import.meta.url))),
+    "A564",
+    {
+      requestUrl:
+        "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+      retrievedAt: "2026-10-05T21:37:55.897Z",
+    },
+  ),
+);
 
 let unconfirmedColdLookup = false;
 
@@ -47,7 +65,7 @@ globalThis.fetch = async (input) => {
     assert.equal(url.searchParams.get("COUNT"), "10");
     fixture =
       url.searchParams.get("TYPENAMES") === "CP:CadastralZoning" ? "ade-zoning-rural.xml" : "ade-rural.xml";
-    if (unconfirmedColdLookup && url.searchParams.has("FILTER")) fixture = "ade-zoning-filter-empty.xml";
+    if (unconfirmedColdLookup && url.searchParams.has("BBOX")) fixture = "ade-zoning-filter-empty.xml";
   } else throw new Error(`Offline test blocked unexpected host ${url.host}`);
   return new Response(fixtureText(fixture), {
     headers: { "Content-Type": fixture.endsWith("xml") ? "application/xml" : "application/json" },
@@ -62,7 +80,8 @@ test("route health/catalogs/geocode validate the shared contract", async () => {
   z.array(SourceCatalogEntry).parse(await (await sources()).json());
   const result = await geocode(request("geocode?q=Piazza%20Duomo%20Milano"));
   assert.equal(result.status, 200);
-  z.array(GeocodeResult).parse(await result.json());
+  // The same schema the browser client validates with (src/lib/api/client.ts).
+  GeocodeResponse.parse(await result.json());
 });
 
 test("strict query validation rejects missing, blank, duplicated, non-numeric and out-of-range coordinates", async () => {
@@ -100,10 +119,10 @@ test("real fixture plotAt and cold reversible plotById agree", async () => {
   assert.equal(Plot.parse(await cold.json()).id, plot.id);
 });
 
-test("unconfirmed live WFS empty never becomes a false cadastral not_found", async () => {
+test("unconfirmed geometry lookup never becomes a false cadastral not_found", async () => {
   unconfirmedColdLookup = true;
   try {
-    const id = "it:A564:_:9999:110";
+    const id = "it:A564:_:60:109";
     const response = await byId(request(`plots/${id}`), { params: Promise.resolve({ id }) });
     assert.equal(response.status, 502);
     assert.equal(ApiError.parse(await response.json()).error.code, "upstream_unavailable");
@@ -234,4 +253,10 @@ test("ID route cold at, mismatch, malformed at and province names use the same r
       getCountry("it").layers = saved;
     }
   }
+});
+
+test.after(async () => {
+  if (savedDirectory === undefined) delete process.env.PARTICELLA_CADASTRAL_INDEX_DIR;
+  else process.env.PARTICELLA_CADASTRAL_INDEX_DIR = savedDirectory;
+  await rm(directory, { recursive: true, force: true });
 });

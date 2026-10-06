@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type Ref } from "react";
 import { MagnifyingGlass, MapPin, CircleNotch } from "@phosphor-icons/react";
+import { api, ApiRequestError } from "@/lib/api/client";
 import type { GeocodeResult } from "@/lib/contracts";
 import { useGeocode } from "./useGeocode";
 import styles from "./PlaceSearch.module.css";
@@ -30,7 +31,35 @@ export function PlaceSearch({
   const [query, setQuery] = useState(defaultValue);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
-  const { results, loading, error } = useGeocode(query);
+  const { results, loading, error, cadastral } = useGeocode(query);
+  const [lookup, setLookup] = useState<
+    { status: "idle" | "searching" } | { status: "failed"; message: string }
+  >({
+    status: "idle",
+  });
+
+  /** A cadastral reference is resolved on submit: the first search in a comune can take a minute. */
+  const searchCadastral = async (q: string) => {
+    setLookup({ status: "searching" });
+    setOpen(true);
+    try {
+      const [found] = await api.geocode(q);
+      if (found) {
+        setLookup({ status: "idle" });
+        choose(found);
+      } else {
+        setLookup({
+          status: "failed",
+          message: "Particella non trovata. Controlla comune, foglio e particella.",
+        });
+      }
+    } catch (error) {
+      setLookup({
+        status: "failed",
+        message: error instanceof ApiRequestError ? error.message : "Ricerca non riuscita. Riprova.",
+      });
+    }
+  };
   const listId = useId();
   const rootRef = useRef<HTMLFormElement>(null);
 
@@ -48,7 +77,7 @@ export function PlaceSearch({
     onSelect(place);
   };
 
-  const showList = open && query.trim().length >= 3 && (results.length > 0 || loading || error);
+  const showList = open && query.trim().length >= 3 && (results.length > 0 || loading || error || cadastral);
 
   return (
     <form
@@ -58,6 +87,10 @@ export function PlaceSearch({
       data-size={size}
       onSubmit={(event) => {
         event.preventDefault();
+        if (cadastral) {
+          if (lookup.status !== "searching") void searchCadastral(query.trim());
+          return;
+        }
         const picked = active >= 0 ? results[active] : results[0];
         if (picked) choose(picked);
         else if (query.trim()) onSelect({ query: query.trim() });
@@ -84,6 +117,7 @@ export function PlaceSearch({
           aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
           onChange={(event) => {
             setQuery(event.target.value);
+            setLookup({ status: "idle" });
             setActive(-1);
             setOpen(true);
           }}
@@ -108,7 +142,9 @@ export function PlaceSearch({
             {shortcut}
           </kbd>
         ) : null}
-        {loading ? <CircleNotch className={styles.spinner} size={16} aria-label="Ricerca in corso" /> : null}
+        {loading || lookup.status === "searching" ? (
+          <CircleNotch className={styles.spinner} size={16} aria-label="Ricerca in corso" />
+        ) : null}
       </label>
 
       <button type="submit" className={styles.submit}>
@@ -117,7 +153,16 @@ export function PlaceSearch({
 
       {showList ? (
         <ul id={listId} role="listbox" className={styles.list}>
-          {error && !results.length ? (
+          {cadastral ? (
+            <li className={styles.status} aria-live="polite">
+              {lookup.status === "searching"
+                ? "Ricerca nell'archivio catastale del Comune… La prima volta può richiedere fino a un minuto."
+                : lookup.status === "failed"
+                  ? lookup.message
+                  : "Premi Invio per cercare questo riferimento catastale."}
+            </li>
+          ) : null}
+          {error && !results.length && !cadastral ? (
             <li className={styles.status}>La ricerca degli indirizzi non risponde. Riprova tra poco.</li>
           ) : null}
           {loading && !results.length ? <li className={styles.status}>Ricerca…</li> : null}

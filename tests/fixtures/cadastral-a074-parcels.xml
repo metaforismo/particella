@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding="UTF-8" ?>
+<wfs:FeatureCollection
+   xmlns:CP="http://mapserver.gis.umn.edu/mapserver"
+   xmlns:gml="http://www.opengis.net/gml/3.2"
+   xmlns:wfs="http://www.opengis.net/wfs/2.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralParcel&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"
+   timeStamp="2026-10-06T02:30:23" numberMatched="3" numberReturned="3">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+      		<gml:lowerCorner>45.347024 7.765831</gml:lowerCorner>
+      		<gml:upperCorner>45.348998 7.766858</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+    <wfs:member>
+      <CP:CadastralParcel gml:id="CadastralParcel.IT.AGE.PLA.A074_005100.1">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+        		<gml:lowerCorner>45.348548 7.766320</gml:lowerCorner>
+        		<gml:upperCorner>45.348957 7.766774</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <CP:msGeometry>
+          <gml:Polygon gml:id="CadastralParcel.IT.AGE.PLA.A074_005100.1.1" srsName="urn:ogc:def:crs:EPSG::6706">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">45.34895727 7.76642514 45.34888447 7.76640133 45.34885226 7.76639164 45.34878655 7.76637422 45.34859436 7.76632041 45.34854820 7.76677445 45.34877268 7.76673656 45.34895041 7.76670779 45.34895727 7.76642514 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </CP:msGeometry>
+        <CP:INSPIREID_LOCALID>IT.AGE.PLA.A074_005100.1</CP:INSPIREID_LOCALID>
+        <CP:INSPIREID_NAMESPACE>IT.AGE.PLA.</CP:INSPIREID_NAMESPACE>
+        <CP:LABEL>1</CP:LABEL>
+        <CP:NATIONALCADASTRALREFERENCE>A074_005100.1</CP:NATIONALCADASTRALREFERENCE>
+        <CP:ADMINISTRATIVEUNIT>A074</CP:ADMINISTRATIVEUNIT>
+      </CP:CadastralParcel>
+    </wfs:member>
+    <wfs:member>
+      <CP:CadastralParcel gml:id="CadastralParcel.IT.AGE.PLA.A074_005100.119">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+        		<gml:lowerCorner>45.348384 7.766283</gml:lowerCorner>
+        		<gml:upperCorner>45.348594 7.766846</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <CP:msGeometry>
+          <gml:Polygon gml:id="CadastralParcel.IT.AGE.PLA.A074_005100.119.1" srsName="urn:ogc:def:crs:EPSG::6706">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">45.34845570 7.76628262 45.34838373 7.76684624 45.34838738 7.76684600 45.34839561 7.76679929 45.34854820 7.76677445 45.34859436 7.76632041 45.34851045 7.76629538 45.34845570 7.76628262 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </CP:msGeometry>
+        <CP:INSPIREID_LOCALID>IT.AGE.PLA.A074_005100.119</CP:INSPIREID_LOCALID>
+        <CP:INSPIREID_NAMESPACE>IT.AGE.PLA.</CP:INSPIREID_NAMESPACE>
+        <CP:LABEL>119</CP:LABEL>
+        <CP:NATIONALCADASTRALREFERENCE>A074_005100.119</CP:NATIONALCADASTRALREFERENCE>
+        <CP:ADMINISTRATIVEUNIT>A074</CP:ADMINISTRATIVEUNIT>
+      </CP:CadastralParcel>
+    </wfs:member>
+    <wfs:member>
+      <CP:CadastralParcel gml:id="CadastralParcel.IT.AGE.PLA.A074_005100.STRADA002">
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::6706">
+        		<gml:lowerCorner>45.347024 7.765831</gml:lowerCorner>
+        		<gml:upperCorner>45.348998 7.766858</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <CP:msGeometry>
+          <gml:Polygon gml:id="CadastralParcel.IT.AGE.PLA.A074_005100.STRADA002.1" srsName="urn:ogc:def:crs:EPSG::6706">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList srsDimension="2">45.34851045 7.76629538 45.34859436 7.76632041 45.34878655 7.76637422 45.34885226 7.76639164 45.34888447 7.76640133 45.34895727 7.76642514 45.34895041 7.76670779 45.34877268 7.76673656 45.34854820 7.76677445 45.34839561 7.76679929 45.34838738 7.76684600 45.34838706 7.76685623 45.34838717 7.76685754 45.34854584 7.76683665 45.34855445 7.76683567 45.34875281 7.76681040 45.34884596 7.76679769 45.34896765 7.76678333 45.34897461 7.76678229 45.34898807 7.76674398 45.34899202 7.76673211 45.34899289 7.76657169 45.34899342 7.76642613 45.34899371 7.76642112 45.34899430 7.76641078 45.34899595 7.76635358 45.34899826 7.76629468 45.34899766 7.76629453 45.34886538 7.76626388 45.34867317 7.76621881 45.34850968 7.76617945 45.34838031 7.76614857 45.34834772 7.76614117 45.34817676 7.76610290 45.34812048 7.76608497 45.34800462 7.76605883 45.34789329 7.76603522 45.34789882 7.76600317 45.34778841 7.76597571 45.34761825 7.76593331 45.34736120 7.76587224 45.34734672 7.76586848 45.34719701 7.76584078 45.34715257 7.76583178 45.34715088 7.76583141 45.34712357 7.76602166 45.34712066 7.76604539 45.34711998 7.76605383 45.34709782 7.76623597 45.34708633 7.76631155 45.34708570 7.76631598 45.34708534 7.76631847 45.34708360 7.76633073 45.34705266 7.76656779 45.34705011 7.76659028 45.34704194 7.76666221 45.34702430 7.76670373 45.34702466 7.76670372 45.34708500 7.76666979 45.34709324 7.76659624 45.34709961 7.76654470 45.34710144 7.76652589 45.34711034 7.76645964 45.34711183 7.76645491 45.34712328 7.76634862 45.34713216 7.76626881 45.34714552 7.76615857 45.34716786 7.76598501 45.34729469 7.76601508 45.34731505 7.76602007 45.34746595 7.76605513 45.34759206 7.76608074 45.34762055 7.76608788 45.34768262 7.76610098 45.34775854 7.76612062 45.34786185 7.76614552 45.34799681 7.76617946 45.34806822 7.76619254 45.34813178 7.76620715 45.34830273 7.76624651 45.34831020 7.76624542 45.34832619 7.76624985 45.34844670 7.76628262 45.34845570 7.76628262 45.34851045 7.76629538 </gml:posList>
+              </gml:LinearRing>
+            </gml:exterior>
+          </gml:Polygon>
+        </CP:msGeometry>
+        <CP:INSPIREID_LOCALID>IT.AGE.PLA.A074_005100.STRADA002</CP:INSPIREID_LOCALID>
+        <CP:INSPIREID_NAMESPACE>IT.AGE.PLA.</CP:INSPIREID_NAMESPACE>
+        <CP:LABEL>STRADA002</CP:LABEL>
+        <CP:NATIONALCADASTRALREFERENCE>A074_005100.STRADA002</CP:NATIONALCADASTRALREFERENCE>
+        <CP:ADMINISTRATIVEUNIT>A074</CP:ADMINISTRATIVEUNIT>
+      </CP:CadastralParcel>
+    </wfs:member>
+</wfs:FeatureCollection>
+
+

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "FI.zip",
+    "error": "HTTP Error 500: Internal Server Error"
+  },
+  {
+    "name": "SI.zip",
+    "error": "HTTP Error 500: Internal Server Error"
+  },
+  {
+    "name": "D612_FIRENZE.zip",
+    "error": "HTTP Error 500: Internal Server Error"
+  },
+  {
+    "name": "A564_BAGNO-A-RIPOLI.zip",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "A564_BAGNO_A_RIPOLI.zip",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "I726_SIENA.zip",
+    "error": "HTTP Error 500: Internal Server Error"
+  }
+]

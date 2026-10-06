@@ -1,0 +1,18 @@
+[
+  {
+    "name": "toscana-filter",
+    "url": "https://www502.regione.toscana.it/ows_catasto/com.rt.wms.RTmap/ows?map=owscatasto&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=rt_cat.idcatbdpart.bbox.rt.wfs_search&MAXFEATURES=2&SRSNAME=EPSG%3A4326&FILTER=%3Cogc%3AFilter+xmlns%3Aogc%3D%22http%3A%2F%2Fwww.opengis.net%2Fogc%22%3E%3Cogc%3AAnd%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3Ecomune%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3EFIRENZE%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3Efoglio%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3E150B%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3Eparticella%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3E782%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3C%2Fogc%3AAnd%3E%3C%2Fogc%3AFilter%3E",
+    "status": "HTTP Error 403: Forbidden",
+    "seconds": 0.564,
+    "bytes": 25,
+    "response": "HTTP Error 403: Forbidden"
+  },
+  {
+    "name": "toscana-cql",
+    "url": "https://www502.regione.toscana.it/ows_catasto/com.rt.wms.RTmap/ows?map=owscatasto&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=rt_cat.idcatbdpart.bbox.rt.wfs_search&MAXFEATURES=2&SRSNAME=EPSG%3A4326&CQL_FILTER=comune%3D%27FIRENZE%27+AND+foglio%3D%27150B%27+AND+particella%3D%27782%27",
+    "status": "HTTP Error 403: Forbidden",
+    "seconds": 0.526,
+    "bytes": 25,
+    "response": "HTTP Error 403: Forbidden"
+  }
+]

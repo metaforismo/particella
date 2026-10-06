@@ -1,0 +1,209 @@
+{
+  "reduction": "Positive search samples only: unmodified map labels and parcel bboxes selected from complete official municipal indexes acquired live. Counts and hash refer to the original archive. This file is not an authoritative complete index and must never be loaded in production.",
+  "samples": [
+    {
+      "query": "Agli\u00e8, foglio 51, particella 1",
+      "expectedId": "it:A074:_:51:1",
+      "index": {
+        "version": 1,
+        "belfiore": "A074",
+        "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=PIEMONTE.zip",
+        "retrievedAt": "2026-10-06T00:29:23.685Z",
+        "referenceDate": "2026-09-22T15:03:01",
+        "sha256": "22c231e34bcbf59257d6aab46d6ca9fcfb45634b73f9e269b944aebb86ab283e",
+        "maps": [
+          {
+            "reference": "A074_005100",
+            "sheet": "51",
+            "belfiore": "A074",
+            "section": null
+          }
+        ],
+        "parcels": {
+          "A074_005100.1": [
+            [
+              7.76632,
+              45.348548,
+              7.766774,
+              45.348957
+            ]
+          ]
+        },
+        "counts": {
+          "maps": 55,
+          "parcels": 9125
+        }
+      }
+    },
+    {
+      "query": "Alassio, foglio 1, particella 1",
+      "expectedId": "it:A122:_:1:1",
+      "index": {
+        "version": 1,
+        "belfiore": "A122",
+        "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=LIGURIA.zip",
+        "retrievedAt": "2026-10-06T00:29:39.543Z",
+        "referenceDate": "2026-09-22T08:36:03",
+        "sha256": "78f5f7afa950ac1614c0c0ede39a08bad8797ae9809287d8c9164ab2d9fbed54",
+        "maps": [
+          {
+            "reference": "A122_000100",
+            "sheet": "1",
+            "belfiore": "A122",
+            "section": null
+          }
+        ],
+        "parcels": {
+          "A122_000100.1": [
+            [
+              8.135571,
+              44.030994,
+              8.135809,
+              44.031365
+            ]
+          ]
+        },
+        "counts": {
+          "maps": 40,
+          "parcels": 15559
+        }
+      }
+    },
+    {
+      "query": "Acquasparta, foglio 1, particella 1",
+      "expectedId": "it:A045:_:1:1",
+      "index": {
+        "version": 1,
+        "belfiore": "A045",
+        "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=UMBRIA.zip",
+        "retrievedAt": "2026-10-06T00:29:43.115Z",
+        "referenceDate": "2026-09-22T21:30:27",
+        "sha256": "d14b26203a8f7c668ec89e6a911b4a4ceb921047b20e3af50c80cec2d081f08e",
+        "maps": [
+          {
+            "reference": "A045_000100",
+            "sheet": "1",
+            "belfiore": "A045",
+            "section": null
+          }
+        ],
+        "parcels": {
+          "A045_000100.1": [
+            [
+              12.492926,
+              42.733243,
+              12.493054,
+              42.733446
+            ]
+          ]
+        },
+        "counts": {
+          "maps": 73,
+          "parcels": 13967
+        }
+      }
+    },
+    {
+      "query": "Agrigento, foglio 191, particella 1",
+      "expectedId": "it:A089:_:191:1",
+      "index": {
+        "version": 1,
+        "belfiore": "A089",
+        "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=SICILIA.zip",
+        "retrievedAt": "2026-10-06T00:29:49.510Z",
+        "referenceDate": "2026-09-22T18:26:44",
+        "sha256": "e70072d8840eca35be7b3b67e3893bcf71a123818dfd1783ec7c232c1c9f49eb",
+        "maps": [
+          {
+            "reference": "A089_019100",
+            "sheet": "191",
+            "belfiore": "A089",
+            "section": null
+          }
+        ],
+        "parcels": {
+          "A089_019100.1": [
+            [
+              13.582217,
+              37.261928,
+              13.582577,
+              37.262226
+            ]
+          ]
+        },
+        "counts": {
+          "maps": 223,
+          "parcels": 67916
+        }
+      }
+    },
+    {
+      "query": "Abano Terme, foglio 22, particella 1",
+      "expectedId": "it:A001:_:22:1",
+      "index": {
+        "version": 1,
+        "belfiore": "A001",
+        "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=VENETO.zip",
+        "retrievedAt": "2026-10-06T00:29:52.199Z",
+        "referenceDate": "2026-09-23T20:11:56",
+        "sha256": "250e3a12e6215cec6e081c12c9f166d1196ee7d23fc8c99f171fca3533416430",
+        "maps": [
+          {
+            "reference": "A001_002200",
+            "sheet": "22",
+            "belfiore": "A001",
+            "section": null
+          }
+        ],
+        "parcels": {
+          "A001_002200.1": [
+            [
+              11.807941,
+              45.349155,
+              11.808372,
+              45.349537
+            ]
+          ]
+        },
+        "counts": {
+          "maps": 31,
+          "parcels": 11036
+        }
+      }
+    },
+    {
+      "query": "Firenze, foglio 150B, particella 782",
+      "expectedId": "it:D612:_:150B:782",
+      "index": {
+        "version": 1,
+        "belfiore": "D612",
+        "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+        "retrievedAt": "2026-10-06T00:29:08.750Z",
+        "referenceDate": "2026-09-22T20:10:50",
+        "sha256": "22409635921eba1b2f35e2e979affad3d74c1be135468d4e721c1b9ddf930a15",
+        "maps": [
+          {
+            "reference": "D612_0150B0",
+            "sheet": "150B",
+            "belfiore": "D612",
+            "section": null
+          }
+        ],
+        "parcels": {
+          "D612_0150B0.782": [
+            [
+              11.232587,
+              43.736742,
+              11.233088,
+              43.737108
+            ]
+          ]
+        },
+        "counts": {
+          "maps": 297,
+          "parcels": 110804
+        }
+      }
+    }
+  ]
+}

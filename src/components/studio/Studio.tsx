@@ -26,6 +26,7 @@ import { forgetRecentPlots, useRecentPlots } from "./recent";
 import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
 import { EXAMPLES } from "@/content/examples";
+import { api } from "@/lib/api/client";
 import styles from "./Studio.module.css";
 
 // The assistant pulls in the AI SDK and a markdown renderer: load it only when someone opens it.
@@ -97,10 +98,9 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     }
     if (!initial.query) return;
     const controller = new AbortController();
-    fetch(`/api/v1/geocode?q=${encodeURIComponent(initial.query)}`, { signal: controller.signal })
-      .then((res) => (res.ok ? (res.json() as Promise<{ results: GeocodeResult[] }>) : null))
-      .then((body) => {
-        const best = body?.results[0];
+    api
+      .geocode(initial.query, controller.signal)
+      .then(([best]) => {
         if (best) selectPoint(best.center);
       })
       .catch(() => {});

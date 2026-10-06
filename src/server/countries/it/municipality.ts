@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { municipalitySnapshot } from "#server/countries/it/cadastral-query.ts";
 import provinces from "../../../../data/snapshots/it-provinces-2026.json" with { type: "json" };
 import type { LatLon, Municipality } from "#contracts";
 import { OutsideCoverage, UpstreamError } from "#server/core/errors.ts";
@@ -47,9 +48,18 @@ export async function municipalityAt(p: LatLon, belfiore: string | null = null, 
   const a = parsed.data;
   const provinceId = String(a.COD_PROV).padStart(3, "0");
   const province = (provinces.provinces as Record<string, { name: string; code: string }>)[provinceId];
+  const supplied = belfiore
+    ? municipalitySnapshot.municipalities.find((m) => m.cadastralCode === belfiore)
+    : undefined;
+  const municipalityRecord =
+    supplied?.istatCode === a.PRO_COM_T
+      ? supplied
+      : municipalitySnapshot.municipalities.find((m) => m.istatCode === a.PRO_COM_T);
   const municipality: Municipality = {
     istatCode: a.PRO_COM_T,
-    cadastralCode: belfiore,
+    cadastralCode: /^[A-Z]\d{3}$/.test(municipalityRecord?.cadastralCode ?? "")
+      ? municipalityRecord!.cadastralCode
+      : null,
     name: a.COMUNE,
     province: province?.name ?? null,
     provinceCode: province?.code ?? null,
@@ -59,6 +69,10 @@ export async function municipalityAt(p: LatLon, belfiore: string | null = null, 
     throw new OutsideCoverage("La cartografia AdE non copre le province autonome di Trento e Bolzano.");
   return {
     municipality,
+    codeProvenance: provenance("istat-municipalities", {
+      requestUrl: municipalitySnapshot.sourceUrl,
+      retrievedAt: municipalitySnapshot.retrievedAt,
+    }),
     provenance: provenance("istat-municipality", payload),
     provinceProvenance: provenance("istat-provinces", {
       requestUrl: provinces.sourceUrl,

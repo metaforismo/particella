@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { api } from "@/lib/api/client";
+import { looksCadastral } from "@/lib/cadastral";
 import type { GeocodeResult } from "@/lib/contracts";
 
 const DEBOUNCE_MS = 220;
@@ -13,18 +15,17 @@ export function useGeocode(query: string) {
   const q = query.trim();
   const [settled, setSettled] = useState<Settled>({ query: "", results: [], error: false });
 
+  // Cadastral references are searched on submit only (see PlaceSearch), never while typing.
+  const cadastral = looksCadastral(q);
+
   useEffect(() => {
-    if (q.length < MIN_CHARS) return;
+    if (q.length < MIN_CHARS || cadastral) return;
 
     const controller = new AbortController();
     const timer = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/v1/geocode?q=${encodeURIComponent(q)}`, {
-          signal: controller.signal,
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        const body = (await res.json()) as { results: GeocodeResult[] };
-        setSettled({ query: q, results: body.results, error: false });
+        const results = await api.geocode(q, controller.signal);
+        setSettled({ query: q, results, error: false });
       } catch (err) {
         if ((err as Error).name !== "AbortError") setSettled({ query: q, results: [], error: true });
       }
@@ -34,10 +35,10 @@ export function useGeocode(query: string) {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [q]);
+  }, [q, cadastral]);
 
-  if (q.length < MIN_CHARS) return { results: [], loading: false, error: false };
+  if (q.length < MIN_CHARS || cadastral) return { results: [], loading: false, error: false, cadastral };
   const fresh = settled.query === q;
   // While a new query is in flight keep showing the previous list to avoid flicker.
-  return { results: settled.results, loading: !fresh, error: fresh && settled.error };
+  return { results: settled.results, loading: !fresh, error: fresh && settled.error, cadastral };
 }

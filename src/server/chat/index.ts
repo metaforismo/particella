@@ -9,7 +9,7 @@ import {
   type LanguageModel,
 } from "ai";
 import { getVercelOidcTokenSync } from "@vercel/oidc";
-import { PlotId } from "#server/countries/it/cadastre.ts";
+import { LotId, parseLotId } from "#server/lots.ts";
 import { BadRequest, NotConfigured } from "#server/core/errors.ts";
 import { route } from "#server/http/responses.ts";
 import { boundedJson } from "#server/http/body.ts";
@@ -22,8 +22,8 @@ const Part = z.object({ type: z.string().max(80), text: z.string().max(6_000).op
 export const ChatRequest = z
   .object({
     id: z.string().min(1).max(128),
-    plotId: PlotId,
-    at: z.string().max(64).optional(),
+    plotId: LotId,
+    at: z.string().max(2000).optional(),
     messages: z
       .array(
         z.object({
@@ -127,7 +127,11 @@ export function createChatHandler(
       const parsed = ChatRequest.safeParse(await boundedJson(request));
       if (!parsed.success) throw new BadRequest("Conversazione non valida o troppo lunga.");
       const input = parsed.data;
-      parseAt(input.at);
+      const ids = parseLotId(input.plotId);
+      const points = input.at?.split(";");
+      if (points && points.length !== ids.length)
+        throw new BadRequest("Indicare un punto per ogni particella del lotto.");
+      points?.forEach((point) => parseAt(point));
       (dependencies.limiter ?? chatRateLimiter).consume(request);
       if (!(await (dependencies.configured ?? chatConfigured)()))
         throw new NotConfigured("L’assistente non è ancora configurato.");

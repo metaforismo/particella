@@ -1,0 +1,98 @@
+[
+  {
+    "municipality": "Firenze",
+    "belfiore": "D612",
+    "counts": {
+      "maps": 297,
+      "parcels": 110804
+    },
+    "indexBytes": 6782383,
+    "seconds": 2.7259559170000003,
+    "referenceDate": "2026-09-22T20:10:50",
+    "sha256": "22409635921eba1b2f35e2e979affad3d74c1be135468d4e721c1b9ddf930a15"
+  },
+  {
+    "municipality": "Bagno a Ripoli",
+    "belfiore": "A564",
+    "counts": {
+      "maps": 76,
+      "parcels": 27549
+    },
+    "indexBytes": 1672260,
+    "seconds": 1.5581975000000001,
+    "referenceDate": "2026-09-22T20:07:31",
+    "sha256": "63eae2a475bfda6ca3b28b2877ea13c9478d59772492619bc2f91c60040c7e0d"
+  },
+  {
+    "municipality": "Siena",
+    "belfiore": "I726",
+    "counts": {
+      "maps": 145,
+      "parcels": 36770
+    },
+    "indexBytes": 2239335,
+    "seconds": 0.481589958,
+    "referenceDate": "2026-09-22T21:08:08",
+    "sha256": "b4955f949c7674e3eefc204cf459a212bfb98781decdff2bf3a4aa7397a4f712"
+  },
+  {
+    "municipality": "Agli\u00e8",
+    "belfiore": "A074",
+    "counts": {
+      "maps": 55,
+      "parcels": 9125
+    },
+    "indexBytes": 527851,
+    "seconds": 1.9864254590000003,
+    "referenceDate": "2026-09-22T15:03:01",
+    "sha256": "22c231e34bcbf59257d6aab46d6ca9fcfb45634b73f9e269b944aebb86ab283e"
+  },
+  {
+    "municipality": "Alassio",
+    "belfiore": "A122",
+    "counts": {
+      "maps": 40,
+      "parcels": 15559
+    },
+    "indexBytes": 896135,
+    "seconds": 2.563719416,
+    "referenceDate": "2026-09-22T08:36:03",
+    "sha256": "78f5f7afa950ac1614c0c0ede39a08bad8797ae9809287d8c9164ab2d9fbed54"
+  },
+  {
+    "municipality": "Acquasparta",
+    "belfiore": "A045",
+    "counts": {
+      "maps": 73,
+      "parcels": 13967
+    },
+    "indexBytes": 837171,
+    "seconds": 3.3566654170000003,
+    "referenceDate": "2026-09-22T21:30:27",
+    "sha256": "d14b26203a8f7c668ec89e6a911b4a4ceb921047b20e3af50c80cec2d081f08e"
+  },
+  {
+    "municipality": "Agrigento",
+    "belfiore": "A089",
+    "counts": {
+      "maps": 223,
+      "parcels": 67916
+    },
+    "indexBytes": 4139371,
+    "seconds": 6.4817637910000006,
+    "referenceDate": "2026-09-22T18:26:44",
+    "sha256": "e70072d8840eca35be7b3b67e3893bcf71a123818dfd1783ec7c232c1c9f49eb"
+  },
+  {
+    "municipality": "Abano Terme",
+    "belfiore": "A001",
+    "counts": {
+      "maps": 31,
+      "parcels": 11036
+    },
+    "indexBytes": 674370,
+    "seconds": 1.860243542,
+    "referenceDate": "2026-09-23T20:11:56",
+    "sha256": "250e3a12e6215cec6e081c12c9f166d1196ee7d23fc8c99f171fca3533416430"
+  }
+]

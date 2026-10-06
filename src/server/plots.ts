@@ -1,14 +1,14 @@
 import { LatLon, LayerId, PlotReport, type Plot } from "#contracts";
 import { getCountry } from "#server/countries/index.ts";
 import type { CountryAdapter } from "#server/countries/types.ts";
-import { parsePlotId } from "#server/countries/it/cadastre.ts";
+import { parseLotId, aggregatePlots } from "#server/lots.ts";
 import { cache, canonicalKey, type Cache } from "#server/core/cache.ts";
 import { layerCatalog, runLayer, singleLayerTimeoutMs } from "#server/core/layers.ts";
-import { BadRequest, NotFound } from "#server/core/errors.ts";
+import { BadRequest, NotFound, UpstreamError } from "#server/core/errors.ts";
 import { z } from "zod";
 import { ServerTiming } from "#server/core/timing.ts";
 
-export const plotQuery = z.object({ at: z.string().max(64).optional() }).strict();
+export const plotQuery = z.object({ at: z.string().max(2000).optional() }).strict();
 
 export function parseAt(at?: string | LatLon): LatLon | undefined {
   if (at === undefined) return undefined;
@@ -31,8 +31,22 @@ export function createPlotResolver(country: CountryAdapter, storage: Cache = cac
   resolvingPlots.set(storage, countries);
   const pending = countries.get(country) ?? new Map<string, Promise<Plot>>();
   countries.set(country, pending);
-  return async function resolve(id: string, at?: string | LatLon): Promise<Plot> {
-    parsePlotId(id);
+  return async function resolve(id: string, at?: string | LatLon, signal?: AbortSignal): Promise<Plot> {
+    const deadline = AbortSignal.any([AbortSignal.timeout(200_000), ...(signal ? [signal] : [])]);
+    if (deadline.aborted) throw new UpstreamError("Richiesta interrotta.");
+    const ids = parseLotId(id);
+    if (ids.length > 1) {
+      if (at !== undefined && typeof at !== "string")
+        throw new BadRequest(
+          "Per un lotto composto usare un punto per particella separato da punto e virgola.",
+        );
+      const points = typeof at === "string" ? at.split(";").map((p) => parseAt(p)) : ids.map(() => undefined);
+      if (points.length !== ids.length)
+        throw new BadRequest("Indicare un punto per ogni particella, nello stesso ordine degli ID.");
+      const plots: Plot[] = [];
+      for (let i = 0; i < ids.length; i++) plots.push(await resolve(ids[i], points[i], deadline));
+      return aggregatePlots(plots);
+    }
     const point = parseAt(at);
     const key = canonicalKey("plot:v1", id);
     const stored = await storage.get<Plot | { missing: true }>(key);
@@ -44,8 +58,8 @@ export function createPlotResolver(country: CountryAdapter, storage: Cache = cac
     if (existing) return existing;
     const task = (async () => {
       const plot = point
-        ? await country.plotAt(point.lat, point.lon, AbortSignal.timeout(25_000))
-        : await country.plotById(id, AbortSignal.timeout(25_000));
+        ? await country.plotAt(point.lat, point.lon, AbortSignal.any([deadline, AbortSignal.timeout(25_000)]))
+        : await country.plotById(id, deadline);
       if (plot.id !== id) throw new NotFound("Il punto indicato non ricade nella particella richiesta.");
       await storage.set(key, plot, 86_400_000);
       return plot;
@@ -55,8 +69,8 @@ export function createPlotResolver(country: CountryAdapter, storage: Cache = cac
   };
 }
 
-export async function resolvePlot(id: string, at?: string | LatLon): Promise<Plot> {
-  return createPlotResolver(getCountry("it"))(id, at);
+export async function resolvePlot(id: string, at?: string | LatLon, signal?: AbortSignal): Promise<Plot> {
+  return createPlotResolver(getCountry("it"))(id, at, signal);
 }
 
 export async function getPlotLayer(

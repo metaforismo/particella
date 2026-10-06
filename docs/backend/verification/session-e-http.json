@@ -1,0 +1,753 @@
+[
+  {
+    "check": "Firenze foglio 150B particella 782",
+    "status": 200,
+    "seconds": 0.9704332909313962,
+    "result": {
+      "id": "it:D612:_:150B:782",
+      "label": "Foglio 150B \u00b7 Particella 782",
+      "secondary": "Firenze (FI)",
+      "kind": "parcel",
+      "center": {
+        "lat": 43.73692623,
+        "lon": 11.232836461111074
+      },
+      "bbox": [11.23258655, 43.73674209, 11.23308782, 43.73710804],
+      "provenance": [
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.736742%2C11.232587%2C43.737108%2C11.233088%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:50.300Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastral-download",
+          "dataset": "Mappe catastali \u2014 fogli",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+          "retrievedAt": "2026-10-06T00:29:08.750Z",
+          "referenceDate": "2026-09-22T20:10:50"
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.232836461111074%2C43.73692623&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:50.498Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-provinces",
+          "dataset": "Province \u2014 nomi e sigle",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+          "retrievedAt": "2026-10-05T22:47:25.483Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "Bagno a Ripoli fg 60 mapp 109",
+    "status": 200,
+    "seconds": 0.4135017499793321,
+    "result": {
+      "id": "it:A564:_:60:109",
+      "label": "Foglio 60 \u00b7 Particella 109",
+      "secondary": "Bagno a Ripoli (FI)",
+      "kind": "parcel",
+      "center": {
+        "lat": 43.69985541,
+        "lon": 11.32020019588466
+      },
+      "bbox": [11.31879591, 43.69939041, 11.32059852, 43.7000429],
+      "provenance": [
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.69939%2C11.318796%2C43.700043%2C11.320599%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:50.649Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastral-download",
+          "dataset": "Mappe catastali \u2014 fogli",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+          "retrievedAt": "2026-10-06T00:29:12.442Z",
+          "referenceDate": "2026-09-22T20:07:31"
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.32020019588466%2C43.69985541&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:50.916Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-provinces",
+          "dataset": "Province \u2014 nomi e sigle",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+          "retrievedAt": "2026-10-05T22:47:25.483Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "Bagno a Ripoli fg 60 mapp 110",
+    "status": 200,
+    "seconds": 0.46154683304484934,
+    "result": {
+      "id": "it:A564:_:60:110",
+      "label": "Foglio 60 \u00b7 Particella 110",
+      "secondary": "Bagno a Ripoli (FI)",
+      "kind": "parcel",
+      "center": {
+        "lat": 43.70074796,
+        "lon": 11.31941598964887
+      },
+      "bbox": [11.31832792, 43.699572890000006, 11.32048395, 43.7013002],
+      "provenance": [
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.699573%2C11.318328%2C43.7013%2C11.320484%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:51.170Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastral-download",
+          "dataset": "Mappe catastali \u2014 fogli",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+          "retrievedAt": "2026-10-06T00:29:12.442Z",
+          "referenceDate": "2026-09-22T20:07:31"
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.31941598964887%2C43.70074796&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:51.377Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-provinces",
+          "dataset": "Province \u2014 nomi e sigle",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+          "retrievedAt": "2026-10-05T22:47:25.483Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        }
+      ]
+    }
+  },
+  {
+    "check": "POST /lots",
+    "status": 200,
+    "result": {
+      "id": "it:A564:_:60:109+it:A564:_:60:110",
+      "country": "it",
+      "cadastral": {
+        "municipalityCode": "A564",
+        "section": null,
+        "sheet": "60",
+        "parcel": "109, 110",
+        "label": "Foglio 60 \u00b7 Particelle 109, 110"
+      },
+      "municipality": {
+        "istatCode": "048001",
+        "cadastralCode": "A564",
+        "name": "Bagno a Ripoli",
+        "province": "Firenze",
+        "provinceCode": "FI",
+        "region": "Toscana"
+      },
+      "address": null,
+      "centroid": {
+        "lat": 43.70074796,
+        "lon": 11.31941598964887
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [11.31832792, 43.70010382],
+              [11.31891138, 43.69991913],
+              [11.3188466, 43.699572890000006],
+              [11.31879591, 43.69940017],
+              [11.31912383, 43.69939108],
+              [11.31915578, 43.69939041],
+              [11.31948077, 43.69946371],
+              [11.31968953, 43.69952521],
+              [11.31974011, 43.69954229],
+              [11.31987485, 43.69958103],
+              [11.32002115, 43.69962506],
+              [11.3201893, 43.69966954000001],
+              [11.32034398, 43.69971357],
+              [11.32044272, 43.6997445],
+              [11.32047559, 43.69975313],
+              [11.32052952, 43.69976863],
+              [11.32058444, 43.69978077],
+              [11.32059852, 43.69978294],
+              [11.32059814, 43.6997838],
+              [11.32048395, 43.7000429],
+              [11.32020855, 43.70060456],
+              [11.31998129, 43.70106534],
+              [11.319231430000002, 43.70089136],
+              [11.31935106, 43.70122816],
+              [11.31902726, 43.7013002],
+              [11.3188327, 43.70097609],
+              [11.31855408, 43.70051731],
+              [11.31850249, 43.70043451],
+              [11.31842091, 43.70027924],
+              [11.31832792, 43.70010382]
+            ]
+          ]
+        ]
+      },
+      "areaM2": 22860.33032245063,
+      "perimeterM": 687.3355242796705,
+      "parcels": [
+        {
+          "id": "it:A564:_:60:109",
+          "at": {
+            "lat": 43.69985541,
+            "lon": 11.32020019588466
+          },
+          "cadastral": {
+            "municipalityCode": "A564",
+            "section": null,
+            "sheet": "60",
+            "parcel": "109",
+            "label": "Foglio 60 \u00b7 Particella 109"
+          }
+        },
+        {
+          "id": "it:A564:_:60:110",
+          "at": {
+            "lat": 43.70074796,
+            "lon": 11.31941598964887
+          },
+          "cadastral": {
+            "municipalityCode": "A564",
+            "section": null,
+            "sheet": "60",
+            "parcel": "110",
+            "label": "Foglio 60 \u00b7 Particella 110"
+          }
+        }
+      ],
+      "representativePointMethod": "interior-point",
+      "provenance": [
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.69939%2C11.318796%2C43.700043%2C11.320599%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:50.649Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastral-download",
+          "dataset": "Mappe catastali \u2014 fogli",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+          "retrievedAt": "2026-10-06T00:29:12.442Z",
+          "referenceDate": "2026-09-22T20:07:31"
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.32020019588466%2C43.69985541&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:50.916Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-provinces",
+          "dataset": "Province \u2014 nomi e sigle",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+          "retrievedAt": "2026-10-05T22:47:25.483Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.699573%2C11.318328%2C43.7013%2C11.320484%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:51.170Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.31941598964887%2C43.70074796&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:51.377Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "particella-lot",
+          "dataset": "Unione geometrica delle particelle catastali",
+          "authority": "Particella",
+          "license": "CC BY 4.0 (geometrie AdE)",
+          "url": "https://github.com/metaforismo/particella",
+          "method": "computed",
+          "isOfficial": false,
+          "retrievedAt": "2026-10-06T00:42:51.387Z"
+        }
+      ]
+    }
+  },
+  {
+    "check": "GET shared compound URL",
+    "status": 200,
+    "result": {
+      "id": "it:A564:_:60:109+it:A564:_:60:110",
+      "country": "it",
+      "cadastral": {
+        "municipalityCode": "A564",
+        "section": null,
+        "sheet": "60",
+        "parcel": "109, 110",
+        "label": "Foglio 60 \u00b7 Particelle 109, 110"
+      },
+      "municipality": {
+        "istatCode": "048001",
+        "cadastralCode": "A564",
+        "name": "Bagno a Ripoli",
+        "province": "Firenze",
+        "provinceCode": "FI",
+        "region": "Toscana"
+      },
+      "address": null,
+      "centroid": {
+        "lat": 43.70074796,
+        "lon": 11.31941598964887
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [11.31832792, 43.70010382],
+              [11.31891138, 43.69991913],
+              [11.3188466, 43.699572890000006],
+              [11.31879591, 43.69940017],
+              [11.31912383, 43.69939108],
+              [11.31915578, 43.69939041],
+              [11.31948077, 43.69946371],
+              [11.31968953, 43.69952521],
+              [11.31974011, 43.69954229],
+              [11.31987485, 43.69958103],
+              [11.32002115, 43.69962506],
+              [11.3201893, 43.69966954000001],
+              [11.32034398, 43.69971357],
+              [11.32044272, 43.6997445],
+              [11.32047559, 43.69975313],
+              [11.32052952, 43.69976863],
+              [11.32058444, 43.69978077],
+              [11.32059852, 43.69978294],
+              [11.32059814, 43.6997838],
+              [11.32048395, 43.7000429],
+              [11.32020855, 43.70060456],
+              [11.31998129, 43.70106534],
+              [11.319231430000002, 43.70089136],
+              [11.31935106, 43.70122816],
+              [11.31902726, 43.7013002],
+              [11.3188327, 43.70097609],
+              [11.31855408, 43.70051731],
+              [11.31850249, 43.70043451],
+              [11.31842091, 43.70027924],
+              [11.31832792, 43.70010382]
+            ]
+          ]
+        ]
+      },
+      "areaM2": 22860.33032245063,
+      "perimeterM": 687.3355242796705,
+      "parcels": [
+        {
+          "id": "it:A564:_:60:109",
+          "at": {
+            "lat": 43.69985541,
+            "lon": 11.32020019588466
+          },
+          "cadastral": {
+            "municipalityCode": "A564",
+            "section": null,
+            "sheet": "60",
+            "parcel": "109",
+            "label": "Foglio 60 \u00b7 Particella 109"
+          }
+        },
+        {
+          "id": "it:A564:_:60:110",
+          "at": {
+            "lat": 43.70074796,
+            "lon": 11.31941598964887
+          },
+          "cadastral": {
+            "municipalityCode": "A564",
+            "section": null,
+            "sheet": "60",
+            "parcel": "110",
+            "label": "Foglio 60 \u00b7 Particella 110"
+          }
+        }
+      ],
+      "representativePointMethod": "interior-point",
+      "provenance": [
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.69939%2C11.318796%2C43.700043%2C11.320599%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:50.649Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastral-download",
+          "dataset": "Mappe catastali \u2014 fogli",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+          "retrievedAt": "2026-10-06T00:29:12.442Z",
+          "referenceDate": "2026-09-22T20:07:31"
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.32020019588466%2C43.69985541&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:50.916Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-provinces",
+          "dataset": "Province \u2014 nomi e sigle",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+          "retrievedAt": "2026-10-05T22:47:25.483Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.699573%2C11.318328%2C43.7013%2C11.320484%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:42:51.170Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.31941598964887%2C43.70074796&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:42:51.377Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "particella-lot",
+          "dataset": "Unione geometrica delle particelle catastali",
+          "authority": "Particella",
+          "license": "CC BY 4.0 (geometrie AdE)",
+          "url": "https://github.com/metaforismo/particella",
+          "method": "computed",
+          "isOfficial": false,
+          "retrievedAt": "2026-10-06T00:42:51.392Z"
+        }
+      ]
+    }
+  },
+  {
+    "check": "GET cadastral/admin municipality distinction",
+    "status": 200,
+    "result": {
+      "id": "it:A122:_:1:1",
+      "label": "Foglio 1 \u00b7 Particella 1",
+      "secondary": "Alassio (SV) \u00b7 Comune amministrativo: Villanova d'Albenga",
+      "kind": "parcel",
+      "center": {
+        "lat": 44.03109496,
+        "lon": 8.135707082856701
+      },
+      "bbox": [8.13557127, 44.0309941, 8.13580873, 44.03136506],
+      "provenance": [
+        {
+          "sourceId": "ade-cadastre",
+          "dataset": "Cartografia catastale \u2014 particelle",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+          "method": "wfs",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=44.030994%2C8.135571%2C44.031365%2C8.135809%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+          "retrievedAt": "2026-10-06T00:43:19.292Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "ade-cadastral-download",
+          "dataset": "Mappe catastali \u2014 fogli",
+          "authority": "Agenzia delle Entrate",
+          "license": "CC BY 4.0",
+          "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=LIGURIA.zip",
+          "retrievedAt": "2026-10-06T00:29:39.543Z",
+          "referenceDate": "2026-09-22T08:36:03"
+        },
+        {
+          "sourceId": "istat-municipality",
+          "dataset": "Confini comunali 2026",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+          "method": "api",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=8.135707082856701%2C44.03109496&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+          "retrievedAt": "2026-10-06T00:43:19.547Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-provinces",
+          "dataset": "Province \u2014 nomi e sigle",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+          "retrievedAt": "2026-10-05T22:47:25.483Z",
+          "referenceDate": "2026-01-01"
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        },
+        {
+          "sourceId": "istat-municipalities",
+          "dataset": "Comuni \u2014 nomi e codici Belfiore",
+          "authority": "ISTAT",
+          "license": "CC BY 4.0",
+          "url": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "method": "snapshot",
+          "isOfficial": true,
+          "requestUrl": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+          "retrievedAt": "2026-10-06T00:37:48.778Z",
+          "referenceDate": null
+        }
+      ]
+    }
+  }
+]

@@ -122,12 +122,33 @@ export const italianSources: SourceDefinition[] = [
     },
   ),
   define(
+    "ade-cadastral-download",
+    "Download cartografia catastale",
+    "Agenzia delle Entrate",
+    "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php",
+    "REST",
+    {
+      coverage: "Italia esclusi Trento e Bolzano",
+      license: "CC BY 4.0",
+      updateCadence: "Semestrale",
+      url: "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+    },
+  ),
+  define(
     "ade-zoning",
     "Mappe catastali INSPIRE",
     "Agenzia delle Entrate",
     "https://wms.cartografia.agenziaentrate.gov.it/inspire/wms/ows01.php",
     "WMS",
     { coverage: "Italia esclusi Trento e Bolzano", hostPolicy: { concurrency: 1, requestsPerSecond: 2 } },
+  ),
+  define(
+    "istat-municipalities",
+    "Comuni — nomi e codici Belfiore",
+    "ISTAT",
+    "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv",
+    "snapshot",
+    { updateCadence: "Da verificare presso SITUAS" },
   ),
   define(
     "istat-municipality",

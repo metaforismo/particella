@@ -16,50 +16,54 @@ export default async function OpenGraphImage() {
   ]);
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          background: "#edefec",
-          backgroundImage:
-            "linear-gradient(#d9ddd9 1px, transparent 1px), linear-gradient(90deg, #d9ddd9 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          padding: 72,
-          fontFamily: "Archivo",
-          color: "#17201d",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
-          <div style={{ display: "flex", fontSize: 34, fontWeight: 700 }}>Particella</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1, letterSpacing: -3, maxWidth: 720 }}>
-              Cosa si può costruire qui?
-            </div>
-            <div style={{ fontSize: 30, fontWeight: 500, color: "#47524d", maxWidth: 700 }}>
-              Catasto, rischi, vincoli e contesto di ogni terreno in Italia, con la fonte accanto a ogni dato.
-            </div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        background: "#edefec",
+        backgroundImage:
+          "linear-gradient(#d9ddd9 1px, transparent 1px), linear-gradient(90deg, #d9ddd9 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+        padding: 72,
+        fontFamily: "Archivo",
+        color: "#17201d",
+      }}
+    >
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
+        <div style={{ display: "flex", fontSize: 34, fontWeight: 700 }}>Particella</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1, letterSpacing: -3, maxWidth: 720 }}>
+            Cosa si può costruire qui?
+          </div>
+          <div style={{ fontSize: 30, fontWeight: 500, color: "#47524d", maxWidth: 700 }}>
+            Catasto, rischi, vincoli e contesto di ogni terreno in Italia, con la fonte accanto a ogni dato.
           </div>
         </div>
-        <svg width="340" height="340" viewBox="0 0 24 24" style={{ alignSelf: "center" }}>
-          <defs>
-            <pattern id="h" width="1.6" height="1.6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="0.65" height="1.6" fill="#f5c518" />
-            </pattern>
-          </defs>
-          <path d="M3.5 7.2 13.8 2.8l6.9 6.1-2.4 11.4-12.6 1.2Z" fill="url(#h)" />
-          <path
-            d="M3.5 7.2 13.8 2.8l6.9 6.1-2.4 11.4-12.6 1.2Z"
-            fill="none"
-            stroke="#17201d"
-            strokeWidth="0.6"
-            strokeLinejoin="round"
-          />
-          <circle cx="11.6" cy="12.6" r="0.9" fill="#17201d" />
-        </svg>
       </div>
-    ),
+      <svg width="340" height="340" viewBox="0 0 24 24" style={{ alignSelf: "center" }}>
+        <defs>
+          <pattern
+            id="h"
+            width="1.6"
+            height="1.6"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
+            <rect width="0.65" height="1.6" fill="#f5c518" />
+          </pattern>
+        </defs>
+        <path d="M3.5 7.2 13.8 2.8l6.9 6.1-2.4 11.4-12.6 1.2Z" fill="url(#h)" />
+        <path
+          d="M3.5 7.2 13.8 2.8l6.9 6.1-2.4 11.4-12.6 1.2Z"
+          fill="none"
+          stroke="#17201d"
+          strokeWidth="0.6"
+          strokeLinejoin="round"
+        />
+        <circle cx="11.6" cy="12.6" r="0.9" fill="#17201d" />
+      </svg>
+    </div>,
     {
       ...size,
       fonts: [

@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown";
 import { ArrowCounterClockwise, ArrowUp, CircleNotch, Stop, X } from "@phosphor-icons/react";
 import { LAYER_BY_ID } from "@/content/layers";
 import type { LayerId, Plot } from "@/lib/contracts";
-import { formatAt } from "@/lib/routes";
+import { formatLocation, plotLocation } from "@/lib/routes";
 import styles from "./AskPanel.module.css";
 
 const SUGGESTIONS = [
@@ -45,12 +45,12 @@ export function AskPanel({ plot, onClose }: Props) {
           body: {
             id,
             plotId: plot.id,
-            at: formatAt(plot.centroid),
+            at: formatLocation(plotLocation(plot)),
             messages: messages.slice(-HISTORY).map(textOnly),
           },
         }),
       }),
-    [plot.id, plot.centroid],
+    [plot],
   );
 
   const { messages, sendMessage, status, stop, error, regenerate, setMessages, clearError } = useChat({

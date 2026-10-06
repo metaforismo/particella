@@ -1,7 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { LatLon, Plot } from "@/lib/contracts";
+import type { Plot } from "@/lib/contracts";
+import { plotLocation, type PlotLocation } from "@/lib/routes";
 
 /** The minimum needed to show a plot in a list and to reopen it on any server instance. */
 export type PlotRef = {
@@ -9,7 +10,7 @@ export type PlotRef = {
   label: string;
   place: string | null;
   areaM2: number | null;
-  at?: LatLon;
+  at?: PlotLocation;
 };
 
 export function plotRef(plot: Plot): PlotRef {
@@ -18,7 +19,7 @@ export function plotRef(plot: Plot): PlotRef {
     label: plot.cadastral.label,
     place: plot.municipality?.name ?? null,
     areaM2: plot.areaM2,
-    at: plot.centroid,
+    at: plotLocation(plot),
   };
 }
 

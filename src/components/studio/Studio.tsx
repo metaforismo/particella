@@ -22,6 +22,7 @@ import { PlotHeader } from "./PlotHeader";
 import { StudioMap } from "./StudioMap";
 import { compareList } from "@/components/compare/compare-list";
 import { compareHref } from "@/lib/compare";
+import type { PlotLocation } from "@/lib/routes";
 import { forgetRecentPlots, useRecentPlots } from "./recent";
 import { useSheetDrag } from "./useSheetDrag";
 import { useStudio } from "./useStudio";
@@ -34,14 +35,30 @@ const AskPanel = dynamic(() => import("./AskPanel").then((m) => m.AskPanel), {
   loading: () => <p className={styles.askLoading}>Apertura dell&apos;assistente…</p>,
 });
 
-export type StudioInitial = { plotId?: string; point?: LatLon; query?: string; layer?: LayerId };
+export type StudioInitial = {
+  plotId?: string;
+  /** Where to re-resolve `plotId`: one point, or one per parcel for a composite lot. */
+  at?: PlotLocation;
+  point?: LatLon;
+  query?: string;
+  layer?: LayerId;
+};
 
 const PANEL_WIDTH = 384;
 
 export function Studio({ initial }: { initial: StudioInitial }) {
   const studio = useStudio();
-  const { selection, layers, activeLayer, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear } =
-    studio;
+  const {
+    selection,
+    layers,
+    activeLayer,
+    selectPoint,
+    selectPlotId,
+    toggleParcel,
+    setActiveLayer,
+    retryLayer,
+    clear,
+  } = studio;
   const recent = useRecentPlots();
   const compared = compareList.useList();
   const searchRef = useRef<HTMLInputElement>(null);
@@ -89,7 +106,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
   // start aborts the previous request, and the cleanup aborts the free-text lookup.
   useEffect(() => {
     if (initial.plotId) {
-      selectPlotId(initial.plotId, initial.point);
+      selectPlotId(initial.plotId, initial.at);
       return;
     }
     if (initial.point) {
@@ -107,16 +124,21 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     return () => controller.abort();
   }, [initial, selectPlotId, selectPoint]);
 
+  const plot = selection.status === "ready" ? selection.plot : null;
+  const [composing, setComposing] = useState(false);
+  const [locating, setLocating] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
   const pick = useCallback(
-    (point: LatLon) => {
+    (point: LatLon, additive = false) => {
+      if ((composing || additive) && plot) {
+        void toggleParcel(point).then((problem) => setNotice(problem));
+        return;
+      }
       selectPoint(point);
       setSheetOpen(true);
     },
-    [selectPoint],
+    [composing, plot, selectPoint, toggleParcel],
   );
-
-  const [locating, setLocating] = useState(false);
-  const [notice, setNotice] = useState<string | null>(null);
 
   const locateMe = useCallback(() => {
     if (!("geolocation" in navigator)) {
@@ -154,7 +176,6 @@ export function Studio({ initial }: { initial: StudioInitial }) {
     [pick],
   );
 
-  const plot = selection.status === "ready" ? selection.plot : null;
   const pending = selection.status === "locating" ? selection.point : null;
   const activeState = activeLayer ? layers[activeLayer] : undefined;
   const activeResult = activeState?.status === "done" ? activeState.result : null;
@@ -174,6 +195,7 @@ export function Studio({ initial }: { initial: StudioInitial }) {
         pending={pending}
         activeResult={activeResult}
         showCadastre={showCadastre}
+        composing={composing}
         inset={inset}
         onPick={pick}
       />
@@ -368,7 +390,15 @@ export function Studio({ initial }: { initial: StudioInitial }) {
 
           {plot ? (
             <>
-              <PlotHeader plot={plot} onClear={clear} />
+              <PlotHeader
+                plot={plot}
+                onClear={() => {
+                  setComposing(false);
+                  clear();
+                }}
+                composing={composing}
+                onCompose={() => setComposing((v) => !v)}
+              />
               <LayerList
                 layers={layers}
                 active={activeLayer}

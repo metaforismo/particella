@@ -155,3 +155,18 @@ test("place line never repeats the comune and only shows a real sigla", async ()
   assert.equal(formatPlace({ name: "Firenze", provinceCode: "048", region: "Toscana" }), "Firenze, Toscana");
   assert.equal(formatPlace(null), "Comune non identificato");
 });
+
+test("plot locations cover single parcels and composite lots", async () => {
+  const { formatLocation, parseLocation, plotLocation } = await import("../src/lib/routes.ts");
+  assert.deepEqual(plotLocation(plot), plot.centroid);
+  const lot = {
+    centroid: plot.centroid,
+    parcels: [{ at: { lat: 43.700748, lon: 11.319416 } }, { at: { lat: 43.700784, lon: 11.317799 } }],
+  } as Parameters<typeof plotLocation>[0];
+  const at = plotLocation(lot);
+  assert.equal(formatLocation(at), "43.700748,11.319416;43.700784,11.317799");
+  assert.deepEqual(parseLocation(formatLocation(at)), at);
+  assert.deepEqual(parseLocation("43.7,11.3"), { lat: 43.7, lon: 11.3 });
+  assert.equal(parseLocation("43.7,11.3;bad"), undefined);
+  assert.equal(parseLocation(Array(21).fill("43.7,11.3").join(";")), undefined);
+});

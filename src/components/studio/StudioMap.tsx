@@ -25,12 +25,14 @@ type Props = {
   pending: LatLon | null;
   activeResult: LayerResult | null;
   showCadastre: boolean;
+  composing: boolean;
   /** Extra room the map must leave for floating panels, in px. */
   inset: { left: number; right: number; bottom: number };
-  onPick: (point: LatLon) => void;
+  /** `additive`: the user asked to add or remove this parcel (Shift+click) rather than replace. */
+  onPick: (point: LatLon, additive: boolean) => void;
 };
 
-export function StudioMap({ plot, pending, activeResult, showCadastre, inset, onPick }: Props) {
+export function StudioMap({ plot, pending, activeResult, showCadastre, composing, inset, onPick }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const markerRef = useRef<Marker | null>(null);
@@ -72,7 +74,7 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
             map.flyTo({ center: e.lngLat, zoom: 16.5, speed: 1.6 });
             return;
           }
-          pick.current({ lat: e.lngLat.lat, lon: e.lngLat.lng });
+          pick.current({ lat: e.lngLat.lat, lon: e.lngLat.lng }, e.originalEvent.shiftKey);
         });
         const syncZoom = () => {
           setZoom(map.getZoom());
@@ -213,11 +215,13 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
 
   const hint = !ready
     ? null
-    : zoom < PICK_MIN_ZOOM
-      ? "Tocca la mappa per avvicinarti, poi scegli il lotto"
-      : showCadastre && zoom < CADASTRE_MIN_ZOOM - 0.5
-        ? "Avvicinati ancora per vedere i confini delle particelle"
-        : null;
+    : composing
+      ? "Tocca le particelle confinanti per aggiungerle o toglierle"
+      : zoom < PICK_MIN_ZOOM
+        ? "Tocca la mappa per avvicinarti, poi scegli il lotto"
+        : showCadastre && zoom < CADASTRE_MIN_ZOOM - 0.5
+          ? "Avvicinati ancora per vedere i confini delle particelle"
+          : null;
 
   return (
     <div className={styles.frame}>
@@ -227,7 +231,7 @@ export function StudioMap({ plot, pending, activeResult, showCadastre, inset, on
         role="application"
         aria-label="Mappa: tocca un punto per scegliere un terreno, oppure usa la ricerca"
       />
-      {hint && !plot ? (
+      {hint && (!plot || composing) ? (
         <p className={styles.hint} style={{ left: `calc(50% + ${(inset.left - inset.right) / 2}px)` }}>
           {hint}
         </p>

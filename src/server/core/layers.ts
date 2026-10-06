@@ -127,7 +127,7 @@ export const layerCatalog: LayerCatalogEntry[] = [
   },
   {
     id: "land-cover",
-    group: "ambiente",
+    group: "urbanistica",
     title: "Copertura del suolo",
     description: "Copertura prevalente stimata da CORINE 2018",
     sourceIds: ["corine"],

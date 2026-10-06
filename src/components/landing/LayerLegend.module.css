@@ -49,10 +49,15 @@
   font-stretch: var(--stretch-wide);
 }
 
+/* Groups have different lengths: flow them in columns like a printed legend. */
 .groups {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-6);
+  columns: 3 16rem;
+  column-gap: var(--s-7);
+}
+
+.group {
+  break-inside: avoid;
+  margin-bottom: var(--s-6);
 }
 
 .group h3 {
@@ -101,20 +106,10 @@
   font-stretch: var(--stretch-condensed);
 }
 
-@media (max-width: 1080px) {
-  .groups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 720px) {
   .intro {
     grid-template-columns: 1fr;
     gap: var(--s-4);
-  }
-
-  .groups {
-    grid-template-columns: 1fr;
   }
 
   .sheet {

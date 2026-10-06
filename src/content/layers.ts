@@ -1,5 +1,9 @@
 import type { LayerGroup, LayerId } from "@/lib/contracts";
 
+/**
+ * `authority` must name the bodies behind the layer's `sourceIds` in src/server/core/layers.ts;
+ * the sources page lists the full registry.
+ */
 export type LayerMeta = {
   id: LayerId;
   group: LayerGroup;
@@ -44,7 +48,7 @@ export const LAYERS: LayerMeta[] = [
     group: "urbanistica",
     title: "Uso e consumo di suolo",
     question: "Il terreno è già costruito, agricolo o naturale?",
-    authority: "ISPRA, Copernicus",
+    authority: "Copernicus, CORINE Land Cover",
     symbol: "grid",
     tone: "verde",
   },
@@ -89,7 +93,7 @@ export const LAYERS: LayerMeta[] = [
     group: "rischi",
     title: "Classificazione sismica",
     question: "In che zona sismica si trova il comune?",
-    authority: "Dipartimento della Protezione Civile",
+    authority: "Protezione Civile, INGV",
     symbol: "ring",
     tone: "ink",
   },
@@ -98,7 +102,7 @@ export const LAYERS: LayerMeta[] = [
     group: "ambiente",
     title: "Aree protette e Natura 2000",
     question: "Il lotto tocca un parco o un sito Natura 2000?",
-    authority: "Ministero dell'Ambiente",
+    authority: "Agenzia europea dell'ambiente",
     symbol: "hatch",
     tone: "verde",
   },
@@ -107,7 +111,7 @@ export const LAYERS: LayerMeta[] = [
     group: "ambiente",
     title: "Profilo del terreno",
     question: "Quanto è in pendenza e a che quota si trova?",
-    authority: "Copernicus DEM",
+    authority: "INGV TINITALY, Copernicus EU-DEM",
     symbol: "line",
     tone: "sepia",
   },

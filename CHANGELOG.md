@@ -28,6 +28,10 @@ semantico a partire dalla prima release pubblica.
 - Lotti composti fino a 20 particelle confinanti: "Aggiungi particelle confinanti" o Maiusc+clic nello Studio.
 - Test end-to-end nel browser (Playwright, desktop e mobile).
 
+### Aggiunto (produzione)
+- Specifica OpenAPI 3.1, limiti d'uso dell'API per indirizzo con chiavi API opzionali, pagina `/stato` delle fonti.
+- Indici catastali persistenti su Vercel Blob, log strutturati, configurazione Vercel, pagine privacy e condizioni.
+
 ### Corretto
 - L'autocompletamento degli indirizzi non funzionava con l'API reale: il formato della risposta ora è nel contratto.
 

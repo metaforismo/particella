@@ -68,6 +68,18 @@ Le variabili d'ambiente sono descritte in `.env.example`. Nessuna è necessaria 
 AI richiede `AI_GATEWAY_API_KEY` (o OIDC su Vercel). In produzione geocoder, Overpass e routing vanno puntati su
 istanze dedicate: quelle pubbliche hanno limiti d'uso stretti.
 
+### Mettere online
+
+Il progetto è pronto per Vercel (`vercel.ts`: regione `fra1`, Fluid Compute). Prima del primo deploy pubblico:
+
+1. Chiudi le voci bloccanti di [`docs/ops/LAUNCH.md`](docs/ops/LAUNCH.md) (titolare privacy, licenze, servizi OSM).
+2. Scegli dove ospitare geocoding, Overpass e isocrone: opzioni e costi in [`docs/ops/HOSTING.md`](docs/ops/HOSTING.md).
+3. Imposta le variabili di [`.env.example`](.env.example) (Redis per i limiti condivisi, Blob per gli indici catastali,
+   AI Gateway per l'assistente) e segui [`docs/ops/PRODUCTION.md`](docs/ops/PRODUCTION.md).
+4. Deploy di anteprima, `npm run test:live` contro l'anteprima, poi promozione in produzione.
+
+Stato delle fonti in `/stato`, specifica dell'API in `/api/v1/openapi.json`.
+
 ### Come lavoriamo
 
 Il frontend è curato da Claude; il backend e la ricerca sui dati da Codex (GPT-6.1) su brief scritti, con review di

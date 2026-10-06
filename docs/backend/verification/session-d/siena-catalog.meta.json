@@ -1,0 +1,10 @@
+{
+  "name": "siena-catalog",
+  "url": "https://dati.toscana.it/api/3/action/package_show?id=piano-operativo-variante-1",
+  "executedAt": "2026-10-05T23:56:23.649762+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=utf-8",
+  "bytes": 18795,
+  "sha256": "fba0e5532e95366535cbdd26dbf1a9f8f3fe37f7675ca50549886a84efa9b160",
+  "durationMs": 323
+}

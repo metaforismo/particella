@@ -1,0 +1,364 @@
+{
+  "executedAt": "2026-10-06T00:13:37.231Z",
+  "lot": {
+    "name": "Vallombrosa",
+    "id": "it:H222:_:28:60",
+    "at": "43.733000,11.556000"
+  },
+  "samples": [
+    {
+      "state": "cold",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=1699.1, planning;dur=15.8, demographics;dur=109.9, regional-land-cover;dur=253.9, terrain;dur=357.8, seismic;dur=405.6, land-cover;dur=493.6, landscape;dur=604.8, solar;dur=952.5, market;dur=1631.5, protected-areas;dur=1710.0, flood;dur=2163.2, landslide;dur=3377.4, power-grid;dur=6001.8, infrastructure-distances;dur=6001.3, industrial-sites;dur=6001.3, services;dur=6002.4, accessibility;dur=6003.1, total;dur=7710.2",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P2 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "ok",
+          "headline": "Il lotto incontra un'area protetta presente nei dati europei."
+        },
+        {
+          "layer": "terrain",
+          "status": "partial",
+          "headline": "I campioni del terreno hanno quote tra 943,1 e 943,1 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1.195 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 2 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "ok",
+          "headline": "SITAP segnala una tutela paesaggistica sul punto del terreno."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Reggello non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: boschi di conifere."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R2 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    },
+    {
+      "state": "warm",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=0.2, power-grid;dur=5.8, infrastructure-distances;dur=5.7, industrial-sites;dur=5.7, regional-land-cover;dur=5.7, flood;dur=5.7, landslide;dur=5.7, seismic;dur=4.8, protected-areas;dur=4.7, terrain;dur=3.4, solar;dur=3.3, services;dur=3.3, demographics;dur=3.3, landscape;dur=3.3, planning;dur=1.0, land-cover;dur=1.0, accessibility;dur=0.8, market;dur=0.6, total;dur=8.2",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P2 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "ok",
+          "headline": "Il lotto incontra un'area protetta presente nei dati europei."
+        },
+        {
+          "layer": "terrain",
+          "status": "partial",
+          "headline": "I campioni del terreno hanno quote tra 943,1 e 943,1 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1.195 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 2 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "ok",
+          "headline": "SITAP segnala una tutela paesaggistica sul punto del terreno."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Reggello non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: boschi di conifere."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R2 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "host": "geoportale.istat.it",
+      "startMs": 29.566208999999986,
+      "durationMs": 285.16545799999994,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 324.875375,
+      "durationMs": 799.3910840000001,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 1125.6591250000001,
+      "durationMs": 65.39049999999997,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 1626.224584,
+      "durationMs": 81.42908299999999,
+      "status": 200
+    },
+    {
+      "host": "overpass-api.de",
+      "startMs": 1729.911959,
+      "durationMs": 5993.150791
+    },
+    {
+      "host": "www502.regione.toscana.it",
+      "startMs": 1730.915584,
+      "durationMs": 236.6569579999998,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 1731.508792,
+      "durationMs": 1561.826208,
+      "status": 200
+    },
+    {
+      "host": "mps04-ws.pi.ingv.it",
+      "startMs": 1732.0732090000001,
+      "durationMs": 376.3055409999997,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 1732.606125,
+      "durationMs": 395.64883399999985,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 1733.137625,
+      "durationMs": 336.93154200000004,
+      "status": 200
+    },
+    {
+      "host": "re.jrc.ec.europa.eu",
+      "startMs": 1733.6302500000002,
+      "durationMs": 936.9217920000001,
+      "status": 200
+    },
+    {
+      "host": "geoportale.istat.it",
+      "startMs": 1734.099667,
+      "durationMs": 84.97454200000016,
+      "status": 200
+    },
+    {
+      "host": "sitap.cultura.gov.it",
+      "startMs": 1734.3872920000001,
+      "durationMs": 336.89770799999974,
+      "status": 200
+    },
+    {
+      "host": "image.discomap.eea.europa.eu",
+      "startMs": 1735.2685000000001,
+      "durationMs": 477.59283400000004,
+      "status": 200
+    },
+    {
+      "host": "valhalla1.openstreetmap.de",
+      "startMs": 1735.808375,
+      "durationMs": 173.49333399999978,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 1736.233334,
+      "durationMs": 336.0737079999999,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 2230.22775,
+      "durationMs": 1652.103917,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 2231.024292,
+      "durationMs": 136.67870799999992,
+      "status": 200
+    },
+    {
+      "host": "sitap.cultura.gov.it",
+      "startMs": 2231.273709,
+      "durationMs": 87.73512500000015,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 2231.390542,
+      "durationMs": 265.8013329999999,
+      "status": 200
+    },
+    {
+      "host": "valhalla1.openstreetmap.de",
+      "startMs": 2730.987084,
+      "durationMs": 54.214416000000256,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 2731.415875,
+      "durationMs": 172.5463749999999,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 2732.7306670000003,
+      "durationMs": 101.60674999999992,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 3232.841334,
+      "durationMs": 173.69045800000004,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 3233.8282090000002,
+      "durationMs": 109.25491599999987,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 3302.034417,
+      "durationMs": 501.56420800000024,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 3815.18475,
+      "durationMs": 1267.6459169999994,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 4315.153208999999,
+      "durationMs": 255.61804100000063,
+      "status": 200
+    }
+  ],
+  "scope": "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering."
+}

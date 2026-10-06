@@ -1,0 +1,10 @@
+{
+  "name": "prato-license",
+  "url": "https://dati.toscana.it/api/3/action/package_search?q=piano%20operativo%20prato",
+  "executedAt": "2026-10-05T23:56:59.762929+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=utf-8",
+  "bytes": 110845,
+  "sha256": "6043dfe0441292665066dd709af8bdea9c3fc380738a676cc4743b2a655f7f76",
+  "durationMs": 472
+}

@@ -1,0 +1,10 @@
+{
+  "name": "prato-zone",
+  "url": "https://geoserver.comune.prato.it/geoserver/po/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=zone_territoriali_omogenee%2Cpo_web&query_layers=zone_territoriali_omogenee%2Cpo_web&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=11.0957%2C43.8798%2C11.0977%2C43.8818&x=50&y=50",
+  "executedAt": "2026-10-05T23:56:14.016636+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 3491,
+  "sha256": "0d4d11685a7d3617ff4cd61d78117e39c165655b22ffc07e768c2664d766486c",
+  "durationMs": 906
+}

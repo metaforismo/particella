@@ -118,6 +118,7 @@ test("unknown layers fail validation; report isolates provider failures", async 
     params: Promise.resolve({ id, layer: "bad" }),
   });
   assert.equal(invalid.status, 400);
+  assert.match(invalid.headers.get("Server-Timing")!, /total;dur=/);
   const country = getCountry("it");
   const saved = country.layers;
   country.layers = {
@@ -128,6 +129,11 @@ test("unknown layers fail validation; report isolates provider failures", async 
   };
   try {
     const response = await report(request(`plots/${id}/report`), { params: Promise.resolve({ id }) });
+    const timing = response.headers.get("Server-Timing")!;
+    assert.match(timing, /cadastre;dur=/);
+    assert.match(timing, /solar;dur=/);
+    assert.match(timing, /total;dur=/);
+    assert.equal(timing.split(", ").length, 19);
     assert.equal(response.status, 200);
     const parsed = PlotReport.parse(await response.json());
     assert.equal(parsed.layers.length, 17);

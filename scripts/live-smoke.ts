@@ -1,5 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { runLandLive } from "./land-live.ts";
+import { runPlanningLive } from "./session-d-live.ts";
 import { z } from "zod";
 import {
   Plot,
@@ -302,4 +303,5 @@ console.log(
 );
 
 const landFailures = await runLandLive();
-process.exitCode = failed || landFailures ? 1 : 0;
+const planningFailures = await runPlanningLive();
+process.exitCode = failed || landFailures || planningFailures ? 1 : 0;

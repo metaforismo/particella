@@ -1,0 +1,195 @@
+{
+  "executedAt": "2026-10-05T23:56:22.418Z",
+  "lot": {
+    "name": "Vallombrosa",
+    "id": "it:H222:_:28:60",
+    "at": "43.733000,11.556000"
+  },
+  "samples": [
+    {
+      "state": "cold",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=1361.0, planning;dur=10.0, demographics;dur=146.4, terrain;dur=263.6, regional-land-cover;dur=269.5, seismic;dur=396.9, land-cover;dur=492.6, landscape;dur=630.6, solar;dur=987.3, power-grid;dur=2361.5, infrastructure-distances;dur=2361.3, industrial-sites;dur=2361.3, market;dur=2787.4, protected-areas;dur=2860.6, flood;dur=4067.1, landslide;dur=4165.8, services;dur=19789.6, accessibility;dur=19790.0, total;dur=21156.1",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "partial",
+          "headline": "Rete elettrica più vicina censita: stazione elettrica a 78 m, linea ad alta tensione (≥132 kV) a 8,9 km."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "ok",
+          "headline": "Più vicini censiti: strada secondaria a 0 m."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "empty",
+          "headline": "OpenStreetMap non restituisce elementi delle categorie cercate nei dintorni."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P2 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "ok",
+          "headline": "Il lotto incontra un'area protetta presente nei dati europei."
+        },
+        {
+          "layer": "terrain",
+          "status": "partial",
+          "headline": "I campioni del terreno hanno quote tra 943.1 e 943.1 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1195 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "ok",
+          "headline": "OpenStreetMap registra 2 servizi e luoghi utili entro un chilometro."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 2 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "ok",
+          "headline": "SITAP segnala una tutela paesaggistica sul punto del terreno."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Reggello non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: boschi di conifere."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R2 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    },
+    {
+      "state": "warm",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=0.1, power-grid;dur=6.6, infrastructure-distances;dur=6.5, industrial-sites;dur=6.2, regional-land-cover;dur=6.2, flood;dur=6.2, landslide;dur=6.2, seismic;dur=4.7, protected-areas;dur=4.6, terrain;dur=3.5, solar;dur=3.4, services;dur=3.4, demographics;dur=3.4, landscape;dur=3.4, planning;dur=1.0, land-cover;dur=1.0, accessibility;dur=0.8, market;dur=0.7, total;dur=9.1",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "partial",
+          "headline": "Rete elettrica più vicina censita: stazione elettrica a 78 m, linea ad alta tensione (≥132 kV) a 8,9 km."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "ok",
+          "headline": "Più vicini censiti: strada secondaria a 0 m."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "empty",
+          "headline": "OpenStreetMap non restituisce elementi delle categorie cercate nei dintorni."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P2 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "ok",
+          "headline": "Il lotto incontra un'area protetta presente nei dati europei."
+        },
+        {
+          "layer": "terrain",
+          "status": "partial",
+          "headline": "I campioni del terreno hanno quote tra 943.1 e 943.1 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1195 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "ok",
+          "headline": "OpenStreetMap registra 2 servizi e luoghi utili entro un chilometro."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 2 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "ok",
+          "headline": "SITAP segnala una tutela paesaggistica sul punto del terreno."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Reggello non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: boschi di conifere."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R2 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    }
+  ],
+  "scope": "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering."
+}

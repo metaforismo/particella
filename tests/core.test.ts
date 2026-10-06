@@ -337,3 +337,25 @@ test("last caller cancellation aborts a source and immediately releases its host
   await client.request("https://cancel-host.test/healthy", { policy, timeoutMs: 100 });
   assert.equal(aborted, true);
 });
+
+test("a layer requested alone may wait longer than inside a report, and providers see the budget", async () => {
+  const { layerTimeoutMs, singleLayerTimeoutMs } = await import("#server/core/layers.ts");
+  for (const layer of ["power-grid", "services", "flood"] as const)
+    assert.ok(singleLayerTimeoutMs(layer) > layerTimeoutMs(layer), layer);
+  let seen: number | undefined;
+  const plot = {
+    id: "it:A564:_:60:110",
+    geometry: null,
+    centroid: { lat: 43.7, lon: 11.32 },
+  } as unknown as Plot;
+  await runLayer(
+    "flood",
+    plot,
+    async (_p, context) => {
+      seen = context.timeoutMs;
+      return layerResult("flood", { status: "empty", headline: "x" });
+    },
+    4321,
+  );
+  assert.equal(seen, 4321);
+});

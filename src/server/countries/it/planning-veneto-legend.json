@@ -1,0 +1,17 @@
+{
+  "sourceUrl": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetStyles&layers=rv%3Azonizzazione_072026",
+  "retrievedAt": "2026-10-06T00:02:35.002Z",
+  "sha256": "c93bb976bc3b65e61d5f7e4aabbdeed040e015e1a068a7b430fa0038684f5e65",
+  "labels": {
+    "11": "11 - A (Centro Storico o Nucleo di Antica Formazione) (1",
+    "12": "12 - B (Zona Residenziale di Completamento)",
+    "13": "13 - C (Zona Residenziale di Espansione, o non urbanizzata)",
+    "15": "15 - E (Zona Agricola)",
+    "16": "16 - F (Zona per Servizi)",
+    "17": "17 -\"Zone bianche\"",
+    "24": "24 - Verde Privato",
+    "25": "25 - Piste da Sci e Loro Intorni (Demanio sciabile)",
+    "32": "32 - Ambiti di esercizio di Concessione Mineraria",
+    "61": "61 - Zone perequate"
+  }
+}

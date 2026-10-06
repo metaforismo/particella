@@ -1,0 +1,7 @@
+{
+  "name": "prato-data-home",
+  "url": "https://opendata.comune.prato.it/",
+  "executedAt": "2026-10-05T23:57:29.642735+00:00",
+  "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+  "durationMs": 81
+}

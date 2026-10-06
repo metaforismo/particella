@@ -1,0 +1,10 @@
+{
+  "name": "veneto-viewer",
+  "url": "https://idt2.regione.veneto.it/idt/webgis/viewer?webgisId=213",
+  "executedAt": "2026-10-05T23:56:24.975692+00:00",
+  "status": 200,
+  "contentType": "text/html;charset=UTF-8",
+  "bytes": 34502,
+  "sha256": "4c45327ceeced2afecb9d161c5f2cc3f0d34c343b1ea3a1aeb645752f33f33a8",
+  "durationMs": 355
+}

@@ -1,0 +1,46 @@
+
+> particella@0.1.0 build
+> next build
+
+▲ Next.js 16.3.8 (Turbopack)
+✓ Running next.config.ts took 12ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1658ms
+  Running TypeScript ...
+  Finished TypeScript in 3.5s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/17) ...
+  Generating static pages using 7 workers (4/17) 
+  Generating static pages using 7 workers (8/17) 
+  Generating static pages using 7 workers (12/17) 
+✓ Generating static pages using 7 workers (17/17) in 512ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/v1/catalog/layers
+├ ƒ /api/v1/catalog/sources
+├ ƒ /api/v1/geocode
+├ ƒ /api/v1/health
+├ ƒ /api/v1/plots/[id]
+├ ƒ /api/v1/plots/[id]/layers/[layer]
+├ ƒ /api/v1/plots/[id]/report
+├ ƒ /api/v1/plots/at
+├ ƒ /api/v1/studio/chat
+├ ƒ /api/v1/tiles/[overlay]/[z]/[x]/[y]
+├ ƒ /confronta
+├ ○ /fonti
+├ ○ /icon.svg
+├ ○ /opengraph-image
+├ ○ /robots.txt
+├ ƒ /scheda/[id]
+├ ○ /sitemap.xml
+├ ƒ /studio
+└ ○ /sviluppatori
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

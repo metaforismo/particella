@@ -1,0 +1,10 @@
+{
+  "name": "veneto-vicenza",
+  "url": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rv%3Azonizzazione_072026&query_layers=rv%3Azonizzazione_072026&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=11.545%2C45.546%2C11.546999999999999%2C45.547999999999995&x=50&y=50",
+  "executedAt": "2026-10-06T00:00:09.369360+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 79,
+  "sha256": "b72990151e14c8f06fa9bc081da5262a6e3feeaf60f6a1e84bb15ec71af1f7ae",
+  "durationMs": 250
+}

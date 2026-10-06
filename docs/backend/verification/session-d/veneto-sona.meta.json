@@ -1,0 +1,10 @@
+{
+  "name": "veneto-sona",
+  "url": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rv%3Azonizzazione_072026&query_layers=rv%3Azonizzazione_072026&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=10.876744200000001%2C45.43454332%2C10.8787442%2C45.43654332&x=50&y=50",
+  "executedAt": "2026-10-06T00:01:36.999650+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 1451,
+  "sha256": "11f17581ce45650aa8354af8de21b07bc2d6957f6cbcb85ef7d629655cacb968",
+  "durationMs": 187
+}

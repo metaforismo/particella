@@ -1,0 +1,10 @@
+{
+  "name": "pisa-services",
+  "url": "https://sit.comune.pisa.it/arcgis/rest/services?f=json",
+  "executedAt": "2026-10-06T00:03:53.999940+00:00",
+  "status": 200,
+  "contentType": "application/json; charset=UTF-8",
+  "bytes": 1326,
+  "sha256": "ef4f0acc3934c4d684c274693f0069560b3288c141a2d53a2f57e530921b6584",
+  "durationMs": 220
+}

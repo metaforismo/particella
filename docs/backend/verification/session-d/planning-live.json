@@ -1,0 +1,275 @@
+{
+  "executedAt": "2026-10-06T00:09:10.833Z",
+  "results": [
+    {
+      "name": "Bergamo",
+      "state": "PASS",
+      "result": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "ok",
+        "scope": "point",
+        "headline": "Sintesi PGT di Bergamo: VIABILITA' ESISTENTE.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "zone-0",
+            "label": "Zona nella sintesi PGT",
+            "value": "VIABILITA' ESISTENTE"
+          },
+          {
+            "key": "destination-0",
+            "label": "Destinazione regionale",
+            "value": "INFRASTRUTTURE DI TRASPORTO AREALI"
+          },
+          {
+            "key": "subzone-0",
+            "label": "Sottozona / specificazione dichiarata",
+            "value": null
+          },
+          {
+            "key": "code-0",
+            "label": "Codice ambito",
+            "value": "2794"
+          }
+        ],
+        "features": null,
+        "overlays": [],
+        "legend": [
+          {
+            "classKey": "lombardia-20-2794",
+            "label": "VIABILITA' ESISTENTE"
+          }
+        ],
+        "notes": [
+          "La Tavola delle Previsioni è una sintesi regionale non conformativa: non determina da sola gli interventi consentiti.",
+          "Sono interrogati tessuto urbano consolidato, aree agricole e ambiti di trasformazione. Un vuoto non significa assenza di disciplina.",
+          "La data di efficacia del piano comunale non è dichiarata da questa risposta.",
+          "Prima di decidere, consultare le norme e le varianti comunali e richiedere il certificato di destinazione urbanistica a un tecnico abilitato."
+        ],
+        "method": "ArcGIS REST identify puntuale, EPSG:4326, tolleranza zero, layer 20/19/13 della Tavola delle Previsioni a scala 1:10.000; verifica COD_ISTAT contro il Comune del lotto. Sintesi non conformativa, non sostituisce Piano delle Regole/Piano dei Servizi.",
+        "provenance": [
+          {
+            "sourceId": "planning-lombardia",
+            "dataset": "PGT — Tavola delle Previsioni regionale",
+            "authority": "Regione Lombardia",
+            "license": "CC BY 4.0",
+            "url": "https://www.geoportale.regione.lombardia.it/strumenti",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify?f=json&geometry=9.6773%2C45.6983&geometryType=esriGeometryPoint&imageDisplay=101%2C101%2C96&layers=all%3A20%2C19%2C13&mapExtent=9.676300000000001%2C45.697300000000006%2C9.6783%2C45.6993&returnGeometry=false&sr=4326&tolerance=0",
+            "retrievedAt": "2026-10-06T00:09:10.079Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-06T00:09:10.079Z"
+      }
+    },
+    {
+      "name": "Torino",
+      "state": "PASS",
+      "result": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "ok",
+        "scope": "point",
+        "headline": "PRG di Torino: Residenza R2; Zona Urbana Storico Ambientale 3.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "zone-0",
+            "label": "Area di piano",
+            "value": "Residenza R2"
+          },
+          {
+            "key": "subzone-0",
+            "label": "Categoria dichiarata",
+            "value": "Zona di categoria B"
+          },
+          {
+            "key": "code-0",
+            "label": "Codice del piano",
+            "value": "R2"
+          },
+          {
+            "key": "zone-1",
+            "label": "Zona di piano",
+            "value": "Zona Urbana Storico Ambientale 3"
+          },
+          {
+            "key": "subzone-1",
+            "label": "Categoria dichiarata",
+            "value": null
+          },
+          {
+            "key": "code-1",
+            "label": "Codice del piano",
+            "value": "ZUSA3"
+          }
+        ],
+        "features": null,
+        "overlays": [],
+        "legend": [],
+        "notes": [
+          "PRG vigente del 1995; revisione del dataset dichiarata al 30 giugno 2025.",
+          "Il Comune dichiara un regime di salvaguardia dal 16 marzo 2026 per il nuovo piano adottato: verificare anche le sue previsioni.",
+          "Prima di decidere, consultare le norme e le varianti comunali e richiedere il certificato di destinazione urbanistica a un tecnico abilitato."
+        ],
+        "method": "WMS 1.1.1 GetFeatureInfo text/plain, AreeDiPiano e ZonediPiano, EPSG:4326, bbox ±0,001°, pixel centrale 101×101. Identità comunale ISTAT/Belfiore; il piano adottato non è incluso.",
+        "provenance": [
+          {
+            "sourceId": "planning-torino",
+            "dataset": "PRG — Aree e zone di piano",
+            "authority": "Comune di Torino",
+            "license": "CC BY 4.0",
+            "url": "https://www.comune.torino.it/schede-informative/piano-regolatore-generale-prg",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?bbox=7.669%2C45.059000000000005%2C7.671%2C45.061&feature_count=100&format=image%2Fpng&height=101&info_format=text%2Fplain&layers=ZonediPiano%2CAreeDiPiano&query_layers=ZonediPiano%2CAreeDiPiano&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-06T00:09:10.334Z",
+            "referenceDate": "2025-06-30"
+          }
+        ],
+        "computedAt": "2026-10-06T00:09:10.335Z"
+      }
+    },
+    {
+      "name": "Siena",
+      "state": "PASS",
+      "result": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "ok",
+        "scope": "point",
+        "headline": "Piano Operativo di Siena: zona A, ambito CS2.",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "zone-0",
+            "label": "Zona territoriale omogenea",
+            "value": "A"
+          },
+          {
+            "key": "subzone-0",
+            "label": "Ambito",
+            "value": "CS2"
+          },
+          {
+            "key": "code-0",
+            "label": "Codice elemento",
+            "value": "767"
+          },
+          {
+            "key": "system-0",
+            "label": "Sistema",
+            "value": "CS"
+          },
+          {
+            "key": "intervention-0",
+            "label": "Codice intervento",
+            "value": "t1"
+          }
+        ],
+        "features": null,
+        "overlays": [],
+        "legend": [],
+        "notes": [
+          "Geometrie del Piano Operativo con variante 1: il catalogo indica pubblicazione della variante il 31 maggio 2023.",
+          "Il Comune pubblica anche varianti normative successive: la geometria non riassume tutte le regole vigenti.",
+          "Prima di decidere, consultare le norme e le varianti comunali e richiedere il certificato di destinazione urbanistica a un tecnico abilitato."
+        ],
+        "method": "WMS 1.1.1 GetFeatureInfo GeoJSON del layer piano_operativo_geometrie_r2; EPSG:4326, bbox ±0,001°, pixel centrale 101×101. Codici ZTO e ambito originali, senza interpretazione edificatoria.",
+        "provenance": [
+          {
+            "sourceId": "planning-siena",
+            "dataset": "Piano Operativo — geometrie variante 1",
+            "authority": "Comune di Siena",
+            "license": "CC BY 4.0",
+            "url": "https://comune.siena.it/servizi/il-piano-operativo-0",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://siena.ldpgis.it/services/piano_operativo_geometrie_r2/wms?bbox=11.3298%2C43.317600000000006%2C11.3318%2C43.3196&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=piano_operativo_geometrie_r2&query_layers=piano_operativo_geometrie_r2&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-06T00:09:10.643Z",
+            "referenceDate": "2023-05-31"
+          }
+        ],
+        "computedAt": "2026-10-06T00:09:10.644Z"
+      }
+    },
+    {
+      "name": "Sona",
+      "state": "PASS",
+      "result": {
+        "layer": "planning",
+        "group": "urbanistica",
+        "title": "Urbanistica",
+        "status": "ok",
+        "scope": "point",
+        "headline": "Mosaico urbanistico di Sona: 16 - F (Zona per Servizi).",
+        "severity": "unknown",
+        "metrics": [
+          {
+            "key": "zone-0",
+            "label": "Zona nella legenda regionale",
+            "value": "16 - F (Zona per Servizi)"
+          },
+          {
+            "key": "subzone-0",
+            "label": "Codici delle sottozone",
+            "value": "00 / 00 / 00"
+          },
+          {
+            "key": "code-0",
+            "label": "Codice completo",
+            "value": "16 / 00 / 00 / 00"
+          },
+          {
+            "key": "plan-0",
+            "label": "Strumento dichiarato dalla fonte",
+            "value": "PI"
+          }
+        ],
+        "features": null,
+        "overlays": [],
+        "legend": [],
+        "notes": [
+          "La rappresentazione regionale non ha valore conformativo: consultare il piano e le norme del Comune.",
+          "Il servizio raccoglie PI, PAT e PRG: lo strumento dichiarato è indicato nei dati. La data di trasmissione può mancare e non prova l’efficacia del piano.",
+          "I nomi delle zone provengono dalla legenda regionale; le sottozone restano nei codici originali, senza interpretazioni.",
+          "Regione del Veneto – L.R. n. 28/76 – Formazione della Carta Tecnica Regionale. Dati IODL 2.0."
+        ],
+        "method": "WMS 1.1.1 GetFeatureInfo GeoJSON, rv:zonizzazione_072026, EPSG:4326, bbox ±0,0001°, buffer zero; filtro geometrico di contenimento e verifica cod_istat. Legenda ufficiale SLD conservata come snapshot; sintesi non conformativa, non disciplina edilizia certificata.",
+        "provenance": [
+          {
+            "sourceId": "planning-veneto",
+            "dataset": "Mosaico della zonizzazione P.R.C.",
+            "authority": "Regione del Veneto — Direzione Pianificazione Territoriale",
+            "license": "IODL 2.0",
+            "url": "https://idt2.regione.veneto.it/portfolio/webgis-della-pianificazione-urbanistica-e-territoriale-2/",
+            "method": "wms",
+            "isOfficial": true,
+            "requestUrl": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?bbox=10.8776442%2C45.43544332%2C10.8778442%2C45.435643320000004&buffer=0&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fjson&layers=rv%3Azonizzazione_072026&query_layers=rv%3Azonizzazione_072026&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50",
+            "retrievedAt": "2026-10-06T00:09:10.832Z",
+            "referenceDate": "2026-06-30"
+          },
+          {
+            "sourceId": "planning-veneto-legend",
+            "dataset": "Legenda regionale della zonizzazione P.R.C.",
+            "authority": "Regione del Veneto — Direzione Pianificazione Territoriale",
+            "license": "IODL 2.0",
+            "url": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetStyles&layers=rv%3Azonizzazione_072026",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetStyles&layers=rv%3Azonizzazione_072026",
+            "retrievedAt": "2026-10-06T00:02:35.002Z",
+            "referenceDate": null
+          }
+        ],
+        "computedAt": "2026-10-06T00:09:10.833Z"
+      }
+    }
+  ]
+}

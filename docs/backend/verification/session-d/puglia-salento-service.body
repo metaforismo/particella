@@ -1,0 +1,118 @@
+{
+ "currentVersion": 10.11,
+ "serviceDescription": "Area Vasta Sud Salento",
+ "mapName": "Layers",
+ "description": "",
+ "copyrightText": "",
+ "supportsDynamicLayers": false,
+ "layers": [
+  {
+   "id": 0,
+   "name": "LOCALIZZAZIONE BENI CULTURALI - Link a foto",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 250000,
+   "maxScale": 0
+  },
+  {
+   "id": 1,
+   "name": "PRG e PdF - PERIMETRI - PIANI ATTUATIVI - Link a norme",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 100000,
+   "maxScale": 0
+  },
+  {
+   "id": 2,
+   "name": "PRG e PdF - PERIMETRI - RISPETTI E TUTELE -  Link a norme",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 100000,
+   "maxScale": 0
+  },
+  {
+   "id": 3,
+   "name": "CONFINI CENTRI STORICI",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 100000,
+   "maxScale": 0
+  },
+  {
+   "id": 4,
+   "name": "PRG e PdF - ZONE DI PIANO - Link a norme",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 100000,
+   "maxScale": 0
+  },
+  {
+   "id": 5,
+   "name": "COMUNI CON PIANI VETTORIALIZZATI - Link a documenti di piano",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0
+  },
+  {
+   "id": 6,
+   "name": "ESTENSIONE AREA VASTA SUD-SALENTO",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0
+  }
+ ],
+ "tables": [],
+ "spatialReference": {
+  "wkid": 32633,
+  "latestWkid": 32633
+ },
+ "singleFusedMapCache": false,
+ "initialExtent": {
+  "xmin": 748778.9056000011,
+  "ymin": 4407143.04291,
+  "xmax": 802513.1664,
+  "ymax": 4464824.182689999,
+  "spatialReference": {
+   "wkid": 32633,
+   "latestWkid": 32633
+  }
+ },
+ "fullExtent": {
+  "xmin": 751221.372000001,
+  "ymin": 4409764.9129,
+  "xmax": 800070.7000000001,
+  "ymax": 4462202.3127,
+  "spatialReference": {
+   "wkid": 32633,
+   "latestWkid": 32633
+  }
+ },
+ "minScale": 0,
+ "maxScale": 0,
+ "units": "esriMeters",
+ "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+ "documentInfo": {
+  "Title": "",
+  "Author": "",
+  "Comments": "",
+  "Subject": "",
+  "Category": "",
+  "AntialiasingMode": "None",
+  "TextAntialiasingMode": "Force",
+  "Keywords": "Area Vasta Sud Salento"
+ },
+ "capabilities": "Map,Query,Data",
+ "supportedQueryFormats": "JSON, AMF",
+ "maxRecordCount": 1000,
+ "maxImageHeight": 2048,
+ "maxImageWidth": 2048
+}

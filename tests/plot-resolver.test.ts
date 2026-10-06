@@ -91,3 +91,32 @@ test("without at, cold cache retains attribute lookup", async () => {
   assert.equal((await createPlotResolver(country, new MemoryCache())(plot.id)).id, plot.id);
   assert.equal(called, true);
 });
+
+test("simultaneous cold routes share cadastral resolution across resolver factories and release failed work", async () => {
+  let calls = 0;
+  let release!: () => void;
+  const gate = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  let fail = true;
+  const country = {
+    plotAt: async () => {
+      calls++;
+      await gate;
+      if (fail) throw new NotFound("fixture error");
+      return plot;
+    },
+  } as unknown as CountryAdapter;
+  const storage = new MemoryCache();
+  const a = createPlotResolver(country, storage),
+    b = createPlotResolver(country, storage);
+  const pair = [a(plot.id, "43.7,11.32"), b(plot.id, { lat: 43.7, lon: 11.32 })];
+  const results = Promise.allSettled(pair);
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(calls, 1);
+  release();
+  assert.ok((await results).every((r) => r.status === "rejected"));
+  fail = false;
+  assert.equal((await b(plot.id, "43.7,11.32")).id, plot.id);
+  assert.equal(calls, 2);
+});

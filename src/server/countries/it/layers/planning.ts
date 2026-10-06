@@ -1,17 +1,18 @@
+import { venetoPlanning } from "#server/countries/it/layers/planning-veneto.ts";
 import { z } from "zod";
 import { layerResult, type LayerProvider } from "#server/core/layers.ts";
 import { provenance } from "#server/core/provenance.ts";
-import { source } from "#server/core/sources.ts";
-import { http, textBody } from "#server/core/http.ts";
+
+import { textBody } from "#server/core/http.ts";
 import { wfsMembers } from "#server/geo/gml.ts";
 import { UpstreamError } from "#server/core/errors.ts";
+import { fetchSource, wmsPointParams } from "#server/countries/it/queries.ts";
 import {
-  fetchSource,
-  wmsPointParams,
-  arcPointParams,
-  queryUrl,
-  parseArc,
-} from "#server/countries/it/queries.ts";
+  planningArea,
+  lombardiaPlanning,
+  torinoPlanning,
+  sienaPlanning,
+} from "#server/countries/it/layers/planning-regional.ts";
 
 const FirenzeZone = z.object({
   tipologia: z.string().min(1),
@@ -33,11 +34,17 @@ const regionalPortals: Record<string, string> = {
   Piemonte: "https://www.geoportale.piemonte.it/",
   "Emilia-Romagna": "https://geoportale.regione.emilia-romagna.it/",
   Veneto: "https://idt2.regione.veneto.it/",
+  Puglia: "https://pugliacon.regione.puglia.it/web/sit-puglia-sit",
+  Lazio: "https://geoportale.regione.lazio.it/",
 };
 
 export const planning: LayerProvider = async (plot, { signal }) => {
   const municipality = plot.municipality;
-  if (municipality?.istatCode === "048017") {
+  if (
+    municipality?.istatCode === "048017" &&
+    municipality.cadastralCode === "D612" &&
+    plot.cadastral.municipalityCode === "D612"
+  ) {
     const payload = await fetchSource(
       "planning-firenze",
       {
@@ -55,12 +62,29 @@ export const planning: LayerProvider = async (plot, { signal }) => {
         ? // Descriptions start with their own article ("ambito dell'…", "sub-sistema della…").
           `Piano Operativo di Firenze: ${zones.map((z) => z.descrizione).join("; ")}.`
         : "Il Piano Operativo non restituisce un ambito sul punto controllato.",
-      metrics: zones.map((z) => ({
-        key: z.tipologia,
-        label: "Ambito del Piano Operativo",
-        value: z.descrizione,
-        hint: z.data_inizio ? `Decorrenza dichiarata: ${z.data_inizio}` : null,
-      })),
+      metrics: zones.flatMap((z, i) => [
+        {
+          key: z.tipologia,
+          label: "Ambito del Piano Operativo",
+          value: z.descrizione,
+          hint: z.data_inizio ? `Decorrenza dichiarata: ${z.data_inizio}` : null,
+        },
+        {
+          key: `zone-${i}`,
+          label: "Zona dichiarata nella descrizione",
+          value: z.descrizione.match(/\bzona ([A-Z][A-Z0-9]*)/i)?.[1] ?? null,
+        },
+        {
+          key: `subzone-${i}`,
+          label: "Sottozona dichiarata nella descrizione",
+          value: z.descrizione.match(/\bsottozona ([A-Z][A-Z0-9]*)/i)?.[1] ?? null,
+        },
+        {
+          key: `code-${i}`,
+          label: "Codice del piano",
+          value: z.tipologia,
+        },
+      ]),
       legend: zones.map((z) => ({ classKey: `firenze-${z.tipologia}`, label: z.descrizione })),
       notes: [
         "La verifica riguarda un punto interno. Un ambito non riassume tutte le regole del terreno.",
@@ -71,48 +95,11 @@ export const planning: LayerProvider = async (plot, { signal }) => {
       provenance: [provenance("planning-firenze", payload, { referenceDate: zones[0]?.data_inizio ?? null })],
     });
   }
-  if (municipality?.istatCode === "015146") {
-    const s = source("planning-milano");
-    const payload = await http.request(queryUrl(s.endpoint + "/20/query", arcPointParams(plot.centroid)), {
-      signal,
-      policy: s.hostPolicy,
-    });
-    const rows = parseArc(payload).features.map(({ attributes: row }) => {
-      const parsed = z
-        .object({
-          COD_ISTAT: z.coerce.string(),
-          AMB_URB: z.coerce.string(),
-          DCOD_DEST1: z.string().min(1),
-          DSPEC_DEST: z.string().nullable().optional(),
-        })
-        .safeParse(row);
-      if (!parsed.success || parsed.data.COD_ISTAT.padStart(6, "0") !== "015146")
-        throw new UpstreamError("Ambito PGT non riconosciuto per Milano.");
-      return parsed.data;
-    });
-    return layerResult("planning", {
-      scope: "point",
-      status: rows.length ? "ok" : "empty",
-      severity: "unknown",
-      headline: rows.length
-        ? `La sintesi PGT indica: ${[...new Set(rows.map((r) => r.DCOD_DEST1.toLowerCase()))].join(", ")}.`
-        : "La sintesi PGT non restituisce un ambito sul punto controllato.",
-      metrics: rows.map((r) => ({
-        key: `ambito-${r.AMB_URB}`,
-        label: "Ambito nella sintesi PGT",
-        value: [r.DCOD_DEST1, r.DSPEC_DEST].filter(Boolean).join(" · "),
-      })),
-      legend: rows.map((r) => ({ classKey: `milano-${r.AMB_URB}`, label: r.DCOD_DEST1 })),
-      notes: [
-        "La verifica riguarda un punto. La Tavola delle Previsioni è una sintesi regionale e non stabilisce da sola gli interventi consentiti.",
-        "La licenza del dataset non è accertata. Consultare il Geoportale e il PGT del Comune di Milano per norme, aggiornamenti e condizioni di riuso.",
-        "Richiedere il certificato di destinazione urbanistica e una verifica di un tecnico abilitato.",
-      ],
-      method:
-        "ArcGIS REST identify al punto: layer 20 Ambiti del tessuto urbano consolidato della Tavola delle Previsioni; EPSG:4326. Ambiti di trasformazione e altre tavole non inclusi.",
-      provenance: [provenance("planning-milano", payload)],
-    });
-  }
+  const area = planningArea(plot);
+  if (area === "lombardia") return lombardiaPlanning(plot, { signal });
+  if (area === "torino") return torinoPlanning(plot, { signal });
+  if (area === "siena") return sienaPlanning(plot, { signal });
+  if (area === "veneto") return venetoPlanning(plot, { signal });
   const portal = regionalPortals[municipality?.region ?? ""];
   return layerResult("planning", {
     status: "outside_coverage",

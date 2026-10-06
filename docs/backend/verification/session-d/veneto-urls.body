@@ -1,0 +1,14 @@
+var MainProjectPath = "idt";
+var ConfiguratoreProjectPath = "/wgconfigurator";
+var DatiIstatProjectPath = "/datiistat";
+var AerofototecaProjectPath = "/aerofototeca";
+var FeatureSearchProjectPath = "/featuresearch";
+
+var ControllerUrls = function() {};
+
+ControllerUrls.webgisConfig = MainProjectPath + ConfiguratoreProjectPath + "/webgisConfig";
+ControllerUrls.catalogConfig = MainProjectPath + ConfiguratoreProjectPath + "/catalogConfig";
+ControllerUrls.layerConfigurator = MainProjectPath + ConfiguratoreProjectPath + "/layers";
+ControllerUrls.datiIstat = MainProjectPath + DatiIstatProjectPath;
+ControllerUrls.aerofototeca = MainProjectPath + AerofototecaProjectPath;
+ControllerUrls.featureSearch = MainProjectPath + FeatureSearchProjectPath;

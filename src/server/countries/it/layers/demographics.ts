@@ -1,3 +1,4 @@
+import { formatNumber } from "#server/core/format.ts";
 import { z } from "zod";
 import population from "../../../../../data/snapshots/it-population-2026-01.json" with { type: "json" };
 import type { LayerProvider } from "#server/core/layers.ts";
@@ -23,7 +24,7 @@ export const demographics: LayerProvider = async (plot, { signal }) => {
     status: grid ? "ok" : "empty",
     scope: "grid_cell",
     headline: grid
-      ? `Nel 2021 la cella di un chilometro quadrato contava ${grid.TOT_P_2021} residenti.`
+      ? `Nel 2021 la cella di un chilometro quadrato contava ${formatNumber(grid.TOT_P_2021, 0)} residenti.`
       : "La griglia censuaria non restituisce una cella per questo punto.",
     severity: "none",
     metrics: [

@@ -1,0 +1,195 @@
+{
+  "executedAt": "2026-10-05T23:55:43.094Z",
+  "lot": {
+    "name": "Bagno",
+    "id": "it:A564:_:60:110",
+    "at": "43.7,11.32"
+  },
+  "samples": [
+    {
+      "state": "cold",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=1329.7, planning;dur=14.7, demographics;dur=99.5, regional-land-cover;dur=268.0, seismic;dur=306.2, land-cover;dur=470.7, landscape;dur=608.5, solar;dur=993.8, terrain;dur=1081.7, protected-areas;dur=1758.2, market;dur=2044.8, flood;dur=2244.0, landslide;dur=3391.4, power-grid;dur=19470.1, infrastructure-distances;dur=19469.5, industrial-sites;dur=19469.5, services;dur=23011.0, accessibility;dur=23012.6, total;dur=24349.4",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P3 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 137.6 e 146.2 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1339 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 99 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Bagno a Ripoli non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: vigneti."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R1 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    },
+    {
+      "state": "warm",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=0.2, power-grid;dur=2.9, infrastructure-distances;dur=2.9, industrial-sites;dur=2.8, regional-land-cover;dur=2.8, flood;dur=2.8, landslide;dur=2.7, seismic;dur=2.5, protected-areas;dur=2.5, terrain;dur=2.5, solar;dur=2.4, services;dur=2.4, demographics;dur=2.4, landscape;dur=2.3, planning;dur=2.3, land-cover;dur=2.3, accessibility;dur=2.2, market;dur=2.0, total;dur=4.5",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P3 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 137.6 e 146.2 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1339 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 99 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Bagno a Ripoli non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: vigneti."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R1 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    }
+  ],
+  "scope": "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering."
+}

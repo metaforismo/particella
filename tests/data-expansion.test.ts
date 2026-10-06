@@ -21,6 +21,7 @@ import {
   regionalLandCover,
 } from "#server/countries/it/layers/regional-land-cover.ts";
 import { plotAt } from "#server/countries/it/cadastre.ts";
+import { services } from "#server/countries/it/layers/services.ts";
 import { estimateAspect } from "#server/geo/terrain.ts";
 import { fixtureJson, fixtureText } from "./helpers.ts";
 
@@ -195,10 +196,12 @@ test("overlarge lots are rejected before making an unbounded Overpass query", ()
   assert.throws(() => osmLandQuery(large), OutsideCoverage);
 });
 
-test("three OSM providers share one actual HTTP request and contract fields", async () => {
+test("all four OSM providers share one actual HTTP request and contract fields", async () => {
   const before = osmCalls;
   const rows = await Promise.all(
-    [powerGrid, infrastructureDistances, industrialSites].map((provider) => provider(plot, context())),
+    [powerGrid, infrastructureDistances, industrialSites, services].map((provider) =>
+      provider(plot, context()),
+    ),
   );
   assert.equal(osmCalls - before, 1);
   for (const row of rows) {
@@ -206,7 +209,7 @@ test("three OSM providers share one actual HTTP request and contract fields", as
     assert.ok(["ok", "partial", "empty"].includes(row.status));
     assert.equal(row.scope, "buffer");
     assert.equal(row.provenance[0].isOfficial, false);
-    assert.ok(row.method?.includes("voltage"));
+    assert.ok(row.method?.includes(row.layer === "services" ? "Overpass" : "voltage"));
     for (const f of row.features!.features)
       assert.ok(row.legend.some((l) => l.classKey === f.properties.classKey));
   }

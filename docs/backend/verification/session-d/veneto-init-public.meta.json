@@ -1,0 +1,10 @@
+{
+  "name": "veneto-init-public",
+  "url": "https://idt2.regione.veneto.it/idt/webgis/js/scripts/webgis/init.js",
+  "executedAt": "2026-10-05T23:57:06.877852+00:00",
+  "status": 200,
+  "contentType": "application/javascript;charset=UTF-8",
+  "bytes": 11090,
+  "sha256": "695490b1d38eb2e3212fe30e89413621aa42a64051426ac391e77cb4c3f9db2a",
+  "durationMs": 380
+}

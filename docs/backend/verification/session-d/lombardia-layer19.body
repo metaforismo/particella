@@ -1,0 +1,262 @@
+{
+ "currentVersion": 10.91,
+ "cimVersion": "2.9.0",
+ "id": 19,
+ "name": "Aree agricole",
+ "type": "Feature Layer",
+ "description": "",
+ "geometryType": "esriGeometryPolygon",
+ "sourceSpatialReference": {
+  "wkid": 32632,
+  "latestWkid": 32632,
+  "xyTolerance": 0.001,
+  "zTolerance": 2,
+  "mTolerance": 2,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 10000,
+  "falseZ": 0,
+  "zUnits": 1,
+  "falseM": 0,
+  "mUnits": 1
+ },
+ "copyrightText": "",
+ "parentLayer": null,
+ "subLayers": [],
+ "minScale": 100000,
+ "maxScale": 0,
+ "drawingInfo": {
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSFS",
+    "style": "esriSFSBackwardDiagonal",
+    "color": [
+     170,
+     255,
+     0,
+     255
+    ],
+    "outline": {
+     "type": "esriSLS",
+     "style": "esriSLSSolid",
+     "color": [
+      170,
+      255,
+      0,
+      255
+     ],
+     "width": 0.4
+    }
+   }
+  },
+  "scaleSymbols": false,
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "defaultVisibility": true,
+ "extent": {
+  "xmin": 460659.2209999999,
+  "ymin": 4947775.662799999,
+  "xmax": 691359.3616000004,
+  "ymax": 5165173.898499999,
+  "spatialReference": {
+   "wkid": 32632,
+   "latestWkid": 32632,
+   "xyTolerance": 0.001,
+   "zTolerance": 2,
+   "mTolerance": 0.001,
+   "falseX": -5120900,
+   "falseY": -9998100,
+   "xyUnits": 4.504455473910538E8,
+   "falseZ": 0,
+   "zUnits": 1,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "hasAttachments": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeNone",
+ "displayField": "NOME_COM",
+ "typeIdField": null,
+ "subtypeFieldName": null,
+ "subtypeField": null,
+ "defaultSubtypeCode": null,
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null
+  },
+  {
+   "name": "SHAPE",
+   "type": "esriFieldTypeGeometry",
+   "alias": "SHAPE",
+   "domain": null
+  },
+  {
+   "name": "NOME_COM",
+   "type": "esriFieldTypeString",
+   "alias": "NOME_COM",
+   "length": 40,
+   "domain": null
+  },
+  {
+   "name": "SIG_PRO",
+   "type": "esriFieldTypeString",
+   "alias": "SIG_PRO",
+   "length": 2,
+   "domain": null
+  },
+  {
+   "name": "COD_AGR",
+   "type": "esriFieldTypeInteger",
+   "alias": "COD_AGR",
+   "domain": null
+  },
+  {
+   "name": "COD_ISTAT",
+   "type": "esriFieldTypeInteger",
+   "alias": "COD_ISTAT",
+   "domain": null
+  },
+  {
+   "name": "SPEC_AGR",
+   "type": "esriFieldTypeInteger",
+   "alias": "SPEC_AGR",
+   "domain": null
+  },
+  {
+   "name": "SPEC_AGRD",
+   "type": "esriFieldTypeString",
+   "alias": "SPEC_AGRD",
+   "length": 254,
+   "domain": null
+  },
+  {
+   "name": "LEGENDA",
+   "type": "esriFieldTypeString",
+   "alias": "LEGENDA",
+   "length": 254,
+   "domain": null
+  },
+  {
+   "name": "SCHEDA",
+   "type": "esriFieldTypeString",
+   "alias": "SCHEDA",
+   "length": 254,
+   "domain": null
+  },
+  {
+   "name": "SCHEDA_NEW",
+   "type": "esriFieldTypeString",
+   "alias": "SCHEDA_NEW",
+   "length": 4000,
+   "domain": null
+  },
+  {
+   "name": "NOTE",
+   "type": "esriFieldTypeString",
+   "alias": "NOTE",
+   "length": 254,
+   "domain": null
+  },
+  {
+   "name": "SHAPE_Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE_Length",
+   "domain": null
+  },
+  {
+   "name": "SHAPE_Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE_Area",
+   "domain": null
+  }
+ ],
+ "geometryField": {
+  "name": "SHAPE",
+  "type": "esriFieldTypeGeometry",
+  "alias": "SHAPE"
+ },
+ "indexes": [
+  {
+   "name": "FDO_OBJECTID",
+   "fields": "OBJECTID",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "FDO_SHAPE",
+   "fields": "SHAPE",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  }
+ ],
+ "subtypes": [],
+ "relationships": [],
+ "canModifyLayer": true,
+ "canScaleSymbols": false,
+ "hasLabels": false,
+ "capabilities": "Map,Query,Data",
+ "maxRecordCount": 1000,
+ "supportsStatistics": true,
+ "supportsExceedsLimitStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "isDataVersioned": false,
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "useStandardizedQueries": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "advancedQueryCapabilities": {
+  "useStandardizedQueries": true,
+  "supportsStatistics": true,
+  "supportsPercentileStatistics": true,
+  "supportsHavingClause": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsCountDistinct": true,
+  "supportsPagination": true,
+  "supportsLod": false,
+  "supportsQueryWithLodSR": false,
+  "supportsTrueCurve": true,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithDistance": true,
+  "supportsSqlExpression": true,
+  "supportsTimeRelation": true,
+  "supportsSqlFormat": false,
+  "supportsQueryAnalytic": false
+ },
+ "supportsDatumTransformation": true,
+ "dateFieldsTimeReference": null,
+ "preferredTimeReference": null,
+ "datesInUnknownTimezone": false,
+ "hasGeometryProperties": true,
+ "geometryProperties": {
+  "shapeAreaFieldName": "SHAPE_Area",
+  "shapeLengthFieldName": "SHAPE_Length",
+  "units": "esriMeters"
+ },
+ "hasMetadata": true,
+ "isDataArchived": false,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsCoordinatesQuantization": true,
+ "supportsDynamicLegends": true
+}

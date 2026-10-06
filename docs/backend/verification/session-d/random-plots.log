@@ -1,0 +1,10 @@
+PASS Torino urbano: HTTP 404 Il punto ricade su una strada o un'acqua catastale: non è un lotto.
+PASS Milano urbano: HTTP 200 it:F205:_:390:H
+PASS Bologna urbano: HTTP 404 Il punto ricade su una strada o un'acqua catastale: non è un lotto.
+PASS Venezia costa/canali: HTTP 200 it:L736:A:15DZ:3384
+PASS Roma urbano: HTTP 200 it:H501:A:485:238
+PASS Lecce urbano: HTTP 200 it:E506:_:259D:808
+PASS Genova costa: HTTP 200 it:D969:A:67:266
+PARTIAL Cagliari costa: HTTP 502 Il servizio catastale non riesce a leggere la mappa in questo punto. Riprovare più tardi o scegliere un altro punto interno allo stesso terreno.
+PASS Vallombrosa montagna/campagna: HTTP 200 it:H222:_:19:33
+PASS Trento fuori copertura AdE: HTTP 404 La cartografia AdE non copre le province autonome di Trento e Bolzano.

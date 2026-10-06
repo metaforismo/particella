@@ -1,0 +1,5 @@
+{
+  "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.05977620%2C7.67051750%2C45.05997620%2C7.67071750%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+  "status": 200,
+  "executedAt": "2026-10-06T00:07:48.898Z"
+}

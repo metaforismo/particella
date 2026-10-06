@@ -1,0 +1,10 @@
+{
+  "name": "veneto-meta-xml",
+  "url": "https://idt2.regione.veneto.it/geoportal/csw?getxml=%7B81A99EE7-7801-49DA-93E4-76A0F5F2DBB7%7D",
+  "executedAt": "2026-10-06T00:01:34.446119+00:00",
+  "status": 200,
+  "contentType": "text/xml;charset=UTF-8",
+  "bytes": 30067,
+  "sha256": "e5db0aeb24e2e34c2955398e0e319a1d3c13fa9f1fcb84053f4892ce53882f04",
+  "durationMs": 265
+}

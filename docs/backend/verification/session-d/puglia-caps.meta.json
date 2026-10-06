@@ -1,0 +1,7 @@
+{
+  "name": "puglia-caps",
+  "url": "https://webapps.sit.puglia.it/arcgis/services/Operationals/PRG/MapServer/WMSServer?service=WMS&request=GetCapabilities",
+  "executedAt": "2026-10-05T23:55:57.947816+00:00",
+  "error": "HTTP Error 400: Bad Request",
+  "durationMs": 162
+}

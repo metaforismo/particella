@@ -1,0 +1,10 @@
+{
+  "name": "veneto-config",
+  "url": "https://idt2.regione.veneto.it/idt/js/scripts/webgis/map/configs/webgis_configs.jsonp?webgisId=213",
+  "executedAt": "2026-10-05T23:56:46.234287+00:00",
+  "status": 200,
+  "contentType": "text/html;charset=UTF-8",
+  "bytes": 10277,
+  "sha256": "4c3dff1df320ac789b02d15f39f80bfee96817c999944599b784b2e49185cbe0",
+  "durationMs": 704
+}

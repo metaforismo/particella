@@ -1,0 +1,10 @@
+{
+  "name": "veneto-license",
+  "url": "https://idt2.regione.veneto.it/geoportal/csw?service=CSW&version=2.0.2&request=GetRecordById&elementSetName=full&id=r_veneto%3AZonizzazione_P.R.C.",
+  "executedAt": "2026-10-06T00:00:10.619621+00:00",
+  "status": 200,
+  "contentType": "application/xml;charset=UTF-8",
+  "bytes": 3490,
+  "sha256": "3ed01745e3edbdaeda04b14d8e0b9eaa18601df2e5f5bc65200b2d3414bc05dd",
+  "durationMs": 366
+}

@@ -1,0 +1,10 @@
+{
+  "name": "veneto-legend",
+  "url": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetLegendGraphic&layer=rv%3Azonizzazione_072026&format=application%2Fjson",
+  "executedAt": "2026-10-06T00:01:35.721805+00:00",
+  "status": 200,
+  "contentType": "application/vnd.ogc.se_xml;charset=UTF-8",
+  "bytes": 367,
+  "sha256": "073d6dd2cc5b867072f8f243b6153d3fb51d079c78956c35b1a75ad257fe4697",
+  "durationMs": 271
+}

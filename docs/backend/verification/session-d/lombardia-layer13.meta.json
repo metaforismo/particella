@@ -1,0 +1,10 @@
+{
+  "name": "lombardia-layer13",
+  "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/13?f=pjson",
+  "executedAt": "2026-10-05T23:56:20.503200+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=UTF-8",
+  "bytes": 8207,
+  "sha256": "4389c9162b311b5458028aa2c41ad9f72f8298937e5f769923201e48a06b055e",
+  "durationMs": 194
+}

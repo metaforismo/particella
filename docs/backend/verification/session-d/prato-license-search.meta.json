@@ -1,0 +1,10 @@
+{
+  "name": "prato-license-search",
+  "url": "https://dati.toscana.it/api/3/action/package_search?fq=organization:comune-di-prato&q=piano&rows=100",
+  "executedAt": "2026-10-06T00:01:38.192013+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=utf-8",
+  "bytes": 215,
+  "sha256": "407cbe84cc80ac4909239069e822d58dbd6554d7302da997b173eb883c18ee8d",
+  "durationMs": 126
+}

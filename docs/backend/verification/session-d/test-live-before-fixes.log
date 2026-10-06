@@ -1,0 +1,106 @@
+
+> particella@0.1.0 test:live
+> node --experimental-strip-types scripts/live-smoke.ts
+
+PASS health {"status":"ok","version":"0.1","timestamp":"2026-10-06T00:05:03.848Z"}
+PASS catalog layers {"count":17}
+PASS catalog sources {"count":31}
+PASS GET plot Firenze cold ID + at {"id":"it:D612:_:173:68","areaM2":6374.608410795467,"municipality":{"istatCode":"048017","cadastralCode":"D612","name":"Firenze","province":"Firenze","provinceCode":"FI","region":"Toscana"}}
+PASS geocode Via Tortona 31 Milano {"id":"osm:76200240","label":"Via Tortona 31","secondary":"Milano, Lombardia, Italia","kind":"address","center":{"lat":45.4514552,"lon":9.1619177},"bbox":[9.1618677,45.4514052,9.1619677,45.4515052]}
+PASS geocode Bagno a Ripoli {"id":"osm:81604330","label":"Bagno a Ripoli","secondary":"Toscana, Italia","kind":"municipality","center":{"lat":43.752172,"lon":11.3199949},"bbox":[11.2562787,43.6702857,11.4164037,43.7922676]}
+PASS geocode Piazza della Signoria Firenze {"id":"osm:81524929","label":"Piazza della Signoria","secondary":"Firenze, Toscana, Italia","kind":"place","center":{"lat":43.7695737,"lon":11.2558641},"bbox":[11.2551323,43.769147,11.2567739,43.7700169]}
+PASS plotAt Milano Duomo is street {"expected":"not_found","message":"Il punto ricade su una strada o un'acqua catastale: non è un lotto."}
+PASS GET plotAt rural Toscana {"id":"it:A564:_:60:110","areaM2":18665.20448761215,"province":"FI"}
+PARTIAL GET plot cold without at: upstream_unavailable
+PASS GET plot cold with at after negative ID lookup {"id":"it:A564:_:60:110"}
+PASS GET mismatched plot + at {"error":{"code":"not_found","message":"Il punto indicato non ricade nella particella richiesta."}}
+PASS GET malformed at {"error":{"code":"bad_request","message":"Il parametro at deve contenere latitudine,longitudine valide."}}
+PASS GET layer planning cold ID + at {"status":"ok","headline":"Piano Operativo di Firenze: ambito del nucleo storico (zona A - sottozona A1).","provenance":[{"sourceId":"planning-firenze","dataset":"Piano Operativo — ambiti vigenti","authority":"Comune di Firenze","license":"CC BY 4.0","url":"https://opendata.comune.fi.it/page_dataset_show?id=po_subsistemi_e_ambiti-stato_vigente","method":"wms","isOfficial":true,"requestUrl":"https://tms.comune.fi.it/tiles/service/wms?bbox=11.246644994999999%2C43.759143445%2C11.266644994999998%2C43.779143444999995&feature_count=100&format=image%2Fpng&height=101&info_format=application%2Fvnd.ogc.gml&layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&query_layers=poc%3Av_po_timewms_subsistemi_ambiti_vigente&request=GetFeatureInfo&service=WMS&srs=EPSG%3A4326&styles=&version=1.1.1&width=101&x=50&y=50","retrievedAt":"2026-10-06T00:05:11.201Z","referenceDate":"2025-06-06"}]}
+FAIL power-grid Firenze: unavailable
+FAIL infrastructure-distances Firenze: unavailable
+FAIL industrial-sites Firenze: unavailable
+PASS regional-land-cover Firenze: ok
+PASS flood Firenze: ok
+PASS landslide Firenze: empty
+PASS seismic Firenze: ok
+PASS protected-areas Firenze: empty
+PASS terrain Firenze: ok
+PASS solar Firenze: ok
+FAIL services Firenze: unavailable
+PASS demographics Firenze: ok
+PASS landscape Firenze: empty
+PASS planning Firenze: ok
+PASS land-cover Firenze: ok
+PASS accessibility Firenze: ok
+FAIL market Firenze: unavailable
+PASS GET report cold ID + at {"id":"it:D612:_:173:68","layers":17,"statuses":[{"layer":"power-grid","status":"unavailable"},{"layer":"infrastructure-distances","status":"unavailable"},{"layer":"industrial-sites","status":"unavailable"},{"layer":"regional-land-cover","status":"ok"},{"layer":"flood","status":"ok"},{"layer":"landslide","status":"empty"},{"layer":"seismic","status":"ok"},{"layer":"protected-areas","status":"empty"},{"layer":"terrain","status":"ok"},{"layer":"solar","status":"ok"},{"layer":"services","status":"unavailable"},{"layer":"demographics","status":"ok"},{"layer":"landscape","status":"empty"},{"layer":"planning","status":"ok"},{"layer":"land-cover","status":"ok"},{"layer":"accessibility","status":"ok"},{"layer":"market","status":"unavailable"}]}
+PASS municipality Milano {"istatCode":"015146","cadastralCode":"F205","name":"Milano","province":"Milano","provinceCode":"MI","region":"Lombardia"}
+PASS demographics Milano: ok
+PARTIAL terrain Milano: partial
+PASS regional-land-cover Milano: ok
+PASS land-cover Milano: ok
+PASS seismic Milano: ok
+PASS landscape Milano: empty
+PASS planning Milano: ok
+PASS solar Milano: ok
+PASS protected-areas Milano: empty
+PASS flood Milano: empty
+PASS landslide Milano: empty
+PARTIAL power-grid Milano: partial
+PASS infrastructure-distances Milano: ok
+PASS industrial-sites Milano: empty
+PASS services Milano: ok
+PASS accessibility Milano: ok
+FAIL market Milano: unavailable
+PASS municipality Toscana {"istatCode":"048001","cadastralCode":"A564","name":"Bagno a Ripoli","province":"Firenze","provinceCode":"FI","region":"Toscana"}
+PASS planning Toscana: outside_coverage
+FAIL market Toscana: unavailable
+PASS demographics Toscana: ok
+PASS regional-land-cover Toscana: empty
+PASS seismic Toscana: ok
+PASS land-cover Toscana: ok
+PASS landscape Toscana: empty
+PASS solar Toscana: ok
+PASS terrain Toscana: ok
+PASS protected-areas Toscana: empty
+PASS flood Toscana: empty
+PARTIAL power-grid Toscana: partial
+PASS infrastructure-distances Toscana: ok
+PASS industrial-sites Toscana: ok
+PASS services Toscana: ok
+PASS accessibility Toscana: ok
+PASS landslide Toscana: ok
+PASS tile cadastre {"z":18,"x":139314,"y":95623,"bytes":6847}
+PASS tile flood {"z":18,"x":139314,"y":95623,"bytes":1784}
+PASS tile landslide {"z":18,"x":139314,"y":95623,"bytes":4602}
+PASS POST chat unconfigured {"error":{"code":"not_configured","message":"L’assistente non è ancora configurato."}}
+Live summary: 61 PASS, 4 PARTIAL, 7 FAIL.
+LAND Milano urbano cold: 7376 ms
+LAND Milano urbano warm: 3 ms
+FAIL LAND Milano urbano power-grid: unavailable; La fonte non è al momento disponibile.
+FAIL LAND Milano urbano infrastructure-distances: unavailable; La fonte non è al momento disponibile.
+FAIL LAND Milano urbano industrial-sites: unavailable; La fonte non è al momento disponibile.
+PASS LAND Milano urbano regional-land-cover: ok; La carta regionale indica: insediamenti industriali, artigianali, commerciali.
+PASS LAND Milano urbano terrain: ok; I campioni del terreno hanno quote tra 119,5 e 119,7 metri.
+LAND Bagno a Ripoli agricolo cold: 7800 ms
+LAND Bagno a Ripoli agricolo warm: 5 ms
+PARTIAL LAND Bagno a Ripoli agricolo power-grid: partial; Rete elettrica più vicina censita: linea ad alta tensione (≥132 kV) a 1,3 km, stazione elettrica a 4,9 km.
+PASS LAND Bagno a Ripoli agricolo infrastructure-distances: ok; Più vicini censiti: strada secondaria a 246 m, cimitero a 1,7 km.
+PASS LAND Bagno a Ripoli agricolo industrial-sites: ok; Più vicini censiti: area industriale a 594 m.
+PASS LAND Bagno a Ripoli agricolo regional-land-cover: empty; La carta regionale non restituisce una classe sul punto controllato.
+PASS LAND Bagno a Ripoli agricolo terrain: ok; I campioni del terreno hanno quote tra 137,6 e 146,2 metri.
+LAND Vallombrosa montano cold: 7829 ms
+LAND Vallombrosa montano warm: 12 ms
+FAIL LAND Vallombrosa montano power-grid: unavailable; La fonte non è al momento disponibile.
+FAIL LAND Vallombrosa montano infrastructure-distances: unavailable; La fonte non è al momento disponibile.
+FAIL LAND Vallombrosa montano industrial-sites: unavailable; La fonte non è al momento disponibile.
+PASS LAND Vallombrosa montano regional-land-cover: empty; La carta regionale non restituisce una classe sul punto controllato.
+PARTIAL LAND Vallombrosa montano terrain: partial; I campioni del terreno hanno quote tra 943,1 e 943,1 metri.
+PASS LAND AdE regression: 200
+LAND point Firenze urbano regional-land-cover: ok
+LAND point Lodi agricolo regional-land-cover: ok
+LAND point Valsassina montano regional-land-cover: ok
+PASS planning Bergamo: Sintesi PGT di Bergamo: VIABILITA' ESISTENTE.
+PASS planning Torino: PRG di Torino: Residenza R2; Zona Urbana Storico Ambientale 3.
+PASS planning Siena: Piano Operativo di Siena: zona A, ambito CS2.
+FAIL planning Sona

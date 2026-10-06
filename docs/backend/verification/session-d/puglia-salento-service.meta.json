@@ -1,0 +1,10 @@
+{
+  "name": "puglia-salento-service",
+  "url": "https://webapps.sit.puglia.it/arcgis/rest/services/Operationals/AreaVastaSudSalento/MapServer?f=pjson",
+  "executedAt": "2026-10-06T00:02:37.637476+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=utf-8",
+  "bytes": 2578,
+  "sha256": "323319da823ab8a40b41c01365f29333634d5640b284b7dbd134a021f0e898b2",
+  "durationMs": 1888
+}

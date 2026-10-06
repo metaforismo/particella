@@ -1,3 +1,4 @@
+import { formatNumber } from "#server/core/format.ts";
 import { z } from "zod";
 import type { LayerProvider } from "#server/core/layers.ts";
 import { layerResult } from "#server/core/layers.ts";
@@ -84,7 +85,7 @@ export const terrain: LayerProvider = async (plot, { signal }) => {
     status: values.length ? (values.length === samples.length && slope !== null ? "ok" : "partial") : "empty",
     scope: plot.geometry ? "parcel" : "point",
     headline: values.length
-      ? `I campioni del terreno hanno quote tra ${round(Math.min(...values))} e ${round(Math.max(...values))} metri.`
+      ? `I campioni del terreno hanno quote tra ${formatNumber(round(Math.min(...values)))} e ${formatNumber(round(Math.max(...values)))} metri.`
       : "La fonte non fornisce quote per i campioni del lotto.",
     severity: "none",
     metrics: [

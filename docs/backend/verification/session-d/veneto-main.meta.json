@@ -1,0 +1,10 @@
+{
+  "name": "veneto-main",
+  "url": "https://idt2.regione.veneto.it/idt/webgis/configs/MainConfigs/MainConfigs.js",
+  "executedAt": "2026-10-05T23:58:43.191024+00:00",
+  "status": 200,
+  "contentType": "application/javascript;charset=UTF-8",
+  "bytes": 1022,
+  "sha256": "e50a75db1e25b6404987d14bcec221485c1e84a4f102cb733c80e348f2318dc1",
+  "durationMs": 243
+}

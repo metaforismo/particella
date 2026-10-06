@@ -6,12 +6,14 @@ import {
   type Plot,
   type MapOverlay,
 } from "#contracts";
-import { NotConfigured, OutsideCoverage } from "#server/core/errors.ts";
+import { BackendError, NotConfigured, OutsideCoverage, UpstreamError } from "#server/core/errors.ts";
 import { cache, canonicalKey, NEGATIVE_TTL_MS } from "#server/core/cache.ts";
 import { hash } from "#server/core/http.ts";
 
 export interface LayerContext {
   signal: AbortSignal;
+  /** How long this run may wait in total; providers size their upstream timeouts from it. */
+  timeoutMs?: number;
 }
 
 export type LayerProvider = (plot: Plot, context: LayerContext) => Promise<LayerResult>;
@@ -112,8 +114,16 @@ export const layerCatalog: LayerCatalogEntry[] = [
     id: "planning",
     group: "urbanistica",
     title: "Urbanistica",
-    description: "Ambiti del PO Firenze e sintesi PGT Milano",
-    sourceIds: ["planning-firenze", "planning-milano"],
+    description: "PO Firenze/Siena, PRG Torino e mosaici regionali Lombardia/Veneto",
+    sourceIds: [
+      "planning-firenze",
+      "planning-milano",
+      "planning-lombardia",
+      "planning-torino",
+      "planning-siena",
+      "planning-veneto",
+      "planning-veneto-legend",
+    ],
   },
   {
     id: "land-cover",
@@ -172,18 +182,35 @@ export function failedLayer(layer: LayerId, error: unknown): LayerResult {
         : error instanceof OutsideCoverage
           ? "La fonte non copre questo luogo."
           : "La fonte non è al momento disponibile.",
-    method: error instanceof NotConfigured ? error.message : undefined,
+    method: error instanceof BackendError ? error.message : undefined,
     notes: ["I dati mancanti non equivalgono all'assenza di fenomeni."],
   });
 }
 
 const pending = new Map<string, Promise<LayerResult>>();
 
+/** Bounds waiting, including provider queues; a timeout is unavailable, never an empty finding. */
+export function layerTimeoutMs(layer: LayerId): number {
+  return ["power-grid", "infrastructure-distances", "industrial-sites", "services", "accessibility"].includes(
+    layer,
+  )
+    ? 6000
+    : 6500;
+}
+
+/**
+ * A single layer requested on its own (the Studio loads them one by one) can wait longer than a
+ * layer inside a full report, where one slow source must not hold the whole page.
+ */
+export function singleLayerTimeoutMs(layer: LayerId): number {
+  return layerTimeoutMs(layer) <= 6000 ? 20_000 : 15_000;
+}
+
 export async function runLayer(
   layer: LayerId,
   plot: Plot,
   provider?: LayerProvider,
-  timeoutMs = 25_000,
+  timeoutMs = layerTimeoutMs(layer),
 ): Promise<LayerResult> {
   if (!provider)
     return layerResult(layer, {
@@ -191,7 +218,7 @@ export async function runLayer(
       headline: "Questo livello non è ancora collegato per questo luogo.",
       notes: ["Consultare l’ente competente per queste informazioni."],
     });
-  const key = canonicalKey("layer:v1", {
+  const key = canonicalKey("layer:v2", {
     layer,
     id: plot.id,
     geometry: hash(plot.geometry),
@@ -207,12 +234,12 @@ export async function runLayer(
   const deadline = new Promise<LayerResult>((resolve) => {
     timer = setTimeout(() => {
       controller.abort();
-      resolve(failedLayer(layer, new Error("timeout")));
+      resolve(failedLayer(layer, new UpstreamError("Tempo massimo di attesa del livello superato.")));
     }, timeoutMs);
   });
   const task = Promise.race([
     Promise.resolve()
-      .then(() => provider(plot, { signal: controller.signal }))
+      .then(() => provider(plot, { signal: controller.signal, timeoutMs }))
       .then((r) => ResultSchema.parse(r))
       .catch((error: unknown) => failedLayer(layer, error)),
     deadline,

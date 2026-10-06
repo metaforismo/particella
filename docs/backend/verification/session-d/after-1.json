@@ -1,0 +1,388 @@
+{
+  "executedAt": "2026-10-06T00:13:28.868Z",
+  "lot": {
+    "name": "Bagno",
+    "id": "it:A564:_:60:110",
+    "at": "43.7,11.32"
+  },
+  "samples": [
+    {
+      "state": "cold",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=1730.1, planning;dur=13.2, demographics;dur=88.2, regional-land-cover;dur=327.2, seismic;dur=371.6, land-cover;dur=434.7, landscape;dur=624.8, solar;dur=1072.7, terrain;dur=1120.6, market;dur=1694.6, protected-areas;dur=1777.9, flood;dur=2156.8, landslide;dur=3249.6, power-grid;dur=6002.4, infrastructure-distances;dur=6002.3, industrial-sites;dur=6002.4, services;dur=6004.0, accessibility;dur=6005.6, total;dur=7768.5",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P3 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 137,6 e 146,2 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1.339 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 99 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Bagno a Ripoli non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: vigneti."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R1 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    },
+    {
+      "state": "warm",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=0.4, power-grid;dur=2.6, infrastructure-distances;dur=2.5, industrial-sites;dur=2.5, regional-land-cover;dur=2.4, flood;dur=2.4, landslide;dur=2.4, seismic;dur=2.2, protected-areas;dur=2.1, terrain;dur=2.1, solar;dur=2.0, services;dur=2.0, demographics;dur=2.0, landscape;dur=1.9, planning;dur=1.9, land-cover;dur=1.9, accessibility;dur=1.8, market;dur=1.5, total;dur=4.4",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "empty",
+          "headline": "La carta regionale non restituisce una classe sul punto controllato."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "ok",
+          "headline": "La fonte segnala pericolosità da frana P3 sul punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 137,6 e 146,2 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1.339 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 99 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "outside_coverage",
+          "headline": "Il piano di Bagno a Ripoli non è ancora collegato."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: vigneti."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "partial",
+          "headline": "La zona OMI R1 pubblica quotazioni senza indicare una tipologia residenziale prevalente."
+        }
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "host": "geoportale.istat.it",
+      "startMs": 682.934542,
+      "durationMs": 541.870833,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 1238.271083,
+      "durationMs": 183.40383399999973,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 1739.7926669999997,
+      "durationMs": 52.53075000000035,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 2241.097667,
+      "durationMs": 51.23945800000001,
+      "status": 200
+    },
+    {
+      "host": "overpass-api.de",
+      "startMs": 2306.498667,
+      "durationMs": 5998.105833
+    },
+    {
+      "host": "www502.regione.toscana.it",
+      "startMs": 2307.136042,
+      "durationMs": 316.4071249999997,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 2307.5337919999997,
+      "durationMs": 1602.4667909999998,
+      "status": 200
+    },
+    {
+      "host": "mps04-ws.pi.ingv.it",
+      "startMs": 2307.914208,
+      "durationMs": 353.6340839999998,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 2308.254958,
+      "durationMs": 315.148334,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 2308.601875,
+      "durationMs": 212.2520830000003,
+      "status": 200
+    },
+    {
+      "host": "re.jrc.ec.europa.eu",
+      "startMs": 2308.9341249999998,
+      "durationMs": 1061.4764170000003,
+      "status": 200
+    },
+    {
+      "host": "geoportale.istat.it",
+      "startMs": 2309.253542,
+      "durationMs": 71.4174579999999,
+      "status": 200
+    },
+    {
+      "host": "sitap.cultura.gov.it",
+      "startMs": 2309.438167,
+      "durationMs": 313.6751250000002,
+      "status": 200
+    },
+    {
+      "host": "image.discomap.eea.europa.eu",
+      "startMs": 2310.8685419999997,
+      "durationMs": 423.4691250000001,
+      "status": 200
+    },
+    {
+      "host": "valhalla1.openstreetmap.de",
+      "startMs": 2312.003167,
+      "durationMs": 197.17991600000005,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 2312.8419169999997,
+      "durationMs": 308.92625,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 2557.2644999999998,
+      "durationMs": 140.82675000000017,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 2808.946,
+      "durationMs": 1646.237583,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 2825.7460419999998,
+      "durationMs": 140.12687500000038,
+      "status": 200
+    },
+    {
+      "host": "sitap.cultura.gov.it",
+      "startMs": 2830.563208,
+      "durationMs": 94.06654199999957,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 2831.264917,
+      "durationMs": 436.4909580000003,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 2833.000667,
+      "durationMs": 72.76841600000034,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 3083.8956670000002,
+      "durationMs": 120.4389999999994,
+      "status": 200
+    },
+    {
+      "host": "valhalla1.openstreetmap.de",
+      "startMs": 3315.94,
+      "durationMs": 69.59699999999975,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 3326.1223750000004,
+      "durationMs": 100.33949999999913,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 3332.297417,
+      "durationMs": 102.41737499999999,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 3333.835125,
+      "durationMs": 84.33195799999976,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 3832.239583,
+      "durationMs": 242.53879200000029,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 3833.6090419999996,
+      "durationMs": 152.14679100000012,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 3912.009375,
+      "durationMs": 523.1702500000006,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 4451.4333750000005,
+      "durationMs": 1096.0532919999987,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 4951.505958,
+      "durationMs": 289.83729200000016,
+      "status": 200
+    }
+  ],
+  "scope": "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering."
+}

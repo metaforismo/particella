@@ -26,7 +26,7 @@ test("address precedence and buckets match clientAddress; health never consumes 
   assert.equal(rateBucket("/api/v1/geocode", new URLSearchParams({ q: "Firenze F. 12 p. 340" })), "heavy");
   assert.equal(rateBucket("/api/v1/geocode", new URLSearchParams({ q: "Firenze mapp 340" })), "heavy");
   assert.equal(rateBucket("/api/v1/geocode", new URLSearchParams({ q: "Piazza Duomo" })), "light");
-  assert.equal(rateBucket("/api/v1/tiles/cadastre/18/1/1"), "heavy");
+  assert.equal(rateBucket("/api/v1/tiles/cadastre/18/1/1"), "tiles");
   await enforceApiLimit(request("health"), {
     consume: async () => {
       throw new Error("health consumed quota");
@@ -102,4 +102,11 @@ test("two independent instances use a shared atomic Redis EVAL and handle outage
   });
   assert.equal((await fallback.consume("key", 60_000)).count, 1);
   assert.equal((await fallback.consume("key", 60_000)).count, 2);
+});
+
+test("map tiles have their own generous bucket so panning never starves the analysis", () => {
+  assert.equal(rateBucket("/api/v1/tiles/cadastre/17/1/1"), "tiles");
+  assert.equal(rateBucket("/api/v1/plots/it:A564:_:60:110/layers/flood"), "heavy");
+  // One Studio session: a plot, all layers and several screens of cadastral tiles.
+  assert.ok(API_LIMITS.tiles.anonymous >= 10 * API_LIMITS.heavy.anonymous);
 });

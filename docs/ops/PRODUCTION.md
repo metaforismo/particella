@@ -18,12 +18,13 @@ Gli header restituiti dalla funzione prevalgono sulla configurazione di cache de
 
 `src/proxy.ts` limita tutte le richieste `/api/v1/*` prima degli handler, esclusa health. Identità: `x-real-ip`, altrimenti ultimo hop non vuoto di `x-forwarded-for`, mai il primo. Il reverse proxy su hosting alternativo deve eliminare gli header client e impostare questi valori. Si conservano solo digest negli identificativi dei contatori, mai indirizzi nei log.
 
-| Bucket per indirizzo | Senza chiave / minuto | Chiave valida / minuto | Route                                                                             |
-| -------------------- | --------------------: | ---------------------: | --------------------------------------------------------------------------------- |
-| Leggero              |                    60 |                    600 | geocode testuale, cataloghi, OpenAPI, status passivo                              |
-| Pesante              |                   120 |                  1.200 | layer/report, particelle, lotti, tile, chat, probe, geocode con intento catastale |
+| Bucket per indirizzo | Senza chiave / minuto | Chiave valida / minuto | Route                                                                          |
+| -------------------- | --------------------: | ---------------------: | ------------------------------------------------------------------------------ |
+| Leggero              |                    60 |                    600 | geocode testuale, cataloghi, OpenAPI, status passivo                           |
+| Pesante              |                   120 |                  1.200 | layer/report, particelle, lotti, chat, probe, geocode con intento catastale    |
+| Tile                 |                 1.500 |                  6.000 | tile della mappa (una schermata ne carica decine, lo spostamento molte di più) |
 
-Finestra fissa di 60 secondi dal primo consumo. I cataloghi condividono la stessa quota; pesante e leggero sono indipendenti. Il rilevamento di geocode catastale nel proxy è una classificazione di costo, mentre l'handler verifica la sintassi completa. Una chiave pubblica cambia il tier dello stesso indirizzo: ruotare chiave nello stesso tier non azzera il bucket. Questo prepara il piano a pagamento; non implementa fatturazione, quote per cliente o autenticazione obbligatoria. Il limite chat esistente (8 messaggi/minuto, 120 globali per istanza) resta aggiuntivo.
+Finestra fissa di 60 secondi dal primo consumo. I cataloghi condividono la stessa quota; pesante, leggero e tile sono indipendenti. Il rilevamento di geocode catastale nel proxy è una classificazione di costo, mentre l'handler verifica la sintassi completa. Una chiave pubblica cambia il tier dello stesso indirizzo: ruotare chiave nello stesso tier non azzera il bucket. Questo prepara il piano a pagamento; non implementa fatturazione, quote per cliente o autenticazione obbligatoria. Il limite chat esistente (8 messaggi/minuto, 120 globali per istanza) resta aggiuntivo.
 
 Redis usa `EVAL` atomico con incremento/scadenza, non `get/set`. Senza Redis il limite è **per istanza**; istanze nuove hanno bucket nuovi. Un guasto Redis ricade in memoria per 30 secondi, log `rate_limit_memory_fallback`: la quota globale non è una garanzia durante il guasto. Non impiegare questo limite come tetto di spesa assoluto.
 

@@ -73,7 +73,12 @@ export class FallbackCounterStore implements CounterStore {
     return this.local.consume(key, windowMs);
   }
 }
-export function rateBucket(path: string, query?: URLSearchParams): "light" | "heavy" {
+/**
+ * Map tiles get their own bucket: one screen of the cadastral layer is dozens of tiles and panning
+ * fetches many more, while each tile is a small, long-cached image.
+ */
+export function rateBucket(path: string, query?: URLSearchParams): "light" | "heavy" | "tiles" {
+  if (path.startsWith("/api/v1/tiles/")) return "tiles";
   return (path === "/api/v1/geocode" && !looksCadastral(query?.get("q") ?? "")) ||
     path.startsWith("/api/v1/catalog/") ||
     path === "/api/v1/openapi.json" ||
@@ -84,6 +89,7 @@ export function rateBucket(path: string, query?: URLSearchParams): "light" | "he
 export const API_LIMITS = {
   light: { anonymous: 60, keyed: 600 },
   heavy: { anonymous: 120, keyed: 1200 },
+  tiles: { anonymous: 1500, keyed: 6000 },
 } as const;
 
 export async function enforceApiLimit(request: Request, store: CounterStore): Promise<void> {

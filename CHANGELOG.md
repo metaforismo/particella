@@ -17,6 +17,16 @@ semantico a partire dalla prima release pubblica.
   protette, terreno, sole, servizi, raggiungibilità, popolazione, valori OMI.
 - Pagine Fonti e licenze, API per sviluppatori, immagine di condivisione, sitemap e robots.
 
+### Aggiunto (dati)
+- Urbanistica estesa: mosaici regionali di Lombardia e Veneto, Siena, Torino (oltre a Firenze e Milano).
+- Rete elettrica ad alta tensione e stazioni, distanze dalle infrastrutture, aree industriali, cave e discariche
+  (OpenStreetMap); uso del suolo regionale (UCS Toscana, DUSAF Lombardia); pendenza ed esposizione.
+- Gruppo "Energia", quadro sintetico, confronto, intestazione e note del tecnico nella scheda, app installabile.
+
+### Migliorato
+- Report a freddo da oltre 20 s a meno di 8 s; i layer richiesti singolarmente possono attendere fonti lente.
+- Numeri in formato italiano in tutti i testi; fogli catastali con lettera e formati storici.
+
 ### Sicurezza
 - Solo URL http(s) nei link di provenienza e tile solo dal proxy interno; attribuzioni escapate.
 - Rate limit della chat su indirizzo fornito dalla piattaforma, con tetto globale; corpo delle richieste limitato.

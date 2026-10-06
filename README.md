@@ -17,8 +17,11 @@ servizi e contesto, leggendo fonti pubbliche ufficiali. Ogni valore porta con s�
 | **Scheda** (`/scheda/<id>`) | Pagina stampabile in A4 con sintesi, dettaglio e fonti numerate. Confine esportabile in GeoJSON e KML. |
 | **API** (`/api/v1`) | Le stesse risposte in JSON, con provenienza su ogni campo. Documentazione in `/sviluppatori`. |
 
-Livelli reali oggi: urbanistica (Firenze, Milano), vincoli paesaggistici, uso del suolo, alluvioni, frane, sismica, aree
-protette, profilo del terreno, sole, servizi, raggiungibilità, popolazione, valori OMI. Enti, licenze e limiti nella
+Livelli reali oggi (17): urbanistica (Lombardia e Veneto con i mosaici regionali, Firenze, Siena, Torino), vincoli
+paesaggistici, uso del suolo (CORINE e carte regionali di Toscana e Lombardia), distanze dalle infrastrutture,
+alluvioni, frane, sismica, aree protette, profilo del terreno, sole, servizi, raggiungibilità, popolazione, valori OMI,
+rete elettrica ad alta tensione, aree industriali, cave e discariche. Copertura urbanistica in
+[`docs/backend/PLANNING-COVERAGE.md`](docs/backend/PLANNING-COVERAGE.md). Enti, licenze e limiti nella
 pagina `/fonti` e in [`docs/research/`](docs/research/).
 
 ## Architettura in breve

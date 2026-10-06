@@ -1,0 +1,456 @@
+{
+  "results": [
+    {
+      "query": "Agliè, foglio 51, particella 1",
+      "seconds": 2.1627282500000002,
+      "result": {
+        "id": "it:A074:_:51:1",
+        "label": "Foglio 51 · Particella 1",
+        "secondary": "Agliè (TO)",
+        "kind": "parcel",
+        "center": {
+          "lat": 45.34868352000001,
+          "lon": 7.766548491320066
+        },
+        "bbox": [7.76632041, 45.3485482, 7.76677445, 45.34895727],
+        "provenance": [
+          {
+            "sourceId": "ade-cadastre",
+            "dataset": "Cartografia catastale — particelle",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.348548%2C7.76632%2C45.348957%2C7.766774%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+            "retrievedAt": "2026-10-06T00:30:23.687Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "ade-cadastral-download",
+            "dataset": "Mappe catastali — fogli",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=PIEMONTE.zip",
+            "retrievedAt": "2026-10-06T00:29:23.685Z",
+            "referenceDate": "2026-09-22T15:03:01"
+          },
+          {
+            "sourceId": "istat-municipality",
+            "dataset": "Confini comunali 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=7.766548491320066%2C45.34868352000001&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-06T00:30:23.955Z",
+            "referenceDate": "2026-01-01"
+          },
+          {
+            "sourceId": "istat-provinces",
+            "dataset": "Province — nomi e sigle",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+            "retrievedAt": "2026-10-05T22:47:25.483Z",
+            "referenceDate": "2026-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "query": "Alassio, foglio 1, particella 1",
+      "seconds": 1.9328320420000005,
+      "result": {
+        "id": "it:A122:_:1:1",
+        "label": "Foglio 1 · Particella 1",
+        "secondary": "Alassio (SV)",
+        "kind": "parcel",
+        "center": {
+          "lat": 44.03109496,
+          "lon": 8.135707082856701
+        },
+        "bbox": [8.13557127, 44.0309941, 8.13580873, 44.03136506],
+        "provenance": [
+          {
+            "sourceId": "ade-cadastre",
+            "dataset": "Cartografia catastale — particelle",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=44.030994%2C8.135571%2C44.031365%2C8.135809%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+            "retrievedAt": "2026-10-06T00:30:25.717Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "ade-cadastral-download",
+            "dataset": "Mappe catastali — fogli",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=LIGURIA.zip",
+            "retrievedAt": "2026-10-06T00:29:39.543Z",
+            "referenceDate": "2026-09-22T08:36:03"
+          },
+          {
+            "sourceId": "istat-municipality",
+            "dataset": "Confini comunali 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=8.135707082856701%2C44.03109496&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-06T00:30:25.920Z",
+            "referenceDate": "2026-01-01"
+          },
+          {
+            "sourceId": "istat-provinces",
+            "dataset": "Province — nomi e sigle",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+            "retrievedAt": "2026-10-05T22:47:25.483Z",
+            "referenceDate": "2026-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "query": "Acquasparta, foglio 1, particella 1",
+      "seconds": 2.0912051249999997,
+      "result": {
+        "id": "it:A045:_:1:1",
+        "label": "Foglio 1 · Particella 1",
+        "secondary": "Acquasparta (TR)",
+        "kind": "parcel",
+        "center": {
+          "lat": 42.73327505,
+          "lon": 12.49302404786938
+        },
+        "bbox": [12.49292591, 42.73324272, 12.49305358, 42.73344578],
+        "provenance": [
+          {
+            "sourceId": "ade-cadastre",
+            "dataset": "Cartografia catastale — particelle",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=42.733243%2C12.492926%2C42.733446%2C12.493054%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+            "retrievedAt": "2026-10-06T00:30:27.889Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "ade-cadastral-download",
+            "dataset": "Mappe catastali — fogli",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=UMBRIA.zip",
+            "retrievedAt": "2026-10-06T00:29:43.115Z",
+            "referenceDate": "2026-09-22T21:30:27"
+          },
+          {
+            "sourceId": "istat-municipality",
+            "dataset": "Confini comunali 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=12.49302404786938%2C42.73327505&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-06T00:30:28.032Z",
+            "referenceDate": "2026-01-01"
+          },
+          {
+            "sourceId": "istat-provinces",
+            "dataset": "Province — nomi e sigle",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+            "retrievedAt": "2026-10-05T22:47:25.483Z",
+            "referenceDate": "2026-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "query": "Agrigento, foglio 191, particella 1",
+      "seconds": 1.9702947080000004,
+      "result": {
+        "id": "it:A089:_:191:1",
+        "label": "Foglio 191 · Particella 1",
+        "secondary": "Agrigento (AG)",
+        "kind": "parcel",
+        "center": {
+          "lat": 37.26205437,
+          "lon": 13.582397820526438
+        },
+        "bbox": [13.58221728, 37.26192823, 13.58257723, 37.26222616],
+        "provenance": [
+          {
+            "sourceId": "ade-cadastre",
+            "dataset": "Cartografia catastale — particelle",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=37.261928%2C13.582217%2C37.262226%2C13.582577%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+            "retrievedAt": "2026-10-06T00:30:29.966Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "ade-cadastral-download",
+            "dataset": "Mappe catastali — fogli",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=SICILIA.zip",
+            "retrievedAt": "2026-10-06T00:29:49.510Z",
+            "referenceDate": "2026-09-22T18:26:44"
+          },
+          {
+            "sourceId": "istat-municipality",
+            "dataset": "Confini comunali 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=13.582397820526438%2C37.26205437&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-06T00:30:30.081Z",
+            "referenceDate": "2026-01-01"
+          },
+          {
+            "sourceId": "istat-provinces",
+            "dataset": "Province — nomi e sigle",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+            "retrievedAt": "2026-10-05T22:47:25.483Z",
+            "referenceDate": "2026-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "query": "Abano Terme, foglio 22, particella 1",
+      "seconds": 1.8126878749999997,
+      "result": {
+        "id": "it:A001:_:22:1",
+        "label": "Foglio 22 · Particella 1",
+        "secondary": "Abano Terme (PD)",
+        "kind": "parcel",
+        "center": {
+          "lat": 45.34948276,
+          "lon": 11.80814537821064
+        },
+        "bbox": [11.80794096, 45.34915504, 11.80837232, 45.34953655],
+        "provenance": [
+          {
+            "sourceId": "ade-cadastre",
+            "dataset": "Cartografia catastale — particelle",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.349155%2C11.807941%2C45.349537%2C11.808372%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+            "retrievedAt": "2026-10-06T00:30:31.838Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "ade-cadastral-download",
+            "dataset": "Mappe catastali — fogli",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=VENETO.zip",
+            "retrievedAt": "2026-10-06T00:29:52.199Z",
+            "referenceDate": "2026-09-23T20:11:56"
+          },
+          {
+            "sourceId": "istat-municipality",
+            "dataset": "Confini comunali 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.80814537821064%2C45.34948276&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-06T00:30:31.916Z",
+            "referenceDate": "2026-01-01"
+          },
+          {
+            "sourceId": "istat-provinces",
+            "dataset": "Province — nomi e sigle",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+            "retrievedAt": "2026-10-05T22:47:25.483Z",
+            "referenceDate": "2026-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "query": "Firenze, foglio 150B, particella 782",
+      "seconds": 0.4691617500000011,
+      "result": {
+        "id": "it:D612:_:150B:782",
+        "label": "Foglio 150B · Particella 782",
+        "secondary": "Firenze (FI)",
+        "kind": "parcel",
+        "center": {
+          "lat": 43.73692623,
+          "lon": 11.232836461111074
+        },
+        "bbox": [11.23258655, 43.73674209, 11.23308782, 43.73710804],
+        "provenance": [
+          {
+            "sourceId": "ade-cadastre",
+            "dataset": "Cartografia catastale — particelle",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+            "method": "wfs",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.736742%2C11.232587%2C43.737108%2C11.233088%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+            "retrievedAt": "2026-10-06T00:30:32.385Z",
+            "referenceDate": null
+          },
+          {
+            "sourceId": "ade-cadastral-download",
+            "dataset": "Mappe catastali — fogli",
+            "authority": "Agenzia delle Entrate",
+            "license": "CC BY 4.0",
+            "url": "https://geodati.gov.it/geoportale/visualizzazione-metadati/scheda-metadati?metadataid=age%3Afornitura_dati_catasto",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+            "retrievedAt": "2026-10-06T00:29:08.750Z",
+            "referenceDate": "2026-09-22T20:10:50"
+          },
+          {
+            "sourceId": "istat-municipality",
+            "dataset": "Confini comunali 2026",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query",
+            "method": "api",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.232836461111074%2C43.73692623&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+            "retrievedAt": "2026-10-06T00:30:32.451Z",
+            "referenceDate": "2026-01-01"
+          },
+          {
+            "sourceId": "istat-provinces",
+            "dataset": "Province — nomi e sigle",
+            "authority": "ISTAT",
+            "license": "CC BY 4.0",
+            "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query",
+            "method": "snapshot",
+            "isOfficial": true,
+            "requestUrl": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/60/query?f=json&where=1%3D1&outFields=COD_PROV,DEN_UTS,SIGLA&returnGeometry=false",
+            "retrievedAt": "2026-10-05T22:47:25.483Z",
+            "referenceDate": "2026-01-01"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "name": "cadastral-a074-parcels.xml",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.348548%2C7.76632%2C45.348957%2C7.766774%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+      "retrievedAt": "2026-10-06T00:30:23.683Z"
+    },
+    {
+      "name": "cadastral-a074-municipality.json",
+      "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=7.766548491320066%2C45.34868352000001&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+      "retrievedAt": "2026-10-06T00:30:23.955Z"
+    },
+    {
+      "name": "cadastral-a122-parcels.xml",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=44.030994%2C8.135571%2C44.031365%2C8.135809%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+      "retrievedAt": "2026-10-06T00:30:25.717Z"
+    },
+    {
+      "name": "cadastral-a122-municipality.json",
+      "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=8.135707082856701%2C44.03109496&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+      "retrievedAt": "2026-10-06T00:30:25.919Z"
+    },
+    {
+      "name": "cadastral-a045-parcels.xml",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=42.733243%2C12.492926%2C42.733446%2C12.493054%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+      "retrievedAt": "2026-10-06T00:30:27.889Z"
+    },
+    {
+      "name": "cadastral-a045-municipality.json",
+      "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=12.49302404786938%2C42.73327505&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+      "retrievedAt": "2026-10-06T00:30:28.031Z"
+    },
+    {
+      "name": "cadastral-a089-parcels.xml",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=37.261928%2C13.582217%2C37.262226%2C13.582577%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+      "retrievedAt": "2026-10-06T00:30:29.965Z"
+    },
+    {
+      "name": "cadastral-a089-municipality.json",
+      "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=13.582397820526438%2C37.26205437&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+      "retrievedAt": "2026-10-06T00:30:30.081Z"
+    },
+    {
+      "name": "cadastral-a001-parcels.xml",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.349155%2C11.807941%2C45.349537%2C11.808372%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+      "retrievedAt": "2026-10-06T00:30:31.838Z"
+    },
+    {
+      "name": "cadastral-a001-municipality.json",
+      "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.80814537821064%2C45.34948276&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+      "retrievedAt": "2026-10-06T00:30:31.916Z"
+    },
+    {
+      "name": "cadastral-d612-parcels.xml",
+      "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=43.736742%2C11.232587%2C43.737108%2C11.233088%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+      "retrievedAt": "2026-10-06T00:30:32.385Z"
+    },
+    {
+      "name": "cadastral-d612-municipality.json",
+      "url": "https://geoportale.istat.it/server/rest/services/LimAmm/LimitiAmministrativi/MapServer/61/query?f=json&geometry=11.232836461111074%2C43.73692623&geometryType=esriGeometryPoint&inSR=4326&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects",
+      "retrievedAt": "2026-10-06T00:30:32.451Z"
+    }
+  ]
+}

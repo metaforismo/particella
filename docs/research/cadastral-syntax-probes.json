@@ -1,0 +1,50 @@
+[
+  {
+    "name": "syntax-1.0.0-FILTER",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=CP%3ACadastralZoning&COUNT=10&FILTER=%3Cogc%3AFilter+xmlns%3Aogc%3D%22http%3A%2F%2Fwww.opengis.net%2Fogc%22%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3ED612_0021C0%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3C%2Fogc%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.716,
+    "bytes": 756,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:wfs=\"http://www.opengis.net/wfs\"\n   xmlns:gml=\"http://www.opengis.net/gml\"\n   xmlns:ogc=\"http://www.opengis.net/ogc\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd \n                       http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=1.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=XMLSCHEMA\">\n   <gml:boundedBy>\n      <gml:null>missing</gml:null>\n   </gml:boundedBy>\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "syntax-1.0.0-filter",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=CP%3ACadastralZoning&COUNT=10&filter=%3Cogc%3AFilter+xmlns%3Aogc%3D%22http%3A%2F%2Fwww.opengis.net%2Fogc%22%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3ED612_0021C0%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3C%2Fogc%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.564,
+    "bytes": 756,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:wfs=\"http://www.opengis.net/wfs\"\n   xmlns:gml=\"http://www.opengis.net/gml\"\n   xmlns:ogc=\"http://www.opengis.net/ogc\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd \n                       http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=1.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=XMLSCHEMA\">\n   <gml:boundedBy>\n      <gml:null>missing</gml:null>\n   </gml:boundedBy>\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "syntax-1.1.0-FILTER",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CP%3ACadastralZoning&COUNT=10&FILTER=%3Cogc%3AFilter+xmlns%3Aogc%3D%22http%3A%2F%2Fwww.opengis.net%2Fogc%22%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3ED612_0021C0%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3C%2Fogc%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.727,
+    "bytes": 747,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml\"\n   xmlns:wfs=\"http://www.opengis.net/wfs\"\n   xmlns:ogc=\"http://www.opengis.net/ogc\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=1.1.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=text/xml;%20subtype=gml/3.1.1  http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd\">\n   <gml:boundedBy>\n      <gml:Null>missing</gml:Null>\n   </gml:boundedBy>\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "syntax-1.1.0-filter",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CP%3ACadastralZoning&COUNT=10&filter=%3Cogc%3AFilter+xmlns%3Aogc%3D%22http%3A%2F%2Fwww.opengis.net%2Fogc%22%3E%3Cogc%3APropertyIsEqualTo%3E%3Cogc%3APropertyName%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Fogc%3APropertyName%3E%3Cogc%3ALiteral%3ED612_0021C0%3C%2Fogc%3ALiteral%3E%3C%2Fogc%3APropertyIsEqualTo%3E%3C%2Fogc%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.853,
+    "bytes": 747,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml\"\n   xmlns:wfs=\"http://www.opengis.net/wfs\"\n   xmlns:ogc=\"http://www.opengis.net/ogc\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=1.1.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=text/xml;%20subtype=gml/3.1.1  http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd\">\n   <gml:boundedBy>\n      <gml:Null>missing</gml:Null>\n   </gml:boundedBy>\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "syntax-2.0.0-FILTER",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=CP%3ACadastralZoning&COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ED612_0021C0%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.87,
+    "bytes": 807,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:25:35\" numberMatched=\"unknown\" numberReturned=\"0\">\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "syntax-2.0.0-filter",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=CP%3ACadastralZoning&COUNT=10&filter=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ED612_0021C0%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.754,
+    "bytes": 807,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:25:36\" numberMatched=\"unknown\" numberReturned=\"0\">\n</wfs:FeatureCollection>\n\n\n"
+  }
+]

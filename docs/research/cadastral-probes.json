@@ -1,0 +1,114 @@
+[
+  {
+    "name": "zoning-fes-bare",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22+xmlns%3ACP%3D%22http%3A%2F%2Fmapserver.gis.umn.edu%2Fmapserver%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ENATIONALCADASTRALZONINGREFERENCE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ED612_0021C0%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.513,
+    "bytes": 807,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:29\" numberMatched=\"unknown\" numberReturned=\"0\">\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "zoning-fes-cp",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22+xmlns%3ACP%3D%22http%3A%2F%2Fmapserver.gis.umn.edu%2Fmapserver%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ECP%3ANATIONALCADASTRALZONINGREFERENCE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ED612_0021C0%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.471,
+    "bytes": 807,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:29\" numberMatched=\"unknown\" numberReturned=\"0\">\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "zoning-cql",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&CQL_FILTER=NATIONALCADASTRALZONINGREFERENCE%3D%27D612_0021C0%27",
+    "status": 200,
+    "seconds": 0.477,
+    "bytes": 9892,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:30\" numberMatched=\"1\" numberReturned=\"1\">\n      <wfs:boundedBy>\n      \t<gml:Envelope srsName=\"urn:ogc:def:crs:EPSG::6706\">\n      \t\t<gml:lowerCorner>45.365334 11.762131</gml:lowerCorner>\n      \t\t<gml:upperCorner>45.382025 11.776917</gml:upperCorner>\n      \t</gml:Envelo"
+  },
+  {
+    "name": "zoning-rid",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&RESOURCEID=CadastralZoning.IT.AGE.MAP.D612_0021C0",
+    "status": 200,
+    "seconds": 0.396,
+    "bytes": 216,
+    "response": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><ServiceExceptionReport version=\"1.1.1\"><ServiceException code=\"InvalidFormat\"><![CDATA[Richiesta non valida ]]></ServiceException></ServiceExceptionReport>\n"
+  },
+  {
+    "name": "zoning-stored",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&STOREDQUERY_ID=urn%3Aogc%3Adef%3Aquery%3AOGC-WFS%3A%3AGetFeatureById&ID=CadastralZoning.IT.AGE.MAP.D612_0021C0",
+    "status": 200,
+    "seconds": 0.224,
+    "bytes": 216,
+    "response": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><ServiceExceptionReport version=\"1.1.1\"><ServiceException code=\"InvalidFormat\"><![CDATA[Richiesta non valida ]]></ServiceException></ServiceExceptionReport>\n"
+  },
+  {
+    "name": "parcel-fes-bare",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22+xmlns%3ACP%3D%22http%3A%2F%2Fmapserver.gis.umn.edu%2Fmapserver%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ENATIONALCADASTRALREFERENCE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ED612_0021C0.782%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.735,
+    "bytes": 807,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralParcel&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:31\" numberMatched=\"unknown\" numberReturned=\"0\">\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "parcel-fes-cp",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&FILTER=%3Cfes%3AFilter+xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22+xmlns%3ACP%3D%22http%3A%2F%2Fmapserver.gis.umn.edu%2Fmapserver%22%3E%3Cfes%3APropertyIsEqualTo%3E%3Cfes%3AValueReference%3ECP%3ANATIONALCADASTRALREFERENCE%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3ED612_0021C0.782%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsEqualTo%3E%3C%2Ffes%3AFilter%3E",
+    "status": 200,
+    "seconds": 0.821,
+    "bytes": 807,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralParcel&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:32\" numberMatched=\"unknown\" numberReturned=\"0\">\n</wfs:FeatureCollection>\n\n\n"
+  },
+  {
+    "name": "parcel-cql",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&CQL_FILTER=NATIONALCADASTRALREFERENCE%3D%27D612_0021C0.782%27",
+    "status": 200,
+    "seconds": 0.751,
+    "bytes": 2711,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralParcel&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:33\" numberMatched=\"1\" numberReturned=\"1\">\n      <wfs:boundedBy>\n      \t<gml:Envelope srsName=\"urn:ogc:def:crs:EPSG::6706\">\n      \t\t<gml:lowerCorner>45.365843 11.762131</gml:lowerCorner>\n      \t\t<gml:upperCorner>45.368421 11.763526</gml:upperCorner>\n      \t</gml:Envelo"
+  },
+  {
+    "name": "parcel-rid",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralParcel&COUNT=10&RESOURCEID=CadastralParcel.IT.AGE.PART.D612_0021C0.782",
+    "status": 200,
+    "seconds": 0.308,
+    "bytes": 216,
+    "response": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><ServiceExceptionReport version=\"1.1.1\"><ServiceException code=\"InvalidFormat\"><![CDATA[Richiesta non valida ]]></ServiceException></ServiceExceptionReport>\n"
+  },
+  {
+    "name": "parcel-stored",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&STOREDQUERY_ID=urn%3Aogc%3Adef%3Aquery%3AOGC-WFS%3A%3AGetFeatureById&ID=CadastralParcel.IT.AGE.PART.D612_0021C0.782",
+    "status": 200,
+    "seconds": 0.283,
+    "bytes": 216,
+    "response": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><ServiceExceptionReport version=\"1.1.1\"><ServiceException code=\"InvalidFormat\"><![CDATA[Richiesta non valida ]]></ServiceException></ServiceExceptionReport>\n"
+  },
+  {
+    "name": "stored-list",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=ListStoredQueries",
+    "status": 200,
+    "seconds": 0.22,
+    "bytes": 216,
+    "response": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><ServiceExceptionReport version=\"1.1.1\"><ServiceException code=\"InvalidFormat\"><![CDATA[Richiesta non valida ]]></ServiceException></ServiceExceptionReport>\n"
+  },
+  {
+    "name": "stored-describe",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=DescribeStoredQueries",
+    "status": 200,
+    "seconds": 0.302,
+    "bytes": 216,
+    "response": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><ServiceExceptionReport version=\"1.1.1\"><ServiceException code=\"InvalidFormat\"><![CDATA[Richiesta non valida ]]></ServiceException></ServiceExceptionReport>\n"
+  },
+  {
+    "name": "zoning-bbox",
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=CP%3ACadastralZoning&COUNT=10&BBOX=43.7998%2C11.2198%2C43.8002%2C11.2202%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706",
+    "status": 200,
+    "seconds": 0.446,
+    "bytes": 5118,
+    "response": "<?xml version='1.0' encoding=\"UTF-8\" ?>\n<wfs:FeatureCollection\n   xmlns:CP=\"http://mapserver.gis.umn.edu/mapserver\"\n   xmlns:gml=\"http://www.opengis.net/gml/3.2\"\n   xmlns:wfs=\"http://www.opengis.net/wfs/2.0\"\n   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n   xsi:schemaLocation=\"http://mapserver.gis.umn.edu/mapserver https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=CP:CadastralZoning&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd\"\n   timeStamp=\"2026-10-06T02:21:34\" numberMatched=\"1\" numberReturned=\"1\">\n      <wfs:boundedBy>\n      \t<gml:Envelope srsName=\"urn:ogc:def:crs:EPSG::6706\">\n      \t\t<gml:lowerCorner>43.796855 11.216990</gml:lowerCorner>\n      \t\t<gml:upperCorner>43.801835 11.222966</gml:upperCorner>\n      \t</gml:Envelo"
+  },
+  {
+    "name": "download-csw",
+    "url": "https://csw.cartografia.agenziaentrate.gov.it/age-inspire/srv/ita/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&ID=age%3AS_0000_ITALIA&ElementSetName=full&outputSchema=csw%3AIsoRecord",
+    "status": 200,
+    "seconds": 1.312,
+    "bytes": 52757,
+    "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<csw:GetRecordByIdResponse xmlns:csw=\"http://www.opengis.net/cat/csw/2.0.2\">\r\n  <gmd:MD_Metadata xmlns:gmd=\"http://www.isotc211.org/2005/gmd\" xmlns:gmx=\"http://www.isotc211.org/2005/gmx\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" xmlns:gts=\"http://www.isotc211.org/2005/gts\" xmlns:gss=\"http://www.isotc211.org/2005/gss\" xmlns:gsr=\"http://www.isotc211.org/2005/gsr\" xmlns:gco=\"http://www.isotc211.org/2005/gco\" xmlns:geonet=\"http://www.fao.org/geonetwork\" xsi:schemaLocation=\"http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd\">\r\n    <gmd:fileIdentifier>\r\n      <gco:CharacterString>age:S_0000_ITALIA</gco:CharacterString>\r\n    </gmd:fileIdentifier>\r\n    <gmd:language>\r\n      <gmd:LanguageCode codeList=\"http://www.loc.gov/standards/iso639-2\" codeListValue=\"ita\">ita</gmd:LanguageCode>\r\n    </gmd:language>\r\n    <gmd:charac"
+  }
+]

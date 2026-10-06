@@ -9,10 +9,14 @@ export async function GET(request: Request) {
       request,
       z.object({ q: z.string().trim().min(3).max(200), country: z.literal("it").default("it") }).strict(),
     );
-    return jsonResponse(z.array(GeocodeResult), await getCountry(input.country).geocode(input.q), 3600);
+    return jsonResponse(
+      z.array(GeocodeResult),
+      await getCountry(input.country).geocode(input.q, request.signal),
+      3600,
+    );
   });
 }
 
 export const runtime = "nodejs";
 
-export const maxDuration = 60;
+export const maxDuration = 300;

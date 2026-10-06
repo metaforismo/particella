@@ -1,0 +1,29 @@
+[
+  {
+    "code": "A564",
+    "zipBytes": 4780905,
+    "name": "A564_BAGNO A RIPOLI.zip",
+    "seconds": 3.2516694580000003,
+    "transferredBytes": 4921576,
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+    "retrievedAt": "2026-10-06T00:31:00.261Z"
+  },
+  {
+    "code": "D612",
+    "zipBytes": 17118912,
+    "name": "D612_FIRENZE.zip",
+    "seconds": 43.034777958,
+    "transferredBytes": 66406888,
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+    "retrievedAt": "2026-10-06T00:31:43.300Z"
+  },
+  {
+    "code": "I726",
+    "zipBytes": 7740804,
+    "name": "I726_SIENA.zip",
+    "seconds": 68.10537595800001,
+    "transferredBytes": 114313416,
+    "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/GetDataset.php?dataset=TOSCANA.zip",
+    "retrievedAt": "2026-10-06T00:32:51.407Z"
+  }
+]

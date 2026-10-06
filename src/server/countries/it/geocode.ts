@@ -1,6 +1,16 @@
 import { z } from "zod";
+import { provenance } from "#server/core/provenance.ts";
+import {
+  parseCadastralQuery,
+  resolveMunicipality,
+  municipalitySnapshot,
+} from "#server/countries/it/cadastral-query.ts";
+import { municipalIndex, findIndexedParcel } from "#server/countries/it/cadastral-index.ts";
+import { plotById } from "#server/countries/it/cadastre.ts";
+import { geometryBbox } from "#server/geo/index.ts";
+import type { PlotGeometry } from "#server/geo/index.ts";
 import type { GeocodeResult } from "#contracts";
-import { BadRequest, NotConfigured, UpstreamError } from "#server/core/errors.ts";
+import { NotConfigured, UpstreamError } from "#server/core/errors.ts";
 import { jsonBody } from "#server/core/http.ts";
 import { source } from "#server/core/sources.ts";
 import { fetchSource } from "#server/countries/it/queries.ts";
@@ -108,10 +118,34 @@ export function parsePhoton(value: unknown): GeocodeResult[] {
 
 export async function geocode(query: string, signal?: AbortSignal): Promise<GeocodeResult[]> {
   const q = query.trim().replace(/\s+/g, " ");
-  if (/\bfoglio\s+\d+.*\bparticella\s+\d+/i.test(q))
-    throw new BadRequest(
-      "Per una ricerca catastale usare l'ID it:Belfiore:sezione:foglio:particella; la ricerca per nome del comune non è disponibile.",
+  const cadastral = parseCadastralQuery(q);
+  if (cadastral) {
+    const municipality = resolveMunicipality(cadastral.municipality);
+    const index = await municipalIndex(municipality.cadastralCode, signal);
+    const { map } = findIndexedParcel(index, cadastral.sheet, cadastral.parcel, cadastral.section);
+    const plot = await plotById(
+      `it:${municipality.cadastralCode}:${map.section ?? "_"}:${map.sheet}:${cadastral.parcel}`,
+      signal,
     );
+    return [
+      {
+        id: plot.id,
+        label: plot.cadastral.label,
+        secondary: `${municipality.name} (${municipality.provinceCode})${plot.municipality && plot.municipality.istatCode !== municipality.istatCode ? ` · Comune amministrativo: ${plot.municipality.name}` : ""}`,
+        kind: "parcel",
+        center: plot.centroid,
+        bbox: geometryBbox(plot.geometry as PlotGeometry),
+        provenance: [
+          ...plot.provenance,
+          provenance("istat-municipalities", {
+            requestUrl: municipalitySnapshot.sourceUrl,
+            retrievedAt: municipalitySnapshot.retrievedAt,
+          }),
+        ],
+      },
+    ];
+  }
+
   if (
     process.env.NODE_ENV === "production" &&
     new URL(source("nominatim").endpoint).host === "nominatim.openstreetmap.org" &&

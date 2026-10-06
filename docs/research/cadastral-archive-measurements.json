@@ -1,0 +1,78 @@
+[
+  {
+    "province": "FI.zip",
+    "filename": "A564_BAGNO A RIPOLI.zip",
+    "zipBytes": 4780905,
+    "compressedBytes": 4761607,
+    "provinceDownloadSeconds": 146.835,
+    "gmlMembers": [
+      {
+        "name": "A564_BAGNO A RIPOLI_map.gml",
+        "bytes": 918126,
+        "compressedBytes": 243789
+      },
+      {
+        "name": "A564_BAGNO A RIPOLI_ple.gml",
+        "bytes": 41316079,
+        "compressedBytes": 4536834
+      }
+    ]
+  },
+  {
+    "province": "FI.zip",
+    "filename": "D612_FIRENZE.zip",
+    "zipBytes": 17118912,
+    "compressedBytes": 16982224,
+    "provinceDownloadSeconds": 146.931,
+    "gmlMembers": [
+      {
+        "name": "D612_FIRENZE_map.gml",
+        "bytes": 2402407,
+        "compressedBytes": 581370
+      },
+      {
+        "name": "D612_FIRENZE_ple.gml",
+        "bytes": 161022081,
+        "compressedBytes": 16537288
+      }
+    ]
+  },
+  {
+    "province": "SI.zip",
+    "filename": "I726_SIENA.zip",
+    "zipBytes": 7740804,
+    "compressedBytes": 7719768,
+    "provinceDownloadSeconds": 78.198,
+    "gmlMembers": [
+      {
+        "name": "I726_SIENA_map.gml",
+        "bytes": 1531375,
+        "compressedBytes": 453893
+      },
+      {
+        "name": "I726_SIENA_ple.gml",
+        "bytes": 58262286,
+        "compressedBytes": 7286665
+      }
+    ]
+  },
+  {
+    "province": "SI.zip",
+    "filename": "L303_TORRITA DI SIENA.zip",
+    "zipBytes": 2108742,
+    "compressedBytes": 2103884,
+    "provinceDownloadSeconds": 78.203,
+    "gmlMembers": [
+      {
+        "name": "L303_TORRITA DI SIENA_map.gml",
+        "bytes": 613676,
+        "compressedBytes": 155176
+      },
+      {
+        "name": "L303_TORRITA DI SIENA_ple.gml",
+        "bytes": 17238594,
+        "compressedBytes": 1953276
+      }
+    ]
+  }
+]

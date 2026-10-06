@@ -19,7 +19,7 @@ import { municipalityAt } from "#server/countries/it/municipality.ts";
 
 export const PlotId = z
   .string()
-  .regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}[A-Z]?:[0-9]{1,8}[A-Z]?$/);
+  .regex(/^it:[A-Z][0-9]{3}:(?:_|[A-Z0-9]{1,3}):[0-9]{1,5}[A-Z]{0,2}:(?:[0-9]{1,8}[A-Z]?|[A-Z])$/);
 
 export function parsePlotId(id: string) {
   const parsed = PlotId.safeParse(id);
@@ -51,8 +51,9 @@ export function parseParcels(text: string, requireConfirmedEmpty = false): Parce
     const parsed = ParcelAttributes.safeParse(node);
     if (!parsed.success) throw new UpstreamError("Identificativi WFS catastali non validi.");
     const a = parsed.data;
-    const match = a.NATIONALCADASTRALREFERENCE.match(/^([A-Z]\d{3}[A-Z0-9]*_[A-Z0-9]+)\.([A-Z0-9]+)$/);
-    if (!match || match[2] !== a.LABEL) throw new UpstreamError("Riferimento catastale incoerente.");
+    const match = a.NATIONALCADASTRALREFERENCE.match(/^([A-Z]\d{3}[A-Z0-9]*(?:_[A-Z0-9]+)?)\.([A-Z0-9]+)$/);
+    if (!match || match[2] !== a.LABEL || match[1].slice(0, 4) !== a.ADMINISTRATIVEUNIT)
+      throw new UpstreamError("Riferimento catastale incoerente.");
     return {
       belfiore: a.ADMINISTRATIVEUNIT,
       parcel: a.LABEL,
@@ -80,8 +81,12 @@ export function parseZoning(text: string, requireConfirmedEmpty = false): Zoning
   return wfsMembers(text, requireConfirmedEmpty).flatMap((n) => {
     const sheet = String(n.LABEL ?? "");
     const reference = String(n.NATIONALCADASTRALZONINGREFERENCE ?? "");
-    const code = reference.match(/^([A-Z]\d{3})([A-Z0-9]{0,3})_[A-Z0-9]+$/);
-    if (!code || !/^\d{1,5}[A-Z]?$/.test(sheet)) return [];
+    // Legacy maps also arrive as H501A048500 / L736A0015DZ (no underscore).
+    // Sheet always comes from LABEL and is matched to the selected parcel's exact map reference.
+    const code =
+      reference.match(/^([A-Z]\d{3})([A-Z0-9]{0,3})_[A-Z0-9]+$/) ??
+      reference.match(/^([A-Z]\d{3})([A-Z]{0,3})[0-9]{4}[A-Z0-9]{2}$/);
+    if (!code || !/^\d{1,5}[A-Z]{0,2}$/.test(sheet)) return [];
     return [{ reference, sheet, belfiore: code[1], section: code[2] || null }];
   });
 }

@@ -15,7 +15,7 @@ export async function GET(request: Request, context: RouteContext<"/api/v1/plots
         result,
         ["unavailable", "partial", "error"].includes(result.status) ? 0 : 3600,
       );
-    }),
+    }, request),
   );
   response.headers.set("Server-Timing", timing.header());
   return response;

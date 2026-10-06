@@ -1,20 +1,16 @@
 import { route, jsonResponse, query } from "#server/http/responses.ts";
-import { z } from "zod";
-import { GeocodeResponse } from "#contracts";
+import { GeocodeResponse, GeocodeQuery } from "#contracts";
 import { getCountry } from "#server/countries/index.ts";
 
 export async function GET(request: Request) {
   return route(async () => {
-    const input = query(
-      request,
-      z.object({ q: z.string().trim().min(3).max(200), country: z.literal("it").default("it") }).strict(),
-    );
+    const input = query(request, GeocodeQuery);
     return jsonResponse(
       GeocodeResponse,
       distinctPlaces(await getCountry(input.country).geocode(input.q, request.signal)),
       3600,
     );
-  });
+  }, request);
 }
 
 /** OSM often maps one square or street as several objects with the same name: show it once. */

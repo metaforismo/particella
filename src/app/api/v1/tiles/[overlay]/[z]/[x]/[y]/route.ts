@@ -1,7 +1,7 @@
 import { route, validated } from "#server/http/responses.ts";
 import { TileParams, PngTile, tile } from "#server/countries/it/tiles.ts";
 
-export async function GET(_request: Request, context: RouteContext<"/api/v1/tiles/[overlay]/[z]/[x]/[y]">) {
+export async function GET(request: Request, context: RouteContext<"/api/v1/tiles/[overlay]/[z]/[x]/[y]">) {
   return route(async () => {
     const params = TileParams.parse(await context.params);
     const bytes = validated(PngTile, await tile(params));
@@ -12,7 +12,7 @@ export async function GET(_request: Request, context: RouteContext<"/api/v1/tile
         "X-Content-Type-Options": "nosniff",
       },
     });
-  });
+  }, request);
 }
 
 export const runtime = "nodejs";

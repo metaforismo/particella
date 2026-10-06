@@ -7,9 +7,9 @@ export async function GET(request: Request) {
   return route(async () => {
     const { lat, lon, country } = query(request, coordinateQuery());
     return jsonResponse(Plot, await getCountry(country).plotAt(lat, lon), 3600);
-  });
+  }, request);
 }
 
 export const runtime = "nodejs";
 
-export const maxDuration = 60;
+export const maxDuration = 300;

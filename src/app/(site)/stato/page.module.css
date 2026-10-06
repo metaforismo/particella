@@ -1,0 +1,18 @@
+.page {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: var(--s-8) var(--gutter) var(--s-9);
+}
+
+.page h1 {
+  font-size: var(--fs-2xl);
+  font-stretch: var(--stretch-wide);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.lede {
+  max-width: 56ch;
+  margin-top: var(--s-4);
+  color: var(--ink-2);
+}

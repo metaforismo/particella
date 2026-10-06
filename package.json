@@ -61,6 +61,7 @@
   "type": "module",
   "imports": {
     "#server/*": "./src/server/*",
-    "#contracts": "./src/lib/contracts/index.ts"
+    "#contracts": "./src/lib/contracts/index.ts",
+    "#lib/*": "./src/lib/*"
   }
 }

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { plotApiPath, type PlotLocation } from "@/lib/routes";
 import {
   ApiError,
+  GeocodeResponse,
   LayerCatalogEntry,
   LayerResult,
   Plot,
@@ -54,6 +55,9 @@ async function getJson<T>(
 }
 
 export const api = {
+  geocode: (q: string, signal?: AbortSignal) =>
+    getJson(`/api/v1/geocode?q=${encodeURIComponent(q)}`, GeocodeResponse, signal),
+
   lot: (input: LotInput, signal?: AbortSignal) =>
     getJson("/api/v1/lots", Plot, signal, LotInput.parse(input)),
   plotAt: (lat: number, lon: number, signal?: AbortSignal) =>

@@ -1,4 +1,5 @@
 import snapshot from "../../../../data/snapshots/it-municipalities.json" with { type: "json" };
+import { CADASTRAL_MARKER } from "#lib/cadastral.ts";
 import { BadRequest, NotFound } from "#server/core/errors.ts";
 
 export interface CadastralQuery {
@@ -8,7 +9,7 @@ export interface CadastralQuery {
   section: string | null;
 }
 
-const marker = /\b(?:foglio|fg\.?|f\.|particella|part\.?|p\.|mappale|mapp\.?)(?=\s|[:=]|\d|$)/i;
+const marker = CADASTRAL_MARKER;
 const normalizeNumber = (value: string) => value.toUpperCase().replace(/^0+(?=\d)/, "");
 
 /** Returns null only for ordinary text; incomplete cadastral intent is a 400. */

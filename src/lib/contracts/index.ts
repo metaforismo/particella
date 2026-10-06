@@ -45,6 +45,10 @@ export const GeocodeResult = z.object({
 });
 export type GeocodeResult = z.infer<typeof GeocodeResult>;
 
+/** GET /api/v1/geocode: best matches first, possibly empty. */
+export const GeocodeResponse = z.array(GeocodeResult);
+export type GeocodeResponse = z.infer<typeof GeocodeResponse>;
+
 export const Municipality = z.object({
   istatCode: z.string(),
   /** Codice catastale (Belfiore), e.g. F205 for Milano. */

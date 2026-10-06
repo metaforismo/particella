@@ -10,10 +10,10 @@ import {
   Health,
   Plot,
   PlotReport,
-  GeocodeResult,
   LayerCatalogEntry,
   SourceCatalogEntry,
   ApiError,
+  GeocodeResponse,
 } from "#contracts";
 import { GET as health } from "../src/app/api/v1/health/route.ts";
 import { GET as geocode } from "../src/app/api/v1/geocode/route.ts";
@@ -80,7 +80,8 @@ test("route health/catalogs/geocode validate the shared contract", async () => {
   z.array(SourceCatalogEntry).parse(await (await sources()).json());
   const result = await geocode(request("geocode?q=Piazza%20Duomo%20Milano"));
   assert.equal(result.status, 200);
-  z.array(GeocodeResult).parse(await result.json());
+  // The same schema the browser client validates with (src/lib/api/client.ts).
+  GeocodeResponse.parse(await result.json());
 });
 
 test("strict query validation rejects missing, blank, duplicated, non-numeric and out-of-range coordinates", async () => {

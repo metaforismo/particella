@@ -93,6 +93,34 @@
   line-height: 1.4;
 }
 
+.compose {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: var(--s-3);
+  padding: 0.3rem 0.6rem;
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  font-weight: 560;
+  text-align: left;
+}
+
+.compose:hover {
+  border-style: solid;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.compose[aria-pressed="true"] {
+  border-style: solid;
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;

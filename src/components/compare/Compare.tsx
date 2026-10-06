@@ -9,13 +9,14 @@ import { StatusPill } from "@/components/studio/StatusPill";
 import { resultLabel } from "@/components/studio/status";
 import { GROUP_LABEL, LAYERS } from "@/content/layers";
 import { ApiRequestError, api } from "@/lib/api/client";
-import type { LatLon, LayerGroup, PlotReport } from "@/lib/contracts";
+import type { LayerGroup, PlotReport } from "@/lib/contracts";
 import { formatArea, formatMetric } from "@/lib/format";
 import { compareHref } from "@/lib/compare";
+import { formatLocation, type PlotLocation } from "@/lib/routes";
 import { compareList } from "./compare-list";
 import styles from "./Compare.module.css";
 
-export type CompareTarget = { id: string; at?: LatLon };
+export type CompareTarget = { id: string; at?: PlotLocation };
 
 type Column =
   | { status: "loading"; target: CompareTarget }
@@ -151,7 +152,7 @@ export function Compare({ targets }: { targets: CompareTarget[] }) {
 
 function PlotHeading({ column, onRemove }: { column: Column; onRemove: () => void }) {
   const { target } = column;
-  const studio = `/studio?plot=${encodeURIComponent(target.id)}${target.at ? `&at=${target.at.lat},${target.at.lon}` : ""}`;
+  const studio = `/studio?plot=${encodeURIComponent(target.id)}${target.at ? `&at=${formatLocation(target.at)}` : ""}`;
   return (
     <div className={styles.heading}>
       <button type="button" className={styles.remove} onClick={onRemove} aria-label="Togli dal confronto">

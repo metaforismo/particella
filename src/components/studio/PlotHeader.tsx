@@ -2,17 +2,35 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Check, CheckSquare, DownloadSimple, FileText, LinkSimple, Plus, X } from "@phosphor-icons/react";
+import {
+  Check,
+  CheckSquare,
+  DownloadSimple,
+  FileText,
+  LinkSimple,
+  Plus,
+  Polygon,
+  X,
+} from "@phosphor-icons/react";
 import { compareList } from "@/components/compare/compare-list";
 import { COMPARE_LIMIT } from "@/lib/compare";
 import { plotRef } from "@/lib/plot-list";
 import { download, plotGeoJson, plotKml } from "@/lib/export";
 import type { Plot } from "@/lib/contracts";
 import { formatArea, formatLength, formatPlace } from "@/lib/format";
-import { reportHref } from "@/lib/routes";
+import { plotLocation, reportHref } from "@/lib/routes";
 import styles from "./PlotHeader.module.css";
 
-export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void }) {
+type Props = {
+  plot: Plot;
+  onClear: () => void;
+  /** Composition mode: map clicks add or remove neighbouring parcels instead of replacing the plot. */
+  composing: boolean;
+  onCompose: () => void;
+};
+
+export function PlotHeader({ plot, onClear, composing, onCompose }: Props) {
+  const parcelCount = plot.parcels?.length ?? 1;
   const [copied, setCopied] = useState(false);
   const compared = compareList.useList();
   const comparing = compared.some((p) => p.id === plot.id);
@@ -42,7 +60,7 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
         </span>
         <span className={styles.sep} aria-hidden="true" />
         <span>
-          Particella <span className="num">{plot.cadastral.parcel}</span>
+          {parcelCount > 1 ? "Particelle" : "Particella"} <span className="num">{plot.cadastral.parcel}</span>
         </span>
       </h1>
       {plot.address ? <p className={styles.address}>{plot.address}</p> : null}
@@ -65,8 +83,17 @@ export function PlotHeader({ plot, onClear }: { plot: Plot; onClear: () => void 
         Misure calcolate sul poligono della mappa catastale, non la superficie censuaria.
       </p>
 
+      <button type="button" className={styles.compose} aria-pressed={composing} onClick={onCompose}>
+        <Polygon size={15} aria-hidden="true" />
+        {composing
+          ? "Fatto: tocca le particelle da aggiungere o togliere"
+          : parcelCount > 1
+            ? `Lotto di ${parcelCount} particelle · modifica`
+            : "Aggiungi particelle confinanti"}
+      </button>
+
       <div className={styles.actions}>
-        <Link href={reportHref(plot.id, plot.centroid)} className={styles.primary}>
+        <Link href={reportHref(plot.id, plotLocation(plot))} className={styles.primary}>
           <FileText size={16} aria-hidden="true" /> Apri la scheda
         </Link>
         <button

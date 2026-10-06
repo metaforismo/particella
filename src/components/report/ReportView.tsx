@@ -7,7 +7,7 @@ import { GROUP_LABEL, LAYER_BY_ID, LAYERS } from "@/content/layers";
 import type { LayerGroup, LayerResult, PlotReport, Provenance } from "@/lib/contracts";
 import { formatArea, formatDate, formatLength, formatMetric, formatPlace } from "@/lib/format";
 import { uniqueSources } from "@/lib/provenance";
-import { formatAt } from "@/lib/routes";
+import { formatLocation, plotLocation } from "@/lib/routes";
 import { PrintButton } from "./PrintButton";
 import { ReportPersonalization } from "./ReportPersonalization";
 import { ReportMap } from "./ReportMap";
@@ -47,7 +47,7 @@ export function ReportView({ report }: { report: PlotReport }) {
         </span>
         <div className={styles.actions}>
           <Link
-            href={`/studio?plot=${encodeURIComponent(plot.id)}&at=${formatAt(plot.centroid)}`}
+            href={`/studio?plot=${encodeURIComponent(plot.id)}&at=${formatLocation(plotLocation(plot))}`}
             className={styles.secondary}
           >
             Apri nello Studio
@@ -62,7 +62,8 @@ export function ReportView({ report }: { report: PlotReport }) {
         <div>
           <p className={styles.place}>{formatPlace(plot.municipality)}</p>
           <h1 className={styles.title}>
-            Foglio <span className="num">{plot.cadastral.sheet}</span>, particella{" "}
+            Foglio <span className="num">{plot.cadastral.sheet}</span>,{" "}
+            {plot.parcels && plot.parcels.length > 1 ? "particelle" : "particella"}{" "}
             <span className="num">{plot.cadastral.parcel}</span>
           </h1>
           {plot.address ? <p className={styles.address}>{plot.address}</p> : null}

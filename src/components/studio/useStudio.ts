@@ -4,7 +4,7 @@ import { useCallback, useEffect, useReducer, useRef } from "react";
 import { api, ApiRequestError } from "@/lib/api/client";
 import type { LatLon, LayerId, LayerResult, Plot } from "@/lib/contracts";
 import { LAYERS } from "@/content/layers";
-import { formatAt } from "@/lib/routes";
+import { formatLocation, plotLocation, type PlotLocation } from "@/lib/routes";
 import { rememberPlot } from "./recent";
 
 export type Selection =
@@ -98,7 +98,7 @@ export function useStudio() {
   const loadLayer = useCallback((plot: Plot, id: LayerId, signal: AbortSignal) => {
     dispatch({ type: "layer", id, state: { status: "loading" } });
     api
-      .layer(plot.id, id, plot.centroid, signal)
+      .layer(plot.id, id, plotLocation(plot), signal)
       .then((result) => dispatch({ type: "layer", id, state: { status: "done", result } }))
       .catch((error: unknown) => {
         if ((error as Error).name === "AbortError") return;
@@ -131,13 +131,48 @@ export function useStudio() {
     [run],
   );
 
-  /** `at` is a point inside the plot; without it the server may be unable to find the parcel. */
+  /** `at` locates the plot; without it the server may be unable to find the parcel. */
   const selectPlotId = useCallback(
-    (id: string, at?: LatLon) => run(at ?? null, (signal) => api.plot(id, at, signal)),
+    (id: string, at?: PlotLocation) =>
+      run(at ? ("lat" in at ? at : at[0]) : null, (signal) => api.plot(id, at, signal)),
     [run],
   );
 
   const plot = state.selection.status === "ready" ? state.selection.plot : null;
+
+  /**
+   * Adds the parcel under `point` to the current plot, or removes it if it is already part of it.
+   * Resolves to an error message (the current plot stays selected) or null on success.
+   */
+  const toggleParcel = useCallback(
+    async (point: LatLon): Promise<string | null> => {
+      if (!plot) {
+        selectPoint(point);
+        return null;
+      }
+      try {
+        const parcel = await api.plotAt(point.lat, point.lon);
+        const current = plot.parcels?.length
+          ? plot.parcels.map((p) => ({ id: p.id, at: p.at }))
+          : [{ id: plot.id, at: plot.centroid }];
+        const next = current.some((p) => p.id === parcel.id)
+          ? current.filter((p) => p.id !== parcel.id)
+          : [...current, { id: parcel.id, at: parcel.centroid }];
+        if (next.length === 0) return "Un lotto deve contenere almeno una particella.";
+        if (next.length === 1) {
+          if (next[0].id === parcel.id) await run(null, async () => parcel);
+          else await run(null, (signal) => api.plot(next[0].id, next[0].at, signal));
+          return null;
+        }
+        const lot = await api.lot({ parcels: next });
+        await run(null, async () => lot);
+        return null;
+      } catch (error) {
+        return describe(error);
+      }
+    },
+    [plot, run, selectPoint],
+  );
   const retryLayer = useCallback(
     (id: LayerId) => {
       const signal = inflight.current?.signal;
@@ -162,7 +197,7 @@ export function useStudio() {
 
   useEffect(() => () => inflight.current?.abort(), []);
 
-  return { ...state, selectPoint, selectPlotId, setActiveLayer, retryLayer, clear };
+  return { ...state, selectPoint, selectPlotId, toggleParcel, setActiveLayer, retryLayer, clear };
 }
 
 /** Keep the address bar shareable without triggering a navigation. */
@@ -171,7 +206,7 @@ function syncUrl(plot: Plot | null, layer: LayerId | null = null) {
   const params = new URLSearchParams();
   if (plot) {
     params.set("plot", plot.id);
-    params.set("at", formatAt(plot.centroid));
+    params.set("at", formatLocation(plotLocation(plot)));
     if (layer) params.set("layer", layer);
   }
   url.search = params.size ? `?${params}` : "";

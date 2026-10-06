@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Studio, type StudioInitial } from "@/components/studio/Studio";
 import { LayerId } from "@/lib/contracts";
-import { parseAt } from "@/lib/routes";
+import { parseLocation } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -28,7 +28,8 @@ function toInitial(params: Record<string, string | string[] | undefined>): Studi
   const plotId = one("plot");
   return {
     plotId,
-    point: plotId ? parseAt(one("at")) : point,
+    point: plotId ? undefined : point,
+    at: plotId ? parseLocation(one("at")) : undefined,
     query: one("q"),
     layer: layer.success ? layer.data : undefined,
   };

@@ -104,11 +104,23 @@ export function reprojectCadastralTile(bytes: Uint8Array, z: number, x: number, 
   return new Uint8Array(PNG.sync.write(output));
 }
 
-export async function tile(params: z.infer<typeof TileParams>, signal?: AbortSignal): Promise<Uint8Array> {
+const blankTile = () => new Uint8Array(PNG.sync.write(new PNG({ width: 256, height: 256 })));
+
+/** Mercator bbox of Italy with a small margin; every overlay we proxy is Italian. */
+const ITALY_3857 = [730_000, 4_200_000, 2_100_000, 5_980_000] as const;
+
+export async function tile(
+  params: z.infer<typeof TileParams>,
+  signal?: AbortSignal,
+  /** Called only when the tile must be fetched from the source, to charge a stricter quota. */
+  onUpstream?: () => Promise<void>,
+): Promise<Uint8Array> {
   const definition = definitions[params.overlay];
   if (!definition) throw new NotFound("Overlay non disponibile.");
-  if (params.z < definition.minZoom)
-    return new Uint8Array(PNG.sync.write(new PNG({ width: 256, height: 256 })));
+  if (params.z < definition.minZoom) return blankTile();
+  const [west, south, east, north] = tileBbox(params.z, params.x, params.y);
+  if (east < ITALY_3857[0] || west > ITALY_3857[2] || north < ITALY_3857[1] || south > ITALY_3857[3])
+    return blankTile();
   const s = source(definition.sourceId);
   const url =
     params.overlay === "cadastre"
@@ -126,7 +138,13 @@ export async function tile(params: z.infer<typeof TileParams>, signal?: AbortSig
           SRS: "EPSG:3857",
           BBOX: tileBbox(params.z, params.x, params.y).join(","),
         });
-  const payload: HttpPayload = await http.request(url, { signal, policy: s.hostPolicy, ttlMs: 604_800_000 });
+  if (onUpstream && !(await http.has(url))) await onUpstream();
+  const payload: HttpPayload = await http.request(url, {
+    signal,
+    sourceId: s.id,
+    policy: s.hostPolicy,
+    ttlMs: 604_800_000,
+  });
   if (!payload.contentType.toLowerCase().startsWith("image/png") || !PngTile.safeParse(payload.bytes).success)
     throw new UpstreamError("Il WMS non ha restituito un tile PNG valido.");
   return params.overlay === "cadastre"

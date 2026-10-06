@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { LAYER_SAMPLE } from "@/content/api-sample";
 import { LAYERS } from "@/content/layers";
+import { formatNumber } from "@/lib/format";
+import { API_LIMITS } from "@/server/http/rate-limit";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -52,6 +54,7 @@ const SECTIONS = [
   { id: "endpoint", label: "Endpoint" },
   { id: "risposte", label: "Risposte" },
   { id: "errori", label: "Errori" },
+  { id: "limiti", label: "Limiti e specifica" },
   { id: "uso", label: "Uso corretto" },
 ] as const;
 
@@ -165,6 +168,43 @@ export default function DevelopersPage() {
                 ))}
               </tbody>
             </table>
+          </section>
+
+          <section id="limiti">
+            <h2>Limiti e specifica</h2>
+            <p>
+              La specifica OpenAPI 3.1 completa, generata dallo stesso contratto che valida le risposte, è su{" "}
+              <a href="/api/v1/openapi.json">
+                <code translate="no">/api/v1/openapi.json</code>
+              </a>
+              . Il servizio conta le richieste per indirizzo di rete, in finestre di un minuto:
+            </p>
+            <table className={styles.errors}>
+              <thead>
+                <tr>
+                  <th scope="col">Tipo di richiesta</th>
+                  <th scope="col">Al minuto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ricerca testuale, cataloghi, stato</td>
+                  <td className="num">{API_LIMITS.light.anonymous}</td>
+                </tr>
+                <tr>
+                  <td>Particelle, livelli, report, lotti, ricerca catastale</td>
+                  <td className="num">{API_LIMITS.heavy.anonymous}</td>
+                </tr>
+                <tr>
+                  <td>Tile della mappa</td>
+                  <td className="num">{formatNumber(API_LIMITS.tiles.anonymous, 0)}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              Oltre il limite la risposta è <code>429</code> con l&apos;intestazione <code>Retry-After</code>.
+              Le chiavi API con limiti più alti arriveranno con i piani per le integrazioni.
+            </p>
           </section>
 
           <section id="uso">

@@ -7,7 +7,7 @@ export async function GET(request: Request, context: RouteContext<"/api/v1/plots
     const { id } = await context.params;
     const { at } = query(request, plotQuery);
     return jsonResponse(Plot, await resolvePlot(id, at), 3600);
-  });
+  }, request);
 }
 
 export const runtime = "nodejs";

@@ -3,6 +3,7 @@ import { plotApiPath, type PlotLocation } from "@/lib/routes";
 import {
   ApiError,
   GeocodeResponse,
+  SourceStatusResponse,
   LayerCatalogEntry,
   LayerResult,
   Plot,
@@ -71,6 +72,8 @@ export const api = {
 
   report: (plotId: string, at: PlotLocation | undefined, signal?: AbortSignal) =>
     getJson(plotApiPath(plotId, "/report", at), PlotReport, signal),
+
+  status: (signal?: AbortSignal) => getJson("/api/v1/status", SourceStatusResponse, signal),
 
   layerCatalog: (signal?: AbortSignal) =>
     getJson("/api/v1/catalog/layers", z.array(LayerCatalogEntry), signal),

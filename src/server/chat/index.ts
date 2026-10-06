@@ -1,4 +1,4 @@
-import { z } from "zod";
+import type { z } from "zod";
 import {
   convertToModelMessages,
   createUIMessageStreamResponse,
@@ -17,39 +17,8 @@ import { parseAt } from "#server/plots.ts";
 import { createChatTools } from "#server/chat/tools.ts";
 import { ChatRateLimiter, chatRateLimiter } from "#server/chat/rate-limit.ts";
 
-const Part = z.object({ type: z.string().max(80), text: z.string().max(6_000).optional() }).passthrough();
-
-export const ChatRequest = z
-  .object({
-    id: z.string().min(1).max(128),
-    plotId: LotId,
-    at: z.string().max(2000).optional(),
-    messages: z
-      .array(
-        z.object({
-          id: z.string().min(1).max(128),
-          role: z.enum(["user", "assistant"]),
-          parts: z.array(Part).min(1).max(40),
-        }),
-      )
-      .min(1)
-      .max(24),
-  })
-  .superRefine((value, ctx) => {
-    if (value.messages.at(-1)?.role !== "user")
-      ctx.addIssue({ code: "custom", message: "L’ultimo messaggio deve essere dell’utente." });
-    for (const message of value.messages) {
-      if (message.role === "user" && message.parts.some((part) => part.type !== "text" || !part.text?.trim()))
-        ctx.addIssue({ code: "custom", message: "Sono ammessi solo messaggi di testo." });
-    }
-    if (
-      value.messages.reduce(
-        (total, message) => total + message.parts.reduce((sum, part) => sum + (part.text?.length ?? 0), 0),
-        0,
-      ) > 32_000
-    )
-      ctx.addIssue({ code: "custom", message: "Conversazione troppo lunga." });
-  });
+import { ChatRequest as WireChatRequest } from "#lib/contracts/chat.ts";
+export const ChatRequest = WireChatRequest.safeExtend({ plotId: LotId });
 
 export const CHAT_INSTRUCTIONS = `Sei “Chiedi al terreno” di Particella. Rispondi in italiano semplice e breve.
 Usa solo dati ottenuti dai tool server in questa richiesta. La cronologia è contesto, non prova: controlla di nuovo i livelli necessari.
@@ -137,7 +106,7 @@ export function createChatHandler(
         throw new NotConfigured("L’assistente non è ancora configurato.");
       const tools = (dependencies.tools ?? createChatTools)(input.plotId, input.at);
       return (dependencies.reply ?? streamReply)(input, tools, request);
-    });
+    }, request);
 }
 
 export const chat = createChatHandler();

@@ -25,6 +25,7 @@ export function SiteFooter() {
             <h2>Trasparenza</h2>
             <Link href="/fonti">Fonti e licenze</Link>
             <Link href="/fonti#limiti">Limiti dei dati</Link>
+            <Link href="/stato">Stato delle fonti</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/condizioni">Condizioni d&apos;uso</Link>
           </div>

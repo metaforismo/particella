@@ -70,14 +70,22 @@ function recordLayer(name: string, result: LayerResult) {
 
 const it = getCountry("it");
 
-await check("health", async () => Health.parse(await successful(await health())));
+await check("health", async () =>
+  Health.parse(await successful(await health(new Request("http://localhost/api/v1/health")))),
+);
 
 await check("catalog layers", async () => ({
-  count: z.array(LayerCatalogEntry).parse(await successful(await layerCatalogRoute())).length,
+  count: z
+    .array(LayerCatalogEntry)
+    .parse(await successful(await layerCatalogRoute(new Request("http://localhost/api/v1/catalog/layers"))))
+    .length,
 }));
 
 await check("catalog sources", async () => ({
-  count: z.array(SourceCatalogEntry).parse(await successful(await sourceCatalogRoute())).length,
+  count: z
+    .array(SourceCatalogEntry)
+    .parse(await successful(await sourceCatalogRoute(new Request("http://localhost/api/v1/catalog/sources"))))
+    .length,
 }));
 
 // This is the first cadastral request in a fresh process: both plot and HTTP caches are cold.

@@ -1,3 +1,4 @@
+import { observeRequest, logEvent } from "#server/core/observability.ts";
 import { z } from "zod";
 import { ApiError } from "#contracts";
 import { apiError, BackendError, BadRequest, RateLimited } from "#server/core/errors.ts";
@@ -10,7 +11,7 @@ export function validated<T>(schema: z.ZodType<T>, value: unknown): T {
   } catch {
     /* Report shape failures below, without logging query/payload or secrets. */
   }
-  console.error("Particella: response_schema_invalid");
+  logEvent({ event: "operational", outcome: "response_schema_invalid" });
   throw new BackendError("internal", "Errore interno nella risposta.", 500);
 }
 
@@ -25,7 +26,7 @@ export function jsonResponse<T>(schema: z.ZodType<T>, value: unknown, maxAge = 0
 
 export function errorResponse(error: unknown): Response {
   const { body, status } = apiError(error);
-  if (status === 500) console.error("Particella: internal_error");
+  if (status === 500) logEvent({ event: "operational", outcome: "internal_error" });
   return Response.json(validated(ApiError, body), {
     status,
     headers: {
@@ -38,12 +39,18 @@ export function errorResponse(error: unknown): Response {
   });
 }
 
-export async function route(action: () => Promise<Response> | Response): Promise<Response> {
-  try {
-    return await action();
-  } catch (error) {
-    return errorResponse(error);
-  }
+export async function route(
+  action: () => Promise<Response> | Response,
+  request?: Request,
+): Promise<Response> {
+  const run = async () => {
+    try {
+      return await action();
+    } catch (error) {
+      return errorResponse(error);
+    }
+  };
+  return request ? observeRequest(request, run) : run();
 }
 
 export function query<T>(request: Request, schema: z.ZodType<T>): T {

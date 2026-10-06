@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       await createLot(await boundedJson(request), (id, at) => resolvePlot(id, at, signal)),
       0,
     );
-  });
+  }, request);
 }
 export const runtime = "nodejs";
 export const maxDuration = 300;

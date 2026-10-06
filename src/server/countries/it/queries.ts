@@ -17,7 +17,7 @@ export async function fetchSource(
   options: HttpOptions = {},
 ): Promise<HttpPayload> {
   const s = source(id);
-  return http.request(queryUrl(s.endpoint, params), { policy: s.hostPolicy, ...options });
+  return http.request(queryUrl(s.endpoint, params), { policy: s.hostPolicy, ...options, sourceId: s.id });
 }
 
 export const ArcResponse = z.object({

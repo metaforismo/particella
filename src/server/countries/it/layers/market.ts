@@ -142,7 +142,7 @@ export const market: LayerProvider = async (plot, { signal }) => {
     semestre: semester,
     formato: "kml",
   });
-  const perimeterPayload = await http.request(perimeterUrl, { signal, policy: s.hostPolicy });
+  const perimeterPayload = await http.request(perimeterUrl, { signal, sourceId: s.id, policy: s.hostPolicy });
   const allZones = parseOmiKml(perimeterPayload.bytes);
   if (allZones.some((z) => z.municipalityCode !== code))
     throw new UpstreamError("Perimetri OMI di un altro Comune.");
@@ -175,6 +175,7 @@ export const market: LayerProvider = async (plot, { signal }) => {
     `?${code}/${selected.LINK_ZONA}/${semester}/R/${zone}/${plot.centroid.lon}/${plot.centroid.lat}`;
   const pricesPayload = await http.request(priceUrl, {
     signal,
+    sourceId: s.id,
     policy: s.hostPolicy,
     validate: (p) => {
       parseOmiPrices(textBody(p), { code, zone, semester });

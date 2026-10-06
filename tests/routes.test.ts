@@ -73,11 +73,11 @@ globalThis.fetch = async (input) => {
 };
 
 test("route health/catalogs/geocode validate the shared contract", async () => {
-  const h = await health();
+  const h = await health(request("health"));
   assert.equal(h.status, 200);
   Health.parse(await h.json());
-  z.array(LayerCatalogEntry).parse(await (await layers()).json());
-  z.array(SourceCatalogEntry).parse(await (await sources()).json());
+  z.array(LayerCatalogEntry).parse(await (await layers(request("catalog/layers"))).json());
+  z.array(SourceCatalogEntry).parse(await (await sources(request("catalog/sources"))).json());
   const result = await geocode(request("geocode?q=Piazza%20Duomo%20Milano"));
   assert.equal(result.status, 200);
   // The same schema the browser client validates with (src/lib/api/client.ts).

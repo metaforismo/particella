@@ -38,7 +38,7 @@ export const protectedAreas: LayerProvider = async (plot, { signal }) => {
         units: "esriSRUnit_Meter",
         resultRecordCount: 100,
       });
-      const payload = await http.request(url, { signal, policy: source(sourceId).hostPolicy });
+      const payload = await http.request(url, { signal, sourceId, policy: source(sourceId).hostPolicy });
       const collection = parseGeo(payload);
       const features = collection.features.flatMap((f) => {
         if (f.geometry?.type !== "Polygon" && f.geometry?.type !== "MultiPolygon")

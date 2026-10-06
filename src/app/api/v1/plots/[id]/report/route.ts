@@ -12,7 +12,7 @@ export async function GET(request: Request, context: RouteContext<"/api/v1/plots
       const result = await getPlotReport(id, at, timing);
       const partial = result.layers.some((l) => ["unavailable", "partial", "error"].includes(l.status));
       return jsonResponse(PlotReport, result, partial ? 0 : 300);
-    }),
+    }, request),
   );
   response.headers.set("Server-Timing", timing.header());
   return response;

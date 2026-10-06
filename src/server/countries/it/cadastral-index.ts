@@ -230,16 +230,17 @@ export async function municipalIndex(belfiore: string, signal?: AbortSignal): Pr
   }
   const existing = pending.get(belfiore);
   if (existing) return waitFor(existing, signal);
+  // Validate before counting: requests for unknown or uncovered comuni must not use up the quota.
+  const municipality = municipalitySnapshot.municipalities.find((m) => m.cadastralCode === belfiore);
+  if (!municipality) throw new NotFound("Comune catastale non disponibile nello snapshot ISTAT.");
+  if (["TN", "BZ"].includes(municipality.provinceCode))
+    throw new UpstreamError("Il download AdE non copre Trento e Bolzano.");
+  // Verify the same name/code relationship used by the query resolver.
+  resolveMunicipality(`${municipality.name} (${municipality.provinceCode})`);
   admitBuild();
   // The build is shared and outlives the request that started it: an abandoned search (the user
   // kept typing or closed the page) must not throw away a download every later search needs.
   const task = (async () => {
-    const municipality = municipalitySnapshot.municipalities.find((m) => m.cadastralCode === belfiore);
-    if (!municipality) throw new NotFound("Comune catastale non disponibile nello snapshot ISTAT.");
-    if (["TN", "BZ"].includes(municipality.provinceCode))
-      throw new UpstreamError("Il download AdE non copre Trento e Bolzano.");
-    // Verify the same name/code relationship used by the query resolver.
-    resolveMunicipality(`${municipality.name} (${municipality.provinceCode})`);
     const archive = await downloadMunicipalArchive(
       municipality.region,
       municipality.provinceCode,
@@ -250,6 +251,8 @@ export async function municipalIndex(belfiore: string, signal?: AbortSignal): Pr
     await storeCadastralIndex(index);
     return index;
   })().finally(() => pending.delete(belfiore));
+  // Every caller may have given up; the failure is still observed here, never left unhandled.
+  task.catch(() => {});
   pending.set(belfiore, task);
   return waitFor(task, signal);
 }

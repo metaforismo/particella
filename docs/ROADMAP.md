@@ -7,16 +7,16 @@ profondità su una nicchia. Prima nicchia: **scouting di terreni per fotovoltaic
 
 ## Fatto (beta)
 
-- Studio con mappa, catasto, 13 livelli di analisi reali, quadro sintetico, chat con citazioni, confronto fino a 4 lotti.
+- Studio con mappa, catasto, 17 livelli di analisi reali, quadro sintetico, chat con citazioni, confronto fino a 4 lotti.
+- Urbanistica in Lombardia, Veneto, Firenze, Siena, Torino, Milano; rete elettrica, infrastrutture, siti industriali.
 - Scheda stampabile con fonti numerate, export del confine GeoJSON/KML, API JSON documentata.
 - Pagina fonti generata dal registro, limiti dei dati dichiarati, provenienza su ogni valore.
 
-## Ora — dati per la nicchia rinnovabili (sessione dati in corso)
+## Ora
 
-- Rete elettrica: distanza da linee AT/AAT e cabine.
-- Aree percorse dal fuoco (vincolo L. 353/2000), vincolo idrogeologico, capacità d'uso dei suoli.
-- Aree idonee FER dove esistono mappe ufficiali; altrimenti criteri oggettivi calcolati e dichiarati come tali.
-- Pendenza ed esposizione del lotto, uso del suolo regionale ad alta risoluzione, siti contaminati.
+- Ricerca per comune, foglio e particella; lotti composti da più particelle (in corso).
+- Fonti escluse finché licenza o interrogabilità non sono qualificate: aree idonee FER, catasto incendi, vincolo
+  idrogeologico, capacità d'uso dei suoli, siti contaminati, urbanistica di Emilia-Romagna, Puglia, Roma.
 
 ## Prossimo — funzioni che fanno pagare
 

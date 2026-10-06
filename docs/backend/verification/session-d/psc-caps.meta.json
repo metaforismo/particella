@@ -1,0 +1,10 @@
+{
+  "name": "psc-caps",
+  "url": "https://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?service=WMS&request=GetCapabilities",
+  "executedAt": "2026-10-05T23:55:22.378287+00:00",
+  "status": 200,
+  "contentType": "text/html; charset=utf-8",
+  "bytes": 7058,
+  "sha256": "9415be8b82264910ec0bcde5e08cb2390cdd06024c671aef3db67cade78bf188",
+  "durationMs": 414
+}

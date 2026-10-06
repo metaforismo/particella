@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?><sld:StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:sld="http://www.opengis.net/sld" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" version="1.0.0">
+    <sld:NamedLayer>
+        <sld:Name>rv:zonizzazione_072026</sld:Name>
+        <sld:UserStyle>
+            <sld:Name>rv_zonizzazione_072026</sld:Name>
+            <sld:IsDefault>1</sld:IsDefault>
+            <sld:FeatureTypeStyle>
+                <sld:Name>name</sld:Name>
+                <sld:Rule>
+                    <sld:Name>11 - A (Centro Storico o Nucleo di Antica Formazione) (1</sld:Name>
+                    <sld:Title>11 - A (Centro Storico o Nucleo di Antica Formazione) (1</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>11</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#e31a1c</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>12 - B (Zona Residenziale di Completamento)</sld:Name>
+                    <sld:Title>12 - B (Zona Residenziale di Completamento)</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>12</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#fb9a99</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>13 - C (Zona Residenziale di Espansione, o non&#13;
+urbanizzata)</sld:Name>
+                    <sld:Title>13 - C (Zona Residenziale di Espansione, o non&#13;
+urbanizzata)</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>13</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#f0e734</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>14 - D (Zona per Attivit� Economiche)</sld:Name>
+                    <sld:Title>14 - D (Zona per Attivit� Economiche)</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>14</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#9439cd</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>15 - E (Zona Agricola)</sld:Name>
+                    <sld:Title>15 - E (Zona Agricola)</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>15</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#70b600</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>16 - F (Zona per Servizi)</sld:Name>
+                    <sld:Title>16 - F (Zona per Servizi)</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>16</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#40c3ee</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>17 -"Zone bianche"</sld:Name>
+                    <sld:Title>17 -"Zone bianche"</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>17</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#e3e3e3</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>24 - Verde Privato</sld:Name>
+                    <sld:Title>24 - Verde Privato</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>24</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#20631b</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>25 - Piste da Sci e Loro Intorni (Demanio sciabile)</sld:Name>
+                    <sld:Title>25 - Piste da Sci e Loro Intorni (Demanio sciabile)</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>25</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#a6cee3</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>31 - Ambiti di Concessione per Attivit� di Cava</sld:Name>
+                    <sld:Title>31 - Ambiti di Concessione per Attivit� di Cava</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>31</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#353535</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>32 - Ambiti di esercizio di Concessione Mineraria</sld:Name>
+                    <sld:Title>32 - Ambiti di esercizio di Concessione Mineraria</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>32</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#000000</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>61 - Zone perequate</sld:Name>
+                    <sld:Title>61 - Zone perequate</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                            <ogc:Literal>61</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#ff7f00</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>Altre classificazioni non conformi o classificazione mancante</sld:Name>
+                    <sld:Title>Altre classificazioni non conformi o classificazione mancante</sld:Title>
+                    <sld:Abstract>Altre classificazioni non conformi o classificazione mancante</sld:Abstract>
+                    <ogc:Filter>
+                        <ogc:Or>
+                            <ogc:Or>
+                                <ogc:Or>
+                                    <ogc:Or>
+                                        <ogc:Or>
+                                            <ogc:Or>
+                                                <ogc:Or>
+                                                    <ogc:Or>
+                                                        <ogc:Or>
+                                                            <ogc:Or>
+                                                                <ogc:Or>
+                                                                    <ogc:Or>
+                                                                        <ogc:Or>
+                                                                            <ogc:Or>
+                                                                                <ogc:Or>
+                                                                                    <ogc:Or>
+                                                                                        <ogc:Or>
+                                                                                            <ogc:Or>
+                                                                                                <ogc:Or>
+                                                                                                    <ogc:Or>
+                                                                                                        <ogc:Or>
+                                                                                                            <ogc:Or>
+                                                                                                                <ogc:Or>
+                                                                                                                    <ogc:Or>
+                                                                                                                        <ogc:Or>
+                                                                                                                            <ogc:Or>
+                                                                                                                                <ogc:Or>
+                                                                                                                                    <ogc:Or>
+                                                                                                                                        <ogc:Or>
+                                                                                                                                            <ogc:Or>
+                                                                                                                                                <ogc:Or>
+                                                                                                                                                    <ogc:Or>
+                                                                                                                                                        <ogc:Or>
+                                                                                                                                                            <ogc:Or>
+                                                                                                                                                                <ogc:Or>
+                                                                                                                                                                    <ogc:Or>
+                                                                                                                                                                        <ogc:Or>
+                                                                                                                                                                            <ogc:Or>
+                                                                                                                                                                                <ogc:Or>
+                                                                                                                                                                                    <ogc:Or>
+                                                                                                                                                                                        <ogc:Or>
+                                                                                                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                                                <ogc:Literal>0</ogc:Literal>
+                                                                                                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                                                <ogc:Literal>0</ogc:Literal>
+                                                                                                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                                                                                                        </ogc:Or>
+                                                                                                                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                                                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                                            <ogc:Literal>1</ogc:Literal>
+                                                                                                                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                                                                                                                    </ogc:Or>
+                                                                                                                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                                                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                                        <ogc:Literal>18</ogc:Literal>
+                                                                                                                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                                                                                                                </ogc:Or>
+                                                                                                                                                                                <ogc:PropertyIsEqualTo>
+                                                                                                                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                                    <ogc:Literal>19</ogc:Literal>
+                                                                                                                                                                                </ogc:PropertyIsEqualTo>
+                                                                                                                                                                            </ogc:Or>
+                                                                                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                                <ogc:Literal>20</ogc:Literal>
+                                                                                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                                                                                        </ogc:Or>
+                                                                                                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                            <ogc:Literal>21</ogc:Literal>
+                                                                                                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                                                                                                    </ogc:Or>
+                                                                                                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                        <ogc:Literal>22</ogc:Literal>
+                                                                                                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                                                                                                </ogc:Or>
+                                                                                                                                                                <ogc:PropertyIsEqualTo>
+                                                                                                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                    <ogc:Literal>23</ogc:Literal>
+                                                                                                                                                                </ogc:PropertyIsEqualTo>
+                                                                                                                                                            </ogc:Or>
+                                                                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                                <ogc:Literal>26</ogc:Literal>
+                                                                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                                                                        </ogc:Or>
+                                                                                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                            <ogc:Literal>27</ogc:Literal>
+                                                                                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                                                                                    </ogc:Or>
+                                                                                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                        <ogc:Literal>28</ogc:Literal>
+                                                                                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                                                                                </ogc:Or>
+                                                                                                                                                <ogc:PropertyIsEqualTo>
+                                                                                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                    <ogc:Literal>29</ogc:Literal>
+                                                                                                                                                </ogc:PropertyIsEqualTo>
+                                                                                                                                            </ogc:Or>
+                                                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                                <ogc:Literal>30</ogc:Literal>
+                                                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                                                        </ogc:Or>
+                                                                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                            <ogc:Literal>33</ogc:Literal>
+                                                                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                                                                    </ogc:Or>
+                                                                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                        <ogc:Literal>40</ogc:Literal>
+                                                                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                                                                </ogc:Or>
+                                                                                                                                <ogc:PropertyIsEqualTo>
+                                                                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                    <ogc:Literal>41</ogc:Literal>
+                                                                                                                                </ogc:PropertyIsEqualTo>
+                                                                                                                            </ogc:Or>
+                                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                                <ogc:Literal>51</ogc:Literal>
+                                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                                        </ogc:Or>
+                                                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                            <ogc:Literal>52</ogc:Literal>
+                                                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                                                    </ogc:Or>
+                                                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                        <ogc:Literal>53</ogc:Literal>
+                                                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                                                </ogc:Or>
+                                                                                                                <ogc:PropertyIsEqualTo>
+                                                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                    <ogc:Literal>55</ogc:Literal>
+                                                                                                                </ogc:PropertyIsEqualTo>
+                                                                                                            </ogc:Or>
+                                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                                <ogc:Literal>56</ogc:Literal>
+                                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                                        </ogc:Or>
+                                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                            <ogc:Literal>57</ogc:Literal>
+                                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                                    </ogc:Or>
+                                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                        <ogc:Literal>62</ogc:Literal>
+                                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                                </ogc:Or>
+                                                                                                <ogc:PropertyIsEqualTo>
+                                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                    <ogc:Literal>63</ogc:Literal>
+                                                                                                </ogc:PropertyIsEqualTo>
+                                                                                            </ogc:Or>
+                                                                                            <ogc:PropertyIsEqualTo>
+                                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                                <ogc:Literal>64</ogc:Literal>
+                                                                                            </ogc:PropertyIsEqualTo>
+                                                                                        </ogc:Or>
+                                                                                        <ogc:PropertyIsEqualTo>
+                                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                            <ogc:Literal>65</ogc:Literal>
+                                                                                        </ogc:PropertyIsEqualTo>
+                                                                                    </ogc:Or>
+                                                                                    <ogc:PropertyIsEqualTo>
+                                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                        <ogc:Literal>66</ogc:Literal>
+                                                                                    </ogc:PropertyIsEqualTo>
+                                                                                </ogc:Or>
+                                                                                <ogc:PropertyIsEqualTo>
+                                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                    <ogc:Literal>68</ogc:Literal>
+                                                                                </ogc:PropertyIsEqualTo>
+                                                                            </ogc:Or>
+                                                                            <ogc:PropertyIsEqualTo>
+                                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                                <ogc:Literal>69</ogc:Literal>
+                                                                            </ogc:PropertyIsEqualTo>
+                                                                        </ogc:Or>
+                                                                        <ogc:PropertyIsEqualTo>
+                                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                            <ogc:Literal>70</ogc:Literal>
+                                                                        </ogc:PropertyIsEqualTo>
+                                                                    </ogc:Or>
+                                                                    <ogc:PropertyIsEqualTo>
+                                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                        <ogc:Literal>81</ogc:Literal>
+                                                                    </ogc:PropertyIsEqualTo>
+                                                                </ogc:Or>
+                                                                <ogc:PropertyIsEqualTo>
+                                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                    <ogc:Literal>91</ogc:Literal>
+                                                                </ogc:PropertyIsEqualTo>
+                                                            </ogc:Or>
+                                                            <ogc:PropertyIsEqualTo>
+                                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                                <ogc:Literal>99</ogc:Literal>
+                                                            </ogc:PropertyIsEqualTo>
+                                                        </ogc:Or>
+                                                        <ogc:PropertyIsEqualTo>
+                                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                            <ogc:Literal>aa</ogc:Literal>
+                                                        </ogc:PropertyIsEqualTo>
+                                                    </ogc:Or>
+                                                    <ogc:PropertyIsEqualTo>
+                                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                        <ogc:Literal>bb</ogc:Literal>
+                                                    </ogc:PropertyIsEqualTo>
+                                                </ogc:Or>
+                                                <ogc:PropertyIsEqualTo>
+                                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                    <ogc:Literal>cc</ogc:Literal>
+                                                </ogc:PropertyIsEqualTo>
+                                            </ogc:Or>
+                                            <ogc:PropertyIsEqualTo>
+                                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                                <ogc:Literal>dd</ogc:Literal>
+                                            </ogc:PropertyIsEqualTo>
+                                        </ogc:Or>
+                                        <ogc:PropertyIsEqualTo>
+                                            <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                            <ogc:Literal>PA</ogc:Literal>
+                                        </ogc:PropertyIsEqualTo>
+                                    </ogc:Or>
+                                    <ogc:PropertyIsEqualTo>
+                                        <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                        <ogc:Literal>PO</ogc:Literal>
+                                    </ogc:PropertyIsEqualTo>
+                                </ogc:Or>
+                                <ogc:PropertyIsEqualTo>
+                                    <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                    <ogc:Literal>SU</ogc:Literal>
+                                </ogc:PropertyIsEqualTo>
+                            </ogc:Or>
+                            <ogc:PropertyIsEqualTo>
+                                <ogc:PropertyName>sub_1</ogc:PropertyName>
+                                <ogc:Literal>XX</ogc:Literal>
+                            </ogc:PropertyIsEqualTo>
+                        </ogc:Or>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#3854d0</sld:CssParameter>
+                        </sld:Fill>
+                        <sld:Stroke>
+                            <sld:CssParameter name="stroke">#232323</sld:CssParameter>
+                            <sld:CssParameter name="stroke-linejoin">bevel</sld:CssParameter>
+                        </sld:Stroke>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+            </sld:FeatureTypeStyle>
+        </sld:UserStyle>
+    </sld:NamedLayer>
+</sld:StyledLayerDescriptor>
+

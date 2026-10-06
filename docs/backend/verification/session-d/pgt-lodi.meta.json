@@ -1,0 +1,10 @@
+{
+  "name": "pgt-lodi",
+  "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/20/query?f=json&geometry=9.503%2C45.314&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+  "executedAt": "2026-10-05T23:56:56.808107+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 1972,
+  "sha256": "8d3d953cf6048e0ddf7d75e456c16667a3372014261c058a522c1d459d3772b3",
+  "durationMs": 495
+}

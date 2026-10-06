@@ -1,0 +1,10 @@
+{
+  "name": "torino-point",
+  "url": "https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=ZonediPiano%2CAreeDiPiano%2CServizi&query_layers=ZonediPiano%2CAreeDiPiano%2CServizi&info_format=text%2Fplain&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=7.669%2C45.059000000000005%2C7.671%2C45.061&x=50&y=50",
+  "executedAt": "2026-10-05T23:55:21.073775+00:00",
+  "status": 200,
+  "contentType": "text/plain; charset=UTF-8",
+  "bytes": 269,
+  "sha256": "37295d481d4848b46e5e87ac288b6bbadcc0394a8463fce3d51c121ddaf13eba",
+  "durationMs": 298
+}

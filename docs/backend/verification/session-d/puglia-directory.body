@@ -1,0 +1,250 @@
+{
+ "currentVersion": 10.11,
+ "folders": [],
+ "services": [
+  {
+   "name": "Operationals/AIA",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/AreaVastaSudSalento",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/aree_PIP",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/AreeProtetteReteNatura2000",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/AutorizzazioniPaesaggistiche",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/AziendeAgricole",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/BandaUltraLarga",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/Biomap",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/BoschiDaSeme",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/CatastoGrotte",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/CatastoManufatti",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/Cave",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ConfrontoIndicatori",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ConsultaBBCC",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ConsultaMappaViniIP",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/CoppieStereo",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/CorsiAcquaIdrogeomorfologia",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/CorsiAcquaIrrilevantiPPTR",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/DatiPubbliciFasceXF",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/DBTI25K",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/DBTI25KViabilita",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/DBTICoperturaTopologica",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/DBTIViabilita",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/FERAreeNonIdonee",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/Geositi",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ImpiantiFERDGR2122",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ImpiantiFER",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ImpiantiFERNotDGR2122",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/IndicatoriConsumoSuolo",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/Indicatori",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/Infratel_BUL",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/MappeVisibilita",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/OsservatorioRegionaleBiodiversita",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PAI",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PCC",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PianficazioneComuni",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PianificazioneParchi",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PPTR_ADOTTATO",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PPTR_APPROVATO",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PPTRVincoliDelegati",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PRC",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/ProActNat2000TurtleTracks",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PTA",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PUTTP_NTA",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/PUTTp",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/QualitaAria",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/RIR",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/RN2000PGestione",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/sdp",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/SentieriWEB",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/SIN",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/SitiContaminati",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/StazioniTiziano",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/TracciatiFerroviari_SDP",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/UliviMonumentali",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/UNESCO",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/UsiCivici",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/VASConsultazione",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/VASVincoli",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/VincoliDelegati",
+   "type": "MapServer"
+  },
+  {
+   "name": "Operationals/Vincoli",
+   "type": "MapServer"
+  }
+ ]
+}

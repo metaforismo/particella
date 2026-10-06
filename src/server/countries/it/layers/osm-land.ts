@@ -1,11 +1,12 @@
+import { formatDistance } from "#server/core/format.ts";
 import { z } from "zod";
 import type { LineString, Point, Polygon, Position } from "geojson";
 import intersects from "@turf/boolean-intersects";
 import pointToLineDistance from "@turf/point-to-line-distance";
 import { lineString } from "@turf/helpers";
 import type { Plot, LayerId } from "#contracts";
-import { layerResult, type LayerProvider } from "#server/core/layers.ts";
-import { jsonBody } from "#server/core/http.ts";
+import { layerResult, type LayerContext, type LayerProvider } from "#server/core/layers.ts";
+import { jsonBody, type HttpPayload } from "#server/core/http.ts";
 import { provenance } from "#server/core/provenance.ts";
 import { source } from "#server/core/sources.ts";
 import { NotConfigured, OutsideCoverage, UpstreamError } from "#server/core/errors.ts";
@@ -25,7 +26,7 @@ const Overpass = z.object({
   remark: z.string().optional(),
   elements: z.array(
     z.object({
-      type: z.enum(["node", "way"]),
+      type: z.enum(["node", "way", "relation"]),
       id: z.number().int().positive(),
       lat: Coordinate.shape.lat.optional(),
       lon: Coordinate.shape.lon.optional(),
@@ -99,9 +100,13 @@ export function parseOsmLand(value: unknown, plot: Pick<Plot, "geometry" | "cent
     throw new UpstreamError("Overpass non ha completato la ricerca.");
   const missing = new Set<ClassKey>();
   let unknownLines = 0;
+  const completeIds = new Set(
+    result.data.elements.filter((e) => e.type === "way" && e.geometry).map((e) => e.id),
+  );
   const features = result.data.elements.flatMap((e) => {
+    if (e.type === "way" && !e.geometry && completeIds.has(e.id)) return [];
     const classKey = classify(e.tags);
-    if (!classKey) return [];
+    if (!classKey || e.type === "relation") return [];
     if (classKey === "unknown-line") {
       unknownLines++;
       return [];
@@ -155,6 +160,25 @@ export function parseOsmLand(value: unknown, plot: Pick<Plot, "geometry" | "cent
   };
 }
 
+function serviceSelectors(p: Plot["centroid"]): string {
+  const around = `around:1000,${p.lat},${p.lon}`;
+  return `(nwr(${around})[amenity~"^(school|kindergarten|college|university|hospital|clinic|doctors|pharmacy)$"];nwr(${around})[public_transport~"^(platform|stop_position)$"];nwr(${around})[highway=bus_stop];nwr(${around})[railway~"^(tram_stop|station|halt)$"];nwr(${around})[shop=supermarket];nwr(${around})[leisure=park];)`;
+}
+
+export async function fetchOsmContext(plot: Plot, { signal, timeoutMs = 6000 }: LayerContext) {
+  if (
+    process.env.NODE_ENV === "production" &&
+    ["overpass-api.de", "overpass.kumi.systems"].includes(new URL(source("overpass").endpoint).host)
+  )
+    throw new NotConfigured("Configurare OVERPASS_URL con un servizio dedicato per lo scouting commerciale.");
+  // Leave a little of the layer's budget for parsing; a patient caller also gets one retry.
+  return fetchSource(
+    "overpass",
+    { data: osmLandQuery(plot) },
+    { signal, timeoutMs: Math.max(1000, timeoutMs - 400), retries: timeoutMs > 10_000 ? 1 : 0 },
+  );
+}
+
 export function osmLandQuery(plot: Pick<Plot, "geometry" | "centroid">): string {
   const p = plot.centroid;
   const rings =
@@ -172,13 +196,10 @@ export function osmLandQuery(plot: Pick<Plot, "geometry" | "centroid">): string 
   };
   const large = box(10000);
   const small = box(2000);
-  return `[out:json][timeout:15];(way(${large})[power=line];nw(${large})[power=substation];way(${small})[highway~"^(motorway|trunk|primary|secondary)$"];way(${small})[railway=rail];nw(${small})[landuse~"^(cemetery|industrial|quarry|landfill)$"];nw(${small})[amenity=grave_yard];node(${small})[man_made=water_well];);out geom tags;`;
+  return `[out:json][timeout:5];(way(${large})[power=line];nw(${large})[power=substation];way(${small})[highway~"^(motorway|trunk|primary|secondary)$"];way(${small})[railway=rail];nw(${small})[landuse~"^(cemetery|industrial|quarry|landfill)$"];nw(${small})[amenity=grave_yard];node(${small})[man_made=water_well]; )->.land;${serviceSelectors(p)}->.services;.land out geom tags;.services out center tags;`;
 }
 
-const distanceLabel = (meters: number) =>
-  meters < 1000
-    ? `${meters} m`
-    : `${(meters / 1000).toLocaleString("it-IT", { maximumFractionDigits: 1 })} km`;
+const distanceLabel = formatDistance;
 
 const searchRadiusLabel = (layer: LayerId) => (layer === "power-grid" ? "10 km" : "2 km");
 
@@ -196,22 +217,23 @@ function closestHeadline(layer: LayerId, found: { label: string; distance: numbe
   return `${prefix}: ${lead}.`;
 }
 
+// Geometry distances are CPU work: calculate once for the shared payload and plot.
+const parsedContexts = new WeakMap<HttpPayload, WeakMap<Plot, ReturnType<typeof parseOsmLand>>>();
+function parsedOsmContext(payload: HttpPayload, plot: Plot) {
+  const plots = parsedContexts.get(payload) ?? new WeakMap<Plot, ReturnType<typeof parseOsmLand>>();
+  parsedContexts.set(payload, plots);
+  const stored = plots.get(plot);
+  if (stored) return stored;
+  const data = parseOsmLand(jsonBody(payload), plot);
+  plots.set(plot, data);
+  return data;
+}
+
 function osmLayer(layer: LayerId, labels: Record<string, string>): LayerProvider {
-  return async (plot, { signal }) => {
-    if (
-      process.env.NODE_ENV === "production" &&
-      ["overpass-api.de", "overpass.kumi.systems"].includes(new URL(source("overpass").endpoint).host)
-    )
-      throw new NotConfigured(
-        "Configurare OVERPASS_URL con un servizio dedicato per lo scouting commerciale.",
-      );
-    // All three providers share this exact URL and HttpClient deduplicates the in-flight request.
-    const payload = await fetchSource(
-      "overpass",
-      { data: osmLandQuery(plot) },
-      { signal, timeoutMs: 22_000, retries: 1 },
-    );
-    const data = parseOsmLand(jsonBody(payload), plot);
+  return async (plot, context) => {
+    // Services and all three land providers share one exact query and in-flight request.
+    const payload = await fetchOsmContext(plot, context);
+    const data = parsedOsmContext(payload, plot);
     const features = data.features.filter((f) => Object.hasOwn(labels, f.properties.classKey));
     const incomplete =
       [...data.missing].some((k) => Object.hasOwn(labels, k)) ||

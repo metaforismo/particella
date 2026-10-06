@@ -1,0 +1,10 @@
+{
+  "name": "pgt-identify-milano",
+  "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify?f=json&geometry=9.191%2C45.4648&geometryType=esriGeometryPoint&sr=4326&layers=all%3A20%2C19%2C13&tolerance=0&mapExtent=9.190000000000001%2C45.4638%2C9.192%2C45.465799999999994&imageDisplay=101%2C101%2C96&returnGeometry=false",
+  "executedAt": "2026-10-05T23:57:18.093706+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 622,
+  "sha256": "3a5e59f4a6362a5a8b8c3d8e2863bdc190bb9623b91a380ed5aeb0d3bcbfe5a5",
+  "durationMs": 1134
+}

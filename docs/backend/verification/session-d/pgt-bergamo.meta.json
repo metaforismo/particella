@@ -1,0 +1,10 @@
+{
+  "name": "pgt-bergamo",
+  "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/20/query?f=json&geometry=9.6773%2C45.6983&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+  "executedAt": "2026-10-05T23:56:55.151932+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 2433,
+  "sha256": "8f73ae86dd400ef1d3e0cc7e5d8dcf742b9ced90671c9606381abfedc7a9f91d",
+  "durationMs": 649
+}

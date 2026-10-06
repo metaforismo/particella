@@ -1,13 +1,14 @@
+import { formatNumber } from "#server/core/format.ts";
 import { z } from "zod";
 import type { LatLon } from "#contracts";
 import type { LayerProvider } from "#server/core/layers.ts";
 import { layerResult } from "#server/core/layers.ts";
 import { provenance } from "#server/core/provenance.ts";
 import { jsonBody } from "#server/core/http.ts";
-import { NotConfigured, UpstreamError } from "#server/core/errors.ts";
-import { source } from "#server/core/sources.ts";
+import { UpstreamError } from "#server/core/errors.ts";
+
 import { meters } from "#server/geo/index.ts";
-import { fetchSource } from "#server/countries/it/queries.ts";
+import { fetchOsmContext } from "#server/countries/it/layers/osm-land.ts";
 
 export const categories = {
   schools: "Scuole",
@@ -83,23 +84,14 @@ export function parseServices(value: unknown, center: LatLon) {
   };
 }
 
-export const services: LayerProvider = async (plot, { signal }) => {
-  if (
-    process.env.NODE_ENV === "production" &&
-    new URL(source("overpass").endpoint).host === "overpass-api.de"
-  )
-    throw new NotConfigured(
-      "Configurare OVERPASS_URL con hosting proprio o un provider compatibile con l’uso commerciale.",
-    );
-  const around = `around:1000,${plot.centroid.lat},${plot.centroid.lon}`;
-  const query = `[out:json][timeout:20];(nwr(${around})[amenity~"^(school|kindergarten|college|university|hospital|clinic|doctors|pharmacy)$"];nwr(${around})[public_transport~"^(platform|stop_position)$"];nwr(${around})[highway=bus_stop];nwr(${around})[railway~"^(tram_stop|station|halt)$"];nwr(${around})[shop=supermarket];nwr(${around})[leisure=park];);out center tags;`;
-  const payload = await fetchSource("overpass", { data: query }, { signal, timeoutMs: 23_000, retries: 1 });
+export const services: LayerProvider = async (plot, context) => {
+  const payload = await fetchOsmContext(plot, context);
   const data = parseServices(jsonBody(payload), plot.centroid);
   return layerResult("services", {
     status: data.features.length ? "ok" : "empty",
     scope: "buffer",
     headline: data.features.length
-      ? `OpenStreetMap registra ${data.features.length} servizi e luoghi utili entro un chilometro.`
+      ? `OpenStreetMap registra ${formatNumber(data.features.length, 0)} servizi e luoghi utili entro un chilometro.`
       : "OpenStreetMap non restituisce servizi delle categorie cercate entro un chilometro.",
     severity: "none",
     metrics: Object.entries(categories).flatMap(([key, label]) => {

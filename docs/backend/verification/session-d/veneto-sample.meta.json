@@ -1,0 +1,10 @@
+{
+  "name": "veneto-sample",
+  "url": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=rv%3Azonizzazione_072026&count=3&srsName=EPSG%3A4326&outputFormat=application%2Fjson",
+  "executedAt": "2026-10-06T00:00:48.040903+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 1920,
+  "sha256": "5c8132f887586db572ab1fbf73575384cc8fd86d39ef8853dde47f73081e9852",
+  "durationMs": 508
+}

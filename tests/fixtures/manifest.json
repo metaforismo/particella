@@ -382,5 +382,101 @@
     "timestampMethod": "Recorded file modification time at capture completion; UTC.",
     "originalSha256": "875d7f028fa5bc49fe4d738140d5a2ed53653d6f79e6cb549482157e8706ae87",
     "fixtureSha256": "875d7f028fa5bc49fe4d738140d5a2ed53653d6f79e6cb549482157e8706ae87"
+  },
+  {
+    "fixture": "planning-pgt-identify-milano.json",
+    "original": "docs/backend/verification/session-d/pgt-identify-milano.body",
+    "originalSha256": "3a5e59f4a6362a5a8b8c3d8e2863bdc190bb9623b91a380ed5aeb0d3bcbfe5a5",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify?f=json&geometry=9.191%2C45.4648&geometryType=esriGeometryPoint&sr=4326&layers=all%3A20%2C19%2C13&tolerance=0&mapExtent=9.190000000000001%2C45.4638%2C9.192%2C45.465799999999994&imageDisplay=101%2C101%2C96&returnGeometry=false",
+    "retrievedAt": "2026-10-05T23:57:18.093706+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-pgt-identify-bergamo.json",
+    "original": "docs/backend/verification/session-d/pgt-identify-bergamo.body",
+    "originalSha256": "4b479545e244e1dbb306bd97fb5a2f581f1eb9e40e7115546ec454944c21b537",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify?f=json&geometry=9.6773%2C45.6983&geometryType=esriGeometryPoint&sr=4326&layers=all%3A20%2C19%2C13&tolerance=0&mapExtent=9.676300000000001%2C45.697300000000006%2C9.6783%2C45.6993&imageDisplay=101%2C101%2C96&returnGeometry=false",
+    "retrievedAt": "2026-10-05T23:57:20.237828+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-pgt-identify-lodi.json",
+    "original": "docs/backend/verification/session-d/pgt-identify-lodi.body",
+    "originalSha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+    "requestUrl": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify?f=json&geometry=9.503%2C45.314&geometryType=esriGeometryPoint&sr=4326&layers=all%3A20%2C19%2C13&tolerance=0&mapExtent=9.502%2C45.313%2C9.504%2C45.315&imageDisplay=101%2C101%2C96&returnGeometry=false",
+    "retrievedAt": "2026-10-05T23:57:22.124699+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-torino-point.txt",
+    "original": "docs/backend/verification/session-d/torino-point.body",
+    "originalSha256": "37295d481d4848b46e5e87ac288b6bbadcc0394a8463fce3d51c121ddaf13eba",
+    "requestUrl": "https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=ZonediPiano%2CAreeDiPiano%2CServizi&query_layers=ZonediPiano%2CAreeDiPiano%2CServizi&info_format=text%2Fplain&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=7.669%2C45.059000000000005%2C7.671%2C45.061&x=50&y=50",
+    "retrievedAt": "2026-10-05T23:55:21.073775+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-torino-empty.txt",
+    "original": "docs/backend/verification/session-d/torino-empty.body",
+    "originalSha256": "84f0976ccfa74a64018fe75649749bb09ed0961fe75e76b36d441861f645d6da",
+    "requestUrl": "https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=ZonediPiano%2CAreeDiPiano&query_layers=ZonediPiano%2CAreeDiPiano&info_format=text%2Fplain&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=7.685099999999999%2C45.069300000000005%2C7.6871%2C45.0713&x=50&y=50",
+    "retrievedAt": "2026-10-05T23:59:32.700551+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-siena-point.json",
+    "original": "docs/backend/verification/session-d/siena-point.body",
+    "originalSha256": "61cb63e131e9d68f350e6333a280f1ceee62cbb46ab72cf34d513b5cec153d99",
+    "requestUrl": "https://siena.ldpgis.it/services/piano_operativo_geometrie_r2/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=piano_operativo_geometrie_r2&query_layers=piano_operativo_geometrie_r2&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=11.3298%2C43.317600000000006%2C11.3318%2C43.3196&x=50&y=50",
+    "retrievedAt": "2026-10-05T23:57:08.266616+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-siena-rural.json",
+    "original": "docs/backend/verification/session-d/siena-rural.body",
+    "originalSha256": "cea8813678799c43300926d5cb04b6b65a25ca4f504194248865eee60eef481b",
+    "requestUrl": "https://siena.ldpgis.it/services/piano_operativo_geometrie_r2/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=piano_operativo_geometrie_r2&query_layers=piano_operativo_geometrie_r2&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=11.344000000000001%2C43.284%2C11.346%2C43.285999999999994&x=50&y=50",
+    "retrievedAt": "2026-10-05T23:58:45.682158+00:00",
+    "reduction": "Original response; no attributes or geometry changed."
+  },
+  {
+    "fixture": "planning-veneto-sona.json",
+    "original": "docs/backend/verification/session-d/veneto-sona-exact.body",
+    "originalSha256": "11f17581ce45650aa8354af8de21b07bc2d6957f6cbcb85ef7d629655cacb968",
+    "requestUrl": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=rv%3Azonizzazione_072026&query_layers=rv%3Azonizzazione_072026&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=10.876744200000001%2C45.43454332%2C10.8787442%2C45.43654332&x=50&y=50&buffer=0",
+    "retrievedAt": "2026-10-06T00:03:51.354536+00:00",
+    "reduction": "Original response includes adjacent polygons; provider filters by exact containment."
+  },
+  {
+    "fixture": "ade-venezia-legacy-parcels.xml",
+    "original": "docs/backend/verification/session-d/random-veneto-6.xml",
+    "originalSha256": "2dc4701615b6ce5af84b9303f0d7b269231ecc333beb8f93fb8ac354b655cfba",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.43348190%2C12.33829140%2C45.43368190%2C12.33849140%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:07:51.836Z",
+    "reduction": "Original AdE WFS response; attributes and geometry unchanged."
+  },
+  {
+    "fixture": "ade-venezia-legacy-zoning.xml",
+    "original": "docs/backend/verification/session-d/random-veneto-7.xml",
+    "originalSha256": "4f42dd8840bf2fc1d3c2858c9932b3dd43745701dc86dcae0af5d1e7a2841c21",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.43348190%2C12.33829140%2C45.43368190%2C12.33849140%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralZoning&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:07:52.266Z",
+    "reduction": "Original AdE WFS response; attributes and geometry unchanged."
+  },
+  {
+    "fixture": "ade-roma-legacy-parcels.xml",
+    "original": "docs/backend/verification/session-d/random-lazio-9.xml",
+    "originalSha256": "318bf11ff526cfaa40ae262834880bffaa56324ddb3f4a0b46c88c99ac3216ff",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=41.89973640%2C12.47568860%2C41.89977640%2C12.47572860%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:07:53.285Z",
+    "reduction": "Original AdE WFS response; attributes and geometry unchanged."
+  },
+  {
+    "fixture": "ade-milano-letter-parcel.xml",
+    "original": "docs/backend/verification/session-d/random-lombardia-3.xml",
+    "originalSha256": "4e2e9701afdd51631c234455297dfb95877a090c64600db2517eaa797fcbd3c9",
+    "requestUrl": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=45.46424730%2C9.19093930%2C45.46428730%2C9.19097930%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralParcel&VERSION=2.0.0",
+    "retrievedAt": "2026-10-06T00:07:50.328Z",
+    "reduction": "Original AdE WFS response; attributes and geometry unchanged."
   }
 ]

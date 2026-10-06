@@ -1,0 +1,10 @@
+{
+  "name": "veneto-document",
+  "url": "https://idt2.regione.veneto.it/geoportal/rest/document?id=Zonizzazione_P.R.C.",
+  "executedAt": "2026-10-06T00:00:49.559500+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=UTF-8",
+  "bytes": 71,
+  "sha256": "f0be9afc90986b038c88f15d7ecd68255ae3785d9e8e36c00c89a2f27e73cceb",
+  "durationMs": 396
+}

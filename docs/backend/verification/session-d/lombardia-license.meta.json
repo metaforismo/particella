@@ -1,0 +1,10 @@
+{
+  "name": "lombardia-license",
+  "url": "https://www.geoportale.regione.lombardia.it/metadati?p_p_id=detailSheetMetadata_WAR_gptmetadataportlet&_detailSheetMetadata_WAR_gptmetadataportlet_identifier=r_lombar%3Aa964bb90-d3b8-4e23-95d6-f7925c38e164",
+  "executedAt": "2026-10-05T23:56:42.103492+00:00",
+  "status": 200,
+  "contentType": "text/html;charset=UTF-8",
+  "bytes": 94526,
+  "sha256": "3ca83888b2d1534f2ced39e8a7ebac08a763f1e4cf6982b0961229742c0ed7be",
+  "durationMs": 842
+}

@@ -1,0 +1,10 @@
+{
+  "name": "prato-caps",
+  "url": "https://geoserver.comune.prato.it/geoserver/po/wms?service=WMS&request=GetCapabilities",
+  "executedAt": "2026-10-05T23:55:45.526498+00:00",
+  "status": 200,
+  "contentType": "text/xml",
+  "bytes": 111949,
+  "sha256": "20ddae9d4edb2666e6477cfba5427e44e02b754f896ec6c694ef6a97eb49016c",
+  "durationMs": 1646
+}

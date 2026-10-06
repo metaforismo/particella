@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WMS_Capabilities version="1.3.0" xmlns="http://www.opengis.net/wms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esri_wms="http://www.esri.com/wms" xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd http://www.esri.com/wms http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?version=1.3.0%26service=WMS%26request=GetSchemaExtension">
+	<Service>
+		<Name><![CDATA[WMS]]></Name>
+		<Title><![CDATA[piani_strutturali_comunali]]></Title>
+		<Abstract><![CDATA[piani strutturali comunali della Regione Emilia Romagna]]></Abstract>
+		<KeywordList><Keyword><![CDATA[pianificazione, assetto del territorio, pianificazione territoriale, uso, uso del suolo, utilizzo del territorio, PSC]]></Keyword></KeywordList>
+		<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?"/>
+		<ContactInformation>
+			<ContactPersonPrimary>
+				<ContactPerson><![CDATA[Servizio Statistica, Comunicazione, Sistemi informativi geografici, Educazione alla sostenibilità, Partecipazione]]></ContactPerson>
+				<ContactOrganization><![CDATA[Regione Emilia-Romagna]]></ContactOrganization>
+			</ContactPersonPrimary>
+			<ContactPosition><![CDATA[Centro Servizi Regionale per l'informazione geografica]]></ContactPosition>
+			<ContactAddress>
+				<AddressType><![CDATA[postal]]></AddressType>
+				<Address><![CDATA[Viale Aldo Moro, 52]]></Address>
+				<City><![CDATA[Bologna]]></City>
+				<StateOrProvince><![CDATA[Emilia Romagna]]></StateOrProvince>
+				<PostCode><![CDATA[40100]]></PostCode>
+				<Country><![CDATA[Italy]]></Country>
+			</ContactAddress>
+			<ContactVoiceTelephone><![CDATA[+390515273313]]></ContactVoiceTelephone>
+			<ContactFacsimileTelephone><![CDATA[+390515273247]]></ContactFacsimileTelephone>
+			<ContactElectronicMailAddress><![CDATA[gisadmins@regione.emilia-romagna.it]]></ContactElectronicMailAddress>
+		</ContactInformation>
+		<Fees><![CDATA[none]]></Fees>
+		<AccessConstraints><![CDATA[none]]></AccessConstraints>
+		<MaxWidth>4096</MaxWidth>
+		<MaxHeight>4096</MaxHeight>
+	</Service>
+	<Capability>
+		<Request>
+			<GetCapabilities>
+				<Format>application/vnd.ogc.wms_xml</Format>
+				<Format>text/xml</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?"/></Get></HTTP>
+				</DCPType>
+			</GetCapabilities>
+			<GetMap>
+				<Format>image/bmp</Format>
+				<Format>image/jpeg</Format>
+				<Format>image/tiff</Format>
+				<Format>image/png</Format>
+				<Format>image/png8</Format>
+				<Format>image/png24</Format>
+				<Format>image/png32</Format>
+				<Format>image/gif</Format>
+				<Format>image/svg+xml</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?"/></Get></HTTP>
+				</DCPType>
+			</GetMap>
+			<GetFeatureInfo>
+				<Format>application/vnd.esri.wms_raw_xml</Format>
+				<Format>application/vnd.esri.wms_featureinfo_xml</Format>
+				<Format>application/vnd.ogc.wms_xml</Format>
+				<Format>text/xml</Format>
+				<Format>application/geojson</Format>
+				<Format>text/html</Format>
+				<Format>text/plain</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?"/></Get></HTTP>
+				</DCPType>
+			</GetFeatureInfo>
+			<esri_wms:GetStyles>
+				<Format>application/vnd.ogc.sld+xml</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?"/></Get></HTTP>
+				</DCPType>
+			</esri_wms:GetStyles>
+		</Request>
+		<Exception>
+			<Format>application/vnd.ogc.se_xml</Format>
+			<Format>application/vnd.ogc.se_inimage</Format>
+			<Format>application/vnd.ogc.se_blank</Format>
+			<Format>text/xml</Format>
+			<Format>XML</Format>
+		</Exception>
+		<Layer>
+			<Title><![CDATA[Banca_Dati_Regionale_PSC]]></Title>
+			<CRS>CRS:84</CRS>
+			<CRS>EPSG:4326</CRS>
+			<CRS>EPSG:25832</CRS>
+			<CRS>EPSG:5659</CRS>
+			<CRS>EPSG:202003</CRS>
+			<CRS>EPSG:202032</CRS>
+			<CRS>EPSG:4230</CRS>
+			<CRS>EPSG:23032</CRS>
+			<CRS>EPSG:23033</CRS>
+			<CRS>EPSG:4265</CRS>
+			<CRS>EPSG:3003</CRS>
+			<!-- alias 3003 -->
+			<CRS>EPSG:102091</CRS>
+			<CRS>EPSG:3004</CRS>
+			<!-- alias 3004 -->
+			<CRS>EPSG:102092</CRS>
+			<CRS>EPSG:32632</CRS>
+			<CRS>EPSG:32633</CRS>
+			<CRS>EPSG:4258</CRS>
+			<CRS>EPSG:25833</CRS>
+			<CRS>EPSG:3857</CRS>
+			<!-- alias 3857 -->
+			<CRS>EPSG:102100</CRS>
+			<EX_GeographicBoundingBox><westBoundLongitude>9.718588</westBoundLongitude><eastBoundLongitude>12.451573</eastBoundLongitude><southBoundLatitude>43.731419</southBoundLatitude><northBoundLatitude>45.037457</northBoundLatitude></EX_GeographicBoundingBox>
+			<BoundingBox CRS="CRS:84" minx="9.718588" miny="43.731419" maxx="12.451573" maxy="45.037457"/>
+			<BoundingBox CRS="EPSG:4326" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+			<BoundingBox CRS="EPSG:25832" minx="557825.482679" miny="4847591.705083" maxx="772095.528349" maxy="4987373.579958"/>
+			<BoundingBox CRS="EPSG:5659" minx="557881.164690" miny="847860.139181" maxx="772161.167469" maxy="987646.527274"/>
+			<BoundingBox CRS="EPSG:202003" minx="557881.164690" miny="847860.139181" maxx="772161.167469" maxy="987646.527274"/>
+			<BoundingBox CRS="EPSG:202032" minx="557828.164690" miny="847680.139181" maxx="772108.167469" maxy="987466.527274"/>
+			<BoundingBox CRS="EPSG:4230" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+			<BoundingBox CRS="EPSG:23032" minx="557828.164690" miny="4847680.139181" maxx="772108.167469" maxy="4987466.527274"/>
+			<BoundingBox CRS="EPSG:23033" minx="74954.140993" miny="4845471.185527" maxx="299092.285026" maxy="5000709.868735"/>
+			<BoundingBox CRS="EPSG:4265" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+			<BoundingBox CRS="EPSG:3003" minx="1557828.164690" miny="4847680.139181" maxx="1772108.167469" maxy="4987466.527274"/>
+			<BoundingBox CRS="EPSG:3004" minx="2094954.140993" miny="4845471.185527" maxx="2319092.285026" maxy="5000709.868735"/>
+			<BoundingBox CRS="EPSG:32632" minx="557825.482679" miny="4847591.705201" maxx="772095.528347" maxy="4987373.580077"/>
+			<BoundingBox CRS="EPSG:32633" minx="74973.759108" miny="4845382.774469" maxx="299101.616573" maxy="5000616.384814"/>
+			<BoundingBox CRS="EPSG:4258" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+			<BoundingBox CRS="EPSG:25833" minx="74973.759104" miny="4845382.774351" maxx="299101.616571" maxy="5000616.384695"/>
+			<BoundingBox CRS="EPSG:3857" minx="1081868.212554" miny="5423972.242872" maxx="1386102.745582" maxy="5627420.287968"/>
+			<Layer queryable="1">
+				<Title><![CDATA[Assetto]]></Title>
+				<Abstract><![CDATA[]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25832</CRS>
+				<CRS>EPSG:5659</CRS>
+				<CRS>EPSG:202003</CRS>
+				<CRS>EPSG:202032</CRS>
+				<CRS>EPSG:4230</CRS>
+				<CRS>EPSG:23032</CRS>
+				<CRS>EPSG:23033</CRS>
+				<CRS>EPSG:4265</CRS>
+				<CRS>EPSG:3003</CRS>
+				<!-- alias 3003 -->
+				<CRS>EPSG:102091</CRS>
+				<CRS>EPSG:3004</CRS>
+				<!-- alias 3004 -->
+				<CRS>EPSG:102092</CRS>
+				<CRS>EPSG:32632</CRS>
+				<CRS>EPSG:32633</CRS>
+				<CRS>EPSG:4258</CRS>
+				<CRS>EPSG:25833</CRS>
+				<CRS>EPSG:3857</CRS>
+				<!-- alias 3857 -->
+				<CRS>EPSG:102100</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>9.718588</westBoundLongitude><eastBoundLongitude>12.451573</eastBoundLongitude><southBoundLatitude>43.731419</southBoundLatitude><northBoundLatitude>45.037457</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="9.718588" miny="43.731419" maxx="12.451573" maxy="45.037457"/>
+				<BoundingBox CRS="EPSG:4326" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:25832" minx="557825.482679" miny="4847591.705083" maxx="772095.528349" maxy="4987373.579958"/>
+				<BoundingBox CRS="EPSG:5659" minx="557881.164690" miny="847860.139181" maxx="772161.167469" maxy="987646.527274"/>
+				<BoundingBox CRS="EPSG:202003" minx="557881.164690" miny="847860.139181" maxx="772161.167469" maxy="987646.527274"/>
+				<BoundingBox CRS="EPSG:202032" minx="557828.164690" miny="847680.139181" maxx="772108.167469" maxy="987466.527274"/>
+				<BoundingBox CRS="EPSG:4230" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:23032" minx="557828.164690" miny="4847680.139181" maxx="772108.167469" maxy="4987466.527274"/>
+				<BoundingBox CRS="EPSG:23033" minx="74954.140993" miny="4845471.185527" maxx="299092.285026" maxy="5000709.868735"/>
+				<BoundingBox CRS="EPSG:4265" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:3003" minx="1557828.164690" miny="4847680.139181" maxx="1772108.167469" maxy="4987466.527274"/>
+				<BoundingBox CRS="EPSG:3004" minx="2094954.140993" miny="4845471.185527" maxx="2319092.285026" maxy="5000709.868735"/>
+				<BoundingBox CRS="EPSG:32632" minx="557825.482679" miny="4847591.705201" maxx="772095.528347" maxy="4987373.580077"/>
+				<BoundingBox CRS="EPSG:32633" minx="74973.759108" miny="4845382.774469" maxx="299101.616572" maxy="5000616.384814"/>
+				<BoundingBox CRS="EPSG:4258" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:25833" minx="74973.759104" miny="4845382.774351" maxx="299101.616571" maxy="5000616.384695"/>
+				<BoundingBox CRS="EPSG:3857" minx="1081868.212554" miny="5423972.242872" maxx="1386102.745582" maxy="5627420.287968"/>
+				<Layer queryable="1">
+					<Name>S_ASS_PL</Name>
+					<Title><![CDATA[S_ASS_PL]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>9.718588</westBoundLongitude><eastBoundLongitude>12.451573</eastBoundLongitude><southBoundLatitude>43.731419</southBoundLatitude><northBoundLatitude>45.037457</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="9.718588" miny="43.731419" maxx="12.451573" maxy="45.037457"/>
+					<BoundingBox CRS="EPSG:4326" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:25832" minx="557825.482679" miny="4847591.705083" maxx="772095.528349" maxy="4987373.579958"/>
+					<BoundingBox CRS="EPSG:5659" minx="557881.164690" miny="847860.139181" maxx="772161.167469" maxy="987646.527274"/>
+					<BoundingBox CRS="EPSG:202003" minx="557881.164690" miny="847860.139181" maxx="772161.167469" maxy="987646.527274"/>
+					<BoundingBox CRS="EPSG:202032" minx="557828.164690" miny="847680.139181" maxx="772108.167469" maxy="987466.527274"/>
+					<BoundingBox CRS="EPSG:4230" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:23032" minx="557828.164690" miny="4847680.139181" maxx="772108.167469" maxy="4987466.527274"/>
+					<BoundingBox CRS="EPSG:23033" minx="74954.140993" miny="4845471.185527" maxx="299092.285026" maxy="5000709.868735"/>
+					<BoundingBox CRS="EPSG:4265" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:3003" minx="1557828.164690" miny="4847680.139181" maxx="1772108.167469" maxy="4987466.527274"/>
+					<BoundingBox CRS="EPSG:3004" minx="2094954.140993" miny="4845471.185527" maxx="2319092.285026" maxy="5000709.868735"/>
+					<BoundingBox CRS="EPSG:32632" minx="557825.482679" miny="4847591.705201" maxx="772095.528347" maxy="4987373.580077"/>
+					<BoundingBox CRS="EPSG:32633" minx="74973.759108" miny="4845382.774469" maxx="299101.616572" maxy="5000616.384814"/>
+					<BoundingBox CRS="EPSG:4258" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:25833" minx="74973.759104" miny="4845382.774351" maxx="299101.616571" maxy="5000616.384695"/>
+					<BoundingBox CRS="EPSG:3857" minx="1081868.212554" miny="5423972.242872" maxx="1386102.745582" maxy="5627420.287968"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_ASS_PL</Title>
+						<LegendURL width="430" height="192">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_ASS_PL" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+			</Layer>
+			<Layer queryable="1">
+				<Title><![CDATA[Mobilita]]></Title>
+				<Abstract><![CDATA[]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25832</CRS>
+				<CRS>EPSG:5659</CRS>
+				<CRS>EPSG:202003</CRS>
+				<CRS>EPSG:202032</CRS>
+				<CRS>EPSG:4230</CRS>
+				<CRS>EPSG:23032</CRS>
+				<CRS>EPSG:23033</CRS>
+				<CRS>EPSG:4265</CRS>
+				<CRS>EPSG:3003</CRS>
+				<!-- alias 3003 -->
+				<CRS>EPSG:102091</CRS>
+				<CRS>EPSG:3004</CRS>
+				<!-- alias 3004 -->
+				<CRS>EPSG:102092</CRS>
+				<CRS>EPSG:32632</CRS>
+				<CRS>EPSG:32633</CRS>
+				<CRS>EPSG:4258</CRS>
+				<CRS>EPSG:25833</CRS>
+				<CRS>EPSG:3857</CRS>
+				<!-- alias 3857 -->
+				<CRS>EPSG:102100</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>9.719213</westBoundLongitude><eastBoundLongitude>12.450978</eastBoundLongitude><southBoundLatitude>43.741810</southBoundLatitude><northBoundLatitude>45.028144</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="9.719213" miny="43.741810" maxx="12.450978" maxy="45.028144"/>
+				<BoundingBox CRS="EPSG:4326" minx="43.741810" miny="9.719213" maxx="45.028144" maxy="12.450978"/>
+				<BoundingBox CRS="EPSG:25832" minx="557865.791155" miny="4848747.677499" maxx="772092.662596" maxy="4986339.328172"/>
+				<BoundingBox CRS="EPSG:5659" minx="557921.474972" miny="849016.147734" maxx="772158.300954" maxy="986612.242196"/>
+				<BoundingBox CRS="EPSG:202003" minx="557921.474972" miny="849016.147734" maxx="772158.300954" maxy="986612.242196"/>
+				<BoundingBox CRS="EPSG:202032" minx="557868.474972" miny="848836.147734" maxx="772105.300954" maxy="986432.242196"/>
+				<BoundingBox CRS="EPSG:4230" minx="43.741810" miny="9.719213" maxx="45.028144" maxy="12.450978"/>
+				<BoundingBox CRS="EPSG:23032" minx="557868.474972" miny="4848836.147734" maxx="772105.300954" maxy="4986432.242196"/>
+				<BoundingBox CRS="EPSG:23033" minx="75078.417567" miny="4846623.952146" maxx="299012.927415" maxy="4999673.293520"/>
+				<BoundingBox CRS="EPSG:4265" minx="43.741810" miny="9.719213" maxx="45.028144" maxy="12.450978"/>
+				<BoundingBox CRS="EPSG:3003" minx="1557868.474972" miny="4848836.147734" maxx="1772105.300954" maxy="4986432.242196"/>
+				<BoundingBox CRS="EPSG:3004" minx="2095078.417567" miny="4846623.952146" maxx="2319012.927415" maxy="4999673.293520"/>
+				<BoundingBox CRS="EPSG:32632" minx="557865.791155" miny="4848747.677618" maxx="772092.662593" maxy="4986339.328291"/>
+				<BoundingBox CRS="EPSG:32633" minx="75098.031039" miny="4846535.505112" maxx="299022.262183" maxy="4999579.843020"/>
+				<BoundingBox CRS="EPSG:4258" minx="43.741810" miny="9.719213" maxx="45.028144" maxy="12.450978"/>
+				<BoundingBox CRS="EPSG:25833" minx="75098.031035" miny="4846535.504994" maxx="299022.262181" maxy="4999579.842901"/>
+				<BoundingBox CRS="EPSG:3857" minx="1081937.858026" miny="5425573.217373" maxx="1386036.560953" maxy="5625953.349215"/>
+				<Layer queryable="1">
+					<Name>S_MOB_PL</Name>
+					<Title><![CDATA[S_MOB_PL]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>9.974481</westBoundLongitude><eastBoundLongitude>12.075767</eastBoundLongitude><southBoundLatitude>44.103685</southBoundLatitude><northBoundLatitude>45.026201</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="9.974481" miny="44.103685" maxx="12.075767" maxy="45.026201"/>
+					<BoundingBox CRS="EPSG:4326" minx="44.103685" miny="9.974481" maxx="45.026201" maxy="12.075767"/>
+					<BoundingBox CRS="EPSG:25832" minx="577944.725701" miny="4887852.219755" maxx="742463.812977" maxy="4986337.071401"/>
+					<BoundingBox CRS="EPSG:5659" minx="578001.342459" miny="888121.920587" maxx="742528.075543" maxy="986609.968279"/>
+					<BoundingBox CRS="EPSG:202003" minx="578001.342459" miny="888121.920587" maxx="742528.075543" maxy="986609.968279"/>
+					<BoundingBox CRS="EPSG:202032" minx="577948.342459" miny="887941.920587" maxx="742475.075543" maxy="986429.968279"/>
+					<BoundingBox CRS="EPSG:4230" minx="44.103685" miny="9.974481" maxx="45.026201" maxy="12.075767"/>
+					<BoundingBox CRS="EPSG:23032" minx="577948.342459" miny="4887941.920587" maxx="742475.075543" maxy="4986429.968279"/>
+					<BoundingBox CRS="EPSG:23033" minx="97995.800289" miny="4887770.022459" maxx="269470.897158" maxy="4998180.176585"/>
+					<BoundingBox CRS="EPSG:4265" minx="44.103685" miny="9.974481" maxx="45.026201" maxy="12.075767"/>
+					<BoundingBox CRS="EPSG:3003" minx="1577948.342459" miny="4887941.920587" maxx="1742475.075543" maxy="4986429.968279"/>
+					<BoundingBox CRS="EPSG:3004" minx="2117995.800289" miny="4887770.022459" maxx="2289470.897158" maxy="4998180.176585"/>
+					<BoundingBox CRS="EPSG:32632" minx="577944.725700" miny="4887852.219874" maxx="742463.812975" maxy="4986337.071521"/>
+					<BoundingBox CRS="EPSG:32633" minx="98014.390394" miny="4887680.270725" maxx="269481.604779" maxy="4998086.792481"/>
+					<BoundingBox CRS="EPSG:4258" minx="44.103685" miny="9.974481" maxx="45.026201" maxy="12.075767"/>
+					<BoundingBox CRS="EPSG:25833" minx="98014.390391" miny="4887680.270607" maxx="269481.604777" maxy="4998086.792361"/>
+					<BoundingBox CRS="EPSG:3857" minx="1110354.183936" miny="5481501.701644" maxx="1344268.179220" maxy="5625647.168307"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_MOB_PL</Title>
+						<LegendURL width="370" height="224">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_MOB_PL" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Name>S_MOB_LI</Name>
+					<Title><![CDATA[S_MOB_LI]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>9.719192</westBoundLongitude><eastBoundLongitude>12.450840</eastBoundLongitude><southBoundLatitude>43.741810</southBoundLatitude><northBoundLatitude>45.025803</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="9.719192" miny="43.741810" maxx="12.450840" maxy="45.025803"/>
+					<BoundingBox CRS="EPSG:4326" minx="43.741810" miny="9.719192" maxx="45.025803" maxy="12.450840"/>
+					<BoundingBox CRS="EPSG:25832" minx="557864.093410" miny="4848747.677499" maxx="772092.868567" maxy="4986079.140902"/>
+					<BoundingBox CRS="EPSG:5659" minx="557919.777124" miny="849016.147734" maxx="772158.506777" maxy="986352.046553"/>
+					<BoundingBox CRS="EPSG:202003" minx="557919.777124" miny="849016.147734" maxx="772158.506777" maxy="986352.046553"/>
+					<BoundingBox CRS="EPSG:202032" minx="557866.777124" miny="848836.147734" maxx="772105.506777" maxy="986172.046553"/>
+					<BoundingBox CRS="EPSG:4230" minx="43.741810" miny="9.719192" maxx="45.025803" maxy="12.450840"/>
+					<BoundingBox CRS="EPSG:23032" minx="557866.777124" miny="4848836.147734" maxx="772105.506777" maxy="4986172.046553"/>
+					<BoundingBox CRS="EPSG:23033" minx="75076.720519" miny="4846623.937243" maxx="298993.889353" maxy="4999413.400764"/>
+					<BoundingBox CRS="EPSG:4265" minx="43.741810" miny="9.719192" maxx="45.025803" maxy="12.450840"/>
+					<BoundingBox CRS="EPSG:3003" minx="1557866.777124" miny="4848836.147734" maxx="1772105.506777" maxy="4986172.046553"/>
+					<BoundingBox CRS="EPSG:3004" minx="2095076.720519" miny="4846623.937243" maxx="2318993.889353" maxy="4999413.400764"/>
+					<BoundingBox CRS="EPSG:32632" minx="557864.093410" miny="4848747.677618" maxx="772092.868565" maxy="4986079.141021"/>
+					<BoundingBox CRS="EPSG:32633" minx="75096.334069" miny="4846535.490210" maxx="299003.224889" maxy="4999319.958632"/>
+					<BoundingBox CRS="EPSG:4258" minx="43.741810" miny="9.719192" maxx="45.025803" maxy="12.450840"/>
+					<BoundingBox CRS="EPSG:25833" minx="75096.334065" miny="4846535.490092" maxx="299003.224888" maxy="4999319.958512"/>
+					<BoundingBox CRS="EPSG:3857" minx="1081935.509229" miny="5425573.205727" maxx="1386021.222058" maxy="5625584.500066"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_MOB_LI</Title>
+						<LegendURL width="370" height="176">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_MOB_LI" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Name>S_MOB_PT</Name>
+					<Title><![CDATA[S_MOB_PT]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>10.649793</westBoundLongitude><eastBoundLongitude>12.087240</eastBoundLongitude><southBoundLatitude>44.198467</southBoundLatitude><northBoundLatitude>45.008934</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="10.649793" miny="44.198467" maxx="12.087240" maxy="45.008934"/>
+					<BoundingBox CRS="EPSG:4326" minx="44.198467" miny="10.649793" maxx="45.008934" maxy="12.087240"/>
+					<BoundingBox CRS="EPSG:25832" minx="631765.479863" miny="4898429.504331" maxx="743409.017918" maxy="4985302.791213"/>
+					<BoundingBox CRS="EPSG:5659" minx="631824.575175" miny="898699.551587" maxx="743473.323815" maxy="985575.655321"/>
+					<BoundingBox CRS="EPSG:202003" minx="631824.575175" miny="898699.551587" maxx="743473.323815" maxy="985575.655321"/>
+					<BoundingBox CRS="EPSG:202032" minx="631771.575175" miny="898519.551587" maxx="743420.323815" maxy="985395.655321"/>
+					<BoundingBox CRS="EPSG:4230" minx="44.198467" miny="10.649793" maxx="45.008934" maxy="12.087240"/>
+					<BoundingBox CRS="EPSG:23032" minx="631771.575175" miny="4898519.551587" maxx="743420.323815" maxy="4985395.655321"/>
+					<BoundingBox CRS="EPSG:23033" minx="152534.254538" miny="4898250.192296" maxx="270336.956234" maxy="4993154.368877"/>
+					<BoundingBox CRS="EPSG:4265" minx="44.198467" miny="10.649793" maxx="45.008934" maxy="12.087240"/>
+					<BoundingBox CRS="EPSG:3003" minx="1631771.575175" miny="4898519.551587" maxx="1743420.323815" maxy="4985395.655321"/>
+					<BoundingBox CRS="EPSG:3004" minx="2172534.254538" miny="4898250.192296" maxx="2290336.956234" maxy="4993154.368877"/>
+					<BoundingBox CRS="EPSG:32632" minx="631765.479862" miny="4898429.504450" maxx="743409.017917" maxy="4985302.791332"/>
+					<BoundingBox CRS="EPSG:32633" minx="152550.329288" miny="4898160.110757" maxx="270347.623074" maxy="4993061.191109"/>
+					<BoundingBox CRS="EPSG:4258" minx="44.198467" miny="10.649793" maxx="45.008934" maxy="12.087240"/>
+					<BoundingBox CRS="EPSG:25833" minx="152550.329285" miny="4898160.110638" maxx="270347.623073" maxy="4993061.190990"/>
+					<BoundingBox CRS="EPSG:3857" minx="1185529.573427" miny="5496206.929283" maxx="1345545.398994" maxy="5622928.054587"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_MOB_PT</Title>
+						<LegendURL width="210" height="94">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_MOB_PT" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+			</Layer>
+			<Layer queryable="1">
+				<Title><![CDATA[Dotazioni]]></Title>
+				<Abstract><![CDATA[]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25832</CRS>
+				<CRS>EPSG:5659</CRS>
+				<CRS>EPSG:202003</CRS>
+				<CRS>EPSG:202032</CRS>
+				<CRS>EPSG:4230</CRS>
+				<CRS>EPSG:23032</CRS>
+				<CRS>EPSG:23033</CRS>
+				<CRS>EPSG:4265</CRS>
+				<CRS>EPSG:3003</CRS>
+				<!-- alias 3003 -->
+				<CRS>EPSG:102091</CRS>
+				<CRS>EPSG:3004</CRS>
+				<!-- alias 3004 -->
+				<CRS>EPSG:102092</CRS>
+				<CRS>EPSG:32632</CRS>
+				<CRS>EPSG:32633</CRS>
+				<CRS>EPSG:4258</CRS>
+				<CRS>EPSG:25833</CRS>
+				<CRS>EPSG:3857</CRS>
+				<!-- alias 3857 -->
+				<CRS>EPSG:102100</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>9.739887</westBoundLongitude><eastBoundLongitude>12.450219</eastBoundLongitude><southBoundLatitude>43.745192</southBoundLatitude><northBoundLatitude>45.026897</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="9.739887" miny="43.745192" maxx="12.450219" maxy="45.026897"/>
+				<BoundingBox CRS="EPSG:4326" minx="43.745192" miny="9.739887" maxx="45.026897" maxy="12.450219"/>
+				<BoundingBox CRS="EPSG:25832" minx="559525.906094" miny="4849121.726259" maxx="772037.916710" maxy="4986216.053624"/>
+				<BoundingBox CRS="EPSG:5659" minx="559581.666906" miny="849390.208405" maxx="772103.552452" maxy="986488.963648"/>
+				<BoundingBox CRS="EPSG:202003" minx="559581.666906" miny="849390.208405" maxx="772103.552452" maxy="986488.963648"/>
+				<BoundingBox CRS="EPSG:202032" minx="559528.666906" miny="849210.208405" maxx="772050.552452" maxy="986308.963648"/>
+				<BoundingBox CRS="EPSG:4230" minx="43.745192" miny="9.739887" maxx="45.026897" maxy="12.450219"/>
+				<BoundingBox CRS="EPSG:23032" minx="559528.666906" miny="4849210.208405" maxx="772050.552452" maxy="4986308.963648"/>
+				<BoundingBox CRS="EPSG:23033" minx="76765.013361" miny="4847000.857471" maxx="298949.234145" maxy="4999426.812879"/>
+				<BoundingBox CRS="EPSG:4265" minx="43.745192" miny="9.739887" maxx="45.026897" maxy="12.450219"/>
+				<BoundingBox CRS="EPSG:3003" minx="1559528.666906" miny="4849210.208405" maxx="1772050.552452" maxy="4986308.963648"/>
+				<BoundingBox CRS="EPSG:3004" minx="2096765.013361" miny="4847000.857471" maxx="2318949.234145" maxy="4999426.812879"/>
+				<BoundingBox CRS="EPSG:32632" minx="559525.906093" miny="4849121.726378" maxx="772037.916708" maxy="4986216.053744"/>
+				<BoundingBox CRS="EPSG:32633" minx="76784.549286" miny="4846912.398648" maxx="298958.571817" maxy="4999333.371866"/>
+				<BoundingBox CRS="EPSG:4258" minx="43.745192" miny="9.739887" maxx="45.026897" maxy="12.450219"/>
+				<BoundingBox CRS="EPSG:25833" minx="76784.549283" miny="4846912.398529" maxx="298958.571816" maxy="4999333.371746"/>
+				<BoundingBox CRS="EPSG:3857" minx="1084239.212279" miny="5426094.361349" maxx="1385952.003086" maxy="5625756.926406"/>
+				<Layer queryable="1">
+					<Name>S_DOT_PL</Name>
+					<Title><![CDATA[S_DOT_PL]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>9.921932</westBoundLongitude><eastBoundLongitude>12.412052</eastBoundLongitude><southBoundLatitude>43.809338</southBoundLatitude><northBoundLatitude>45.025548</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="9.921932" miny="43.809338" maxx="12.412052" maxy="45.025548"/>
+					<BoundingBox CRS="EPSG:4326" minx="43.809338" miny="9.921932" maxx="45.025548" maxy="12.412052"/>
+					<BoundingBox CRS="EPSG:25832" minx="574095.499287" miny="4856135.825209" maxx="769023.134407" maxy="4986218.699127"/>
+					<BoundingBox CRS="EPSG:5659" minx="574151.919947" miny="856404.528977" maxx="769088.630170" maxy="986491.607409"/>
+					<BoundingBox CRS="EPSG:202003" minx="574151.919947" miny="856404.528977" maxx="769088.630170" maxy="986491.607409"/>
+					<BoundingBox CRS="EPSG:202032" minx="574098.919947" miny="856224.528977" maxx="769035.630170" maxy="986311.607409"/>
+					<BoundingBox CRS="EPSG:4230" minx="43.809338" miny="9.921932" maxx="45.025548" maxy="12.412052"/>
+					<BoundingBox CRS="EPSG:23032" minx="574098.919947" miny="4856224.528977" maxx="769035.630170" maxy="4986311.607409"/>
+					<BoundingBox CRS="EPSG:23033" minx="91836.863532" miny="4854212.613058" maxx="295943.959640" maxy="4998347.658288"/>
+					<BoundingBox CRS="EPSG:4265" minx="43.809338" miny="9.921932" maxx="45.025548" maxy="12.412052"/>
+					<BoundingBox CRS="EPSG:3003" minx="1574098.919947" miny="4856224.528977" maxx="1769035.630170" maxy="4986311.607409"/>
+					<BoundingBox CRS="EPSG:3004" minx="2111836.863532" miny="4854212.613058" maxx="2315943.959640" maxy="4998347.658288"/>
+					<BoundingBox CRS="EPSG:32632" minx="574095.499287" miny="4856135.825327" maxx="769023.134405" maxy="4986218.699246"/>
+					<BoundingBox CRS="EPSG:32633" minx="91855.709712" miny="4854123.927523" maxx="295953.436964" maxy="4998254.265351"/>
+					<BoundingBox CRS="EPSG:4258" minx="43.809338" miny="9.921932" maxx="45.025548" maxy="12.412052"/>
+					<BoundingBox CRS="EPSG:25833" minx="91855.709709" miny="4854123.927404" maxx="295953.436963" maxy="4998254.265231"/>
+					<BoundingBox CRS="EPSG:3857" minx="1104504.427164" miny="5435984.106586" maxx="1381703.336794" maxy="5625544.382671"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_DOT_PL</Title>
+						<LegendURL width="658" height="272">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_DOT_PL" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Name>S_DOT_LI</Name>
+					<Title><![CDATA[S_DOT_LI]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>10.405130</westBoundLongitude><eastBoundLongitude>12.449770</eastBoundLongitude><southBoundLatitude>43.745191</southBoundLatitude><northBoundLatitude>45.012170</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="10.405130" miny="43.745191" maxx="12.449770" maxy="45.012170"/>
+					<BoundingBox CRS="EPSG:4326" minx="43.745191" miny="10.405130" maxx="45.012170" maxy="12.449770"/>
+					<BoundingBox CRS="EPSG:25832" minx="613058.700873" miny="4849121.727449" maxx="772041.383000" maxy="4985303.626702"/>
+					<BoundingBox CRS="EPSG:5659" minx="613116.918429" miny="849390.219922" maxx="772107.018348" maxy="985576.507367"/>
+					<BoundingBox CRS="EPSG:202003" minx="613116.918429" miny="849390.219922" maxx="772107.018348" maxy="985576.507367"/>
+					<BoundingBox CRS="EPSG:202032" minx="613063.918429" miny="849210.219922" maxx="772054.018348" maxy="985396.507367"/>
+					<BoundingBox CRS="EPSG:4230" minx="43.745191" miny="10.405130" maxx="45.012170" maxy="12.449770"/>
+					<BoundingBox CRS="EPSG:23032" minx="613063.918429" miny="4849210.219922" maxx="772054.018348" maxy="4985396.507367"/>
+					<BoundingBox CRS="EPSG:23033" minx="130257.863992" miny="4847000.607842" maxx="298885.211456" maxy="4994542.373564"/>
+					<BoundingBox CRS="EPSG:4265" minx="43.745191" miny="10.405130" maxx="45.012170" maxy="12.449770"/>
+					<BoundingBox CRS="EPSG:3003" minx="1613063.918429" miny="4849210.219922" maxx="1772054.018348" maxy="4985396.507367"/>
+					<BoundingBox CRS="EPSG:3004" minx="2150257.863992" miny="4847000.607842" maxx="2318885.211456" maxy="4994542.373564"/>
+					<BoundingBox CRS="EPSG:32632" minx="613058.700872" miny="4849121.727567" maxx="772041.382998" maxy="4985303.626822"/>
+					<BoundingBox CRS="EPSG:32633" minx="130274.929248" miny="4846912.149028" maxx="298894.551693" maxy="4994449.136384"/>
+					<BoundingBox CRS="EPSG:4258" minx="43.745191" miny="10.405130" maxx="45.012170" maxy="12.449770"/>
+					<BoundingBox CRS="EPSG:25833" minx="130274.929245" miny="4846912.148909" maxx="298894.551691" maxy="4994449.136264"/>
+					<BoundingBox CRS="EPSG:3857" minx="1158293.777762" miny="5426094.167021" maxx="1385902.101426" maxy="5623437.611377"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_DOT_LI</Title>
+						<LegendURL width="658" height="96">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_DOT_LI" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Name>S_DOT_PT</Name>
+					<Title><![CDATA[S_DOT_PT]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>9.740088</westBoundLongitude><eastBoundLongitude>12.446845</eastBoundLongitude><southBoundLatitude>43.761397</southBoundLatitude><northBoundLatitude>45.024680</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="9.740088" miny="43.761397" maxx="12.446845" maxy="45.024680"/>
+					<BoundingBox CRS="EPSG:4326" minx="43.761397" miny="9.740088" maxx="45.024680" maxy="12.446845"/>
+					<BoundingBox CRS="EPSG:25832" minx="559526.125220" miny="4850914.208141" maxx="771781.937779" maxy="4985969.705613"/>
+					<BoundingBox CRS="EPSG:5659" minx="559581.886077" miny="851182.746336" maxx="771847.561486" maxy="986242.607553"/>
+					<BoundingBox CRS="EPSG:202003" minx="559581.886077" miny="851182.746336" maxx="771847.561486" maxy="986242.607553"/>
+					<BoundingBox CRS="EPSG:202032" minx="559528.886077" miny="851002.746336" maxx="771794.561486" maxy="986062.607553"/>
+					<BoundingBox CRS="EPSG:4230" minx="43.761397" miny="9.740088" maxx="45.024680" maxy="12.446845"/>
+					<BoundingBox CRS="EPSG:23032" minx="559528.886077" miny="4851002.746336" maxx="771794.561486" maxy="4986062.607553"/>
+					<BoundingBox CRS="EPSG:23033" minx="76895.495351" miny="4848806.571696" maxx="298675.830360" maxy="4999180.612746"/>
+					<BoundingBox CRS="EPSG:4265" minx="43.761397" miny="9.740088" maxx="45.024680" maxy="12.446845"/>
+					<BoundingBox CRS="EPSG:3003" minx="1559528.886077" miny="4851002.746336" maxx="1771794.561486" maxy="4986062.607553"/>
+					<BoundingBox CRS="EPSG:3004" minx="2096895.495351" miny="4848806.571696" maxx="2318675.830360" maxy="4999180.612746"/>
+					<BoundingBox CRS="EPSG:32632" minx="559526.125219" miny="4850914.208259" maxx="771781.937776" maxy="4985969.705733"/>
+					<BoundingBox CRS="EPSG:32633" minx="76915.026943" miny="4848718.056378" maxx="298685.180626" maxy="4999087.179660"/>
+					<BoundingBox CRS="EPSG:4258" minx="43.761397" miny="9.740088" maxx="45.024680" maxy="12.446845"/>
+					<BoundingBox CRS="EPSG:25833" minx="76915.026940" miny="4848718.056259" maxx="298685.180625" maxy="4999087.179541"/>
+					<BoundingBox CRS="EPSG:3857" minx="1084261.689098" miny="5428591.783769" maxx="1385576.473928" maxy="5625407.681461"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_DOT_PT</Title>
+						<LegendURL width="660" height="249">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_DOT_PT" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+			</Layer>
+			<Layer queryable="1">
+				<Title><![CDATA[Macro_classificazione]]></Title>
+				<Abstract><![CDATA[]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25832</CRS>
+				<CRS>EPSG:5659</CRS>
+				<CRS>EPSG:202003</CRS>
+				<CRS>EPSG:202032</CRS>
+				<CRS>EPSG:4230</CRS>
+				<CRS>EPSG:23032</CRS>
+				<CRS>EPSG:23033</CRS>
+				<CRS>EPSG:4265</CRS>
+				<CRS>EPSG:3003</CRS>
+				<!-- alias 3003 -->
+				<CRS>EPSG:102091</CRS>
+				<CRS>EPSG:3004</CRS>
+				<!-- alias 3004 -->
+				<CRS>EPSG:102092</CRS>
+				<CRS>EPSG:32632</CRS>
+				<CRS>EPSG:32633</CRS>
+				<CRS>EPSG:4258</CRS>
+				<CRS>EPSG:25833</CRS>
+				<CRS>EPSG:3857</CRS>
+				<!-- alias 3857 -->
+				<CRS>EPSG:102100</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>9.718588</westBoundLongitude><eastBoundLongitude>12.451573</eastBoundLongitude><southBoundLatitude>43.731419</southBoundLatitude><northBoundLatitude>45.037457</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="9.718588" miny="43.731419" maxx="12.451573" maxy="45.037457"/>
+				<BoundingBox CRS="EPSG:4326" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:25832" minx="557825.482679" miny="4847591.705132" maxx="772095.528349" maxy="4987373.579933"/>
+				<BoundingBox CRS="EPSG:5659" minx="557881.164690" miny="847860.139231" maxx="772161.167469" maxy="987646.527249"/>
+				<BoundingBox CRS="EPSG:202003" minx="557881.164690" miny="847860.139231" maxx="772161.167469" maxy="987646.527249"/>
+				<BoundingBox CRS="EPSG:202032" minx="557828.164690" miny="847680.139231" maxx="772108.167469" maxy="987466.527249"/>
+				<BoundingBox CRS="EPSG:4230" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:23032" minx="557828.164690" miny="4847680.139231" maxx="772108.167469" maxy="4987466.527249"/>
+				<BoundingBox CRS="EPSG:23033" minx="74954.140997" miny="4845471.185577" maxx="299092.285025" maxy="5000709.868710"/>
+				<BoundingBox CRS="EPSG:4265" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:3003" minx="1557828.164690" miny="4847680.139231" maxx="1772108.167469" maxy="4987466.527249"/>
+				<BoundingBox CRS="EPSG:3004" minx="2094954.140997" miny="4845471.185577" maxx="2319092.285025" maxy="5000709.868710"/>
+				<BoundingBox CRS="EPSG:32632" minx="557825.482679" miny="4847591.705251" maxx="772095.528347" maxy="4987373.580052"/>
+				<BoundingBox CRS="EPSG:32633" minx="74973.759111" miny="4845382.774519" maxx="299101.616571" maxy="5000616.384789"/>
+				<BoundingBox CRS="EPSG:4258" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+				<BoundingBox CRS="EPSG:25833" minx="74973.759108" miny="4845382.774400" maxx="299101.616569" maxy="5000616.384670"/>
+				<BoundingBox CRS="EPSG:3857" minx="1081868.212555" miny="5423972.242941" maxx="1386102.745581" maxy="5627420.287933"/>
+				<Layer queryable="1">
+					<Name>S_TER_PL</Name>
+					<Title><![CDATA[S_TER_PL]]></Title>
+					<Abstract><![CDATA[]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25832</CRS>
+					<CRS>EPSG:5659</CRS>
+					<CRS>EPSG:202003</CRS>
+					<CRS>EPSG:202032</CRS>
+					<CRS>EPSG:4230</CRS>
+					<CRS>EPSG:23032</CRS>
+					<CRS>EPSG:23033</CRS>
+					<CRS>EPSG:4265</CRS>
+					<CRS>EPSG:3003</CRS>
+					<!-- alias 3003 -->
+					<CRS>EPSG:102091</CRS>
+					<CRS>EPSG:3004</CRS>
+					<!-- alias 3004 -->
+					<CRS>EPSG:102092</CRS>
+					<CRS>EPSG:32632</CRS>
+					<CRS>EPSG:32633</CRS>
+					<CRS>EPSG:4258</CRS>
+					<CRS>EPSG:25833</CRS>
+					<CRS>EPSG:3857</CRS>
+					<!-- alias 3857 -->
+					<CRS>EPSG:102100</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>9.718588</westBoundLongitude><eastBoundLongitude>12.451573</eastBoundLongitude><southBoundLatitude>43.731419</southBoundLatitude><northBoundLatitude>45.037457</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="9.718588" miny="43.731419" maxx="12.451573" maxy="45.037457"/>
+					<BoundingBox CRS="EPSG:4326" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:25832" minx="557825.482679" miny="4847591.705132" maxx="772095.528349" maxy="4987373.579933"/>
+					<BoundingBox CRS="EPSG:5659" minx="557881.164690" miny="847860.139231" maxx="772161.167469" maxy="987646.527249"/>
+					<BoundingBox CRS="EPSG:202003" minx="557881.164690" miny="847860.139231" maxx="772161.167469" maxy="987646.527249"/>
+					<BoundingBox CRS="EPSG:202032" minx="557828.164690" miny="847680.139231" maxx="772108.167469" maxy="987466.527249"/>
+					<BoundingBox CRS="EPSG:4230" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:23032" minx="557828.164690" miny="4847680.139231" maxx="772108.167469" maxy="4987466.527249"/>
+					<BoundingBox CRS="EPSG:23033" minx="74954.140997" miny="4845471.185577" maxx="299092.285025" maxy="5000709.868710"/>
+					<BoundingBox CRS="EPSG:4265" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:3003" minx="1557828.164690" miny="4847680.139231" maxx="1772108.167469" maxy="4987466.527249"/>
+					<BoundingBox CRS="EPSG:3004" minx="2094954.140997" miny="4845471.185577" maxx="2319092.285025" maxy="5000709.868710"/>
+					<BoundingBox CRS="EPSG:32632" minx="557825.482679" miny="4847591.705251" maxx="772095.528347" maxy="4987373.580052"/>
+					<BoundingBox CRS="EPSG:32633" minx="74973.759111" miny="4845382.774519" maxx="299101.616571" maxy="5000616.384789"/>
+					<BoundingBox CRS="EPSG:4258" minx="43.731419" miny="9.718588" maxx="45.037457" maxy="12.451573"/>
+					<BoundingBox CRS="EPSG:25833" minx="74973.759108" miny="4845382.774400" maxx="299101.616569" maxy="5000616.384670"/>
+					<BoundingBox CRS="EPSG:3857" minx="1081868.212555" miny="5423972.242941" maxx="1386102.745581" maxy="5627420.287933"/>
+					<Style>
+						<Name>default</Name>
+						<Title>S_TER_PL</Title>
+						<LegendURL width="196" height="48">
+							<Format>image/png</Format>
+							<OnlineResource xlink:href="http://servizigis.regione.emilia-romagna.it/wms/piani_strutturali_comunali?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=S_TER_PL" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+			</Layer>
+		</Layer>
+	</Capability>
+</WMS_Capabilities>

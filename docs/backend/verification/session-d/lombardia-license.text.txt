@@ -1,0 +1,114 @@
+Metadati - Geoportale della Lombardia
+Navigazione
+Salta al contenuto
+Geoportale della Lombardia
+Home
+Dati geografici
+Dati vettoriali
+Dati raster
+Servizi
+Per saperne di più
+I.I.T. della Lombardia
+Normativa di riferimento
+Specifiche tecniche DBT
+Archivio Cartografico Regionale - Servizi di richiesta e consultazione
+Il nuovo Viewer del Geoportale
+Metadati
+Geoportale della Lombardia
+Metadati
+PGT - Tavola delle Previsioni di Piano
+Esporta XML
+Apri la mappa nel Viewer del Geoportale
+Accedi al servizio per scaricare i dati
+Albero delle gerarchie
+Stampa scheda
+Stampa la scheda del metadato
+Descrizione
+Tavole delle Previsioni di Piano dei Piani di Governo del Territorio - P.G.T. redatti dai Comuni, visualizzabili a partire dalla scala 1:100 mila. La descrizione tecnica dei dati, la guida alla fornitura e controllo dei dati, lo schema fisico ed altre informazioni specifiche sono disponibili sulla pagina
+istituzionale di Regione Lombardia
+"SIT integrato per la pianificazione comunale" al seguente link: https://www.regione.lombardia.it/wps/portal/istituzionale/HP/DettaglioServizio/servizi-e-informazioni/Enti-e-Operatori/Territorio/Pianificazione-comunale-e-provinciale/sit-integrato-pianificazione-comunale/sit-integrato-pianificazione-comunale
+Informazioni generali sul prodotto
+Tipo
+Collezione di dati territoriali (Serie)
+Ente/Società
+Regione Lombardia
+Data dell'ultima revisione del dato
+23/06/2023
+Formato di pubblicazione
+Mappa digitale
+Modalità di realizzazione del prodotto
+La Tavola delle Previsioni di Piano è costituita da due diversi tipi di livelli informativi: Tipo A e Tipo B. Tipo A: appartengono a questo gruppo i livelli informativi prodotti e gestiti a livello regionale che i Comuni sono tenuti a considerare per la Tavola delle previsioni di piano; Tipo B: appartengono a questo gruppo i livelli informativi che devono essere prodotti ex-novo a livello comunale secondo specifiche condivise.
+Categorie ISO
+Pianificazione - Catasto
+Temi Inspire
+Parcelle catastali,Sistemi di coordinate,Utilizzo del territorio
+Distribuzione
+Risorsa on-line
+https://www.cartografia.servizirl.it/arcgis1/services/territorio/tav_previsioni_b/MapServer/WMSServer?
+Formato di distribuzione
+x-shapefile
+Versione
+arcgis9.x
+Ente distributore
+Regione Lombardia
+Informazioni su distribuzione, vincoli di accesso e fruibilità
+Vincoli di accesso
+CC-BY 4.0
+Informazioni e contatti
+Punto di contatto
+Regione Lombardia
+Email
+sit_RL@regione.lombardia.it
+Telefono
+02.6765.1
+Autore metadato
+Regione Lombardia
+Informazioni sui dati territoriali
+Tipo di dati
+Dati vettoriali
+Frequenza di aggiornamento
+I dati sono aggiornati ripetutamente e frequentemente
+Sistema di riferimento
+WGS84/UTM32
+Scala equivalente
+1:10000
+Coordinate spaziali metriche
+Ovest
+431.223,848
+Sud
+4.875.338,628
+Est
+857.798,489
+Nord
+5.254.261,033
+Unità di misura
+Metri
+Coordinate spaziali geografiche
+Ovest
+8,142
+Sud
+44,031
+Est
+13,465
+Nord
+47,355
+Unità di misura
+Gradi decimali
+Albero delle gerarchie
+Geoportale della Lombardia
+Privacy
+|
+Accessibilità
+|
+Cookie Policy
+|
+Note legali
+|
+Contatti
+|
+Statistiche
+|
+Accesso Riservato
+|
+Registrati
+© Copyright Regione Lombardia tutti i diritti riservati - CF. 80050050154 - Piazza Città di Lombardia 1 - 20124 Milano

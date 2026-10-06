@@ -1,0 +1,224 @@
+Web Map Service - S.I.T. - SIT Puglia
+×
+Informazioni sull'uso dei cookies
+Questo sito web utilizza cookie di prima parte tecnici, cookie di terze parti per le componenti cartografiche, cookie di prima parte e di preferenza e di terze parti per garantire il suo corretto funzionamento. I Cookie non tecnici saranno utilizzati solo in caso di consenso.
+Chiudendo si rifiuta l'utilizzo dei cookie di preferenze e di terze parti non per uso cartografico
+Può conoscere i dettagli consultando la nostra informativa estesa
+qui
+Accetta Tutti
+Rifiuta Tutti
+Personalizza
+Regione Puglia
+S.I.T.
+A
+A
+Loghi Top
+×
+Seleziona un portale
+Aggregatore Risorse
+Puglia.con
+Patto dei Sindaci
+Ambiente
+Paesaggio
+S.I.T.
+Chiudi
+S.I.T.
+S.I.T.
+Ricerca
+Accedi
+Accedi
+Navigazione
+Home
+Cartografie
+Web Map Service
+Domande Frequenti
+Documenti
+Legende Vestizioni e Manuali
+Date Voli Regionali
+Volo 2015 e Volo 2006
+Cartografie Tecniche
+Carta Tecnica 1:5.000
+Reti Geodetiche
+Grigliati
+Carta Idrogeomorfologica
+Database Topografico Multiscala 2006 - Copertura Topologica
+DBT Multiscala 2006 Viabilità
+Cartografie Tematiche
+Modello Digitale del Terreno
+Uso del Suolo
+Mobilità
+Beni Culturali
+Osservatorio Regionale Biodiversità
+Rotte Caretta caretta 2013
+Carta Giacimentologica
+Download
+Finalità e Contenuti
+Cartografie CRT DTM Ortofoto UDS
+Cartografie Storiche *
+Banche Dati
+Parchi, Aree Protette ed Ulivi Monumentali
+Documenti
+Habitat e Specie Animali e Vegetali
+Ulivi Monumentali: Normativa di Riferimento
+Cartografia
+WMS
+Domande Frequenti
+Progetti Rete Ecologica Pugliese (grotte, sentieri e manufatti, geositi, biocostruzioni)
+Catasto delle grotte e delle formazioni naturali
+Download
+Catasto della Rete Escursionistica Pugliese
+Documenti
+Download
+Ricognizione dei geositi e delle emergenze geologiche
+Documenti
+Download
+Schede
+Galleria Foto
+BIOMAP: Biocostruzioni marine in Puglia
+Documenti
+Download
+Tavole
+Galleria Foto
+Ricognizione dei manufatti edilizi pubblici nelle Aree Naturali
+Documenti
+Download
+Schede
+Cartografia
+Web Map Service
+Luoghi dello Sport (rete ciclabile, sport in cammino, passeggiate, palestre a cielo aperto)
+Galleria Video
+Cartografia
+Download
+Usi Civici
+Normativa di Riferimento
+Modulistica Usi Civici
+Comuni
+Cartografia
+Web Map Service
+Pianificazione
+Pianificazione Regionale
+DRAG: Documento Regionale di Assetto Generale
+Documenti
+PPTR: Piano Paesaggistico Territoriale Regionale
+Documenti
+Cartografie
+Download
+Web Map Service
+Glossario
+Modulistica inerente al PPTR
+Archivio Elaborati del PPTR Pre-Adozione
+PUTT/P Piano Urbanistico Territoriale Tematico
+Documenti
+Cartografie
+Serie
+Download
+Web Map Service
+Pianificazione Comunale
+DRAG: Indirizzi e Criteri per i Piani Urbanistici Generali (PUG)
+Documenti
+Stato Pianificazione Comunale in relazione al PUTT/P
+Documenti
+Cartografia
+Stato Pianificazione Urbanistica Comunale in relazione al PUG
+Documenti Piani Urbanistici Generali Approvati
+Documenti Piani Urbanistici Generali Adottati
+Stato Pianificazione Comunale in relazione al PRG e PDF
+Documenti
+Stato Pianificazione Urbanistica Comunale in relazione al PPTR
+Stato Adeguamento Comunale al R.E.T.
+Normativa di Riferimento
+Adeguamenti Comunali
+Pianificazione Aree Naturali Protette
+Piani Parchi Nazionali
+Piani Territoriali Riserve Naturali Regionali Orientate
+Pianificazione Siti Rete Natura 2000
+Piani di Gestione
+Individuazione di habitat e specie animali e vegetali
+Documenti
+Misure di conservazione
+Cartografia
+Web Map Service
+Concessioni Demanio Ferroviario
+Riferimenti
+Servizi
+Cartografie Beni Immobili del Demanio Regionale
+Supporto
+Video
+Video per i Cittadini
+Info e Contatti
+Briciole di pane
+Elementi Navigazione
+S.I.T.
+SIT Comunali
+Area Vasta Sud Salento
+Web Map Service
+SIT Comunali
+Area Vasta Sud Salento
+Finalità e contenuti
+Documenti
+Cartografia
+Web Map Service
+Download
+Web Map Service Progetto Area Vasta Sud Salento
+A supporto dei soggetti interessati si rende disponibile il servizio WMS attinenti alle elaborazioni realizzate nell’ambito del progetto Area Vasta Sud Salento. Si ricorda che per un corretto utilizzo il link deve essere copiato per intero (evidenziando il link e utilizzando la combinazione di tasti
+CTRL+C)
+) e riportato nel software gis o utilizzato in applicazioni client web-based (vedi Guida, nella sezione
+Standard OGC: WMS/WFS
+).
+Nota:
+i WMS sono esposti nei due sistemi di riferimento GCS WGS84 (coordinate geografiche) e UTM WGS84 33N (coordinate piane). Solitamente i software GIS caricano i WMS in coordinate geografiche, si suggerisce di cambiare il sistema di riferimento del progetto in coordinate piane (UTM WGS84 33N) per una corretta visualizzazione.
+Dati prodotti da Area Vasta Sud Salento nell'ambito del progetto e-Gov finanziato dalla regione Puglia
+http://webapps.sit.puglia.it/arcgis/services/Operationals/AreaVastaSudSalento/MapServer/WMSServer
+Questo servizio permette l'accesso:
+Informatizzazione di programmi di fabbricazione e piani regolatori generali prodotti a supporto degli uffici tecnici comunali(PRG e PdF – Perimetri piani attuativi,  PRG e PdF – Rispetti e tutele, PRG e PdF – Zone di piano, Confini centri storici, Comuni con Piani vettorializzati)
+Inventario del patrimonio culturale prioritario (Localizzazione beni culturali)
+Ente responsabile:
+Area Vasta Sud Salento
+Le informazioni relative ai servizi WMS degli strati informativi di inquadramento generale (confini comunali, ortofoto, etc.) sono disponibili nella sezione:
+Cartografie  Tecniche e Tematiche
+.
+Valuta questo sito
+Valuta questo sito
+Footer
+Dipartimento Ambiente, Paesaggio e Qualità Urbana
+Visa Gentile 52, Bari
+scrivici:
+email
+-
+pec
+© Regione Puglia
+AMBITI
+Organizzazione
+Pianificazione
+Programmazione
+APPROFONDIMENTI
+Osservazioni CNAPI
+Sviluppo Sostenibile
+Decarbonizzazione
+Un
+Pianeta Pulito per Tutti
+Cambiamenti Climatici
+INFORMAZIONE
+News
+Avvisi e Bandi
+Cookie e Privacy
+Responsabile Pubblicazione
+x
+Inattività
+La tua sessione scadrà per inattività entro
+0
+secondi
+Rinnova
+x
+Impostazione Cookie
+Cookie di Prima Parte e Tecnici
+I cookie tecnici sono essenziali per il corretto funzionamento del sito web. Questi cookie garantiscono le funzionalità di base e le caratteristiche di sicurezza del sito web, in modo anonimo. Non è possibile modificare la scelta per questo tipo di cookie.
+Cookie Componenti Cartografiche
+I cookie delle componenti cartografiche sono i cookie non utilizzati dal sito ma da terze parti quali ArcGis, http://webapps.sit.puglia.it e OpenStreetMap necessari per l'utilizzo dei layer grafici presenti nel sito Non ` possibile modificare la scelta per questo tipo di cookie.
+Cookie di Prima Parte e Preferenze
+I cookie di preferenze sono utilizzati per salvare le preferenze di navigazione dell'utente per migliorare la fruizione e la navigazione del sito
+Cookie di Terze Parti
+I cookie di terze parti sono quei cookie rilasciati non direttamente dal sito ma da sistemi terzi utilizzati all'interno del sito.
+Salva Preferenze
+Accetta Tutti
+Rifiuta Tutti

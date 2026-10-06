@@ -1,0 +1,10 @@
+{
+  "name": "veneto-style",
+  "url": "https://idt2-geoserver.regione.veneto.it/geoserver/ows?service=WMS&version=1.1.1&request=GetStyles&layers=rv%3Azonizzazione_072026",
+  "executedAt": "2026-10-06T00:02:35.002064+00:00",
+  "status": 200,
+  "contentType": "application/vnd.ogc.sld+xml",
+  "bytes": 46918,
+  "sha256": "c93bb976bc3b65e61d5f7e4aabbdeed040e015e1a068a7b430fa0038684f5e65",
+  "durationMs": 469
+}

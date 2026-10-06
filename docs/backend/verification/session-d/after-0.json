@@ -1,0 +1,394 @@
+{
+  "executedAt": "2026-10-06T00:13:19.100Z",
+  "lot": {
+    "name": "Milano",
+    "id": "it:F205:_:390:61",
+    "at": "45.464800,9.191000"
+  },
+  "samples": [
+    {
+      "state": "cold",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=817.3, demographics;dur=219.5, regional-land-cover;dur=340.9, seismic;dur=386.1, land-cover;dur=475.6, landscape;dur=595.6, planning;dur=920.3, solar;dur=1122.0, terrain;dur=1382.5, protected-areas;dur=1763.1, market;dur=2003.7, flood;dur=2812.6, landslide;dur=3046.9, power-grid;dur=6009.6, infrastructure-distances;dur=6009.4, industrial-sites;dur=6009.4, services;dur=6023.0, accessibility;dur=6046.5, total;dur=6878.2",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "ok",
+          "headline": "La carta regionale indica: insediamenti industriali, artigianali, commerciali."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "empty",
+          "headline": "La fonte non restituisce frane o aree PAI su questo punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 119,5 e 119,7 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1.365 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 6.906 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "ok",
+          "headline": "Sintesi PGT di Milano: RESIDENZIALE."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: tessuto urbano continuo."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "ok",
+          "headline": "Nella zona OMI B12, abitazioni civili da 8.700 a 15.300 €/m²."
+        }
+      ]
+    },
+    {
+      "state": "warm",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=0.9, power-grid;dur=3.3, infrastructure-distances;dur=2.9, industrial-sites;dur=2.6, regional-land-cover;dur=2.5, flood;dur=2.4, landslide;dur=2.3, seismic;dur=2.2, protected-areas;dur=2.1, terrain;dur=2.0, solar;dur=1.8, services;dur=1.7, demographics;dur=1.7, landscape;dur=1.6, planning;dur=1.5, land-cover;dur=1.3, accessibility;dur=0.8, market;dur=0.5, total;dur=9.2",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "ok",
+          "headline": "La carta regionale indica: insediamenti industriali, artigianali, commerciali."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "empty",
+          "headline": "La fonte non restituisce frane o aree PAI su questo punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 119,5 e 119,7 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1.365 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "unavailable",
+          "headline": "La fonte non è al momento disponibile."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 6.906 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "ok",
+          "headline": "Sintesi PGT di Milano: RESIDENZIALE."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: tessuto urbano continuo."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "ok",
+          "headline": "Nella zona OMI B12, abitazioni civili da 8.700 a 15.300 €/m²."
+        }
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "host": "geoportale.istat.it",
+      "startMs": 29.880667000000017,
+      "durationMs": 233.30641699999995,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 269.597625,
+      "durationMs": 307.27175,
+      "status": 200
+    },
+    {
+      "host": "wfs.cartografia.agenziaentrate.gov.it",
+      "startMs": 770.92575,
+      "durationMs": 58.17045900000005,
+      "status": 200
+    },
+    {
+      "host": "overpass-api.de",
+      "startMs": 846.0179169999999,
+      "durationMs": 6008.803333000001
+    },
+    {
+      "host": "www.cartografia.servizirl.it",
+      "startMs": 847.0879170000001,
+      "durationMs": 330.751708,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 847.7424169999999,
+      "durationMs": 1637.1779580000002,
+      "status": 200
+    },
+    {
+      "host": "mps04-ws.pi.ingv.it",
+      "startMs": 848.316834,
+      "durationMs": 359.997791,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 848.807125,
+      "durationMs": 382.9765,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 849.279417,
+      "durationMs": 314.585458,
+      "status": 200
+    },
+    {
+      "host": "re.jrc.ec.europa.eu",
+      "startMs": 849.71875,
+      "durationMs": 1109.910292,
+      "status": 200
+    },
+    {
+      "host": "geoportale.istat.it",
+      "startMs": 850.18775,
+      "durationMs": 195.46354199999996,
+      "status": 200
+    },
+    {
+      "host": "sitap.cultura.gov.it",
+      "startMs": 850.454459,
+      "durationMs": 353.74966599999993,
+      "status": 200
+    },
+    {
+      "host": "image.discomap.eea.europa.eu",
+      "startMs": 851.0646670000001,
+      "durationMs": 462.273917,
+      "status": 200
+    },
+    {
+      "host": "valhalla1.openstreetmap.de",
+      "startMs": 851.6727089999999,
+      "durationMs": 314.63133300000004,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 852.0800839999999,
+      "durationMs": 731.407541,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 1096.460167,
+      "durationMs": 180.3849580000001,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 1347.193959,
+      "durationMs": 1555.348291,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 1348.026542,
+      "durationMs": 413.89583300000004,
+      "status": 200
+    },
+    {
+      "host": "sitap.cultura.gov.it",
+      "startMs": 1348.277959,
+      "durationMs": 84.74974999999995,
+      "status": 200
+    },
+    {
+      "host": "www.cartografia.servizirl.it",
+      "startMs": 1348.402167,
+      "durationMs": 408.934792,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 1348.503125,
+      "durationMs": 86.958709,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 1585.277542,
+      "durationMs": 493.0315829999997,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 1600.148334,
+      "durationMs": 68.79229099999998,
+      "status": 200
+    },
+    {
+      "host": "valhalla1.openstreetmap.de",
+      "startMs": 1847.4213340000001,
+      "durationMs": 113.78520799999978,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 1847.9950840000001,
+      "durationMs": 230.6295409999998,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 1850.544875,
+      "durationMs": 59.9877919999999,
+      "status": 200
+    },
+    {
+      "host": "tinitaly.pi.ingv.it",
+      "startMs": 2101.7275,
+      "durationMs": 112.43104200000016,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 2213.197209,
+      "durationMs": 234.74737499999992,
+      "status": 200
+    },
+    {
+      "host": "bio.discomap.eea.europa.eu",
+      "startMs": 2348.297834,
+      "durationMs": 253.21362499999987,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 2486.7545,
+      "durationMs": 1163.753542,
+      "status": 200
+    },
+    {
+      "host": "www1.agenziaentrate.gov.it",
+      "startMs": 2714.158709,
+      "durationMs": 123.73141600000008,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 2988.103875,
+      "durationMs": 897.0392500000003,
+      "status": 200
+    },
+    {
+      "host": "idrogeo.isprambiente.it",
+      "startMs": 3651.537209,
+      "durationMs": 231.63187499999958,
+      "status": 200
+    }
+  ],
+  "scope": "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering."
+}

@@ -1,0 +1,10 @@
+{
+  "name": "puglia-lecce",
+  "url": "https://webapps.sit.puglia.it/arcgis/rest/services/Operationals/AreaVastaSudSalento/MapServer/4/query?f=json&geometry=18.1719%2C40.3529&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+  "executedAt": "2026-10-06T00:02:57.403170+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=utf-8",
+  "bytes": 2460,
+  "sha256": "010a5277a917e50175481ab65b36d18fda21cfa2d31ae32511e8fdcfe7854ee7",
+  "durationMs": 307
+}

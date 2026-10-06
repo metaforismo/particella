@@ -1,0 +1,7 @@
+{
+  "name": "veneto-controller-urls",
+  "url": "https://idt2.regione.veneto.it/idt/webgis/configs/controller_urls.js",
+  "executedAt": "2026-10-05T23:57:28.236089+00:00",
+  "error": "HTTP Error 404: NOT FOUND",
+  "durationMs": 400
+}

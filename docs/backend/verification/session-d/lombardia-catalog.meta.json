@@ -1,0 +1,10 @@
+{
+  "name": "lombardia-catalog",
+  "url": "https://www.geoportale.regione.lombardia.it/ricerca?_gptadvancedsearch_WAR_gptmetadataportlet_javax.faces.resource=products&_gptadvancedsearch_WAR_gptmetadataportlet_ln=productsResources&p_p_cacheability=cacheLevelPage&p_p_id=gptadvancedsearch_WAR_gptmetadataportlet&p_p_lifecycle=2",
+  "executedAt": "2026-10-05T23:55:31.355834+00:00",
+  "status": 200,
+  "contentType": "application/ms-excel;charset=UTF-8",
+  "bytes": 407040,
+  "sha256": "28aac15034ccf4db9cd81e0cba5775bfa46b296509a3e89b056c672ae20139e0",
+  "durationMs": 22286
+}

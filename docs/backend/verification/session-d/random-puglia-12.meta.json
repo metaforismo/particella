@@ -1,0 +1,5 @@
+{
+  "url": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php?BBOX=40.35356040%2C18.17123570%2C40.35376040%2C18.17143570%2Curn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A6706&COUNT=10&REQUEST=GetFeature&SERVICE=WFS&TYPENAMES=CP%3ACadastralZoning&VERSION=2.0.0",
+  "status": 200,
+  "executedAt": "2026-10-06T00:07:54.779Z"
+}

@@ -1,0 +1,37 @@
+Login CAS - Regione del Veneto
+Regione del Veneto
+Servizio di Autenticazione Centrale
+Login
+Per accedere al servizio è necessaria l'autenticazione tramite utente e password.
+Utente
+Password
+Accedi
+Informazioni
+Password dimenticata?
+Informazioni
+Il Call Center regionale è contattabile per qualsiasi problematica applicativa, incluso il ripristino della password in caso di dimenticanza, in uno dei seguenti modi:
+telefonando al
+numero verde 800.914.708
+(esterni) oppure al
+numero 919.000
+(interni)
+inviando un
+fax al numero verde 800.916.074
+(esterni) oppure al numero
+fax 918.000
+(interni)
+inviando un'e-mail all'indirizzo:
+call.center@regione.veneto.it
+Il meccanismo di ripristino della password si basa sull'invio di una e-mail all'indirizzo di posta che l'utente ha comunicato all'atto della registrazione.
+Servizio di Autenticazione Centrale - Regione del Veneto
+AccessibilitÃ
+|
+Dichiarazione di AccessibilitÃ
+|
+Note legali
+|
+Privacy
+|
+Informativa Cookies
+© 2020 - Regione del Veneto
+Versione 3.1.11.0

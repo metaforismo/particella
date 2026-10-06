@@ -1,0 +1,10 @@
+{
+  "name": "siena-point",
+  "url": "https://siena.ldpgis.it/services/piano_operativo_geometrie_r2/wms?service=WMS&version=1.1.1&request=GetFeatureInfo&layers=piano_operativo_geometrie_r2&query_layers=piano_operativo_geometrie_r2&info_format=application%2Fjson&width=101&height=101&feature_count=100&format=image%2Fpng&styles=&srs=EPSG%3A4326&bbox=11.3298%2C43.317600000000006%2C11.3318%2C43.3196&x=50&y=50",
+  "executedAt": "2026-10-05T23:57:08.266616+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=utf-8",
+  "bytes": 781,
+  "sha256": "61cb63e131e9d68f350e6333a280f1ceee62cbb46ab72cf34d513b5cec153d99",
+  "durationMs": 466
+}

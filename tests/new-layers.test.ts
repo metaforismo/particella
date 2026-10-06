@@ -20,7 +20,7 @@ globalThis.fetch = async (input) => {
   if (url.hostname === "sitap.cultura.gov.it")
     name = url.searchParams.get("layers")?.includes("142") ? "landscape-142.json" : "landscape-positive.json";
   else if (url.hostname === "tms.comune.fi.it") name = "planning-firenze.xml";
-  else if (url.hostname === "www.cartografia.servizirl.it") name = "planning-milano.json";
+  else if (url.hostname === "www.cartografia.servizirl.it") name = "planning-pgt-identify-milano.json";
   else if (url.hostname === "image.discomap.eea.europa.eu") name = "corine.json";
   else if (url.hostname === "valhalla1.openstreetmap.de")
     name =
@@ -123,7 +123,8 @@ test("all five new providers use real offline fixtures, honest scope and source 
   }
   const milano = await country.layers.planning!(plot(true), context());
   assert.equal(milano.status, "ok");
-  assert.ok(milano.notes.some((n) => n.includes("licenza")));
+  assert.ok(milano.notes.some((n) => n.includes("non conformativa")));
+  assert.equal(milano.provenance[0].license, "CC BY 4.0");
   const other = plot();
   other.municipality!.istatCode = "048001";
   other.municipality!.name = "Bagno a Ripoli";

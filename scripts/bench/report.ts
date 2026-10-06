@@ -9,6 +9,25 @@ const lots = [
 ];
 const lot = lots[Number(process.argv[2] ?? 0)];
 if (!lot) throw Error("Pass lot index 0, 1 or 2. Run each in a fresh process for cold cache.");
+const calls: { host: string; startMs: number; durationMs: number; status?: number }[] = [];
+const originalFetch = globalThis.fetch;
+const started = performance.now();
+globalThis.fetch = async (...args) => {
+  const call = {
+    host: new URL(String(args[0])).host,
+    startMs: performance.now() - started,
+    durationMs: 0,
+    status: undefined as number | undefined,
+  };
+  calls.push(call);
+  try {
+    const response = await originalFetch(...args);
+    call.status = response.status;
+    return response;
+  } finally {
+    call.durationMs = performance.now() - started - call.startMs;
+  }
+};
 const samples = [];
 for (const state of ["cold", "warm"]) {
   const response = await GET(new Request(`http://localhost/api/v1/plots/${lot.id}/report?at=${lot.at}`), {
@@ -32,6 +51,7 @@ const output = {
   executedAt: new Date().toISOString(),
   lot,
   samples,
+  calls,
   scope:
     "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering.",
 };

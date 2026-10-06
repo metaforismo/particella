@@ -1,0 +1,10 @@
+{
+  "name": "lombardia-service",
+  "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer?f=pjson",
+  "executedAt": "2026-10-05T23:55:08.475048+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=UTF-8",
+  "bytes": 12918,
+  "sha256": "e79e583781710514c79335883fad44dfa9e653307f0451812fe6c3371c3d4b72",
+  "durationMs": 201
+}

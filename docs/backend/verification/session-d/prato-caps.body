@@ -1,0 +1,1998 @@
+<?xml version="1.0" encoding="UTF-8"?><WMS_Capabilities version="1.3.0" updateSequence="5260" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms https://geoserver.comune.prato.it/geoserver/schemas/wms/1.3.0/capabilities_1_3_0.xsd">
+  <Service>
+    <Name>WMS</Name>
+    <Title>GeoServer Web Map Service</Title>
+    <Abstract>A compliant implementation of WMS 1.1.1 plus most of the SLD 1.0 extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
+    <KeywordList>
+      <Keyword>WFS</Keyword>
+      <Keyword>WMS</Keyword>
+      <Keyword>GEOSERVER</Keyword>
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="http://geoserver.sourceforge.net/html/index.php"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson/>
+        <ContactOrganization>Comune di Prato</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition/>
+      <ContactAddress>
+        <AddressType/>
+        <Address/>
+        <City/>
+        <StateOrProvince/>
+        <PostCode/>
+        <Country/>
+      </ContactAddress>
+      <ContactVoiceTelephone/>
+      <ContactFacsimileTelephone/>
+      <ContactElectronicMailAddress>sit@comune.prato.it</ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees>NONE</Fees>
+    <AccessConstraints>NONE</AccessConstraints>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>application/atom+xml</Format>
+        <Format>application/json;type=utfgrid</Format>
+        <Format>application/pdf</Format>
+        <Format>application/rss+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml;mode=networklink</Format>
+        <Format>application/vnd.google-earth.kmz</Format>
+        <Format>image/geotiff</Format>
+        <Format>image/geotiff8</Format>
+        <Format>image/gif</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/png; mode=8bit</Format>
+        <Format>image/svg+xml</Format>
+        <Format>image/tiff</Format>
+        <Format>image/tiff8</Format>
+        <Format>image/vnd.jpeg-png</Format>
+        <Format>image/vnd.jpeg-png8</Format>
+        <Format>text/html; subtype=openlayers</Format>
+        <Format>text/html; subtype=openlayers2</Format>
+        <Format>text/html; subtype=openlayers3</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/xml</Format>
+        <Format>application/vnd.ogc.gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/html</Format>
+        <Format>application/json</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+      <Format>JSON</Format>
+    </Exception>
+    <Layer>
+      <Title>GeoServer Web Map Service</Title>
+      <Abstract>A compliant implementation of WMS 1.1.1 plus most of the SLD 1.0 extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
+      <!--Limited list of EPSG projections:-->
+      <CRS>EPSG:3003</CRS>
+      <CRS>EPSG:3004</CRS>
+      <CRS>EPSG:4326</CRS>
+      <CRS>EPSG:25832</CRS>
+      <CRS>EPSG:3857</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>5.394023128912452</westBoundLongitude>
+        <eastBoundLongitude>12.534652562149786</eastBoundLongitude>
+        <southBoundLatitude>36.49133980694977</southBoundLatitude>
+        <northBoundLatitude>47.08158437258829</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="CRS:84" minx="5.394023128912452" miny="36.49133980694977" maxx="12.534652562149786" maxy="47.08158437258829"/>
+      <Layer queryable="1" opaque="0">
+        <Name>alberi</Name>
+        <Title>Alberi</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>alberi</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.028061317954068</westBoundLongitude>
+          <eastBoundLongitude>11.148376156994098</eastBoundLongitude>
+          <southBoundLatitude>43.81875984435913</southBoundLatitude>
+          <northBoundLatitude>43.92612703839989</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.028061317954068" miny="43.81875984435913" maxx="11.148376156994098" maxy="43.92612703839989"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663117.875" miny="4853994.5" maxx="1672495.75" maxy="4865690.5"/>
+        <Style>
+          <Name>alberi</Name>
+          <Title>alberi</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=alberi"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>alberi_monumentali</Name>
+        <Title>Alberi di valore paesaggistico ambientale</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>alberi_monumentali</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.018129137684035</westBoundLongitude>
+          <eastBoundLongitude>11.144075877086616</eastBoundLongitude>
+          <southBoundLatitude>43.82351657577728</southBoundLatitude>
+          <northBoundLatitude>43.93327515830197</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.018129137684035" miny="43.82351657577728" maxx="11.144075877086616" maxy="43.93327515830197"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662306.0" miny="4854513.7154" maxx="1672130.177" maxy="4866465.0"/>
+        <Style>
+          <Name>alberi_monumentali</Name>
+          <Title>alberi_monumentali</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=alberi_monumentali"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>allineamenti</Name>
+        <Title>Allineamenti</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>allineamenti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.036085637312755</westBoundLongitude>
+          <eastBoundLongitude>11.12871926314068</eastBoundLongitude>
+          <southBoundLatitude>43.85963492355935</southBoundLatitude>
+          <northBoundLatitude>43.90188566866169</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.036085637312755" miny="43.85963492355935" maxx="11.12871926314068" maxy="43.90188566866169"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663652.67616223" miny="4858498.52284387" maxx="1670985.74263333" maxy="4863009.52770136"/>
+        <Style>
+          <Name>allineamenti</Name>
+          <Title>allineamenti</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=allineamenti"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>barriera_vegetale</Name>
+        <Title>Verde di connettività</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>barriera_vegetale</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.040000133923794</westBoundLongitude>
+          <eastBoundLongitude>11.146010761392452</eastBoundLongitude>
+          <southBoundLatitude>43.83831197119528</southBoundLatitude>
+          <northBoundLatitude>43.912508614779796</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.040000133923794" miny="43.83831197119528" maxx="11.146010761392452" maxy="43.912508614779796"/>
+        <BoundingBox CRS="EPSG:3003" minx="1664025.05991264" miny="4856163.69009345" maxx="1672344.47902159" maxy="4864199.34454462"/>
+        <Style>
+          <Name>barriera_vegetale</Name>
+          <Title>barriera_vegetale</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=barriera_vegetale"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_aree_ricov</Name>
+        <Title>ARPxx - Aree di ricovero della popolazione</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_aree_ricov</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.044215776509494</westBoundLongitude>
+          <eastBoundLongitude>11.139505272315677</eastBoundLongitude>
+          <southBoundLatitude>43.831696720819295</southBoundLatitude>
+          <northBoundLatitude>43.910983473245835</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.044215776509494" miny="43.831696720819295" maxx="11.139505272315677" maxy="43.910983473245835"/>
+        <BoundingBox CRS="EPSG:3003" minx="1664382.67861511" miny="4855415.02351516" maxx="1671825.91098103" maxy="4864038.69519117"/>
+        <Style>
+          <Name>base_po_aree_ricov</Name>
+          <Title>base_po_aree_ricov</Title>
+          <LegendURL width="22" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_aree_ricov"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_aree_trasf</Name>
+        <Title>Aree di trasformazione, piani attuativi e art.158NTA</Title>
+        <Abstract>- Aree di trasformazione (AT_xx)&#13;
+- Piani attuativi (PdR xx, PdL xx, PdZ xx)&#13;
+- art.158 NTA</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_aree_trasf</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.03309447699949</westBoundLongitude>
+          <eastBoundLongitude>11.145300092382836</eastBoundLongitude>
+          <southBoundLatitude>43.82380604128626</southBoundLatitude>
+          <northBoundLatitude>43.90817935638768</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.03309447699949" miny="43.82380604128626" maxx="11.145300092382836" maxy="43.90817935638768"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663509.21918411" miny="4854550.28917256" maxx="1672300.20365901" maxy="4863705.46073681"/>
+        <Style>
+          <Name>base_po_aree_trasf</Name>
+          <Title>base_po_aree_trasf</Title>
+          <LegendURL width="267" height="62">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_aree_trasf"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_disciplina</Name>
+        <Title>Perimetro del Territorio Urbanizzto (art. 224 L.R. 65/2014)</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>base_po_disciplina</Keyword>
+          <Keyword>features</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01137686207386</westBoundLongitude>
+          <eastBoundLongitude>11.170693565900935</eastBoundLongitude>
+          <southBoundLatitude>43.813893220415125</southBoundLatitude>
+          <northBoundLatitude>43.95106276900728</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01137686207386" miny="43.813893220415125" maxx="11.170693565900935" maxy="43.95106276900728"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.39900005" miny="4853498.42944275" maxx="1674216.61085955" maxy="4868429.19379173"/>
+        <Style>
+          <Name>base_po_disciplina</Name>
+          <Title>base_po_disciplina</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_disciplina"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_etichette</Name>
+        <Title>Etichette</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_etichette</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010690262502159</westBoundLongitude>
+          <eastBoundLongitude>11.16417981166844</eastBoundLongitude>
+          <southBoundLatitude>43.81536150369806</southBoundLatitude>
+          <northBoundLatitude>43.94383969976731</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010690262502159" miny="43.81536150369806" maxx="11.16417981166844" maxy="43.94383969976731"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661728.5" miny="4853648.5" maxx="1673714.625" maxy="4867625.0"/>
+        <Style>
+          <Name>base_po_etichette</Name>
+          <Title>base_po_etichette</Title>
+          <LegendURL width="48" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_etichette"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>2010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_con_funz_mis</Name>
+        <Title>Funzione mista</Title>
+        <Abstract>Paesaggi Urbani - Urbanizzazioni Contemporanee - Funzione mista</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba_con_funz_mis</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_con_funz_mis</Name>
+          <Title>base_po_morfo_urba_con_funz_mis</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_con_funz_mis"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_con_funz_res</Name>
+        <Title>Funzione prevalentemente residenziale</Title>
+        <Abstract>Paesaggi Urbani - Urbanizzazioni Contemporanee - Funzione prevalentemente residenziale&lt;</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba_con_funz_res</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_con_funz_res</Name>
+          <Title>base_po_morfo_urba_con_funz_res</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_con_funz_res"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_con_monofun</Name>
+        <Title>Monofunzionali</Title>
+        <Abstract>Paesaggi Urbani - Urbanizzazioni Contemporanee - Monofunzionali</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba_con_monofun</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_con_monofun</Name>
+          <Title>base_po_morfo_urba_con_monofun</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_con_monofun"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_ic</Name>
+        <Title>IC - Impianti distribuzione carburante</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba_ic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_ic</Name>
+          <Title>base_po_morfo_urba_ic</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_ic"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_sto_funz_ind</Name>
+        <Title>Funzione industriale - artiginale</Title>
+        <Abstract>Paesaggi Urbani - Urbanizzazioni Storiche - Funzione indistriale-artigianale</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba_sto_funz_ind</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_sto_funz_ind</Name>
+          <Title>base_po_morfo_urba_sto_funz_ind</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_sto_funz_ind"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_sto_funz_mis</Name>
+        <Title>Funzione mista</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba_sto_funz_mis</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_sto_funz_mis</Name>
+          <Title>base_po_morfo_urba_sto_funz_mis</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_sto_funz_mis"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_morfo_urba_sto_funz_res</Name>
+        <Title>Funzione prevalentemente residenziale</Title>
+        <Abstract>Paesaggi Urbani - Urbanizzazioni Storiche - Funzione prevalentemente residenziale</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_morfo_urba</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025738108846255</westBoundLongitude>
+          <eastBoundLongitude>11.147843207463284</eastBoundLongitude>
+          <southBoundLatitude>43.82336936110412</southBoundLatitude>
+          <northBoundLatitude>43.92619908060894</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025738108846255" miny="43.82336936110412" maxx="11.147843207463284" maxy="43.92619908060894"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662918.41530872" miny="4854505.70991504" maxx="1672452.85509998" maxy="4865693.60192935"/>
+        <Style>
+          <Name>base_po_morfo_urba_sto_funz_res</Name>
+          <Title>base_po_morfo_urba_sto_funz_res</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_morfo_urba_sto_funz_res"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_pert_indu_compl_arch_ind</Name>
+        <Title>AI_xx Complessi di archeologia industriale</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_pert_indu_compl_arch_ind</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.080582436244118</westBoundLongitude>
+          <eastBoundLongitude>11.117402468016126</eastBoundLongitude>
+          <southBoundLatitude>43.87172949533715</southBoundLatitude>
+          <northBoundLatitude>43.90947346048166</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.080582436244118" miny="43.87172949533715" maxx="11.117402468016126" maxy="43.90947346048166"/>
+        <BoundingBox CRS="EPSG:3003" minx="1667197.63923433" miny="4859818.79910899" maxx="1670052.38439753" maxy="4863941.23106714"/>
+        <Style>
+          <Name>base_po_pert_indu_compl_arch_ind</Name>
+          <Title>base_po_pert_indu_compl_arch_ind</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_pert_indu_compl_arch_ind"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_pert_indu_compl_prod_val_tip</Name>
+        <Title>PT_xx Complessi produttivi di valore tipologico</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_pert_indu_compl_prod_val_tip</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.063257341104359</westBoundLongitude>
+          <eastBoundLongitude>11.113853349336132</eastBoundLongitude>
+          <southBoundLatitude>43.86614861951055</southBoundLatitude>
+          <northBoundLatitude>43.90607914673204</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.063257341104359" miny="43.86614861951055" maxx="11.113853349336132" maxy="43.90607914673204"/>
+        <BoundingBox CRS="EPSG:3003" minx="1665820.3657072" miny="4859191.49755343" maxx="1669777.74128408" maxy="4863529.41258926"/>
+        <Style>
+          <Name>base_po_pert_indu_compl_prod_val_tip</Name>
+          <Title>base_po_pert_indu_compl_prod_val_tip</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_pert_indu_compl_prod_val_tip"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_pert_stor</Name>
+        <Title>Aree di tutela degli edifici di valore storico</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_pert_stor</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.012666907489944</westBoundLongitude>
+          <eastBoundLongitude>11.150333122925932</eastBoundLongitude>
+          <southBoundLatitude>43.81517817143916</southBoundLatitude>
+          <northBoundLatitude>43.948747721136634</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.012666907489944" miny="43.81517817143916" maxx="11.150333122925932" maxy="43.948747721136634"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661888.76910038" miny="4853598.81604128" maxx="1672588.26072691" maxy="4868174.38099889"/>
+        <Style>
+          <Name>base_po_pert_stor</Name>
+          <Title>base_po_pert_stor</Title>
+          <LegendURL width="104" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_pert_stor"/>
+          </LegendURL>
+        </Style>
+        <Style>
+          <Name>edifici_pregio_base_po_pert_stor</Name>
+          <Title>Pertinenze storiche</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_pert_stor&amp;style=edifici_pregio_base_po_pert_stor"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_standard</Name>
+        <Title>Standard urbanistici - esistente|progetto</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_standard</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011494638228251</westBoundLongitude>
+          <eastBoundLongitude>11.151844669226676</eastBoundLongitude>
+          <southBoundLatitude>43.81745303180634</southBoundLatitude>
+          <northBoundLatitude>43.941646661954145</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011494638228251" miny="43.81745303180634" maxx="11.151844669226676" maxy="43.941646661954145"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661788.19900015" miny="4853855.33911623" maxx="1672730.28349867" maxy="4867382.72844105"/>
+        <Style>
+          <Name>base_po_standard</Name>
+          <Title>base_po_standard</Title>
+          <LegendURL width="473" height="484">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_standard"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_standard_spazi_aperti</Name>
+        <Title>Spazi aperti</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_standard_spazi_aperti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.026685260515368</westBoundLongitude>
+          <eastBoundLongitude>11.145509156586938</eastBoundLongitude>
+          <southBoundLatitude>43.8240146274732</southBoundLatitude>
+          <northBoundLatitude>43.919495676861416</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.026685260515368" miny="43.8240146274732" maxx="11.145509156586938" maxy="43.919495676861416"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662992.97335553" miny="4854573.06980005" maxx="1672284.66070613" maxy="4864950.42998385"/>
+        <Style>
+          <Name>base_po_standard_spazi_aperti</Name>
+          <Title>base_po_standard_spazi_aperti</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_standard_spazi_aperti"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_territorio_rurale</Name>
+        <Title>Territorio rurale</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_territorio_rurale_bordo</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01137686207386</westBoundLongitude>
+          <eastBoundLongitude>11.170693565900935</eastBoundLongitude>
+          <southBoundLatitude>43.813893220415125</southBoundLatitude>
+          <northBoundLatitude>43.95106276900728</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01137686207386" miny="43.813893220415125" maxx="11.170693565900935" maxy="43.95106276900728"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.39900005" miny="4853498.42944275" maxx="1674216.61085955" maxy="4868429.19379173"/>
+        <Style>
+          <Name>base_po_territorio_rurale</Name>
+          <Title>base_po_territorio_rurale</Title>
+          <LegendURL width="22" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_territorio_rurale"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_territorio_rurale_bordo</Name>
+        <Title>Territorio rurale (bordo)</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_territorio_rurale_bordo</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011376862073812</westBoundLongitude>
+          <eastBoundLongitude>11.170693565900956</eastBoundLongitude>
+          <southBoundLatitude>43.81389322041511</southBoundLatitude>
+          <northBoundLatitude>43.95106276900725</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011376862073812" miny="43.81389322041511" maxx="11.170693565900956" maxy="43.95106276900725"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.3990000463" miny="4853498.4294427475" maxx="1674216.610859552" maxy="4868429.193791727"/>
+        <Style>
+          <Name>base_po_territorio_rurale_bordo</Name>
+          <Title>base_po_territorio_rurale_bordo</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_territorio_rurale_bordo"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_uso</Name>
+        <Title>Uso del suolo</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_uso</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01137686207386</westBoundLongitude>
+          <eastBoundLongitude>11.165338255772609</eastBoundLongitude>
+          <southBoundLatitude>43.81399375244776</southBoundLatitude>
+          <northBoundLatitude>43.95013794545445</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01137686207386" miny="43.81399375244776" maxx="11.165338255772609" maxy="43.95013794545445"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.39900005" miny="4853498.42944275" maxx="1673789.26098925" maxy="4868326.41090381"/>
+        <Style>
+          <Name>base_po_uso</Name>
+          <Title>base_po_uso</Title>
+          <LegendURL width="147" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_uso"/>
+          </LegendURL>
+        </Style>
+        <Style>
+          <Name>base_po_uso_per_vincolistica</Name>
+          <Title>base_po_uso_per_vincolistica</Title>
+          <LegendURL width="147" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_uso&amp;style=base_po_uso_per_vincolistica"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_uso_area_ferroviaria</Name>
+        <Title>Area ferroviaria</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_uso_area_ferroviaria</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.02725621191912</westBoundLongitude>
+          <eastBoundLongitude>11.142762379984768</eastBoundLongitude>
+          <southBoundLatitude>43.85854917424823</southBoundLatitude>
+          <northBoundLatitude>43.91861974095778</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.02725621191912" miny="43.85854917424823" maxx="11.142762379984768" maxy="43.91861974095778"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662944.95333082" miny="4858405.7479755" maxx="1672066.53279969" maxy="4864851.89991662"/>
+        <Style>
+          <Name>base_po_uso_area_ferroviaria</Name>
+          <Title>base_po_uso_area_ferroviaria</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_uso_area_ferroviaria"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_uso_strade_viabilita</Name>
+        <Title>Viabilità - esistente | progetto</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_uso_strade_progetto</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.018016450628414</westBoundLongitude>
+          <eastBoundLongitude>11.141996327217768</eastBoundLongitude>
+          <southBoundLatitude>43.826220150378425</southBoundLatitude>
+          <northBoundLatitude>43.909971323286165</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.018016450628414" miny="43.826220150378425" maxx="11.141996327217768" maxy="43.909971323286165"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662289.66552789" miny="4854811.61906079" maxx="1672030.33097846" maxy="4863874.66698291"/>
+        <Style>
+          <Name>base_po_uso_viabilita</Name>
+          <Title>base_po_uso_viabilita</Title>
+          <LegendURL width="148" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_uso_strade_viabilita"/>
+          </LegendURL>
+        </Style>
+        <Style>
+          <Name>base_po_uso_viabilita_per_vincolistica</Name>
+          <Title>base_po_uso_viabilita_per_vincolistica</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_uso_strade_viabilita&amp;style=base_po_uso_viabilita_per_vincolistica"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>base_po_utoe</Name>
+        <Title>Unità Territoriali Organiche Elementari (UTOE)</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po_utoe</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01137686207386</westBoundLongitude>
+          <eastBoundLongitude>11.170693565900935</eastBoundLongitude>
+          <southBoundLatitude>43.813893220415125</southBoundLatitude>
+          <northBoundLatitude>43.95106276900728</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01137686207386" miny="43.813893220415125" maxx="11.170693565900935" maxy="43.95106276900728"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.39900005" miny="4853498.42944275" maxx="1674216.61085955" maxy="4868429.19379173"/>
+        <Style>
+          <Name>base_po_utoe</Name>
+          <Title>base_po_utoe</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=base_po_utoe"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>100010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>beni_archeologici_tutelati_valenza_paesaggistica</Name>
+        <Title>art 142, c.1, lett m) - Beni archeologici tutelati con valenza paesaggistica</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_archeologici_tutelati_valenza_paesaggistica</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.03647837999186</westBoundLongitude>
+          <eastBoundLongitude>11.14533052822783</eastBoundLongitude>
+          <southBoundLatitude>43.85254851424406</southBoundLatitude>
+          <northBoundLatitude>43.89650953934483</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.03647837999186" miny="43.85254851424406" maxx="11.14533052822783" maxy="43.89650953934483"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663702.8" miny="4857745.79339023" maxx="1672336.20944208" maxy="4862413.27003451"/>
+        <Style>
+          <Name>beni_archeologici_tutelati_valenza_paesaggistica</Name>
+          <Title>beni_archeologici_tutelati_valenza_paesaggistica</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=beni_archeologici_tutelati_valenza_paesaggistica"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>beni_culturali_art10_comma1</Name>
+        <Title>Beni culturali art.10 comma 1 da sottoporre alla verifica di interesse culturale ex art.12</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_culturali_art10_comma1</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.03611223775546</westBoundLongitude>
+          <eastBoundLongitude>11.146351285004037</eastBoundLongitude>
+          <southBoundLatitude>43.82633919540646</southBoundLatitude>
+          <northBoundLatitude>43.936939591549645</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.03611223775546" miny="43.82633919540646" maxx="11.146351285004037" maxy="43.936939591549645"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663745.09922335" miny="4854831.86686341" maxx="1672301.44" maxy="4866907.66"/>
+        <Style>
+          <Name>beni_culturali_art10_comma1</Name>
+          <Title>beni_culturali_art10_comma1</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=beni_culturali_art10_comma1"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>beni_culturali_interesse_archeologico</Name>
+        <Title>Beni culturali di interesse archeologico con provvedimento di tutela</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_culturali_interesse_archeologico</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.03647837999186</westBoundLongitude>
+          <eastBoundLongitude>11.14533052822783</eastBoundLongitude>
+          <southBoundLatitude>43.85254851424406</southBoundLatitude>
+          <northBoundLatitude>43.89650953934483</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.03647837999186" miny="43.85254851424406" maxx="11.14533052822783" maxy="43.89650953934483"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663702.8" miny="4857745.79339023" maxx="1672336.20944208" maxy="4862413.27003451"/>
+        <Style>
+          <Name>beni_culturali_interesse_archeologico</Name>
+          <Title>beni_culturali_interesse_archeologico</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=beni_culturali_interesse_archeologico"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>beni_culturali_interesse_storico_artistico</Name>
+        <Title>Beni culturali di interesse storico artistico con provvedimento di tutela</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_culturali_interesse_storico_artistico</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.018181705364318</westBoundLongitude>
+          <eastBoundLongitude>11.129172992230552</eastBoundLongitude>
+          <southBoundLatitude>43.82575032963747</southBoundLatitude>
+          <northBoundLatitude>43.924686871842795</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.018181705364318" miny="43.82575032963747" maxx="11.129172992230552" maxy="43.924686871842795"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662304.91" miny="4854731.75" maxx="1670957.73" maxy="4865510.49"/>
+        <Style>
+          <Name>beni_culturali_interesse_storico_artistico</Name>
+          <Title>beni_culturali_interesse_storico_artistico</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=beni_culturali_interesse_storico_artistico"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>beni_culturali_paesaggistici</Name>
+        <Title>Beni culturali paesaggistici</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_culturali_paesaggistici</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.025459697415153</westBoundLongitude>
+          <eastBoundLongitude>11.170672774096989</eastBoundLongitude>
+          <southBoundLatitude>43.81542872652805</southBoundLatitude>
+          <northBoundLatitude>43.951477845596564</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.025459697415153" miny="43.81542872652805" maxx="11.170672774096989" maxy="43.951477845596564"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662916.5" miny="4853669.0" maxx="1674213.0" maxy="4868503.0"/>
+        <Style>
+          <Name>poligoni_trasparenti</Name>
+          <Title>poligoni_trasparenti</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=beni_culturali_paesaggistici"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>beni_monum_e_archeologici</Name>
+        <Title>Beni monumentali e archeologici</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_monum_e_archeologici</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011371774070188</westBoundLongitude>
+          <eastBoundLongitude>11.170685895498895</eastBoundLongitude>
+          <southBoundLatitude>43.81388950051456</southBoundLatitude>
+          <northBoundLatitude>43.951061112991674</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011371774070188" miny="43.81388950051456" maxx="11.170685895498895" maxy="43.951061112991674"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.0" miny="4853498.0" maxx="1674216.0" maxy="4868429.0"/>
+        <Style>
+          <Name>beni_monum_e_archeologici</Name>
+          <Title>Beni monumentali e architettonici</Title>
+          <LegendURL width="321" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=beni_monum_e_archeologici"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_10k_elementi_lineari_fuori_comune</Name>
+        <Title>CTR 1:10.000 Elementi lineari fuori Comune</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_10k_elementi_lineari_fuori_comune</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.949936433030786</westBoundLongitude>
+          <eastBoundLongitude>11.233344981518869</eastBoundLongitude>
+          <southBoundLatitude>43.779615999829225</southBoundLatitude>
+          <northBoundLatitude>43.984604823140494</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="10.949936433030786" miny="43.779615999829225" maxx="11.233344981518869" maxy="43.984604823140494"/>
+        <BoundingBox CRS="EPSG:3003" minx="1656930.0" miny="4849819.5" maxx="1679150.125" maxy="4872040.0"/>
+        <Style>
+          <Name>ctr_10k_elementi_lineari_fuori_comune</Name>
+          <Title>ctr_10k_elementi_lineari_fuori_comune</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_10k_elementi_lineari_fuori_comune"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>10010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_10k_orografia_fuori_comune</Name>
+        <Title>CTR 1:10.000 Orografia fuori Comune</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_10k_orografia_fuori_comune</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.949936433030786</westBoundLongitude>
+          <eastBoundLongitude>11.233344981518869</eastBoundLongitude>
+          <southBoundLatitude>43.779615999829225</southBoundLatitude>
+          <northBoundLatitude>43.984604823140494</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="10.949936433030786" miny="43.779615999829225" maxx="11.233344981518869" maxy="43.984604823140494"/>
+        <BoundingBox CRS="EPSG:3003" minx="1656930.0" miny="4849819.5" maxx="1679150.125" maxy="4872040.0"/>
+        <Style>
+          <Name>ctr_10k_orografia_fuori_comune</Name>
+          <Title>CTR 1:10.000 Orografia fuori Comune</Title>
+          <LegendURL width="57" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_10k_orografia_fuori_comune"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>10010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_edifici</Name>
+        <Title>Edifici</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_edifici</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011953242134922</westBoundLongitude>
+          <eastBoundLongitude>11.162878775810317</eastBoundLongitude>
+          <southBoundLatitude>43.81529439515904</southBoundLatitude>
+          <northBoundLatitude>43.941374401372634</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011953242134922" miny="43.81529439515904" maxx="11.162878775810317" maxy="43.941374401372634"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661830.375" miny="4853638.5" maxx="1673617.25" maxy="4867353.5"/>
+        <Style>
+          <Name>ctr_2k_edifici</Name>
+          <Title>ctr_2k_edifici</Title>
+          <LegendURL width="260" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_edifici"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_edifici_pregio</Name>
+        <Title>Edifici di valore storico-testimoniale</Title>
+        <Abstract>Edifici di valore storico-testimoniale:&#13;
+E1 - primo grado di tutela&#13;
+E2 - secondo grado di tutela&#13;
+E3 - terzo grado di tutela</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_edifici_pregio</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.012700706427832</westBoundLongitude>
+          <eastBoundLongitude>11.162591278276503</eastBoundLongitude>
+          <southBoundLatitude>43.81595362249837</southBoundLatitude>
+          <northBoundLatitude>43.94858324076648</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.012700706427832" miny="43.81595362249837" maxx="11.162591278276503" maxy="43.94858324076648"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661888.76900038" miny="4853710.61908591" maxx="1673573.13095037" maxy="4868156.10099685"/>
+        <Style>
+          <Name>ctr_2k_edifici_pregio</Name>
+          <Title>ctr_2k_edifici_pregio</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_edifici_pregio"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_edifici_recenti</Name>
+        <Title>Edificato di recente formazione</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_edifici_recenti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01273419957921</westBoundLongitude>
+          <eastBoundLongitude>11.159714455697053</eastBoundLongitude>
+          <southBoundLatitude>43.815973421009396</southBoundLatitude>
+          <northBoundLatitude>43.95013546371363</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01273419957921" miny="43.815973421009396" maxx="11.159714455697053" maxy="43.95013546371363"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661891.56" miny="4853706.68" maxx="1673337.59" maxy="4868328.68"/>
+        <Style>
+          <Name>ctr_2k_edifici_recenti</Name>
+          <Title>ctr_2k_edifici_recenti</Title>
+          <LegendURL width="260" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_edifici_recenti"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_edifici_storici</Name>
+        <Title>Edificato storico o storicizzato</Title>
+        <Abstract>CTR 1:2.000 Edificato storico o storicizzato</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_edifici_1954</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.012659212574432</westBoundLongitude>
+          <eastBoundLongitude>11.162593302113153</eastBoundLongitude>
+          <southBoundLatitude>43.81595363094568</southBoundLatitude>
+          <northBoundLatitude>43.9486401124925</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.012659212574432" miny="43.81595363094568" maxx="11.162593302113153" maxy="43.9486401124925"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661885.43" miny="4853710.62" maxx="1673573.13" maxy="4868162.34"/>
+        <Style>
+          <Name>ctr_2k_edifici_storici</Name>
+          <Title>ctr_2k_edifici_storici</Title>
+          <LegendURL width="260" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_edifici_storici"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_edifici_tipi_inter</Name>
+        <Title>Tutela comunale</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_edifici</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011371774070188</westBoundLongitude>
+          <eastBoundLongitude>11.170685895498895</eastBoundLongitude>
+          <southBoundLatitude>43.81388950051456</southBoundLatitude>
+          <northBoundLatitude>43.951061112991674</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011371774070188" miny="43.81388950051456" maxx="11.170685895498895" maxy="43.951061112991674"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.0" miny="4853498.0" maxx="1674216.0" maxy="4868429.0"/>
+        <Style>
+          <Name>ctr_2k_edifici_tipi_inter</Name>
+          <Title>A dark orange polygon style</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_edifici_tipi_inter"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_elementi_lineari</Name>
+        <Title>CTR 1:2.000 Elementi lineari</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_elementi_lineari</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010947172252754</westBoundLongitude>
+          <eastBoundLongitude>11.171195801418259</eastBoundLongitude>
+          <southBoundLatitude>43.8129849167491</southBoundLatitude>
+          <northBoundLatitude>43.95147749174648</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010947172252754" miny="43.8129849167491" maxx="11.171195801418259" maxy="43.95147749174648"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661755.25" miny="4853398.5" maxx="1674255.75" maxy="4868474.5"/>
+        <Style>
+          <Name>ctr_2k_elementi_lineari</Name>
+          <Title>CTR 1:2.000 Elementi lineari</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_elementi_lineari"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_2k_orografia</Name>
+        <Title>CTR 1:2.000 Orografia</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_2k_orografia</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.048985108308216</westBoundLongitude>
+          <eastBoundLongitude>11.171279529302565</eastBoundLongitude>
+          <southBoundLatitude>43.83602969095641</southBoundLatitude>
+          <northBoundLatitude>43.95097467028934</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.048985108308216" miny="43.83602969095641" maxx="11.171279529302565" maxy="43.95097467028934"/>
+        <BoundingBox CRS="EPSG:3003" minx="1664752.875" miny="4855960.0" maxx="1674262.0" maxy="4868492.5"/>
+        <Style>
+          <Name>ctr_2k_orografia</Name>
+          <Title>ctr_2k_orografia</Title>
+          <LegendURL width="52" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_2k_orografia"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>2010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ctr_am_com</Name>
+        <Title>Limite del territorio comunale</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ctr_am_com_multipart</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>5.394023128912452</westBoundLongitude>
+          <eastBoundLongitude>12.534652562149786</eastBoundLongitude>
+          <southBoundLatitude>36.49133980694977</southBoundLatitude>
+          <northBoundLatitude>47.08158437258829</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="5.394023128912452" miny="36.49133980694977" maxx="12.534652562149786" maxy="47.08158437258829"/>
+        <BoundingBox CRS="EPSG:3003" minx="1226016.2107837894" miny="4042801.6555425473" maxx="1768610.1021991083" maxy="5214254.44651009"/>
+        <Style>
+          <Name>ctr_am_com</Name>
+          <Title>Limite del territorio comunale</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ctr_am_com"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>graficismi_linee</Name>
+        <Title>Graficismi lineari</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>graficismi_linee</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.063313808271218</westBoundLongitude>
+          <eastBoundLongitude>11.127366415129286</eastBoundLongitude>
+          <southBoundLatitude>43.855284623492395</southBoundLatitude>
+          <northBoundLatitude>43.91318458664393</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.063313808271218" miny="43.855284623492395" maxx="11.127366415129286" maxy="43.91318458664393"/>
+        <BoundingBox CRS="EPSG:3003" minx="1665854.3625" miny="4858011.3495" maxx="1670843.268375" maxy="4864319.96421617"/>
+        <Style>
+          <Name>graficismi_linee</Name>
+          <Title>graficismi_linee</Title>
+          <LegendURL width="172" height="60">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=graficismi_linee"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>immobili_tutela_indiretta_art45</Name>
+        <Title>Immobili interessati da provvedimenti di tutela indiretta ai sensi dell'art.45</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>beni_monumentali_vincolo_indiretto_2019</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.044362840696486</westBoundLongitude>
+          <eastBoundLongitude>11.100763507832669</eastBoundLongitude>
+          <southBoundLatitude>43.81823796705588</southBoundLatitude>
+          <northBoundLatitude>43.88374169536581</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.044362840696486" miny="43.81823796705588" maxx="11.100763507832669" maxy="43.88374169536581"/>
+        <BoundingBox CRS="EPSG:3003" minx="1664433.4" miny="4853841.46" maxx="1668789.88" maxy="4861012.33"/>
+        <Style>
+          <Name>immobili_tutela_indiretta_art45</Name>
+          <Title>immobili_tutela_indiretta_art45</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=immobili_tutela_indiretta_art45"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>manufatti_puntuali</Name>
+        <Title>Elementi puntuali (tabernacoli, cimiteri, torri acqua, etc)</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>manufatti_puntuali</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.017577911390134</westBoundLongitude>
+          <eastBoundLongitude>11.146715025981981</eastBoundLongitude>
+          <southBoundLatitude>43.816611308091</southBoundLatitude>
+          <northBoundLatitude>43.94293999563058</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.017577911390134" miny="43.816611308091" maxx="11.146715025981981" maxy="43.94293999563058"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662280.25" miny="4853751.0" maxx="1672314.25" maxy="4867538.5"/>
+        <Style>
+          <Name>manufatti_puntuali</Name>
+          <Title>manufatti_puntuali</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=manufatti_puntuali"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>osservazioni_po</Name>
+        <Title>Osservazioni al Piano Operativo</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>osservazioni_po</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01137687434459</westBoundLongitude>
+          <eastBoundLongitude>11.17069355458058</eastBoundLongitude>
+          <southBoundLatitude>43.81389322561859</southBoundLatitude>
+          <northBoundLatitude>43.95106276075081</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01137687434459" miny="43.81389322561859" maxx="11.17069355458058" maxy="43.95106276075081"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.399974" miny="4853498.42999791" maxx="1674216.609974" maxy="4868429.19289791"/>
+        <Style>
+          <Name>osservazioni_po</Name>
+          <Title>osservazioni_po</Title>
+          <LegendURL width="220" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=osservazioni_po"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>200010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>osservazioni_po_espropri</Name>
+        <Title>Osservazioni agli espropri</Title>
+        <Abstract>Osservazioni presentate per gli espropri pubblicati sul nuovo piano operativo</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>oss_espropri</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.018576009906848</westBoundLongitude>
+          <eastBoundLongitude>11.148527953524434</eastBoundLongitude>
+          <southBoundLatitude>43.82778549216884</southBoundLatitude>
+          <northBoundLatitude>43.91919271921351</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.018576009906848" miny="43.82778549216884" maxx="11.148527953524434" maxy="43.91919271921351"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662330.125" miny="4854998.5" maxx="1672528.5" maxy="4864900.5"/>
+        <Style>
+          <Name>osservazioni_po_espropri</Name>
+          <Title>osservazioni_po_espropri</Title>
+          <LegendURL width="284" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=osservazioni_po_espropri"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>200010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>osservazioni_po_per_numero</Name>
+        <Title>Osservazioni al Piano Operativo (per numero di osservazione)</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>osservazioni_po_per_numero</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01137687434459</westBoundLongitude>
+          <eastBoundLongitude>11.17069355458058</eastBoundLongitude>
+          <southBoundLatitude>43.81389322561859</southBoundLatitude>
+          <northBoundLatitude>43.95106276075081</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01137687434459" miny="43.81389322561859" maxx="11.17069355458058" maxy="43.95106276075081"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.399974" miny="4853498.42999791" maxx="1674216.609974" maxy="4868429.19289791"/>
+        <Style>
+          <Name>osservazione_po_selezionata</Name>
+          <Title>osservazione_po_selezionata</Title>
+          <LegendURL width="219" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=osservazioni_po_per_numero"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>percorso</Name>
+        <Title>Connessioni</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>percorso</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01929961004432</westBoundLongitude>
+          <eastBoundLongitude>11.170467341564201</eastBoundLongitude>
+          <southBoundLatitude>43.81878102727932</southBoundLatitude>
+          <northBoundLatitude>43.950764341733624</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01929961004432" miny="43.81878102727932" maxx="11.170467341564201" maxy="43.950764341733624"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662411.70965562" miny="4854041.22562097" maxx="1674198.9148" maxy="4868411.30556132"/>
+        <Style>
+          <Name>percorso</Name>
+          <Title>percorso</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=percorso"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>piste_ciclabili</Name>
+        <Title>Piste ciclabili</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>piste_ciclabili</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010897983747041</westBoundLongitude>
+          <eastBoundLongitude>11.147173572946809</eastBoundLongitude>
+          <southBoundLatitude>43.81352493949661</southBoundLatitude>
+          <northBoundLatitude>43.92197893222001</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010897983747041" miny="43.81352493949661" maxx="11.147173572946809" maxy="43.92197893222001"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661751.0" miny="4853410.5" maxx="1672412.0" maxy="4865196.0"/>
+        <Style>
+          <Name>piste_ciclabili</Name>
+          <Title>Piste ciclabili</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=piste_ciclabili"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>po_web</Name>
+        <Title>Disciplina</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>po_web</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010582227226914</westBoundLongitude>
+          <eastBoundLongitude>11.171426847119923</eastBoundLongitude>
+          <southBoundLatitude>43.81321342494742</southBoundLatitude>
+          <northBoundLatitude>43.949963448246876</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010582227226914" miny="43.81321342494742" maxx="11.171426847119923" maxy="43.949963448246876"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661725.25" miny="4853424.5" maxx="1674278.75" maxy="4868305.5"/>
+        <Style>
+          <Name>poligoni_trasparenti</Name>
+          <Title>poligoni_trasparenti</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=po_web"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>pr_aree_rischio_archeologico_art_9</Name>
+        <Title>Aree a rischio archeologico</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>pr_aree_rischio_archeologico_art_9</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.065094898100913</westBoundLongitude>
+          <eastBoundLongitude>11.16749220029884</eastBoundLongitude>
+          <southBoundLatitude>43.85066196854563</southBoundLatitude>
+          <northBoundLatitude>43.93241399946258</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.065094898100913" miny="43.85066196854563" maxx="11.16749220029884" maxy="43.93241399946258"/>
+        <BoundingBox CRS="EPSG:3003" minx="1666008.38" miny="4857579.7558" maxx="1674011.2141" maxy="4866460.9912"/>
+        <Style>
+          <Name>pr_aree_rischio_archeologico_art_9</Name>
+          <Title>pr_aree_rischio_archeologico_art_9</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=pr_aree_rischio_archeologico_art_9"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>rinvenimenti_sporadici_carta_archeologica_2011</Name>
+        <Title>Rinvenimenti sporadici contenuti nella Carta archeologica della Provincia di Prato (2011)</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>punti_com_po</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.036793273636492</westBoundLongitude>
+          <eastBoundLongitude>11.16517737463068</eastBoundLongitude>
+          <southBoundLatitude>43.826146047197234</southBoundLatitude>
+          <northBoundLatitude>43.94569433280768</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.036793273636492" miny="43.826146047197234" maxx="11.16517737463068" maxy="43.94569433280768"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663799.47" miny="4854849.07" maxx="1673788.0" maxy="4867882.0"/>
+        <Style>
+          <Name>rinvenimenti_sporadici_carta_archeologica_2011</Name>
+          <Title>rinvenimenti_sporadici_carta_archeologica_2011</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=rinvenimenti_sporadici_carta_archeologica_2011"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>rinvenimenti_sporadici_carta_archeologica_2011_2019</Name>
+        <Title>Rinvenimenti sporadici aggiornamento dal 2011 al 2019</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>punti_aggiornamento_carta_archeologica</Keyword>
+          <Keyword>features</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.057215095088273</westBoundLongitude>
+          <eastBoundLongitude>11.106031774705487</eastBoundLongitude>
+          <southBoundLatitude>43.84372944393003</southBoundLatitude>
+          <northBoundLatitude>43.94093043806645</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.057215095088273" miny="43.84372944393003" maxx="11.106031774705487" maxy="43.94093043806645"/>
+        <BoundingBox CRS="EPSG:3003" minx="1665396.9940486" miny="4856681.24270155" maxx="1669050.69470896" maxy="4867392.22843316"/>
+        <Style>
+          <Name>rinvenimenti_sporadici_carta_archeologica_2011_2019</Name>
+          <Title>rinvenimenti_sporadici_carta_archeologica_2011_2019</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=rinvenimenti_sporadici_carta_archeologica_2011_2019"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>ruderi</Name>
+        <Title>Edilizia abbandonata</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ruderi</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.028074620832939</westBoundLongitude>
+          <eastBoundLongitude>11.157567803182618</eastBoundLongitude>
+          <southBoundLatitude>43.827624316058134</southBoundLatitude>
+          <northBoundLatitude>43.92605505865984</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.028074620832939" miny="43.827624316058134" maxx="11.157567803182618" maxy="43.92605505865984"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663094.31972412" miny="4854998.93217322" maxx="1673234.38354991" maxy="4865681.92074807"/>
+        <Style>
+          <Name>ruderi</Name>
+          <Title>ruderi</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ruderi"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>spazi_pubblici_interesse_storico_artistico</Name>
+        <Title>Pubbliche piazze, vie strade e altri spazi aperti urbani di interesse storico artistico, art.10 comma 4, lettera g da sottoporre alla verifica di interesse culturale ex art.12</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>spazi_pubblici_interesse_storico_artistico</Keyword>
+          <Keyword>features</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.032010652256938</westBoundLongitude>
+          <eastBoundLongitude>11.15005235040256</eastBoundLongitude>
+          <southBoundLatitude>43.81645079654119</southBoundLatitude>
+          <northBoundLatitude>43.93476838869495</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.032010652256938" miny="43.81645079654119" maxx="11.15005235040256" maxy="43.93476838869495"/>
+        <BoundingBox CRS="EPSG:3003" minx="1663441.9002" miny="4853740.7002" maxx="1672605.1881" maxy="4866658.87"/>
+        <Style>
+          <Name>spazi_pubblici_interesse_storico_artistico</Name>
+          <Title>spazi_pubblici_interesse_storico_artistico</Title>
+          <LegendURL width="22" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=spazi_pubblici_interesse_storico_artistico"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>tema_varianti_adottate</Name>
+        <Title>Aree oggetto di variante adottata</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>tema_varianti_adottate</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011376874668318</westBoundLongitude>
+          <eastBoundLongitude>11.170693553955198</eastBoundLongitude>
+          <southBoundLatitude>43.81389322563126</southBoundLatitude>
+          <northBoundLatitude>43.951062734670174</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011376874668318" miny="43.81389322563126" maxx="11.170693553955198" maxy="43.951062734670174"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661787.4" miny="4853498.43" maxx="1674216.61" maxy="4868429.19"/>
+        <Style>
+          <Name>varianti_adottate</Name>
+          <Title>Area soggetta a variazione già adottata</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=tema_varianti_adottate"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>terr_urb_utoe_zone_omoge</Name>
+        <Title>Territorio urbanizzato - UTOE - Zonee Omogenee</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>terr_urb_utoe_zone_omoge</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010581925245056</westBoundLongitude>
+          <eastBoundLongitude>11.171491884095492</eastBoundLongitude>
+          <southBoundLatitude>43.81320442776009</southBoundLatitude>
+          <northBoundLatitude>43.95174951942271</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010581925245056" miny="43.81320442776009" maxx="11.171491884095492" maxy="43.95174951942271"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661725.25" miny="4853423.5" maxx="1674278.75" maxy="4868504.0"/>
+        <Style>
+          <Name>poligoni_trasparenti</Name>
+          <Title>poligoni_trasparenti</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=terr_urb_utoe_zone_omoge"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>toponimi_10k_fuori_comune</Name>
+        <Title>Toponimi fuori Comune</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>toponimi_10k_fuori_comune</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.949980895673573</westBoundLongitude>
+          <eastBoundLongitude>11.233333613311581</eastBoundLongitude>
+          <southBoundLatitude>43.779742137619316</southBoundLatitude>
+          <northBoundLatitude>43.984550140862204</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="10.949980895673573" miny="43.779742137619316" maxx="11.233333613311581" maxy="43.984550140862204"/>
+        <BoundingBox CRS="EPSG:3003" minx="1656933.25" miny="4849833.5" maxx="1679149.375" maxy="4872034.0"/>
+        <Style>
+          <Name>toponimi_10k_fuori_comune</Name>
+          <Title>Toponimi fuori Comune</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=toponimi_10k_fuori_comune"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>toponimi_2k_10k</Name>
+        <Title>Toponimi</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>toponimi_2k_10k</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.008045335849658</westBoundLongitude>
+          <eastBoundLongitude>11.169017609874025</eastBoundLongitude>
+          <southBoundLatitude>43.80694842035914</southBoundLatitude>
+          <northBoundLatitude>43.95142619340616</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.008045335849658" miny="43.80694842035914" maxx="11.169017609874025" maxy="43.95142619340616"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661538.125" miny="4852723.0" maxx="1674081.125" maxy="4868463.5"/>
+        <Style>
+          <Name>toponimi_2k_10k</Name>
+          <Title>Toponimi</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=toponimi_2k_10k"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5010.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>viabilita_storica</Name>
+        <Title>Viabilità storica</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>viabilita_storica</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.011556511966296</westBoundLongitude>
+          <eastBoundLongitude>11.149458043396661</eastBoundLongitude>
+          <southBoundLatitude>43.816043335829036</southBoundLatitude>
+          <northBoundLatitude>43.950793451578235</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.011556511966296" miny="43.816043335829036" maxx="11.149458043396661" maxy="43.950793451578235"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661797.125" miny="4853693.0" maxx="1672512.125" maxy="4868399.5"/>
+        <Style>
+          <Name>viabilita_storica</Name>
+          <Title>viabilita_storica</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=viabilita_storica"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>vinc_pae_decreto</Name>
+        <Title>art. 136 - Aree di notevole interesse pubblico</Title>
+        <Abstract>art. 136 - Aree di notevole interesse pubblico&#13;
+Provvedimento 140-1967: Fascia di 300 mt dall'autostrada Firenze - mare&#13;
+Provvedimento 108-1958: Zona collinare a nord-est della città di Prato</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>vinc_pae_decreto</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01737258041261</westBoundLongitude>
+          <eastBoundLongitude>11.149821727708478</eastBoundLongitude>
+          <southBoundLatitude>43.84833929853906</southBoundLatitude>
+          <northBoundLatitude>43.932792825987455</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01737258041261" miny="43.84833929853906" maxx="11.149821727708478" maxy="43.932792825987455"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662177.53597176" miny="4857284.6281817" maxx="1672593.19011" maxy="4866408.25"/>
+        <Style>
+          <Name>vinc_pae_decreto</Name>
+          <Title>vinc_pae_decreto</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=vinc_pae_decreto"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>vinc_pae_lett_b_laghi</Name>
+        <Title>art 142, c.1, lett b) - I territori contermini ai laghi</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>vinc_pae_lett_b_laghi</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.012945648861804</westBoundLongitude>
+          <eastBoundLongitude>11.126212450572817</eastBoundLongitude>
+          <southBoundLatitude>43.8229625623788</southBoundLatitude>
+          <northBoundLatitude>43.88313041389034</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.012945648861804" miny="43.8229625623788" maxx="11.126212450572817" maxy="43.88313041389034"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661891.2461458" miny="4854418.86" maxx="1670839.03623034" maxy="4860881.91985942"/>
+        <Style>
+          <Name>vinc_pae_lett_b_laghi</Name>
+          <Title>vinc_pae_lett_b_laghi</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=vinc_pae_lett_b_laghi"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>vinc_pae_lett_c_fiumi</Name>
+        <Title>art 142, c.1, lett c) - I fiumi, i torrenti, i corsi d'acqua</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>vinc_pae_lett_b_c_fiumi</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.01929589157469</westBoundLongitude>
+          <eastBoundLongitude>11.15299533949621</eastBoundLongitude>
+          <southBoundLatitude>43.81640949137191</southBoundLatitude>
+          <northBoundLatitude>43.930584711189354</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.01929589157469" miny="43.81640949137191" maxx="11.15299533949621" maxy="43.930584711189354"/>
+        <BoundingBox CRS="EPSG:3003" minx="1662418.7" miny="4853742.57714156" maxx="1672854.35937185" maxy="4866168.75"/>
+        <Style>
+          <Name>vinc_pae_lett_c_fiumi</Name>
+          <Title>art 142, c.1, lett c) - I fiumi, i torrenti, i corsi d'acqua</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=vinc_pae_lett_c_fiumi"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>vinc_pae_lett_g_boschi</Name>
+        <Title>art 142, c.1, lett g) - I territori coperti da foreste e da boschi</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>vinc_pae_lett_g_boschi</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010643022158755</westBoundLongitude>
+          <eastBoundLongitude>11.170747819449613</eastBoundLongitude>
+          <southBoundLatitude>43.813326469469985</southBoundLatitude>
+          <northBoundLatitude>43.951748503311805</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010643022158755" miny="43.813326469469985" maxx="11.170747819449613" maxy="43.951748503311805"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661729.875" miny="4853435.5" maxx="1674219.0" maxy="4868504.0"/>
+        <Style>
+          <Name>vinc_pae_lett_g_boschi</Name>
+          <Title>vinc_pae_lett_g_boschi</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=vinc_pae_lett_g_boschi"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>vinc_pae_lett_m_aree_archeo</Name>
+        <Title>art 142, c.1, lett m) - Le zone di interesse archeologico</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>vinc_pae_lett_m_aree_archeo</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.112795584581484</westBoundLongitude>
+          <eastBoundLongitude>11.14224244488286</eastBoundLongitude>
+          <southBoundLatitude>43.853438687112394</southBoundLatitude>
+          <northBoundLatitude>43.906220124494006</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.112795584581484" miny="43.853438687112394" maxx="11.14224244488286" maxy="43.906220124494006"/>
+        <BoundingBox CRS="EPSG:3003" minx="1669838.27000236" miny="4857837.47181639" maxx="1672056.02000237" maxy="4863646.73000145"/>
+        <Style>
+          <Name>vinc_pae_lett_m_aree_archeo</Name>
+          <Title>vinc_pae_lett_m_aree_archeo</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=vinc_pae_lett_m_aree_archeo"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zone_territoriali_omogenee</Name>
+        <Title>Zone territoriali omogenee</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>base_po</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3003</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>11.010582227226914</westBoundLongitude>
+          <eastBoundLongitude>11.171426847119923</eastBoundLongitude>
+          <southBoundLatitude>43.81321342494742</southBoundLatitude>
+          <northBoundLatitude>43.949963448246876</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="11.010582227226914" miny="43.81321342494742" maxx="11.171426847119923" maxy="43.949963448246876"/>
+        <BoundingBox CRS="EPSG:3003" minx="1661725.25" miny="4853424.5" maxx="1674278.75" maxy="4868305.5"/>
+        <Style>
+          <Name>zone_territoriali_omogenee</Name>
+          <Title>zone_territoriali_omogenee</Title>
+          <LegendURL width="34" height="120">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserver.comune.prato.it/geoserver/po/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zone_territoriali_omogenee"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

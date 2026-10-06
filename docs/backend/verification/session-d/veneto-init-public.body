@@ -1,0 +1,382 @@
+var mapRegistry = null;
+var loading = null;
+
+var MapsConfigs = null;
+var webgisConfig = null;
+
+var localeSwitcher = null;
+
+var commonMapToolbar = null;
+
+var IS_MINIMAL = false;
+
+var onGetWebgisConfigFail = function(jqXHR, textStatus, error) {
+	//Ko function
+	if(jqXHR.status === 403) {
+		
+		/*
+		 * Is user is not authorized AND he is not yet logged in, 
+		 * redirect to login page and try to open the current page again.
+		 */
+		var isLoggedIn = (!Utils.isNullOrUndefined(jqXHR.responseJSON) 
+				&& !Utils.isNullOrUndefined(jqXHR.responseJSON.result) 
+				&& jqXHR.responseJSON.result.isAuthenticated === true);
+		
+		if (!isLoggedIn) {
+			var authenticationUrl = JS_PATHS.IDT_LOGIN_AUTHENTICATION_URL + encodeURIComponent(window.location.href);
+			window.location.href = authenticationUrl;	
+		}
+		else {
+			Utils.handleErrorInAjaxCallMessageResponse(jqXHR, textStatus, error);
+		}
+		
+	}
+	else {
+		Utils.handleErrorInAjaxCallMessageResponse(jqXHR, textStatus, error);
+	}
+};
+
+/** 
+ *  Inizializzazione modulo WEBGIS
+ */
+var init = function(minimal) {
+	// Se specificato imposta il tipo di pagina (se minima o meno)
+	// Se non viene specificato nulla la pagina rimane di tipo standard (non minimal)
+	if(!Utils.isNullOrUndefined(minimal))
+		IS_MINIMAL = minimal;
+	
+	// Aggiorna i locales
+	LocaleManager.load();
+	// Aggiorna il corretto dom dei locale in funzione del locale correntemente impostato
+	setLocaleDomDependingOnCurrentLocale(LocaleManager.getCurrent());
+	
+	// Prende eventuali parametri dalla query string
+	var params = Utils.getParamsFromUrl(window.location.href);
+	
+	// Se la url del webgis contiene il parametro "previewLayerId" richiede la preview del alyer
+	// creando dinamicamente un webgis e caricando nel webgis config dinamico il layer richiesto
+	if(!Utils.isNullOrUndefined(params.previewLayerId)) {
+		
+		//Recupero eventuali altri parametri (ambiente staging/master/prod)
+		var env = params.env
+		
+		// Effettua la chiamata per recuperare dal server il json specifico del webgis 
+		// per la preview di un layer
+		loadPreviewLayerWebgis(params.previewLayerId, env);
+		
+		return;
+	}
+	
+	// Se la url del webgis contiene il parametro "validationLayer" richiede una configurazione webgis specifica
+	// per caricare nel webgis il layer da validare
+	// TODO - Per ora viene chiamato lo stesso servizio per generare il webgis json della preview (caso analogo)
+	if(!Utils.isNullOrUndefined(params.validationLayerId)) {
+		
+		// Effettua la chiamata per recuperare dal server il json specifico del webgis 
+		// per la validazione di un layer
+		loadValidationLayerWebgis(params.validationLayerId);
+		
+		return;
+	}
+
+	// VErifica che esista un webgisId nella URL del webgis richiesto
+	// Se non viene specificato un id webgis da aprire
+	if(Utils.isNullOrUndefined(params.webgisId)) {
+		AlertDialog.createOkDefaultDialog(
+			LocaleManager.getLocaleValueByKey("AlertDialog_Warning_Title"), 
+			LocaleManager.getLocaleValueByKey("AlertDialog_No_WebgisId_Specified"),
+			"error_user"
+		);
+		return;
+	}
+	
+	// Se non è mobile e non è minimale
+	if(!IS_MOBILE) {
+		// Enable Tooltip
+		UtilsUi.enableTooltip();
+	}
+	
+	// Istanzia il loading panel
+	loading = new Loading();
+	
+	// Genral toolbar maps
+	commonMapToolbar = new ToolbarMap($(".common-map-toolbar"));
+	
+	// Recupera le configurazioni di mappa
+	Utils.ajaxCall(JS_PATHS.SERVER_URL_CONFIGURATORE + ControllerUrls.webgisConfig + "/getWebgisConfigAsJson", "GET", "json", {
+			webgisId: params.webgisId
+		}, function(response) {
+			
+			//Recupero il nome del webgis
+			var webgisName;
+			
+			try{
+				webgisName = response.result.webgis.name;
+				PiwikIDTWebgis.inviaStatisticaWebgisAccess(webgisName);
+			} catch (err) {
+				console.log("Impossible to retrieve webgis name");
+			}
+			
+			
+			loadWebgisFromWebgisJson(response.result);
+			
+		}, onGetWebgisConfigFail, USE_AJAX_PROXY, true, null
+	);
+	
+};
+
+/**
+ *  Carica un webgis specifico per la preview di un layer
+ */
+var loadPreviewLayerWebgis = function(previewLayerId, env) {	
+	Utils.ajaxCallMessageResponse(JS_PATHS.SERVER_URL_CONFIGURATORE + ControllerUrls.webgisConfig + "/getWebgisConfigForLayerPreviewAsJson", "GET", "json", {
+			layerId: previewLayerId,
+			env: env
+		}, function(response) {
+			
+			//Richiede il webgis da caricare
+			loadWebgisFromWebgisJson(response.result);
+			
+		}, onGetWebgisConfigFail, USE_AJAX_PROXY, true, null
+	);
+};
+
+/**
+ *  Carica un webgis specifico per la validazione di un layer
+ */
+var loadValidationLayerWebgis = function(previewLayerId) {	
+	Utils.ajaxCallMessageResponse(JS_PATHS.SERVER_URL_CONFIGURATORE + ControllerUrls.webgisConfig + "/getWebgisConfigForLayerPreviewAsJson", "GET", "json", {
+			layerId: previewLayerId
+		}, function(response) {
+			
+			// Aggancia alla mappa la proprietà "startUpTools" 
+			// In questo caso con il tool di validazione
+			// TODO - Potrebbe anche essere passata dal server una lista di eventuali
+			// tools da far partire di default
+			response.result.maps[0].startUpTools = ["validation"];
+			
+			//Richiede il webgis da caricare
+			loadWebgisFromWebgisJson(response.result);
+			
+		}, onGetWebgisConfigFail, USE_AJAX_PROXY, true, null
+	);
+};
+
+// Carica il webgis da un wegis json config
+var loadWebgisFromWebgisJson = function(webgisJson) {
+	// Istanzia un WebgisConfig a partire dalle configurazioni del webgis recuperate dal server
+	webgisConfig = new WebgisConfig(webgisJson);
+	
+	// Carica un webgis dal webgisConfig
+	loadWebgis(webgisConfig);
+};
+
+/**
+ *  Carica il webgis con la configurazione specificata (webgisConfig)
+ */
+var loadWebgis = function(webgisConfig) {
+	
+	// Imposta il nome del webgis nella toolbar main del webgis
+	setWebgisName(webgisConfig.getName());
+	
+	// Istanzia il registro mappe
+	mapRegistry = new MapRegistry("maps-container");
+	//mapRegistry.syncOverlapEnabled = true;
+	
+	// Recupera le configurazioni mappa
+	var mapConfigs = webgisConfig.getMapConfigs();
+
+	// Verifica ci sia almeno una mappa nel webgis
+	if (mapConfigs.length === 0) {
+		
+		AlertDialog.createOkDefaultDialog(
+			LocaleManager.getLocaleValueByKey("AlertDialog_Warning_Title"), 
+			LocaleManager.getLocaleValueByKey("AlertDialog_No_Maps_For_The_Webgis"),
+			"error_user"
+		);
+		return;
+	}
+	
+	// Cicla sulle mappe del webgis (configurazioni mappe)
+	// per caricare le singole mappe nel webgis
+	$.each(mapConfigs, function(index, mapConfig) {
+		var mapCatalog = webgisConfig.getCatalogByMap(mapConfig.getId());
+		
+		// Imposta il catalogo di mappa nel map config
+		// Prende eventuali parametri dalla query string
+		var params = Utils.getParamsFromUrl(window.location.href);
+		
+		// Se la url del webgis contiene il parametro "previewLayerId" passiamo l'oggetto catalog
+		if(!Utils.isNullOrUndefined(params.previewLayerId) || !Utils.isNullOrUndefined(params.validationLayerId)) {
+			mapConfig.setCatalog(mapCatalog);
+		}else{
+			mapConfig.setCatalog(mapConfig.catalog[0]);
+		}
+		
+		
+		if(index > 0) {
+			mapConfig.mapConfig.type = "child";
+		}
+		
+		// Crea una nuova istanza di mappa (istanza custom che comprende tutte le componenti mappa, non solo OL)
+		var map = new Map(mapConfig, mapRegistry.containerId);
+		
+		// Aggiunge la mappa non OL al registro di mappa
+		mapRegistry.addMap(map, true);
+		
+		// Carica la mappa
+		//if(mapConfig.mapConfig.type !== "child")
+		//	map.load();
+		
+		map.load();
+		
+		// Se sta caricando un webgis di tipo "minimal"
+		// non carica eventuali ulteriore mappe
+		if(IS_MINIMAL === true) {
+			return false;
+		}
+	});
+	
+	// Se c'è una mappa sola disabilita il tasto di visualizzazione doppia mappa
+	if(mapConfigs.length > 1) {
+		setMultimapBtnEnable(true);
+		
+		// Triggera il click sul tasto: abilita la visualizzazione mappe affiancate
+		var toolbarBtn = commonMapToolbar.getBtnByData("action", "toggleMultiMap");
+		ToolbarsHandler.onClick(toolbarBtn, commonMapToolbar, true);
+	}
+	
+	// Carica il tool per lo switcher dei locales
+	//localeSwitcher = new LocalesSwitcher(getCommonMapToolbar());
+	
+	// Espone le API per il parent window
+	(function apiHandshake() {
+		
+		var API = Api;
+		API.init();
+		
+		function connected(parentMethods) {
+			API.connected(parentMethods);
+		}
+
+		function error() {
+			throw new Error('ERRORE CONNESSIONE CON PARENT');
+		}
+		
+	    iframeApi(API).then(connected, error);
+	}());
+
+};
+
+/**
+ *  Ricarica un webgis (Valutare se ricaricare da 0 la pagina con il parametro di id webgis richiesto)
+ */
+var reloadWebgis = function() {
+	
+};
+
+/**
+ *  Ricarica una mappa a partire da un mapConfigJson
+ */
+var reloadMap = function(mapConfigJson) {
+	// Crea il nuovo mapconfig del webgis 
+	// (se necessario fa una sostituzione con quello esistente)
+	var mapConfig = webgisConfig.createMapConfigFromJson(mapConfigJson, true);
+	
+	// Distrugge la mappa eventualmente caricata
+	mapRegistry.deleteMap(mapConfig.getId());
+	
+	// Recupera il catalog da associare alla nuova mappa
+	var mapCatalog = webgisConfig.getCatalogByMap(mapConfig.getId());	
+	// Imposta il catalogo di mappa nel map config
+	mapConfig.setCatalog(mapCatalog);
+	
+	// Crea una nuova istanza di mappa (istanza custom che comprende tutte le componenti mappa, non solo OL)
+	var map = new Map(mapConfig, mapRegistry.containerId);
+	
+	// Aggiunge la mappa non OL al registro di mappa
+	mapRegistry.addMap(map, true);
+	
+	// Carica la mappa
+	map.load();
+};
+
+/**
+ *  Imposta il nome del webgis nella toolbar main del webgis
+ */
+var setWebgisName = function(name) {
+	$("#webgis-info-name").html(name);
+};
+
+/**
+ *  Rimuove il tasto di attivazione visualizzazione multimappa
+ */
+var setMultimapBtnEnable = function(status) {
+	if(status === false) {
+		$("#switch-multimap").hide();
+	}
+	else {
+		$("#switch-multimap").show();
+	}
+};
+
+/**
+ *  Imposta il testo del tasto per abilitare la doppia mappa affiancata
+ */
+var setMultimapBtnText = function(text, localeKey) {
+	// Imposta il data locale key se presente
+	if(!Utils.isNullOrUndefined(localeKey)) {
+		$("#switch-multimap button span").data({
+			"locale_key": localeKey
+		});
+	}
+	
+	// Imposta il nuovo valore del testo
+	$("#switch-multimap button span").html(text);
+};
+
+/**
+ *  Restituisce la toolbar comune alle mappe del webgis
+ */
+var getCommonMapToolbar = function() {
+	return $(".common-map-toolbar");
+};
+
+/**
+ *  Funzione switch locale nella pagina da tasto nell'header
+ *  (non viene usato lo strumento LocaleSwitcher)
+ */
+var setLocale = function(localeDom) {
+	
+	// Recupera il locale del dom
+	var locale = $(localeDom).data("locale");
+	
+	// Imposta il locale corrente nel locale manager
+	LocaleManager.set(locale);
+	
+	// Aggiorna il dom dei tasti dei locali
+	setLocaleDomDependingOnCurrentLocale(locale);
+	
+	// Aggiorna il locale nel dom 
+	LocaleManager.updateLocale();
+	
+	return false;
+};
+
+/**
+ * Imposta e visualizza il dom locale corretto in funzione di quello corrente
+ * Se it_IT --> visualizza en_EN
+ * Se en_EN --> visualizza it_IT
+ * 
+ * ATTENZIONE : Questa cosa possibile solo con due locale configurabili
+ */
+var setLocaleDomDependingOnCurrentLocale = function(locale) {
+	$(".locale-btn").hide();
+	
+	$.each($(".locale-btn"), function(index, localeDom) {
+		if($(localeDom).data("locale") != locale) {
+			$(localeDom).show();
+		}
+	});
+};
+

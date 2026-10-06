@@ -1,0 +1,181 @@
+{
+  "executedAt": "2026-10-06T00:07:57.921Z",
+  "seed": 20261006,
+  "selection": "Ten stratified regional anchors with seeded uniform jitter ±0.001°. No nearest-parcel substitution.",
+  "results": [
+    {
+      "name": "Torino urbano",
+      "region": "Piemonte",
+      "lat": 45.0598762,
+      "lon": 7.6706175,
+      "state": "PASS",
+      "httpStatus": 404,
+      "durationMs": 1143,
+      "id": null,
+      "municipality": null,
+      "error": {
+        "code": "not_found",
+        "message": "Il punto ricade su una strada o un'acqua catastale: non è un lotto."
+      }
+    },
+    {
+      "name": "Milano urbano",
+      "region": "Lombardia",
+      "lat": 45.4642673,
+      "lon": 9.1909593,
+      "state": "PASS",
+      "httpStatus": 200,
+      "durationMs": 1579,
+      "id": "it:F205:_:390:H",
+      "municipality": {
+        "istatCode": "015146",
+        "cadastralCode": "F205",
+        "name": "Milano",
+        "province": "Milano",
+        "provinceCode": "MI",
+        "region": "Lombardia"
+      },
+      "error": null
+    },
+    {
+      "name": "Bologna urbano",
+      "region": "Emilia-Romagna",
+      "lat": 44.494363,
+      "lon": 11.3435722,
+      "state": "PASS",
+      "httpStatus": 404,
+      "durationMs": 512,
+      "id": null,
+      "municipality": null,
+      "error": {
+        "code": "not_found",
+        "message": "Il punto ricade su una strada o un'acqua catastale: non è un lotto."
+      }
+    },
+    {
+      "name": "Venezia costa/canali",
+      "region": "Veneto",
+      "lat": 45.4335819,
+      "lon": 12.3383914,
+      "state": "PASS",
+      "httpStatus": 200,
+      "durationMs": 915,
+      "id": "it:L736:A:15DZ:3384",
+      "municipality": {
+        "istatCode": "027042",
+        "cadastralCode": "L736",
+        "name": "Venezia",
+        "province": "Venezia",
+        "provinceCode": "VE",
+        "region": "Veneto"
+      },
+      "error": null
+    },
+    {
+      "name": "Roma urbano",
+      "region": "Lazio",
+      "lat": 41.8997564,
+      "lon": 12.4757086,
+      "state": "PASS",
+      "httpStatus": 200,
+      "durationMs": 1526,
+      "id": "it:H501:A:485:238",
+      "municipality": {
+        "istatCode": "058091",
+        "cadastralCode": "H501",
+        "name": "Roma",
+        "province": "Roma",
+        "provinceCode": "RM",
+        "region": "Lazio"
+      },
+      "error": null
+    },
+    {
+      "name": "Lecce urbano",
+      "region": "Puglia",
+      "lat": 40.3536604,
+      "lon": 18.1713357,
+      "state": "PASS",
+      "httpStatus": 200,
+      "durationMs": 988,
+      "id": "it:E506:_:259D:808",
+      "municipality": {
+        "istatCode": "075035",
+        "cadastralCode": "E506",
+        "name": "Lecce",
+        "province": "Lecce",
+        "provinceCode": "LE",
+        "region": "Puglia"
+      },
+      "error": null
+    },
+    {
+      "name": "Genova costa",
+      "region": "Liguria",
+      "lat": 44.4060274,
+      "lon": 8.9328967,
+      "state": "PASS",
+      "httpStatus": 200,
+      "durationMs": 1016,
+      "id": "it:D969:A:67:266",
+      "municipality": {
+        "istatCode": "010025",
+        "cadastralCode": "D969",
+        "name": "Genova",
+        "province": "Genova",
+        "provinceCode": "GE",
+        "region": "Liguria"
+      },
+      "error": null
+    },
+    {
+      "name": "Cagliari costa",
+      "region": "Sardegna",
+      "lat": 39.2144577,
+      "lon": 9.1102999,
+      "state": "PARTIAL",
+      "httpStatus": 502,
+      "durationMs": 1005,
+      "id": null,
+      "municipality": null,
+      "error": {
+        "code": "upstream_unavailable",
+        "message": "Il servizio catastale non riesce a leggere la mappa in questo punto. Riprovare più tardi o scegliere un altro punto interno allo stesso terreno."
+      }
+    },
+    {
+      "name": "Vallombrosa montagna/campagna",
+      "region": "Toscana",
+      "lat": 43.7322434,
+      "lon": 11.5568304,
+      "state": "PASS",
+      "httpStatus": 200,
+      "durationMs": 987,
+      "id": "it:H222:_:19:33",
+      "municipality": {
+        "istatCode": "048035",
+        "cadastralCode": "H222",
+        "name": "Reggello",
+        "province": "Firenze",
+        "provinceCode": "FI",
+        "region": "Toscana"
+      },
+      "error": null
+    },
+    {
+      "name": "Trento fuori copertura AdE",
+      "region": "Trentino-Alto Adige",
+      "lat": 46.0678214,
+      "lon": 11.1205862,
+      "state": "PASS",
+      "httpStatus": 404,
+      "durationMs": 131,
+      "id": null,
+      "municipality": null,
+      "error": {
+        "code": "not_found",
+        "message": "La cartografia AdE non copre le province autonome di Trento e Bolzano."
+      }
+    }
+  ]
+}

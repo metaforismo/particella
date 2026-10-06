@@ -1,0 +1,674 @@
+<?xml version='1.0' encoding="UTF-8" standalone="no" ?>
+<WMS_Capabilities version="1.3.0"  xmlns="http://www.opengis.net/wms"   xmlns:sld="http://www.opengis.net/sld"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xmlns:ms="http://mapserver.gis.umn.edu/mapserver"   xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"   xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"   xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd  http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/sld_capabilities.xsd  http://inspire.ec.europa.eu/schemas/inspire_vs/1.0  http://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd http://mapserver.gis.umn.edu/mapserver https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;service=WMS&amp;version=1.3.0&amp;request=GetSchemaExtension">
+
+<!-- MapServer version 6.2.0 OUTPUT=GIF OUTPUT=PNG OUTPUT=JPEG OUTPUT=KML SUPPORTS=PROJ SUPPORTS=GD SUPPORTS=AGG SUPPORTS=FREETYPE SUPPORTS=CAIRO SUPPORTS=OPENGL SUPPORTS=ICONV SUPPORTS=WMS_SERVER SUPPORTS=WMS_CLIENT SUPPORTS=WFS_SERVER SUPPORTS=WFS_CLIENT SUPPORTS=WCS_SERVER SUPPORTS=SOS_SERVER SUPPORTS=FASTCGI SUPPORTS=THREADS SUPPORTS=GEOS SUPPORTS=POINT_Z_M INPUT=JPEG INPUT=POSTGIS INPUT=ORACLESPATIAL INPUT=OGR INPUT=GDAL INPUT=SHAPEFILE -->
+
+<Service>
+  <Name>WMS</Name>
+  <Title>Citta&#39; di Torino - PRG Azzonamento</Title>
+  <Abstract>Il servizio permette la consultazione degli azzonamenti PRG del Comune di Torino</Abstract>
+  <KeywordList>
+      <Keyword>Comune di Torino</Keyword>
+      <Keyword>Geoportale</Keyword>
+      <Keyword>db topografici</Keyword>
+      <Keyword>utilizzo del territorio</Keyword>
+      <Keyword>cartografia</Keyword>
+      <Keyword>PRG Azzonamento</Keyword>
+      <Keyword>InfoMapAccessService</Keyword>
+      <Keyword vocabulary="ISO">infoMapAccessService</Keyword>
+  </KeywordList>
+  <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/>
+  <ContactInformation>
+    <ContactPersonPrimary>
+      <ContactPerson>none</ContactPerson>
+      <ContactOrganization>Comune di Torino</ContactOrganization>
+    </ContactPersonPrimary>
+      <ContactPosition>owner</ContactPosition>
+  <ContactElectronicMailAddress>geoportale@comune.torino.it</ContactElectronicMailAddress>
+  </ContactInformation>
+  <Fees>no conditions apply</Fees>
+  <AccessConstraints>None</AccessConstraints>
+  <MaxWidth>2048</MaxWidth>
+  <MaxHeight>2048</MaxHeight>
+</Service>
+
+<Capability>
+  <Request>
+    <GetCapabilities>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetCapabilities>
+    <GetMap>
+      <Format>image/png</Format>
+      <Format>image/png; mode=8bit</Format>
+      <Format>image/gif</Format>
+      <Format>image/jpeg</Format>
+      <Format>image/tiff</Format>
+      <Format>application/x-pdf</Format>
+      <Format>image/svg+xml</Format>
+      <Format>application/vnd.google-earth.kml+xml</Format>
+      <Format>application/vnd.google-earth.kmz</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetMap>
+    <GetFeatureInfo>
+      <Format>text/plain</Format>
+      <Format>application/vnd.ogc.gml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetFeatureInfo>
+    <sld:DescribeLayer>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Post>
+        </HTTP>
+      </DCPType>
+    </sld:DescribeLayer>
+    <sld:GetLegendGraphic>
+      <Format>image/png</Format>
+      <Format>image/png; mode=8bit</Format>
+      <Format>image/gif</Format>
+      <Format>image/jpeg</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Post>
+        </HTTP>
+      </DCPType>
+    </sld:GetLegendGraphic>
+    <ms:GetStyles>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;"/></Post>
+        </HTTP>
+      </DCPType>
+    </ms:GetStyles>
+  </Request>
+  <Exception>
+    <Format>XML</Format>
+    <Format>INIMAGE</Format>
+    <Format>BLANK</Format>
+  </Exception>
+  <sld:UserDefinedSymbolization SupportSLD="1" UserLayer="0" UserStyle="1" RemoteWFS="0" InlineFeature="0" RemoteWCS="0"/>
+  <inspire_vs:ExtendedCapabilities>
+    <inspire_common:MetadataUrl xsi:type="inspire_common:resourceLocatorType">
+      <inspire_common:URL>http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:cdcc3244-ca36-43d6-9018-39b74bb16665</inspire_common:URL>
+      <inspire_common:MediaType>application/vnd.ogc.csw.capabilities.response_xml</inspire_common:MediaType>
+    </inspire_common:MetadataUrl>
+    <inspire_common:SupportedLanguages>
+      <inspire_common:DefaultLanguage><inspire_common:Language>ita</inspire_common:Language></inspire_common:DefaultLanguage>
+    </inspire_common:SupportedLanguages>
+    <inspire_common:ResponseLanguage><inspire_common:Language>ita</inspire_common:Language></inspire_common:ResponseLanguage>
+  </inspire_vs:ExtendedCapabilities>
+  <Layer>
+    <Name>PRGAzzonamento</Name>
+    <Title>Citta&#39; di Torino - PRG Azzonamento</Title>
+    <Abstract>Il servizio permette la consultazione degli azzonamenti PRG del Comune di Torino</Abstract>
+    <KeywordList>
+        <Keyword>Comune di Torino</Keyword>
+        <Keyword>Geoportale</Keyword>
+        <Keyword>db topografici</Keyword>
+        <Keyword>utilizzo del territorio</Keyword>
+        <Keyword>cartografia</Keyword>
+        <Keyword>PRG Azzonamento</Keyword>
+        <Keyword>InfoMapAccessService</Keyword>
+        <Keyword vocabulary="ISO">infoMapAccessService</Keyword>
+    </KeywordList>
+    <CRS>EPSG:3003</CRS>
+    <CRS>EPSG:32632</CRS>
+    <CRS>EPSG:32633</CRS>
+    <CRS>EPSG:23032</CRS>
+    <CRS>EPSG:3064</CRS>
+    <CRS>EPSG:4326</CRS>
+    <CRS>EPSG:4258</CRS>
+    <CRS>EPSG:3035</CRS>
+    <CRS>EPSG:3034</CRS>
+    <CRS>EPSG:3044</CRS>
+    <CRS>EPSG:3045</CRS>
+    <CRS>EPSG:3004</CRS>
+    <CRS>EPSG:23033</CRS>
+    <CRS>EPSG:3065</CRS>
+    <CRS>EPSG:32634</CRS>
+    <CRS>EPSG:4806</CRS>
+    <CRS>EPSG:4265</CRS>
+    <CRS>EPSG:4230</CRS>
+    <CRS>EPSG:4670</CRS>
+    <CRS>EPSG:4267</CRS>
+    <CRS>EPSG:4269</CRS>
+    <CRS>EPSG:900913</CRS>
+    <CRS>EPSG:25832</CRS>
+    <CRS>EPSG:3857</CRS>
+    <EX_GeographicBoundingBox>
+        <westBoundLongitude>7.52405</westBoundLongitude>
+        <eastBoundLongitude>7.79444</eastBoundLongitude>
+        <southBoundLatitude>44.9908</southBoundLatitude>
+        <northBoundLatitude>45.1514</northBoundLatitude>
+    </EX_GeographicBoundingBox>
+    <BoundingBox CRS="EPSG:3003"
+                minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+    <Style>
+       <Name>default</Name>
+       <Title>default</Title>
+       <LegendURL width="504" height="1625">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=PRGAzzonamento&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+    </Style>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>PUSP</Name>
+        <Title>Progetti unitari su suolo pubblico</Title>
+        <Abstract>Progetti unitari su suolo pubblico</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:de2baba1-0d38-4ba7-b797-4af0d795e3e2"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="190" height="20">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=PUSP&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>10001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>AreeDiPiano</Name>
+        <Title>Aree di piano</Title>
+        <Abstract>Aree di piano</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:39c7b996-46db-48f2-a591-be3e223a79d8"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="420" height="890">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=AreeDiPiano&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>25001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>Servizi</Name>
+        <Title>Servizi</Title>
+        <Abstract>Servizi</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:7f665728-3ce5-40d2-860e-83dc5d3c7633"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="504" height="380">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Servizi&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>25001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>ServiziLabel</Name>
+        <Title>Servizi label</Title>
+        <Abstract>Servizi label</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+<!-- WARNING: Some mandatory elements for 'MetadataURL' are missing in this context. -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="112" height="20">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=ServiziLabel&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>1</MinScaleDenominator>
+        <MaxScaleDenominator>5001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>LimitiZP</Name>
+        <Title>Limiti delle zone di piano</Title>
+        <Abstract>Limiti delle zone di piano</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:5a1177dd-0289-4cde-a651-c2298787f6d9"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="245" height="110">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=LimitiZP&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>100001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>ZonediPiano</Name>
+        <Title>Zone di piano</Title>
+        <Abstract>Zone di piano</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:71bd559a-de54-4ebc-84c4-4c304a53a720"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="260" height="170">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=ZonediPiano&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>25001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>PertStor</Name>
+        <Title>Pertinenze storiche</Title>
+        <Abstract>Pertinenze storiche</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:1b33b577-6ddc-4391-b227-ec714fe4b540"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="126" height="20">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=PertStor&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>10001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>EdifTessSt</Name>
+        <Title>Edifici caratterizzanti il tessuto storico</Title>
+        <Abstract>Edifici caratterizzanti il tessuto storico</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:93a66b49-d80d-4743-ba58-97abc95cd4ce"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="213" height="20">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=EdifTessSt&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>FrontiEdTessSt</Name>
+        <Title>Fronti di edifici caratterizzanti il tessuto storico</Title>
+        <Abstract>Fronti di edifici caratterizzanti il tessuto storico</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:7217ad13-a2b7-4eee-8f66-14678d0b6031"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="256" height="20">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=FrontiEdTessSt&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5001</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>EdIntStor</Name>
+        <Title>Edifici di particolare interesse storico</Title>
+        <Abstract>Edifici di particolare interesse storico</Abstract>
+        <CRS>EPSG:3003</CRS>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:32633</CRS>
+        <CRS>EPSG:23032</CRS>
+        <CRS>EPSG:3064</CRS>
+        <CRS>EPSG:4326</CRS>
+        <CRS>EPSG:4258</CRS>
+        <CRS>EPSG:3035</CRS>
+        <CRS>EPSG:3034</CRS>
+        <CRS>EPSG:3044</CRS>
+        <CRS>EPSG:3045</CRS>
+        <CRS>EPSG:3004</CRS>
+        <CRS>EPSG:23033</CRS>
+        <CRS>EPSG:3065</CRS>
+        <CRS>EPSG:32634</CRS>
+        <CRS>EPSG:4806</CRS>
+        <CRS>EPSG:4265</CRS>
+        <CRS>EPSG:4230</CRS>
+        <CRS>EPSG:4670</CRS>
+        <CRS>EPSG:4267</CRS>
+        <CRS>EPSG:4269</CRS>
+        <CRS>EPSG:900913</CRS>
+        <CRS>EPSG:25832</CRS>
+        <CRS>EPSG:3857</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>7.52405</westBoundLongitude>
+            <eastBoundLongitude>7.79444</eastBoundLongitude>
+            <southBoundLatitude>44.9908</southBoundLatitude>
+            <northBoundLatitude>45.1514</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:3003"
+                    minx="1.384e+06" miny="4.983e+06" maxx="1.405e+06" maxy="5.0005e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/plain</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoportale.comune.torino.it/geonetworkcoto/srv/ita/metadata.show?uuid=c_l219:a38e078e-6935-4022-b2b4-ace9baacf4f7"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="207" height="20">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?language=ita&amp;version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=EdIntStor&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5001</MaxScaleDenominator>
+    </Layer>
+  </Layer>
+</Capability>
+</WMS_Capabilities>

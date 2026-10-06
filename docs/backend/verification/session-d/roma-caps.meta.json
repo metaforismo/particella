@@ -1,0 +1,10 @@
+{
+  "name": "roma-caps",
+  "url": "https://www.comune.roma.it/wms?service=WMS&request=GetCapabilities",
+  "executedAt": "2026-10-05T23:55:55.928517+00:00",
+  "status": 200,
+  "contentType": "text/html",
+  "bytes": 958,
+  "sha256": "7b4a799496d0536a4044cacb5bef25c2e8245c44d404b5b0e468a0a18704cecd",
+  "durationMs": 1014
+}

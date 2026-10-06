@@ -1,0 +1,10 @@
+{
+  "name": "puglia-prg-link-page",
+  "url": "https://pugliacon.regione.puglia.it/web/sit-puglia-sit/web-map-service5",
+  "executedAt": "2026-10-05T23:57:30.732101+00:00",
+  "status": 200,
+  "contentType": "text/html; charset=UTF-8",
+  "bytes": 100658,
+  "sha256": "89771f880ba772af2a5d3e068e1cb2181251752a24fae5bae7a166ad2f4efa31",
+  "durationMs": 537
+}

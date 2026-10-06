@@ -1,0 +1,22 @@
+//###########################################
+//#        COLLAUDO REGIONE VENETO          #
+//###########################################
+var USE_AJAX_PROXY = false;
+var USE_AJAX_PROXY_PRINT = false;
+
+//Parametro buffer per il filtro features dopo GetFeatureInfo
+var CONTROLS_GETFEATUREINFO_BUFFER = 5;
+
+var JS_PATHS = {
+	"PROXY_URL": "../http_proxy_mod/proxy",
+	"SERVER_URL_PRINT": "../../printer/pdf/create.json",
+	"MAPFISH_IMAGES_FOLDER": "/opt/S39_IDT/idt_data/print_images_data_folder",
+	"SERVER_URL_CONFIGURATORE": "../../",
+	"SERVER_URL_ROUTING": "https://idt2.regione.veneto.it/routing/route/v1/driving/",
+	//"SERVER_URL_ROUTING": "http://192.168.10.11:5000/route/v1/driving/",
+	"IDT_LOGIN_AUTHENTICATION_URL" : "../logincontroller/login?urlRequested="
+		
+	//"SERVER_URL_GEOSERVER": "http://idt2-geoserver.regione.veneto.it/geoserver",
+	//"SERVER_URL_GEOSERVER_WMS": "http://idt2-geoserver.regione.veneto.it/geoserver/wms",
+	//"SERVER_URL_GEOSERVER_GWC": "http://idt2-geoserver.regione.veneto.it/geoserver/gwc",
+};

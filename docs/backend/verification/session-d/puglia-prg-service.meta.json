@@ -1,0 +1,10 @@
+{
+  "name": "puglia-prg-service",
+  "url": "https://webapps.sit.puglia.it/arcgis/rest/services/Operationals/PRG_PDF/MapServer?f=pjson",
+  "executedAt": "2026-10-05T23:57:01.239287+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=utf-8",
+  "bytes": 68,
+  "sha256": "d3bff46fb9baf687de8593b4fd51e2e8acf23548b9a0a68295e8bf5c1fc710ba",
+  "durationMs": 117
+}

@@ -1,0 +1,10 @@
+{
+  "name": "pgt-identify-bergamo",
+  "url": "https://www.cartografia.servizirl.it/arcgis1/rest/services/territorio/tav_previsioni_b/MapServer/identify?f=json&geometry=9.6773%2C45.6983&geometryType=esriGeometryPoint&sr=4326&layers=all%3A20%2C19%2C13&tolerance=0&mapExtent=9.676300000000001%2C45.697300000000006%2C9.6783%2C45.6993&imageDisplay=101%2C101%2C96&returnGeometry=false",
+  "executedAt": "2026-10-05T23:57:20.237828+00:00",
+  "status": 200,
+  "contentType": "application/json;charset=UTF-8",
+  "bytes": 620,
+  "sha256": "4b479545e244e1dbb306bd97fb5a2f581f1eb9e40e7115546ec454944c21b537",
+  "durationMs": 880
+}

@@ -1,0 +1,10 @@
+{
+  "name": "torino-caps",
+  "url": "https://geomap.reteunitaria.piemonte.it/ws/siccms/coto-01/wmsg01/wms_sicc23_prg_azzonamento?service=WMS&request=GetCapabilities",
+  "executedAt": "2026-10-05T23:55:19.736996+00:00",
+  "status": 200,
+  "contentType": "text/xml; charset=UTF-8",
+  "bytes": 32460,
+  "sha256": "0c3422e52c47df52b2e94ce2e26654834226330b429845784fd0037c5237ef8e",
+  "durationMs": 328
+}

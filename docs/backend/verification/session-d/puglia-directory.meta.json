@@ -1,0 +1,10 @@
+{
+  "name": "puglia-directory",
+  "url": "https://webapps.sit.puglia.it/arcgis/rest/services/Operationals?f=pjson",
+  "executedAt": "2026-10-05T23:56:26.331201+00:00",
+  "status": 200,
+  "contentType": "text/plain;charset=utf-8",
+  "bytes": 4558,
+  "sha256": "15f1774a7971a726b8f71cd70d4f67c8e799cee848b5e8a2037dc554a9353482",
+  "durationMs": 2097
+}

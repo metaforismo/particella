@@ -1,0 +1,10 @@
+{
+  "name": "pisa-catalog",
+  "url": "https://sit.comune.pisa.it/geoportal/csw?service=CSW&version=2.0.2&request=GetCapabilities",
+  "executedAt": "2026-10-06T00:03:55.229386+00:00",
+  "status": 200,
+  "contentType": "application/xml;charset=UTF-8",
+  "bytes": 19519,
+  "sha256": "712a4041962728478ec738fcb2285851dcbfdac03cd9b261f8fdb3542f8452ea",
+  "durationMs": 311
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcmiBox="http://dublincore.org/documents/2000/07/11/dcmi-box/" xmlns:dct="http://purl.org/dc/terms/" xmlns:gml="http://www.opengis.net/gml" xmlns:ows="http://www.opengis.net/ows" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <csw:Record>
+      <dc:identifier scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:FileID">r_veneto:Zonizzazione_P.R.C.</dc:identifier>
+      <dc:identifier scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:DocID">{81A99EE7-7801-49DA-93E4-76A0F5F2DBB7}</dc:identifier>
+      <dc:title>Zonizzazione_P.R.C.</dc:title>
+      <dc:type scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:ContentType">downloadableData</dc:type>
+      <dc:subject>pianificazione territoriale</dc:subject>
+      <dc:subject>zonizzazione</dc:subject>
+      <dc:subject>planningCadastre</dc:subject>
+      <dct:modified>2026-08-04T15:15:58+02:00</dct:modified>
+      <dct:abstract>Zonizzazione P.R.C.</dct:abstract>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Server">http://idt2-geoserver.regione.veneto.it/geoserver/wfs?service=WFS&amp;VERSION=1.0.0&amp;REQUEST=GetFeature&amp;typeName=rv:zonizzazione_072026&amp;outputFormat=SHAPE-ZIP</dct:references>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Server">https://idt2.regione.veneto.it/idt/webgis/viewer?previewLayerId=14503</dct:references>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Server">https://idt2.regione.veneto.it/geoportal/rest/document?id=Zonizzazione_P.R.C.</dct:references>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Server">https://idt2.regione.veneto.it/gwc/service/wmts?REQUEST=getcapabilities</dct:references>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Server">https://idt2.regione.veneto.it</dct:references>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Server">https://idt2-geoserver.regione.veneto.it/geoserver/wms?service=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities</dct:references>
+      <dct:references scheme="urn:x-esri:specification:ServiceType:ArcIMS:Metadata:Document">https://idt2.regione.veneto.it/geoportal/csw?getxml=%7B81A99EE7-7801-49DA-93E4-76A0F5F2DBB7%7D</dct:references>
+      <dct:references scheme="REST">https://idt2.regione.veneto.it/geoportal/rest/document?id=Zonizzazione_P.R.C.</dct:references>
+      <dct:references scheme="OGC:WMS">https://idt2-geoserver.regione.veneto.it/geoserver/wms?service=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities</dct:references>
+      <dct:references scheme="OGC:WFS">http://idt2-geoserver.regione.veneto.it/geoserver/wfs?service=WFS&amp;VERSION=1.0.0&amp;REQUEST=GetFeature&amp;typeName=rv:zonizzazione_072026&amp;outputFormat=SHAPE-ZIP</dct:references>
+      <ows:WGS84BoundingBox>
+         <ows:LowerCorner>10.6229368792133 44.7944402180517</ows:LowerCorner>
+         <ows:UpperCorner>13.1022304265516 46.680462222327</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <ows:BoundingBox>
+         <ows:LowerCorner>10.6229368792133 44.7944402180517</ows:LowerCorner>
+         <ows:UpperCorner>13.1022304265516 46.680462222327</ows:UpperCorner>
+      </ows:BoundingBox>
+   </csw:Record>
+</csw:GetRecordByIdResponse>

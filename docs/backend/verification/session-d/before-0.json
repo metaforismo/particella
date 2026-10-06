@@ -1,0 +1,195 @@
+{
+  "executedAt": "2026-10-05T23:55:04.148Z",
+  "lot": {
+    "name": "Milano",
+    "id": "it:F205:_:390:61",
+    "at": "45.464800,9.191000"
+  },
+  "samples": [
+    {
+      "state": "cold",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=819.5, demographics;dur=101.0, seismic;dur=391.0, land-cover;dur=394.3, regional-land-cover;dur=410.1, landscape;dur=604.9, planning;dur=832.9, solar;dur=1001.5, terrain;dur=1432.3, protected-areas;dur=1740.3, market;dur=2219.5, flood;dur=2687.4, landslide;dur=2966.3, power-grid;dur=5291.8, infrastructure-distances;dur=5291.1, industrial-sites;dur=5291.1, services;dur=9069.4, accessibility;dur=9070.1, total;dur=9894.9",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "partial",
+          "headline": "Rete elettrica più vicina censita: stazione elettrica a 1,1 km, linea ad alta tensione (≥132 kV) a 3 km."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "ok",
+          "headline": "Più vicini censiti: pozzo censito a 245 m, strada secondaria a 1,1 km."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "empty",
+          "headline": "OpenStreetMap non restituisce elementi delle categorie cercate nei dintorni."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "ok",
+          "headline": "La carta regionale indica: insediamenti industriali, artigianali, commerciali."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "empty",
+          "headline": "La fonte non restituisce frane o aree PAI su questo punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 119.5 e 119.7 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1365 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "ok",
+          "headline": "OpenStreetMap registra 449 servizi e luoghi utili entro un chilometro."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 6906 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "ok",
+          "headline": "La sintesi PGT indica: residenziale."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: tessuto urbano continuo."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "ok",
+          "headline": "Nella zona OMI B12, abitazioni civili da 8700 a 15.300 €/m²."
+        }
+      ]
+    },
+    {
+      "state": "warm",
+      "httpStatus": 200,
+      "timing": "cadastre;dur=0.1, power-grid;dur=4.8, infrastructure-distances;dur=3.2, industrial-sites;dur=1.3, regional-land-cover;dur=1.3, flood;dur=1.3, landslide;dur=1.3, seismic;dur=1.2, protected-areas;dur=1.2, terrain;dur=1.2, solar;dur=1.2, services;dur=1.2, demographics;dur=0.3, landscape;dur=0.3, planning;dur=0.3, land-cover;dur=0.3, accessibility;dur=0.2, market;dur=0.1, total;dur=7.3",
+      "statuses": [
+        {
+          "layer": "power-grid",
+          "status": "partial",
+          "headline": "Rete elettrica più vicina censita: stazione elettrica a 1,1 km, linea ad alta tensione (≥132 kV) a 3 km."
+        },
+        {
+          "layer": "infrastructure-distances",
+          "status": "ok",
+          "headline": "Più vicini censiti: pozzo censito a 245 m, strada secondaria a 1,1 km."
+        },
+        {
+          "layer": "industrial-sites",
+          "status": "empty",
+          "headline": "OpenStreetMap non restituisce elementi delle categorie cercate nei dintorni."
+        },
+        {
+          "layer": "regional-land-cover",
+          "status": "ok",
+          "headline": "La carta regionale indica: insediamenti industriali, artigianali, commerciali."
+        },
+        {
+          "layer": "flood",
+          "status": "empty",
+          "headline": "La fonte non restituisce aree di alluvione su questo punto."
+        },
+        {
+          "layer": "landslide",
+          "status": "empty",
+          "headline": "La fonte non restituisce frane o aree PAI su questo punto."
+        },
+        {
+          "layer": "seismic",
+          "status": "ok",
+          "headline": "Il comune è classificato in zona sismica 3."
+        },
+        {
+          "layer": "protected-areas",
+          "status": "empty",
+          "headline": "I dati europei non restituiscono aree protette entro un chilometro."
+        },
+        {
+          "layer": "terrain",
+          "status": "ok",
+          "headline": "I campioni del terreno hanno quote tra 119.5 e 119.7 metri."
+        },
+        {
+          "layer": "solar",
+          "status": "ok",
+          "headline": "PVGIS stima circa 1365 kWh all'anno per un impianto ideale da 1 kWp."
+        },
+        {
+          "layer": "services",
+          "status": "ok",
+          "headline": "OpenStreetMap registra 449 servizi e luoghi utili entro un chilometro."
+        },
+        {
+          "layer": "demographics",
+          "status": "ok",
+          "headline": "Nel 2021 la cella di un chilometro quadrato contava 6906 residenti."
+        },
+        {
+          "layer": "landscape",
+          "status": "empty",
+          "headline": "SITAP non restituisce tutele sul punto controllato."
+        },
+        {
+          "layer": "planning",
+          "status": "ok",
+          "headline": "La sintesi PGT indica: residenziale."
+        },
+        {
+          "layer": "land-cover",
+          "status": "ok",
+          "headline": "La copertura prevalente stimata è: tessuto urbano continuo."
+        },
+        {
+          "layer": "accessibility",
+          "status": "ok",
+          "headline": "Sono disponibili le aree raggiungibili in 10 minuti a piedi e in auto."
+        },
+        {
+          "layer": "market",
+          "status": "ok",
+          "headline": "Nella zona OMI B12, abitazioni civili da 8700 a 15.300 €/m²."
+        }
+      ]
+    }
+  ],
+  "scope": "Route handler in a fresh Node process; includes cadastre, excludes Next startup, HTTP transport and rendering."
+}

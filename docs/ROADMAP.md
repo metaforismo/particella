@@ -14,7 +14,8 @@ profondità su una nicchia. Prima nicchia: **scouting di terreni per fotovoltaic
 
 ## Ora
 
-- Ricerca per comune, foglio e particella; lotti composti da più particelle (in corso).
+- Ricerca per comune, foglio e particella e lotti composti: fatti. Prossimo passo: indici catastali precostruiti
+  per i comuni più richiesti, così anche la prima ricerca è immediata.
 - Fonti escluse finché licenza o interrogabilità non sono qualificate: aree idonee FER, catasto incendi, vincolo
   idrogeologico, capacità d'uso dei suoli, siti contaminati, urbanistica di Emilia-Romagna, Puglia, Roma.
 
@@ -24,8 +25,6 @@ profondità su una nicchia. Prima nicchia: **scouting di terreni per fotovoltaic
 2. **Urbanistica strutturata**: più Comuni collegati; indici e destinazioni con l'articolo delle NTA citato dall'assistente.
 3. **Scheda professionale**: logo dello studio, note del tecnico, PDF generato lato server e istantanea datata dei dati.
 4. **Account e progetti**: salvataggio dei lotti, cartelle per cliente, condivisione con il team.
-5. **Ricerca per foglio e particella**: indice locale dei dati catastali aperti (download GML per comune), perché il
-   servizio WFS non si interroga in modo affidabile per attributi.
 6. **Monitoraggio**: avviso quando cambia un dato di un lotto salvato (piano, vincoli, rischio).
 
 ## Infrastruttura per la produzione

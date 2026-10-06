@@ -23,6 +23,14 @@ semantico a partire dalla prima release pubblica.
   (OpenStreetMap); uso del suolo regionale (UCS Toscana, DUSAF Lombardia); pendenza ed esposizione.
 - Gruppo "Energia", quadro sintetico, confronto, intestazione e note del tecnico nella scheda, app installabile.
 
+### Aggiunto (ricerca e lotti)
+- Ricerca per comune, foglio e particella ("Firenze foglio 150B particella 782") dall'archivio catastale ufficiale.
+- Lotti composti fino a 20 particelle confinanti: "Aggiungi particelle confinanti" o Maiusc+clic nello Studio.
+- Test end-to-end nel browser (Playwright, desktop e mobile).
+
+### Corretto
+- L'autocompletamento degli indirizzi non funzionava con l'API reale: il formato della risposta ora è nel contratto.
+
 ### Migliorato
 - Report a freddo da oltre 20 s a meno di 8 s; i layer richiesti singolarmente possono attendere fonti lente.
 - Numeri in formato italiano in tutti i testi; fogli catastali con lettera e formati storici.

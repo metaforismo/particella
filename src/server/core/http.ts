@@ -3,6 +3,9 @@ import { setTimeout as delay } from "node:timers/promises";
 import { canonicalKey, cache, NEGATIVE_TTL_MS, type Cache } from "#server/core/cache.ts";
 import { ProtocolError, RateLimited, UpstreamError } from "#server/core/errors.ts";
 
+import { recordSource, sourceForUrl } from "#server/core/source-status.ts";
+import { sourceLog } from "#server/core/observability.ts";
+
 export const USER_AGENT = "Particella/0.1 (+https://github.com/metaforismo/particella)";
 
 export interface HostPolicy {
@@ -58,6 +61,7 @@ export interface HttpPayload {
 }
 
 export interface HttpOptions {
+  sourceId?: string;
   timeoutMs?: number;
   ttlMs?: number;
   retries?: number;
@@ -115,6 +119,8 @@ export class HttpClient {
   async request(input: string, options: HttpOptions = {}): Promise<HttpPayload> {
     if (options.signal?.aborted) throw new UpstreamError("Richiesta interrotta.");
     const url = canonicalUrl(input);
+    const started = performance.now();
+    const sourceId = options.sourceId ?? sourceForUrl(url);
     const key = canonicalKey("http:v1", {
       url,
       method: options.method ?? "GET",
@@ -131,6 +137,7 @@ export class HttpClient {
         }
     >(key);
     if (cached) {
+      sourceLog(sourceId ?? null, new URL(url).host, started, "failure" in cached ? "error" : "ok", "hit");
       if ("failure" in cached)
         throw cached.rateLimited
           ? new RateLimited()
@@ -148,11 +155,30 @@ export class HttpClient {
       return result;
     }
     const controller = new AbortController();
+    const observed = async () => {
+      const began = performance.now();
+      try {
+        const result = await this.execute(url, { ...options, signal: controller.signal });
+        await recordSource(sourceId, performance.now() - began, true);
+        sourceLog(sourceId ?? null, new URL(url).host, began, "ok", "miss");
+        return result;
+      } catch (error) {
+        if (!controller.signal.aborted) await recordSource(sourceId, performance.now() - began, false);
+        sourceLog(
+          sourceId ?? null,
+          new URL(url).host,
+          began,
+          controller.signal.aborted ? "cancelled" : "error",
+          "miss",
+        );
+        throw error;
+      }
+    };
     const entry: PendingRequest = {
       controller,
       callers: 0,
       settled: false,
-      task: this.execute(url, { ...options, signal: controller.signal })
+      task: observed()
         .then(async (result) => {
           await this.storage.set(key, result, options.ttlMs ?? 86_400_000);
           return result;

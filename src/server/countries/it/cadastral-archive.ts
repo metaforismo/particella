@@ -4,6 +4,9 @@ import { createInflateRaw, inflateRawSync, crc32 } from "node:zlib";
 import { UpstreamError } from "#server/core/errors.ts";
 import { MemoryHostLimiter } from "#server/core/http.ts";
 
+import { recordSource } from "#server/core/source-status.ts";
+import { sourceLog } from "#server/core/observability.ts";
+
 export interface ZipEntry {
   name: string;
   compressed: number;
@@ -109,6 +112,7 @@ export async function downloadMunicipalArchive(
   ]);
   const release = await limiter.acquire("ade-download", { concurrency: 1, requestsPerSecond: 1 }, deadline);
   let transferred = 0;
+  let succeeded = false;
   try {
     const tail = await range(url, "-65536", deadline);
     const contentRange = tail.headers.get("content-range")!;
@@ -197,6 +201,7 @@ export async function downloadMunicipalArchive(
                 : fail("Compressione comunale non supportata.");
           if (archive.length !== size || crc32(archive) !== local.readUInt32LE(14))
             return fail("Archivio comunale troncato.");
+          succeeded = true;
           return {
             bytes: archive,
             requestUrl: url,
@@ -221,5 +226,7 @@ export async function downloadMunicipalArchive(
   } finally {
     controller.abort();
     release();
+    await recordSource("ade-cadastre", performance.now() - started, succeeded);
+    sourceLog("ade-cadastre", new URL(url).host, started, succeeded ? "ok" : "error", "miss");
   }
 }

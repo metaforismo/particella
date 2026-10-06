@@ -1,42 +1,19 @@
 import { createHash } from "node:crypto";
 import { serialize, deserialize } from "node:v8";
+import { RedisRestClient } from "#server/core/redis.ts";
 import type { Cache } from "#server/core/cache.ts";
 
 /** Redis REST command API (e.g. Upstash). Optional; binary HTTP payloads survive round trips. */
 export class RedisRestCache implements Cache {
-  private readonly endpoint: string;
-  private readonly token: string;
-  private readonly fetcher: typeof fetch;
+  private readonly redis: RedisRestClient;
   constructor(endpoint: string, token: string, fetcher: typeof fetch = (...args) => fetch(...args)) {
-    const url = new URL(endpoint);
-    if (url.protocol !== "https:" || url.username || url.password || url.search || url.hash || !token)
-      throw new Error("Invalid shared cache configuration");
-    this.endpoint = url.toString();
-    this.token = token;
-    this.fetcher = fetcher;
+    this.redis = new RedisRestClient(endpoint, token, fetcher);
   }
   private key(key: string) {
     return `particella:v1:${createHash("sha256").update(key).digest("hex")}`;
   }
-  private async command(command: (string | number)[]) {
-    const response = await this.fetcher(this.endpoint, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${this.token}`, "Content-Type": "application/json" },
-      body: JSON.stringify(command),
-      signal: AbortSignal.timeout(250),
-      redirect: "error",
-      cache: "no-store",
-    });
-    if (!response.ok) {
-      await response.body?.cancel();
-      throw new Error("Shared cache unavailable");
-    }
-    const text = await response.text();
-    if (text.length > 24_000_000) throw new Error("Shared cache value exceeds limit");
-    const data: unknown = JSON.parse(text);
-    if (!data || typeof data !== "object" || !("result" in data) || "error" in data)
-      throw new Error("Invalid shared cache response");
-    return data.result;
+  private command(command: (string | number)[]) {
+    return this.redis.command(command);
   }
   async get<T>(key: string): Promise<T | undefined> {
     const result = await this.command(["GET", this.key(key)]);

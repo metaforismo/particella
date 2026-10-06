@@ -236,6 +236,7 @@ export const ApiError = z.object({
   error: z.object({
     code: z.enum([
       "bad_request",
+      "unauthorized",
       "not_found",
       "upstream_unavailable",
       "rate_limited",
@@ -254,3 +255,24 @@ export const Health = z.object({
   timestamp: z.iso.datetime(),
 });
 export type Health = z.infer<typeof Health>;
+
+/** Transport health observed from real requests, never inferred from cached data. */
+export const SourceStatus = z.object({
+  sourceId: z.string(),
+  state: z.enum(["unknown", "ok", "slow", "error"]),
+  medianLatencyMs: z.number().nonnegative().nullable(),
+  checkedAt: z.iso.datetime().nullable(),
+  sampleCount: z.number().int().nonnegative(),
+  scope: z.enum(["instance", "shared"]),
+  provenance: Provenance,
+});
+export type SourceStatus = z.infer<typeof SourceStatus>;
+export const SourceStatusResponse = z.array(SourceStatus);
+
+export const GeocodeQuery = z
+  .object({
+    q: z.string().trim().min(3).max(200),
+    country: CountryCode.default("it"),
+  })
+  .strict();
+export const StatusQuery = z.object({ probe: z.literal("1").optional() }).strict();

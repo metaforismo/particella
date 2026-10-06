@@ -126,7 +126,12 @@ export async function tile(params: z.infer<typeof TileParams>, signal?: AbortSig
           SRS: "EPSG:3857",
           BBOX: tileBbox(params.z, params.x, params.y).join(","),
         });
-  const payload: HttpPayload = await http.request(url, { signal, policy: s.hostPolicy, ttlMs: 604_800_000 });
+  const payload: HttpPayload = await http.request(url, {
+    signal,
+    sourceId: s.id,
+    policy: s.hostPolicy,
+    ttlMs: 604_800_000,
+  });
   if (!payload.contentType.toLowerCase().startsWith("image/png") || !PngTile.safeParse(payload.bytes).success)
     throw new UpstreamError("Il WMS non ha restituito un tile PNG valido.");
   return params.overlay === "cadastre"

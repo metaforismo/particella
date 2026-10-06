@@ -1,3 +1,4 @@
+import { markCache, logEvent } from "#server/core/observability.ts";
 import { serialize } from "node:v8";
 import { RedisRestCache, FallbackCache } from "#server/core/shared-cache.ts";
 
@@ -41,13 +42,18 @@ export class MemoryCache implements Cache {
 
   async get<T>(key: string): Promise<T | undefined> {
     const entry = this.entries.get(key);
-    if (!entry) return undefined;
+    if (!entry) {
+      markCache("miss");
+      return undefined;
+    }
     this.entries.delete(key);
     if (entry.expires <= this.now()) {
       this.bytes -= entry.size;
+      markCache("miss");
       return undefined;
     }
     this.entries.set(key, entry);
+    markCache("hit");
     return structuredClone(entry.value) as T;
   }
 
@@ -83,7 +89,7 @@ function configuredCache(): Cache {
   try {
     return new FallbackCache(local, new RedisRestCache(endpoint, token));
   } catch {
-    console.warn("Particella: shared_cache_configuration_invalid; using memory");
+    logEvent({ event: "operational", outcome: "shared_cache_configuration_invalid", scope: "instance" });
     return local;
   }
 }

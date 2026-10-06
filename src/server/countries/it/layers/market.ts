@@ -1,3 +1,4 @@
+import { formatNumber } from "#server/core/format.ts";
 import { z } from "zod";
 import { unzipSync } from "fflate";
 import { layerResult, type LayerProvider } from "#server/core/layers.ts";
@@ -188,7 +189,7 @@ export const market: LayerProvider = async (plot, { signal }) => {
       ? `La zona OMI ${zone} non pubblica quotazioni residenziali.`
       : !prices[0].isPredominant
         ? `La zona OMI ${zone} pubblica quotazioni senza indicare una tipologia residenziale prevalente.`
-        : `Nella zona OMI ${zone}, ${prices[0].type.toLowerCase()} da ${Math.min(...prices.map((p) => p.min)).toLocaleString("it-IT")} a ${Math.max(...prices.map((p) => p.max)).toLocaleString("it-IT")} €/m².`,
+        : `Nella zona OMI ${zone}, ${prices[0].type.toLowerCase()} da ${formatNumber(Math.min(...prices.map((p) => p.min)))} a ${formatNumber(Math.max(...prices.map((p) => p.max)))} €/m².`,
     metrics: [
       { key: "omi_zone", label: "Zona OMI", value: `${zone} · ${selected.DIZIONE}` },
       {

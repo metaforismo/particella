@@ -1,3 +1,4 @@
+import { formatNumber } from "#server/core/format.ts";
 import { z } from "zod";
 import type { LayerProvider } from "#server/core/layers.ts";
 import { layerResult } from "#server/core/layers.ts";
@@ -53,7 +54,7 @@ export const solar: LayerProvider = async (plot, { signal }) => {
   const mount = data.inputs.mounting_system.fixed;
   return layerResult("solar", {
     scope: "point",
-    headline: `PVGIS stima circa ${Math.round(totals.E_y)} kWh all'anno per un impianto ideale da 1 kWp.`,
+    headline: `PVGIS stima circa ${formatNumber(totals.E_y, 0)} kWh all'anno per un impianto ideale da 1 kWp.`,
     severity: "none",
     metrics: [
       {

@@ -1,4 +1,5 @@
 import { serialize } from "node:v8";
+import { RedisRestCache, FallbackCache } from "#server/core/shared-cache.ts";
 
 export interface Cache {
   get<T>(key: string): Promise<T | undefined>;
@@ -74,6 +75,19 @@ const configuredBytes = Number(process.env.PARTICELLA_CACHE_MAX_BYTES ?? 64 * 10
 if (!Number.isSafeInteger(configuredBytes) || configuredBytes < 1)
   throw new Error("PARTICELLA_CACHE_MAX_BYTES must be a positive integer");
 
-export const cache: Cache = new MemoryCache(512, Date.now, configuredBytes);
+function configuredCache(): Cache {
+  const local = new MemoryCache(512, Date.now, configuredBytes);
+  const endpoint = process.env.PARTICELLA_CACHE_REDIS_REST_URL;
+  const token = process.env.PARTICELLA_CACHE_REDIS_REST_TOKEN;
+  if (!endpoint || !token) return local;
+  try {
+    return new FallbackCache(local, new RedisRestCache(endpoint, token));
+  } catch {
+    console.warn("Particella: shared_cache_configuration_invalid; using memory");
+    return local;
+  }
+}
+
+export const cache: Cache = configuredCache();
 
 export const NEGATIVE_TTL_MS = 30_000;

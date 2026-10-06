@@ -1,21 +1,8 @@
 import { RateLimited } from "#server/core/errors.ts";
 import { hash } from "#server/core/http.ts";
 
-/**
- * Client address for rate limiting. `x-real-ip` is set by the platform (Vercel) and cannot be forged
- * by the caller; otherwise the rightmost `x-forwarded-for` hop is the one our nearest proxy appended.
- * The leftmost value is client-controlled and is never trusted.
- */
-export function clientAddress(request: Request): string {
-  const real = request.headers.get("x-real-ip")?.trim();
-  if (real) return real;
-  const hops = request.headers
-    .get("x-forwarded-for")
-    ?.split(",")
-    .map((h) => h.trim())
-    .filter(Boolean);
-  return hops?.at(-1) ?? "local";
-}
+import { clientAddress } from "#server/http/identity.ts";
+export { clientAddress } from "#server/http/identity.ts";
 
 export class ChatRateLimiter {
   private entries = new Map<string, { until: number; count: number }>();

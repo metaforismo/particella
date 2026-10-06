@@ -1,10 +1,8 @@
 import { Readable } from "node:stream";
 import { createInflateRaw, crc32 } from "node:zlib";
-import { readFile, writeFile, mkdir, rename, readdir, stat, unlink } from "node:fs/promises";
-import { join } from "node:path";
-import { tmpdir } from "node:os";
-import { createHash, randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 import { z } from "zod";
+import { cadastralStorage, type CadastralStorage } from "#server/countries/it/cadastral-storage.ts";
 import { BadRequest, NotFound, RateLimited, UpstreamError } from "#server/core/errors.ts";
 import { parseZoning } from "#server/countries/it/cadastre.ts";
 import {
@@ -39,9 +37,6 @@ const Index = z.object({
   counts: z.object({ maps: z.number(), parcels: z.number() }),
 });
 export type CadastralIndex = z.infer<typeof Index>;
-const TTL = 7 * 86400000;
-const root = () =>
-  process.env.PARTICELLA_CADASTRAL_INDEX_DIR ?? join(tmpdir(), "particella-cadastral-index-v1");
 const pending = new Map<string, Promise<CadastralIndex>>();
 
 async function members(archive: Uint8Array, entry: ZipEntry, consume: (member: string) => void) {
@@ -190,44 +185,33 @@ export function findIndexedParcel(
   return matches[0];
 }
 
-export async function storeCadastralIndex(index: CadastralIndex) {
-  await mkdir(root(), { recursive: true });
-  // Own index files only: at most 256 MiB on disk. Atomic replacement keeps readers safe.
-  const files = await Promise.all(
-    (await readdir(root()))
-      .filter((n) => /^[A-Z]\d{3}\.json$/.test(n))
-      .map(async (name) => ({ name, info: await stat(join(root(), name)) })),
-  );
-  let size = files.reduce((s, f) => s + f.info.size, 0);
-  for (const f of files.sort((a, b) => a.info.mtimeMs - b.info.mtimeMs)) {
-    if (size < 240 * 1024 * 1024) break;
-    await unlink(join(root(), f.name));
-    size -= f.info.size;
-  }
-  const data = JSON.stringify(index);
-  if (Buffer.byteLength(data) > 16 * 1024 * 1024)
-    throw new UpstreamError("Indice comunale oltre il limite di 16 MiB.");
-  const temporary = join(root(), `${index.belfiore}-${randomUUID()}.tmp`);
+export async function storeCadastralIndex(
+  index: CadastralIndex,
+  storage: CadastralStorage = cadastralStorage(),
+) {
+  const value = Index.parse(index);
+  await storage.put(value.belfiore, new TextEncoder().encode(JSON.stringify(value)));
+}
+
+export async function loadCadastralIndex(
+  belfiore: string,
+  storage: CadastralStorage = cadastralStorage(),
+): Promise<CadastralIndex | undefined> {
+  const bytes = await storage.get(belfiore);
+  if (!bytes) return undefined;
   try {
-    await writeFile(temporary, data, { flag: "wx" });
-    await rename(temporary, join(root(), `${index.belfiore}.json`));
-  } finally {
-    await unlink(temporary).catch(() => {});
+    const parsed = Index.safeParse(JSON.parse(new TextDecoder().decode(bytes)));
+    return parsed.success && parsed.data.belfiore === belfiore ? parsed.data : undefined;
+  } catch {
+    return undefined;
   }
 }
 
 export async function municipalIndex(belfiore: string, signal?: AbortSignal): Promise<CadastralIndex> {
   if (!/^[A-Z]\d{3}$/.test(belfiore)) throw new BadRequest("Codice Belfiore non valido.");
-  try {
-    const path = join(root(), `${belfiore}.json`),
-      info = await stat(path);
-    if (info.size <= 16 * 1024 * 1024 && Date.now() - info.mtimeMs < TTL) {
-      const index = Index.parse(JSON.parse(await readFile(path, "utf8")));
-      if (index.belfiore === belfiore) return index;
-    }
-  } catch {
-    /* Missing, expired or invalid index is regenerated from the official archive. */
-  }
+  // A configured Blob outage must not trigger archive downloads on every instance.
+  const stored = await loadCadastralIndex(belfiore);
+  if (stored) return stored;
   const existing = pending.get(belfiore);
   if (existing) return waitFor(existing, signal);
   // Validate before counting: requests for unknown or uncovered comuni must not use up the quota.
@@ -241,13 +225,7 @@ export async function municipalIndex(belfiore: string, signal?: AbortSignal): Pr
   // The build is shared and outlives the request that started it: an abandoned search (the user
   // kept typing or closed the page) must not throw away a download every later search needs.
   const task = (async () => {
-    const archive = await downloadMunicipalArchive(
-      municipality.region,
-      municipality.provinceCode,
-      belfiore,
-      AbortSignal.timeout(BUILD_TIMEOUT_MS),
-    );
-    const index = await buildCadastralIndex(archive.bytes, belfiore, archive);
+    const index = await buildMunicipalIndex(belfiore);
     await storeCadastralIndex(index);
     return index;
   })().finally(() => pending.delete(belfiore));
@@ -286,4 +264,20 @@ function waitFor<T>(task: Promise<T>, signal?: AbortSignal): Promise<T> {
     signal.addEventListener("abort", abort, { once: true });
     task.then(resolve, reject).finally(() => signal.removeEventListener("abort", abort));
   });
+}
+
+/** Explicit prebuild always fetches a fresh official archive; it never persists the ZIP. */
+export async function buildMunicipalIndex(belfiore: string): Promise<CadastralIndex> {
+  if (!/^[A-Z]\d{3}$/.test(belfiore)) throw new BadRequest("Codice Belfiore non valido.");
+  const municipality = municipalitySnapshot.municipalities.find((m) => m.cadastralCode === belfiore);
+  if (!municipality) throw new NotFound("Comune catastale non disponibile nello snapshot ISTAT.");
+  if (["TN", "BZ"].includes(municipality.provinceCode))
+    throw new UpstreamError("Il download AdE non copre Trento e Bolzano.");
+  const archive = await downloadMunicipalArchive(
+    municipality.region,
+    municipality.provinceCode,
+    belfiore,
+    AbortSignal.timeout(BUILD_TIMEOUT_MS),
+  );
+  return buildCadastralIndex(archive.bytes, belfiore, archive);
 }
